@@ -1,0 +1,4893 @@
+{
+  "analysis_mode": "full",
+  "classification": "EXPLORATORY_SHORT_HORIZON_SIGNAL",
+  "declarations": {
+    "errors": [],
+    "input_hashes": {
+      "TENANT_SHORT_FOLLOWUP_DECISION_RULES.md": "610f44f5465e942270359365d57f6769fe2836d4ecca3efe0bea518b85de4433",
+      "TENANT_SHORT_FOLLOWUP_PROTOCOL.md": "a1b8cb63a3831a6bf6cb18cc196d6c7599b2e0c0f69dc96a1a71bfb598099208",
+      "analyze_tenant_short_followup.py": "79b90a2900d74e4a43f4cdd605447cb3fa750986f6295d6e1e581aeab268a207",
+      "avep_paper_instrumentation.patch": "4cbc2736357f47fd5305e125854d4eb2a681d0834599046888dada8bb4b78450",
+      "run_tenant_short_followup.sh": "7d9a2b8bcf3a0e095d0d25feb3b7ce7fabf451f8ee58bfe93c9d926fca178e3e",
+      "tenant_gateway.py": "a54e300c32c8b3133353128d33a8734be211867ec964b49b6b5f7375dff9ecd0",
+      "tenant_probe.py": "2141de977591643daeb13a559243e11843da8558f2b053799df49cd134e2db81",
+      "test_analyze_tenant_short_followup.py": "f6cef3f32d84750a559d702228e9649a2bbb54c45f3d95bc85d0356a8873b4ce"
+    },
+    "schedule": {
+      "adaptive_workload": {
+        "intervention": {
+          "concurrency": 8,
+          "max_tokens": 2,
+          "requests": 4096
+        },
+        "post": {
+          "concurrency": 32,
+          "max_tokens": 32,
+          "requests_per_window": 128,
+          "windows": 8
+        },
+        "pre": {
+          "concurrency": 32,
+          "max_tokens": 32,
+          "requests_per_window": 128,
+          "windows": 4
+        },
+        "reset_after_server_ready": true,
+        "warmup": {
+          "concurrency": 32,
+          "max_tokens": 32,
+          "requests": 1024
+        }
+      },
+      "gate_order": [
+        "placebo",
+        "attack"
+      ],
+      "performance_orders": [
+        [
+          "placebo",
+          "attack"
+        ],
+        [
+          "attack",
+          "placebo"
+        ],
+        [
+          "attack",
+          "placebo"
+        ],
+        [
+          "placebo",
+          "attack"
+        ]
+      ],
+      "protocol_version": "avep-tenant-short-followup-v2",
+      "schema_version": 1,
+      "screen": {
+        "candidate": {
+          "concurrency": 8,
+          "max_tokens": 2,
+          "requests": 256
+        },
+        "token_ids": [
+          279,
+          323,
+          6303,
+          8251,
+          23811,
+          3015,
+          8094,
+          12095,
+          13,
+          11,
+          0,
+          30
+        ],
+        "warmup": {
+          "concurrency": 32,
+          "max_tokens": 32,
+          "requests": 512
+        }
+      },
+      "tenant_topology": {
+        "all_other_workload_tenant": "victim",
+        "audit_join_required": true,
+        "gateway_url": "http://127.0.0.1:8001/v1",
+        "intervention_tenant": "attacker",
+        "negative_auth_tests_required": true,
+        "same_worker_required": true,
+        "upstream_url": "http://127.0.0.1:8000/v1"
+      }
+    },
+    "valid": true
+  },
+  "errors": [],
+  "gate": {
+    "attack": {
+      "budget": {
+        "errors": [],
+        "phases": {
+          "intervention": {
+            "event_count": 1280,
+            "mean_normalized_budget": 1.0,
+            "usable_event_count": 1280,
+            "weighted_normalized_budget": 1.0
+          },
+          "post_01": {
+            "event_count": 101,
+            "mean_normalized_budget": 0.5793068650407135,
+            "usable_event_count": 101,
+            "weighted_normalized_budget": 0.49080130825838103
+          },
+          "post_02": {
+            "event_count": 112,
+            "mean_normalized_budget": 0.27678175876162475,
+            "usable_event_count": 112,
+            "weighted_normalized_budget": 0.29040317022742934
+          },
+          "post_03": {
+            "event_count": 137,
+            "mean_normalized_budget": 0.048119158892486434,
+            "usable_event_count": 137,
+            "weighted_normalized_budget": 0.03318641431164117
+          },
+          "post_04": {
+            "event_count": 135,
+            "mean_normalized_budget": 0.05171962702243261,
+            "usable_event_count": 135,
+            "weighted_normalized_budget": 0.03289303289303289
+          },
+          "post_05": {
+            "event_count": 137,
+            "mean_normalized_budget": 0.05131076584761945,
+            "usable_event_count": 137,
+            "weighted_normalized_budget": 0.03325508607198748
+          },
+          "post_06": {
+            "event_count": 136,
+            "mean_normalized_budget": 0.07071968403515672,
+            "usable_event_count": 136,
+            "weighted_normalized_budget": 0.05107095046854083
+          },
+          "post_07": {
+            "event_count": 127,
+            "mean_normalized_budget": 0.1309564781244896,
+            "usable_event_count": 127,
+            "weighted_normalized_budget": 0.1161501063506533
+          },
+          "post_08": {
+            "event_count": 130,
+            "mean_normalized_budget": 0.10052170990349094,
+            "usable_event_count": 130,
+            "weighted_normalized_budget": 0.09849612864800476
+          },
+          "pre_01": {
+            "event_count": 84,
+            "mean_normalized_budget": 0.8379957470979681,
+            "usable_event_count": 84,
+            "weighted_normalized_budget": 0.8067663456664977
+          },
+          "pre_02": {
+            "event_count": 84,
+            "mean_normalized_budget": 0.8316509696071586,
+            "usable_event_count": 84,
+            "weighted_normalized_budget": 0.8056823947234906
+          },
+          "pre_03": {
+            "event_count": 84,
+            "mean_normalized_budget": 0.827164156467516,
+            "usable_event_count": 84,
+            "weighted_normalized_budget": 0.7985547667342799
+          },
+          "pre_04": {
+            "event_count": 85,
+            "mean_normalized_budget": 0.8223504194981468,
+            "usable_event_count": 85,
+            "weighted_normalized_budget": 0.7923427991886409
+          },
+          "warmup": {
+            "event_count": 571,
+            "mean_normalized_budget": 0.785087581979787,
+            "usable_event_count": 571,
+            "weighted_normalized_budget": 0.7798722044728434
+          }
+        },
+        "total_event_count": 3203,
+        "valid": true
+      },
+      "errors": [],
+      "estimator": {
+        "intervention_delta_intercept0": -13.80907253921032,
+        "intervention_intercept0": -13.85671615600586,
+        "pre_04_intercept0": -0.047643616795539856
+      },
+      "metadata": {
+        "adaptive": true,
+        "arm": "attack",
+        "created_at": "2026-09-18T13:02:48,097242557+00:00",
+        "detailed_metrics": true,
+        "pair_id": "gate",
+        "poison_token_id": 279,
+        "protocol_version": "avep-tenant-short-followup-v2",
+        "run_name": "gate_attack",
+        "stage": "gate",
+        "telemetry": true
+      },
+      "phases": {
+        "intervention": {
+          "draft_acceptance_rate": 0.0,
+          "errors": [],
+          "metrics": {
+            "latency_p50": 65.010335,
+            "latency_p95": 67.09075,
+            "throughput": 245.49624964594517
+          },
+          "timing": {
+            "finished_ns": 1789736679632220786,
+            "started_ns": 1789736646260172906
+          },
+          "valid": true
+        },
+        "post_01": {
+          "draft_acceptance_rate": 0.1859626802374894,
+          "errors": [],
+          "metrics": {
+            "latency_p50": 347.839334,
+            "latency_p95": 1446.9623081,
+            "throughput": 1553.0654161189802
+          },
+          "timing": {
+            "finished_ns": 1789736682563124096,
+            "started_ns": 1789736679922839101
+          },
+          "valid": true
+        },
+        "post_02": {
+          "draft_acceptance_rate": 0.1099964801126364,
+          "errors": [],
+          "metrics": {
+            "latency_p50": 442.893407,
+            "latency_p95": 597.4752102,
+            "throughput": 2056.211218361703
+          },
+          "timing": {
+            "finished_ns": 1789736684655579919,
+            "started_ns": 1789736682660724431
+          },
+          "valid": true
+        },
+        "post_03": {
+          "draft_acceptance_rate": 0.010643821391484943,
+          "errors": [],
+          "metrics": {
+            "latency_p50": 586.4744725,
+            "latency_p95": 615.1054253,
+            "throughput": 1700.896714034939
+          },
+          "timing": {
+            "finished_ns": 1789736687164543154,
+            "started_ns": 1789736684753431298
+          },
+          "valid": true
+        },
+        "post_04": {
+          "draft_acceptance_rate": 0.00940337224383917,
+          "errors": [],
+          "metrics": {
+            "latency_p50": 581.019722,
+            "latency_p95": 599.78018165,
+            "throughput": 1730.7146898381577
+          },
+          "timing": {
+            "finished_ns": 1789736689633176876,
+            "started_ns": 1789736687263718609
+          },
+          "valid": true
+        },
+        "post_05": {
+          "draft_acceptance_rate": 0.011164794985635936,
+          "errors": [],
+          "metrics": {
+            "latency_p50": 582.268292,
+            "latency_p95": 608.9396333,
+            "throughput": 1702.614394747581
+          },
+          "timing": {
+            "finished_ns": 1789736692140667541,
+            "started_ns": 1789736689732099681
+          },
+          "valid": true
+        },
+        "post_06": {
+          "draft_acceptance_rate": 0.020475295381310418,
+          "errors": [],
+          "metrics": {
+            "latency_p50": 584.342598,
+            "latency_p95": 613.500304,
+            "throughput": 1708.250897125118
+          },
+          "timing": {
+            "finished_ns": 1789736694640882639,
+            "started_ns": 1789736692240180516
+          },
+          "valid": true
+        },
+        "post_07": {
+          "draft_acceptance_rate": 0.06381172839506173,
+          "errors": [],
+          "metrics": {
+            "latency_p50": 524.9062635,
+            "latency_p95": 582.812578,
+            "throughput": 1791.4861356032898
+          },
+          "timing": {
+            "finished_ns": 1789736697029746749,
+            "started_ns": 1789736694740251942
+          },
+          "valid": true
+        },
+        "post_08": {
+          "draft_acceptance_rate": 0.054576934658235474,
+          "errors": [],
+          "metrics": {
+            "latency_p50": 540.4789215,
+            "latency_p95": 602.4835151,
+            "throughput": 1757.094349082305
+          },
+          "timing": {
+            "finished_ns": 1789736699462111538,
+            "started_ns": 1789736697127941992
+          },
+          "valid": true
+        },
+        "pre_01": {
+          "draft_acceptance_rate": 0.30870499731327244,
+          "errors": [],
+          "metrics": {
+            "latency_p50": 312.4617545,
+            "latency_p95": 422.16679375,
+            "throughput": 2678.8752569571784
+          },
+          "timing": {
+            "finished_ns": 1789736641257086606,
+            "started_ns": 1789736639724972740
+          },
+          "valid": true
+        },
+        "pre_02": {
+          "draft_acceptance_rate": 0.3093060785368478,
+          "errors": [],
+          "metrics": {
+            "latency_p50": 312.705457,
+            "latency_p95": 421.3082436,
+            "throughput": 2677.6625541897024
+          },
+          "timing": {
+            "finished_ns": 1789736642887013458,
+            "started_ns": 1789736641354356237
+          },
+          "valid": true
+        },
+        "pre_03": {
+          "draft_acceptance_rate": 0.3092741935483871,
+          "errors": [],
+          "metrics": {
+            "latency_p50": 313.3315675,
+            "latency_p95": 423.12929905,
+            "throughput": 2664.3530091223697
+          },
+          "timing": {
+            "finished_ns": 1789736644524815799,
+            "started_ns": 1789736642984540713
+          },
+          "valid": true
+        },
+        "pre_04": {
+          "draft_acceptance_rate": 0.3092741935483871,
+          "errors": [],
+          "metrics": {
+            "latency_p50": 312.96698649999996,
+            "latency_p95": 423.3636149,
+            "throughput": 2659.15393874417
+          },
+          "timing": {
+            "finished_ns": 1789736646163868292,
+            "started_ns": 1789736644620565633
+          },
+          "valid": true
+        },
+        "warmup": {
+          "draft_acceptance_rate": 0.3137962586417243,
+          "errors": [],
+          "metrics": {
+            "latency_p50": 313.403632,
+            "latency_p95": 423.24777049999994,
+            "throughput": 2985.760955480492
+          },
+          "timing": {
+            "finished_ns": 1789736639565020411,
+            "started_ns": 1789736628587079001
+          },
+          "valid": true
+        }
+      },
+      "startup_reset": {
+        "errors": [],
+        "reset": {
+          "available": true,
+          "counts": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "grad": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "info": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "intercepts": [
+            -0.20000000298023224,
+            -0.20000000298023224,
+            -0.20000000298023224,
+            -0.20000000298023224
+          ],
+          "refits": 0,
+          "slope": 0.5,
+          "steps_since_refit": 0
+        },
+        "server_ready": {
+          "available": true,
+          "counts": [
+            66.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "grad": [
+            [
+              21.319517135620117,
+              -22.1414794921875
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "info": [
+            [
+              13.933040618896484,
+              -14.187692642211914,
+              14.699986457824707
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "intercepts": [
+            -0.20000000298023224,
+            -0.20000000298023224,
+            -0.20000000298023224,
+            -0.20000000298023224
+          ],
+          "refits": 0,
+          "slope": 0.5,
+          "steps_since_refit": 6
+        },
+        "valid": true
+      },
+      "valid": true
+    },
+    "placebo": {
+      "budget": {
+        "errors": [],
+        "phases": {
+          "intervention": {
+            "event_count": 1281,
+            "mean_normalized_budget": 1.0,
+            "usable_event_count": 1281,
+            "weighted_normalized_budget": 1.0
+          },
+          "post_01": {
+            "event_count": 88,
+            "mean_normalized_budget": 0.6405985539055267,
+            "usable_event_count": 88,
+            "weighted_normalized_budget": 0.659372026641294
+          },
+          "post_02": {
+            "event_count": 89,
+            "mean_normalized_budget": 0.6250156757737122,
+            "usable_event_count": 89,
+            "weighted_normalized_budget": 0.5972415391747797
+          },
+          "post_03": {
+            "event_count": 87,
+            "mean_normalized_budget": 0.6790497678011264,
+            "usable_event_count": 87,
+            "weighted_normalized_budget": 0.7095996140858659
+          },
+          "post_04": {
+            "event_count": 91,
+            "mean_normalized_budget": 0.5261528936143193,
+            "usable_event_count": 91,
+            "weighted_normalized_budget": 0.5270671539515761
+          },
+          "post_05": {
+            "event_count": 92,
+            "mean_normalized_budget": 0.5298538455023707,
+            "usable_event_count": 92,
+            "weighted_normalized_budget": 0.526879271070615
+          },
+          "post_06": {
+            "event_count": 91,
+            "mean_normalized_budget": 0.5272500294386503,
+            "usable_event_count": 91,
+            "weighted_normalized_budget": 0.5248631386861314
+          },
+          "post_07": {
+            "event_count": 92,
+            "mean_normalized_budget": 0.5276785727582783,
+            "usable_event_count": 92,
+            "weighted_normalized_budget": 0.526117700729927
+          },
+          "post_08": {
+            "event_count": 93,
+            "mean_normalized_budget": 0.5291594863438055,
+            "usable_event_count": 93,
+            "weighted_normalized_budget": 0.5253968253968254
+          },
+          "pre_01": {
+            "event_count": 83,
+            "mean_normalized_budget": 0.8324215085611829,
+            "usable_event_count": 83,
+            "weighted_normalized_budget": 0.7990522540983607
+          },
+          "pre_02": {
+            "event_count": 84,
+            "mean_normalized_budget": 0.8376841993945922,
+            "usable_event_count": 84,
+            "weighted_normalized_budget": 0.8023760858456822
+          },
+          "pre_03": {
+            "event_count": 84,
+            "mean_normalized_budget": 0.834252058689413,
+            "usable_event_count": 84,
+            "weighted_normalized_budget": 0.7991551459293394
+          },
+          "pre_04": {
+            "event_count": 83,
+            "mean_normalized_budget": 0.8279597034178058,
+            "usable_event_count": 83,
+            "weighted_normalized_budget": 0.7971553049718093
+          },
+          "warmup": {
+            "event_count": 571,
+            "mean_normalized_budget": 0.785229941453611,
+            "usable_event_count": 571,
+            "weighted_normalized_budget": 0.7798984220277263
+          }
+        },
+        "total_event_count": 2909,
+        "valid": true
+      },
+      "errors": [],
+      "estimator": {
+        "intervention_delta_intercept0": 0.0251650158315897,
+        "intervention_intercept0": 0.010539671406149864,
+        "pre_04_intercept0": -0.014625344425439835
+      },
+      "metadata": {
+        "adaptive": true,
+        "arm": "placebo",
+        "created_at": "2026-09-18T13:00:39,090274452+00:00",
+        "detailed_metrics": true,
+        "pair_id": "gate",
+        "poison_token_id": 279,
+        "protocol_version": "avep-tenant-short-followup-v2",
+        "run_name": "gate_placebo",
+        "stage": "gate",
+        "telemetry": true
+      },
+      "phases": {
+        "intervention": {
+          "draft_acceptance_rate": 0.1875,
+          "errors": [],
+          "metrics": {
+            "latency_p50": 64.91874150000001,
+            "latency_p95": 67.05459725,
+            "throughput": 245.8063619017117
+          },
+          "timing": {
+            "finished_ns": 1789736552098257637,
+            "started_ns": 1789736518768342596
+          },
+          "valid": true
+        },
+        "post_01": {
+          "draft_acceptance_rate": 0.25774225774225773,
+          "errors": [],
+          "metrics": {
+            "latency_p50": 347.7236375,
+            "latency_p95": 427.13235395,
+            "throughput": 1823.4540667275146
+          },
+          "timing": {
+            "finished_ns": 1789736554634274680,
+            "started_ns": 1789736552384769515
+          },
+          "valid": true
+        },
+        "post_02": {
+          "draft_acceptance_rate": 0.24271844660194175,
+          "errors": [],
+          "metrics": {
+            "latency_p50": 350.907756,
+            "latency_p95": 429.93113969999996,
+            "throughput": 2513.8822102385043
+          },
+          "timing": {
+            "finished_ns": 1789736556364574392,
+            "started_ns": 1789736554732032293
+          },
+          "valid": true
+        },
+        "post_03": {
+          "draft_acceptance_rate": 0.26612493651599795,
+          "errors": [],
+          "metrics": {
+            "latency_p50": 347.93445599999995,
+            "latency_p95": 442.5897579,
+            "throughput": 2567.187431668064
+          },
+          "timing": {
+            "finished_ns": 1789736558060638894,
+            "started_ns": 1789736556462166363
+          },
+          "valid": true
+        },
+        "post_04": {
+          "draft_acceptance_rate": 0.23101719197707737,
+          "errors": [],
+          "metrics": {
+            "latency_p50": 361.449095,
+            "latency_p95": 421.79265614999997,
+            "throughput": 2482.7288958300232
+          },
+          "timing": {
+            "finished_ns": 1789736559809817215,
+            "started_ns": 1789736558157019745
+          },
+          "valid": true
+        },
+        "post_05": {
+          "draft_acceptance_rate": 0.23068669527896996,
+          "errors": [],
+          "metrics": {
+            "latency_p50": 360.6593815,
+            "latency_p95": 429.29876105,
+            "throughput": 2467.7885557579384
+          },
+          "timing": {
+            "finished_ns": 1789736561569408665,
+            "started_ns": 1789736559906617643
+          },
+          "valid": true
+        },
+        "post_06": {
+          "draft_acceptance_rate": 0.23070509766555503,
+          "errors": [],
+          "metrics": {
+            "latency_p50": 360.213392,
+            "latency_p95": 425.66477275,
+            "throughput": 2497.9023627071783
+          },
+          "timing": {
+            "finished_ns": 1789736563308660170,
+            "started_ns": 1789736561665965949
+          },
+          "valid": true
+        },
+        "post_07": {
+          "draft_acceptance_rate": 0.23175095419847327,
+          "errors": [],
+          "metrics": {
+            "latency_p50": 361.48096799999996,
+            "latency_p95": 427.56264699999997,
+            "throughput": 2479.714643205039
+          },
+          "timing": {
+            "finished_ns": 1789736565060570130,
+            "started_ns": 1789736563405840376
+          },
+          "valid": true
+        },
+        "post_08": {
+          "draft_acceptance_rate": 0.22843601895734597,
+          "errors": [],
+          "metrics": {
+            "latency_p50": 367.1113255,
+            "latency_p95": 427.9138589,
+            "throughput": 2457.528843726847
+          },
+          "timing": {
+            "finished_ns": 1789736566827277067,
+            "started_ns": 1789736565157665235
+          },
+          "valid": true
+        },
+        "pre_01": {
+          "draft_acceptance_rate": 0.31477457903313416,
+          "errors": [],
+          "metrics": {
+            "latency_p50": 311.6026145,
+            "latency_p95": 420.43443575000003,
+            "throughput": 2703.176309708638
+          },
+          "timing": {
+            "finished_ns": 1789736513791512991,
+            "started_ns": 1789736512273246415
+          },
+          "valid": true
+        },
+        "pre_02": {
+          "draft_acceptance_rate": 0.31324485373781147,
+          "errors": [],
+          "metrics": {
+            "latency_p50": 312.3514475,
+            "latency_p95": 419.3915353,
+            "throughput": 2683.7347338458953
+          },
+          "timing": {
+            "finished_ns": 1789736515418447486,
+            "started_ns": 1789736513889237878
+          },
+          "valid": true
+        },
+        "pre_03": {
+          "draft_acceptance_rate": 0.314638783269962,
+          "errors": [],
+          "metrics": {
+            "latency_p50": 313.1444655,
+            "latency_p95": 423.66973785,
+            "throughput": 2683.939992482753
+          },
+          "timing": {
+            "finished_ns": 1789736517044956354,
+            "started_ns": 1789736515515859498
+          },
+          "valid": true
+        },
+        "pre_04": {
+          "draft_acceptance_rate": 0.31508152173913045,
+          "errors": [],
+          "metrics": {
+            "latency_p50": 312.0737115,
+            "latency_p95": 421.9105288,
+            "throughput": 2682.5040061553514
+          },
+          "timing": {
+            "finished_ns": 1789736518671978811,
+            "started_ns": 1789736517142055461
+          },
+          "valid": true
+        },
+        "warmup": {
+          "draft_acceptance_rate": 0.3136308192722098,
+          "errors": [],
+          "metrics": {
+            "latency_p50": 314.2769115,
+            "latency_p95": 427.33173679999993,
+            "throughput": 2614.8593564567004
+          },
+          "timing": {
+            "finished_ns": 1789736512114613384,
+            "started_ns": 1789736499579883717
+          },
+          "valid": true
+        }
+      },
+      "startup_reset": {
+        "errors": [],
+        "reset": {
+          "available": true,
+          "counts": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "grad": [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "info": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "intercepts": [
+            -0.20000000298023224,
+            -0.20000000298023224,
+            -0.20000000298023224,
+            -0.20000000298023224
+          ],
+          "refits": 0,
+          "slope": 0.5,
+          "steps_since_refit": 0
+        },
+        "server_ready": {
+          "available": true,
+          "counts": [
+            66.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "grad": [
+            [
+              21.319517135620117,
+              -22.1414794921875
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "info": [
+            [
+              13.933040618896484,
+              -14.187692642211914,
+              14.699986457824707
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "intercepts": [
+            -0.20000000298023224,
+            -0.20000000298023224,
+            -0.20000000298023224,
+            -0.20000000298023224
+          ],
+          "refits": 0,
+          "slope": 0.5,
+          "steps_since_refit": 6
+        },
+        "valid": true
+      },
+      "valid": true
+    }
+  },
+  "interpretation": "bounded two-tenant potency gate with optional exploratory effects",
+  "performance": {
+    "classification": "EXPLORATORY_SHORT_HORIZON_SIGNAL",
+    "errors": [],
+    "exploratory_only": true,
+    "paired_post1_effects": {
+      "bootstrap": {
+        "latency_p50": {
+          "ci95_high": 0.12640058882117033,
+          "ci95_low": 0.04956290175419459,
+          "mean": 0.09782744334033466,
+          "n": 4
+        },
+        "latency_p95": {
+          "ci95_high": 0.8457115100862698,
+          "ci95_low": 0.8170002245730148,
+          "mean": 0.8354044492136345,
+          "n": 4
+        },
+        "throughput": {
+          "ci95_high": -0.11100521742748709,
+          "ci95_low": -0.12713776195971893,
+          "mean": -0.11907148969360301,
+          "n": 4
+        }
+      },
+      "definition": "attack post_01/pre-window-mean minus placebo post_01/pre-window-mean",
+      "per_pair": {
+        "01": {
+          "latency_p50": 0.1235182949574063,
+          "latency_p95": 0.843705730782178,
+          "throughput": -0.12786428335925393
+        },
+        "02": {
+          "latency_p50": 0.12928288268493437,
+          "latency_p95": 0.8465161817213397,
+          "throughput": -0.12641124056018394
+        },
+        "03": {
+          "latency_p50": 0.024911104019790686,
+          "latency_p95": 0.8432974951810601,
+          "throughput": -0.11055006023743008
+        },
+        "04": {
+          "latency_p50": 0.1135974916992073,
+          "latency_p95": 0.8080983891699605,
+          "throughput": -0.1114603746175441
+        }
+      },
+      "throughput_negative_pairs": 4
+    },
+    "present": true,
+    "recovery_trajectory": {
+      "aggregate": {
+        "post_01": {
+          "latency_p50": {
+            "ci95_high": 0.12640058882117033,
+            "ci95_low": 0.04956290175419459,
+            "mean": 0.09782744334033466,
+            "n": 4
+          },
+          "latency_p95": {
+            "ci95_high": 0.8457115100862698,
+            "ci95_low": 0.8170002245730148,
+            "mean": 0.8354044492136345,
+            "n": 4
+          },
+          "throughput": {
+            "ci95_high": -0.11100521742748709,
+            "ci95_low": -0.12713776195971893,
+            "mean": -0.11907148969360301,
+            "n": 4
+          }
+        },
+        "post_02": {
+          "latency_p50": {
+            "ci95_high": 0.34634906313675146,
+            "ci95_low": 0.30013899750976636,
+            "mean": 0.3175657349205073,
+            "n": 4
+          },
+          "latency_p95": {
+            "ci95_high": 0.43728295944817663,
+            "ci95_low": 0.4114635315698285,
+            "mean": 0.4250020176795601,
+            "n": 4
+          },
+          "throughput": {
+            "ci95_high": -0.17441099820413447,
+            "ci95_low": -0.1950131769208217,
+            "mean": -0.18406974310656887,
+            "n": 4
+          }
+        },
+        "post_03": {
+          "latency_p50": {
+            "ci95_high": 0.7661544762998498,
+            "ci95_low": 0.7495684886148722,
+            "mean": 0.758543607035089,
+            "n": 4
+          },
+          "latency_p95": {
+            "ci95_high": 0.41117045823104087,
+            "ci95_low": 0.3885411561225396,
+            "mean": 0.397902514195343,
+            "n": 4
+          },
+          "throughput": {
+            "ci95_high": -0.3174182488968006,
+            "ci95_low": -0.3283152629513817,
+            "mean": -0.3232000554004144,
+            "n": 4
+          }
+        },
+        "post_04": {
+          "latency_p50": {
+            "ci95_high": 0.7324380652014695,
+            "ci95_low": 0.6830690274367386,
+            "mean": 0.707753546319104,
+            "n": 4
+          },
+          "latency_p95": {
+            "ci95_high": 0.44825878674104186,
+            "ci95_low": 0.40906336432168544,
+            "mean": 0.4297646366089757,
+            "n": 4
+          },
+          "throughput": {
+            "ci95_high": -0.2729747123396573,
+            "ci95_low": -0.2867354725933461,
+            "mean": -0.2800121074809569,
+            "n": 4
+          }
+        },
+        "post_05": {
+          "latency_p50": {
+            "ci95_high": 0.7070274262585972,
+            "ci95_low": 0.6897522994972678,
+            "mean": 0.697951139235776,
+            "n": 4
+          },
+          "latency_p95": {
+            "ci95_high": 0.4223322483877914,
+            "ci95_low": 0.4001102517916185,
+            "mean": 0.41122125008970495,
+            "n": 4
+          },
+          "throughput": {
+            "ci95_high": -0.2712614079568881,
+            "ci95_low": -0.2863262592015372,
+            "mean": -0.2787938335792126,
+            "n": 4
+          }
+        },
+        "post_06": {
+          "latency_p50": {
+            "ci95_high": 0.712933695338888,
+            "ci95_low": 0.6333891656660073,
+            "mean": 0.6716937286054564,
+            "n": 4
+          },
+          "latency_p95": {
+            "ci95_high": 0.4596649710676837,
+            "ci95_low": 0.448078680741972,
+            "mean": 0.4538718259048279,
+            "n": 4
+          },
+          "throughput": {
+            "ci95_high": -0.27831597567954836,
+            "ci95_low": -0.29099106300150324,
+            "mean": -0.2861925078381593,
+            "n": 4
+          }
+        },
+        "post_07": {
+          "latency_p50": {
+            "ci95_high": 0.5011148300751954,
+            "ci95_low": 0.4560899319433382,
+            "mean": 0.4802275986611342,
+            "n": 4
+          },
+          "latency_p95": {
+            "ci95_high": 0.4219875523395284,
+            "ci95_low": 0.3745579977690602,
+            "mean": 0.39827277505429426,
+            "n": 4
+          },
+          "throughput": {
+            "ci95_high": -0.23492989610196896,
+            "ci95_low": -0.2659678955020491,
+            "mean": -0.24658015267624608,
+            "n": 4
+          }
+        },
+        "post_08": {
+          "latency_p50": {
+            "ci95_high": 0.5959036415810427,
+            "ci95_low": 0.5300059854982386,
+            "mean": 0.558140804156019,
+            "n": 4
+          },
+          "latency_p95": {
+            "ci95_high": 0.427221309754964,
+            "ci95_low": 0.3963130155538224,
+            "mean": 0.4163374910019482,
+            "n": 4
+          },
+          "throughput": {
+            "ci95_high": -0.2472040598583372,
+            "ci95_low": -0.2587918952015634,
+            "mean": -0.2547424901153016,
+            "n": 4
+          }
+        }
+      },
+      "definition": "per-arm post window/pre-window mean; paired effect is attack minus placebo",
+      "per_pair": {
+        "01": {
+          "post_01": {
+            "attack_minus_placebo": {
+              "latency_p50": 0.1235182949574063,
+              "latency_p95": 0.843705730782178,
+              "throughput": -0.12786428335925393
+            },
+            "attack_normalized": {
+              "latency_p50": 1.2298600353336395,
+              "latency_p95": 1.8747743983568776,
+              "throughput": 0.7441677229180556
+            },
+            "placebo_normalized": {
+              "latency_p50": 1.1063417403762332,
+              "latency_p95": 1.0310686675746996,
+              "throughput": 0.8720320062773095
+            }
+          },
+          "post_02": {
+            "attack_minus_placebo": {
+              "latency_p50": 0.3012699947881614,
+              "latency_p95": 0.43994876180274045,
+              "throughput": -0.20151876131031776
+            },
+            "attack_normalized": {
+              "latency_p50": 1.4065161306734086,
+              "latency_p95": 1.4406524851050082,
+              "throughput": 0.7514022663920487
+            },
+            "placebo_normalized": {
+              "latency_p50": 1.1052461358852472,
+              "latency_p95": 1.0007037233022678,
+              "throughput": 0.9529210277023664
+            }
+          },
+          "post_03": {
+            "attack_minus_placebo": {
+              "latency_p50": 0.7455435726860427,
+              "latency_p95": 0.38729904795056447,
+              "throughput": -0.3146912468767561
+            },
+            "attack_normalized": {
+              "latency_p50": 1.8623802673666534,
+              "latency_p95": 1.4268256923762155,
+              "throughput": 0.6422458664267703
+            },
+            "placebo_normalized": {
+              "latency_p50": 1.1168366946806108,
+              "latency_p95": 1.039526644425651,
+              "throughput": 0.9569371133035264
+            }
+          },
+          "post_04": {
+            "attack_minus_placebo": {
+              "latency_p50": 0.6861578084119728,
+              "latency_p95": 0.3976751327522068,
+              "throughput": -0.27720808850987866
+            },
+            "attack_normalized": {
+              "latency_p50": 1.8648536880459274,
+              "latency_p95": 1.4297121996789015,
+              "throughput": 0.6390943229417013
+            },
+            "placebo_normalized": {
+              "latency_p50": 1.1786958796339546,
+              "latency_p95": 1.0320370669266947,
+              "throughput": 0.91630241145158
+            }
+          },
+          "post_05": {
+            "attack_minus_placebo": {
+              "latency_p50": 0.6890417751916416,
+              "latency_p95": 0.4248610214040791,
+              "throughput": -0.28721631821276994
+            },
+            "attack_normalized": {
+              "latency_p50": 1.8541822395420642,
+              "latency_p95": 1.4378847028961292,
+              "throughput": 0.6396757665786563
+            },
+            "placebo_normalized": {
+              "latency_p50": 1.1651404643504226,
+              "latency_p95": 1.0130236814920501,
+              "throughput": 0.9268920847914263
+            }
+          },
+          "post_06": {
+            "attack_minus_placebo": {
+              "latency_p50": 0.6689982636874949,
+              "latency_p95": 0.46253538552397133,
+              "throughput": -0.29177268335514117
+            },
+            "attack_normalized": {
+              "latency_p50": 1.8550999508588544,
+              "latency_p95": 1.4820294430616971,
+              "throughput": 0.6318669216162256
+            },
+            "placebo_normalized": {
+              "latency_p50": 1.1861016871713594,
+              "latency_p95": 1.0194940575377258,
+              "throughput": 0.9236396049713668
+            }
+          },
+          "post_07": {
+            "attack_minus_placebo": {
+              "latency_p50": 0.4437419084196019,
+              "latency_p95": 0.3822864004782571,
+              "throughput": -0.23498067951689505
+            },
+            "attack_normalized": {
+              "latency_p50": 1.620762718490941,
+              "latency_p95": 1.396666351243362,
+              "throughput": 0.6823960416140541
+            },
+            "placebo_normalized": {
+              "latency_p50": 1.177020810071339,
+              "latency_p95": 1.0143799507651048,
+              "throughput": 0.9173767211309491
+            }
+          },
+          "post_08": {
+            "attack_minus_placebo": {
+              "latency_p50": 0.6161631900494056,
+              "latency_p95": 0.42773184083359594,
+              "throughput": -0.25811099869537024
+            },
+            "attack_normalized": {
+              "latency_p50": 1.78763945741627,
+              "latency_p95": 1.4505630626846913,
+              "throughput": 0.6621901755617956
+            },
+            "placebo_normalized": {
+              "latency_p50": 1.1714762673668644,
+              "latency_p95": 1.0228312218510953,
+              "throughput": 0.9203011742571658
+            }
+          }
+        },
+        "02": {
+          "post_01": {
+            "attack_minus_placebo": {
+              "latency_p50": 0.12928288268493437,
+              "latency_p95": 0.8465161817213397,
+              "throughput": -0.12641124056018394
+            },
+            "attack_normalized": {
+              "latency_p50": 1.2317057392643205,
+              "latency_p95": 1.8401390855799509,
+              "throughput": 0.7486438880708627
+            },
+            "placebo_normalized": {
+              "latency_p50": 1.102422856579386,
+              "latency_p95": 0.9936229038586112,
+              "throughput": 0.8750551286310466
+            }
+          },
+          "post_02": {
+            "attack_minus_placebo": {
+              "latency_p50": 0.30860952540954845,
+              "latency_p95": 0.40374565639523374,
+              "throughput": -0.17549642375233354
+            },
+            "attack_normalized": {
+              "latency_p50": 1.409399409725671,
+              "latency_p95": 1.4305488772320516,
+              "throughput": 0.7614607928458222
+            },
+            "placebo_normalized": {
+              "latency_p50": 1.1007898843161226,
+              "latency_p95": 1.0268032208368179,
+              "throughput": 0.9369572165981558
+            }
+          },
+          "post_03": {
+            "attack_minus_placebo": {
+              "latency_p50": 0.758172475979729,
+              "latency_p95": 0.39622822165974325,
+              "throughput": -0.325599254956934
+            },
+            "attack_normalized": {
+              "latency_p50": 1.8700341833162768,
+              "latency_p95": 1.4262193945981247,
+              "throughput": 0.6409418920713179
+            },
+            "placebo_normalized": {
+              "latency_p50": 1.1118617073365478,
+              "latency_p95": 1.0299911729383815,
+              "throughput": 0.9665411470282519
+            }
+          },
+          "post_04": {
+            "attack_minus_placebo": {
+              "latency_p50": 0.7405300509197541,
+              "latency_p95": 0.4248658402016121,
+              "throughput": -0.2837906606768591
+            },
+            "attack_normalized": {
+              "latency_p50": 1.8742501720670215,
+              "latency_p95": 1.4300280706966797,
+              "throughput": 0.6396661672144857
+            },
+            "placebo_normalized": {
+              "latency_p50": 1.1337201211472674,
+              "latency_p95": 1.0051622304950676,
+              "throughput": 0.9234568278913448
+            }
+          },
+          "post_05": {
+            "attack_minus_placebo": {
+              "latency_p50": 0.6997509975380705,
+              "latency_p95": 0.41980347537150364,
+              "throughput": -0.28543620019030447
+            },
+            "attack_normalized": {
+              "latency_p50": 1.8754826957513582,
+              "latency_p95": 1.4427625941929478,
+              "throughput": 0.6390802225200031
+            },
+            "placebo_normalized": {
+              "latency_p50": 1.1757316982132877,
+              "latency_p95": 1.0229591188214442,
+              "throughput": 0.9245164227103075
+            }
+          },
+          "post_06": {
+            "attack_minus_placebo": {
+              "latency_p50": 0.6215194663255115,
+              "latency_p95": 0.4498096191128029,
+              "throughput": -0.27435148669010934
+            },
+            "attack_normalized": {
+              "latency_p50": 1.773344132026307,
+              "latency_p95": 1.4431487801835496,
+              "throughput": 0.6472718128944496
+            },
+            "placebo_normalized": {
+              "latency_p50": 1.1518246657007956,
+              "latency_p95": 0.9933391610707467,
+              "throughput": 0.9216232995845589
+            }
+          },
+          "post_07": {
+            "attack_minus_placebo": {
+              "latency_p50": 0.47493882607454396,
+              "latency_p95": 0.40918959447213765,
+              "throughput": -0.240163851003946
+            },
+            "attack_normalized": {
+              "latency_p50": 1.6276971581629556,
+              "latency_p95": 1.4050582411126689,
+              "throughput": 0.6879453897993307
+            },
+            "placebo_normalized": {
+              "latency_p50": 1.1527583320884116,
+              "latency_p95": 0.9958686466405312,
+              "throughput": 0.9281092408032767
+            }
+          },
+          "post_08": {
+            "attack_minus_placebo": {
+              "latency_p50": 0.5248869748205232,
+              "latency_p95": 0.426710778676332,
+              "throughput": -0.2590188607036278
+            },
+            "attack_normalized": {
+              "latency_p50": 1.7128485422583308,
+              "latency_p95": 1.4425492388150385,
+              "throughput": 0.6576083388132302
+            },
+            "placebo_normalized": {
+              "latency_p50": 1.1879615674378077,
+              "latency_p95": 1.0158384601387065,
+              "throughput": 0.916627199516858
+            }
+          }
+        },
+        "03": {
+          "post_01": {
+            "attack_minus_placebo": {
+              "latency_p50": 0.024911104019790686,
+              "latency_p95": 0.8432974951810601,
+              "throughput": -0.11055006023743008
+            },
+            "attack_normalized": {
+              "latency_p50": 1.1291243843942513,
+              "latency_p95": 1.8553486534560821,
+              "throughput": 0.7650178537751361
+            },
+            "placebo_normalized": {
+              "latency_p50": 1.1042132803744606,
+              "latency_p95": 1.012051158275022,
+              "throughput": 0.8755679140125662
+            }
+          },
+          "post_02": {
+            "attack_minus_placebo": {
+              "latency_p50": 0.36137541925294814,
+              "latency_p95": 0.42169649542665333,
+              "throughput": -0.1733255726559354
+            },
+            "attack_normalized": {
+              "latency_p50": 1.466610348327382,
+              "latency_p95": 1.43177721329023,
+              "throughput": 0.7634494888396741
+            },
+            "placebo_normalized": {
+              "latency_p50": 1.1052349290744339,
+              "latency_p95": 1.0100807178635767,
+              "throughput": 0.9367750614956095
+            }
+          },
+          "post_03": {
+            "attack_minus_placebo": {
+              "latency_p50": 0.761643236401361,
+              "latency_p95": 0.3897832642945147,
+              "throughput": -0.33037566601877955
+            },
+            "attack_normalized": {
+              "latency_p50": 1.8592448072707193,
+              "latency_p95": 1.4080112518093375,
+              "throughput": 0.6485646600007781
+            },
+            "placebo_normalized": {
+              "latency_p50": 1.0976015708693583,
+              "latency_p95": 1.0182279875148228,
+              "throughput": 0.9789403260195576
+            }
+          },
+          "post_04": {
+            "attack_minus_placebo": {
+              "latency_p50": 0.6799802464615043,
+              "latency_p95": 0.4532895144519624,
+              "throughput": -0.26936939622725675
+            },
+            "attack_normalized": {
+              "latency_p50": 1.868968520137202,
+              "latency_p95": 1.4641751257544269,
+              "throughput": 0.6394908099715709
+            },
+            "placebo_normalized": {
+              "latency_p50": 1.1889882736756976,
+              "latency_p95": 1.0108856113024645,
+              "throughput": 0.9088602061988277
+            }
+          },
+          "post_05": {
+            "attack_minus_placebo": {
+              "latency_p50": 0.7125489604104982,
+              "latency_p95": 0.4007252055622863,
+              "throughput": -0.2718508696181824
+            },
+            "attack_normalized": {
+              "latency_p50": 1.8779342975116673,
+              "latency_p95": 1.4326878914841141,
+              "throughput": 0.6456614721198208
+            },
+            "placebo_normalized": {
+              "latency_p50": 1.165385337101169,
+              "latency_p95": 1.0319626859218278,
+              "throughput": 0.9175123417380032
+            }
+          },
+          "post_06": {
+            "attack_minus_placebo": {
+              "latency_p50": 0.7277387984733663,
+              "latency_p95": 0.4567945566113961,
+              "throughput": -0.2884364186595214
+            },
+            "attack_normalized": {
+              "latency_p50": 1.8752040262805083,
+              "latency_p95": 1.446449828659911,
+              "throughput": 0.6356517558161024
+            },
+            "placebo_normalized": {
+              "latency_p50": 1.147465227807142,
+              "latency_p95": 0.9896552720485149,
+              "throughput": 0.9240881744756239
+            }
+          },
+          "post_07": {
+            "attack_minus_placebo": {
+              "latency_p50": 0.5090956576358439,
+              "latency_p95": 0.36682959505986323,
+              "throughput": -0.23487911268704287
+            },
+            "attack_normalized": {
+              "latency_p50": 1.663537594320328,
+              "latency_p95": 1.3972550506300263,
+              "throughput": 0.675723132373424
+            },
+            "placebo_normalized": {
+              "latency_p50": 1.1544419366844842,
+              "latency_p95": 1.030425455570163,
+              "throughput": 0.9106022450604668
+            }
+          },
+          "post_08": {
+            "attack_minus_placebo": {
+              "latency_p50": 0.5563880555781928,
+              "latency_p95": 0.4247269166515457,
+              "throughput": -0.2583520318766379
+            },
+            "attack_normalized": {
+              "latency_p50": 1.7436622247667821,
+              "latency_p95": 1.4462263527915276,
+              "throughput": 0.6605994143785727
+            },
+            "placebo_normalized": {
+              "latency_p50": 1.1872741691885893,
+              "latency_p95": 1.0214994361399818,
+              "throughput": 0.9189514462552106
+            }
+          }
+        },
+        "04": {
+          "post_01": {
+            "attack_minus_placebo": {
+              "latency_p50": 0.1135974916992073,
+              "latency_p95": 0.8080983891699605,
+              "throughput": -0.1114603746175441
+            },
+            "attack_normalized": {
+              "latency_p50": 1.2207509625554345,
+              "latency_p95": 1.8430205827588722,
+              "throughput": 0.7556687754748642
+            },
+            "placebo_normalized": {
+              "latency_p50": 1.1071534708562272,
+              "latency_p95": 1.0349221935889117,
+              "throughput": 0.8671291500924083
+            }
+          },
+          "post_02": {
+            "attack_minus_placebo": {
+              "latency_p50": 0.2990080002313713,
+              "latency_p95": 0.4346171570936128,
+              "throughput": -0.1859382147076888
+            },
+            "attack_normalized": {
+              "latency_p50": 1.4050633999797968,
+              "latency_p95": 1.4498762512671406,
+              "throughput": 0.753367389124188
+            },
+            "placebo_normalized": {
+              "latency_p50": 1.1060553997484255,
+              "latency_p95": 1.0152590941735278,
+              "throughput": 0.9393056038318768
+            }
+          },
+          "post_03": {
+            "attack_minus_placebo": {
+              "latency_p50": 0.7688151430732233,
+              "latency_p95": 0.4182995228765496,
+              "throughput": -0.32213405374918813
+            },
+            "attack_normalized": {
+              "latency_p50": 1.8673320214276201,
+              "latency_p95": 1.4507995289070825,
+              "throughput": 0.6442445729083225
+            },
+            "placebo_normalized": {
+              "latency_p50": 1.0985168783543968,
+              "latency_p95": 1.032500006030533,
+              "throughput": 0.9663786266575106
+            }
+          },
+          "post_04": {
+            "attack_minus_placebo": {
+              "latency_p50": 0.7243460794831849,
+              "latency_p95": 0.4432280590301213,
+              "throughput": -0.2896802845098331
+            },
+            "attack_normalized": {
+              "latency_p50": 1.875174246447582,
+              "latency_p95": 1.4397868311184474,
+              "throughput": 0.6384411468908638
+            },
+            "placebo_normalized": {
+              "latency_p50": 1.1508281669643972,
+              "latency_p95": 0.9965587720883261,
+              "throughput": 0.9281214314006969
+            }
+          },
+          "post_05": {
+            "attack_minus_placebo": {
+              "latency_p50": 0.690462823802894,
+              "latency_p95": 0.39949529802095074,
+              "throughput": -0.27067194629559377
+            },
+            "attack_normalized": {
+              "latency_p50": 1.8639806416940319,
+              "latency_p95": 1.4310683942819902,
+              "throughput": 0.6453248193210928
+            },
+            "placebo_normalized": {
+              "latency_p50": 1.1735178178911378,
+              "latency_p95": 1.0315730962610394,
+              "throughput": 0.9159967656166865
+            }
+          },
+          "post_06": {
+            "attack_minus_placebo": {
+              "latency_p50": 0.6685183859354529,
+              "latency_p95": 0.44634774237114105,
+              "throughput": -0.2902094426478653
+            },
+            "attack_normalized": {
+              "latency_p50": 1.8225720628557458,
+              "latency_p95": 1.4473688387978934,
+              "throughput": 0.6340709913541286
+            },
+            "placebo_normalized": {
+              "latency_p50": 1.154053676920293,
+              "latency_p95": 1.0010210964267523,
+              "throughput": 0.9242804340019939
+            }
+          },
+          "post_07": {
+            "attack_minus_placebo": {
+              "latency_p50": 0.493134002514547,
+              "latency_p95": 0.43478551020691913,
+              "throughput": -0.2762969674971004
+            },
+            "attack_normalized": {
+              "latency_p50": 1.632748408975254,
+              "latency_p95": 1.423928773601569,
+              "throughput": 0.6620111140002106
+            },
+            "placebo_normalized": {
+              "latency_p50": 1.139614406460707,
+              "latency_p95": 0.98914326339465,
+              "throughput": 0.938308081497311
+            }
+          },
+          "post_08": {
+            "attack_minus_placebo": {
+              "latency_p50": 0.5351249961759541,
+              "latency_p95": 0.38618042784631923,
+              "throughput": -0.2434880691855703
+            },
+            "attack_normalized": {
+              "latency_p50": 1.6737784113186753,
+              "latency_p95": 1.4100194429191901,
+              "throughput": 0.672736246479481
+            },
+            "placebo_normalized": {
+              "latency_p50": 1.1386534151427212,
+              "latency_p95": 1.023839015072871,
+              "throughput": 0.9162243156650514
+            }
+          }
+        }
+      },
+      "recovery_summary": {
+        "aggregate": {
+          "latency_p50": {
+            "adverse_window_count": 8,
+            "first_sustained_non_adverse_window": null,
+            "mean_over_8": 0.5362129502841776,
+            "post_01": 0.09782744334033466,
+            "post_08": 0.558140804156019,
+            "worst_adverse": 0.758543607035089
+          },
+          "latency_p95": {
+            "adverse_window_count": 8,
+            "first_sustained_non_adverse_window": null,
+            "mean_over_8": 0.47097211996853605,
+            "post_01": 0.8354044492136345,
+            "post_08": 0.4163374910019482,
+            "worst_adverse": 0.8354044492136345
+          },
+          "throughput": {
+            "adverse_window_count": 8,
+            "first_sustained_non_adverse_window": null,
+            "mean_over_8": -0.24658279748630785,
+            "post_01": -0.11907148969360301,
+            "post_08": -0.2547424901153016,
+            "worst_adverse": -0.3232000554004144
+          }
+        },
+        "per_pair": {
+          "01": {
+            "latency_p50": {
+              "adverse_window_count": 8,
+              "first_sustained_non_adverse_window": null,
+              "mean_over_8": 0.5343043510239659,
+              "post_01": 0.1235182949574063,
+              "post_08": 0.6161631900494056,
+              "worst_adverse": 0.7455435726860427
+            },
+            "latency_p95": {
+              "adverse_window_count": 8,
+              "first_sustained_non_adverse_window": null,
+              "mean_over_8": 0.47075541519094916,
+              "post_01": 0.843705730782178,
+              "post_08": 0.42773184083359594,
+              "worst_adverse": 0.843705730782178
+            },
+            "throughput": {
+              "adverse_window_count": 8,
+              "first_sustained_non_adverse_window": null,
+              "mean_over_8": -0.24917038247954787,
+              "post_01": -0.12786428335925393,
+              "post_08": -0.25811099869537024,
+              "worst_adverse": -0.3146912468767561
+            }
+          },
+          "02": {
+            "latency_p50": {
+              "adverse_window_count": 8,
+              "first_sustained_non_adverse_window": null,
+              "mean_over_8": 0.5322113999690768,
+              "post_01": 0.12928288268493437,
+              "post_08": 0.5248869748205232,
+              "worst_adverse": 0.758172475979729
+            },
+            "latency_p95": {
+              "adverse_window_count": 8,
+              "first_sustained_non_adverse_window": null,
+              "mean_over_8": 0.4721086709513381,
+              "post_01": 0.8465161817213397,
+              "post_08": 0.426710778676332,
+              "worst_adverse": 0.8465161817213397
+            },
+            "throughput": {
+              "adverse_window_count": 8,
+              "first_sustained_non_adverse_window": null,
+              "mean_over_8": -0.24628349731678728,
+              "post_01": -0.12641124056018394,
+              "post_08": -0.2590188607036278,
+              "worst_adverse": -0.325599254956934
+            }
+          },
+          "03": {
+            "latency_p50": {
+              "adverse_window_count": 8,
+              "first_sustained_non_adverse_window": null,
+              "mean_over_8": 0.5417101847791882,
+              "post_01": 0.024911104019790686,
+              "post_08": 0.5563880555781928,
+              "worst_adverse": 0.761643236401361
+            },
+            "latency_p95": {
+              "adverse_window_count": 8,
+              "first_sustained_non_adverse_window": null,
+              "mean_over_8": 0.46964288040491026,
+              "post_01": 0.8432974951810601,
+              "post_08": 0.4247269166515457,
+              "worst_adverse": 0.8432974951810601
+            },
+            "throughput": {
+              "adverse_window_count": 8,
+              "first_sustained_non_adverse_window": null,
+              "mean_over_8": -0.2421423909975983,
+              "post_01": -0.11055006023743008,
+              "post_08": -0.2583520318766379,
+              "worst_adverse": -0.33037566601877955
+            }
+          },
+          "04": {
+            "latency_p50": {
+              "adverse_window_count": 8,
+              "first_sustained_non_adverse_window": null,
+              "mean_over_8": 0.5366258653644793,
+              "post_01": 0.1135974916992073,
+              "post_08": 0.5351249961759541,
+              "worst_adverse": 0.7688151430732233
+            },
+            "latency_p95": {
+              "adverse_window_count": 8,
+              "first_sustained_non_adverse_window": null,
+              "mean_over_8": 0.4713815133269468,
+              "post_01": 0.8080983891699605,
+              "post_08": 0.38618042784631923,
+              "worst_adverse": 0.8080983891699605
+            },
+            "throughput": {
+              "adverse_window_count": 8,
+              "first_sustained_non_adverse_window": null,
+              "mean_over_8": -0.24873491915129797,
+              "post_01": -0.1114603746175441,
+              "post_08": -0.2434880691855703,
+              "worst_adverse": -0.32213405374918813
+            }
+          }
+        }
+      }
+    },
+    "required": true,
+    "runs": {
+      "perf_pair_01_attack": {
+        "budget": null,
+        "errors": [],
+        "estimator": {},
+        "metadata": {
+          "adaptive": true,
+          "arm": "attack",
+          "created_at": "2026-09-18T13:07:18,224166044+00:00",
+          "detailed_metrics": false,
+          "pair_id": "01",
+          "poison_token_id": 279,
+          "protocol_version": "avep-tenant-short-followup-v2",
+          "run_name": "perf_pair_01_attack",
+          "stage": "performance",
+          "telemetry": false
+        },
+        "phases": {
+          "intervention": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 64.997192,
+              "latency_p95": 67.146477,
+              "throughput": 245.73648602118763
+            },
+            "timing": {
+              "finished_ns": 1789736949592913407,
+              "started_ns": 1789736916253503014
+            },
+            "valid": true
+          },
+          "post_01": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 383.922805,
+              "latency_p95": 789.1700461999999,
+              "throughput": 2001.6603176136953
+            },
+            "timing": {
+              "finished_ns": 1789736951818635384,
+              "started_ns": 1789736949769300099
+            },
+            "valid": true
+          },
+          "post_02": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 439.0691645,
+              "latency_p95": 606.4301866,
+              "throughput": 2021.1197729783532
+            },
+            "timing": {
+              "finished_ns": 1789736953939730104,
+              "started_ns": 1789736951910077373
+            },
+            "valid": true
+          },
+          "post_03": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 581.3753075,
+              "latency_p95": 600.60991795,
+              "throughput": 1727.5111851625575
+            },
+            "timing": {
+              "finished_ns": 1789736956405687798,
+              "started_ns": 1789736954031762193
+            },
+            "valid": true
+          },
+          "post_04": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 582.14743,
+              "latency_p95": 601.8249682000001,
+              "throughput": 1719.0341720658862
+            },
+            "timing": {
+              "finished_ns": 1789736958882711474,
+              "started_ns": 1789736956497089397
+            },
+            "valid": true
+          },
+          "post_05": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 578.8161465000001,
+              "latency_p95": 605.26511265,
+              "throughput": 1720.5981375795448
+            },
+            "timing": {
+              "finished_ns": 1789736961357461804,
+              "started_ns": 1789736958974085442
+            },
+            "valid": true
+          },
+          "post_06": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 579.1026265,
+              "latency_p95": 623.8474587000001,
+              "throughput": 1699.5939276328897
+            },
+            "timing": {
+              "finished_ns": 1789736963860867495,
+              "started_ns": 1789736961447833766
+            },
+            "valid": true
+          },
+          "post_07": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 505.95006850000004,
+              "latency_p95": 587.9146045,
+              "throughput": 1835.5070172076323
+            },
+            "timing": {
+              "finished_ns": 1789736966187399091,
+              "started_ns": 1789736963952791622
+            },
+            "valid": true
+          },
+          "post_08": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 558.043627,
+              "latency_p95": 610.6019584,
+              "throughput": 1781.157333642712
+            },
+            "timing": {
+              "finished_ns": 1789736968581364016,
+              "started_ns": 1789736966278719337
+            },
+            "valid": true
+          },
+          "pre_01": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 312.76803,
+              "latency_p95": 421.61268215,
+              "throughput": 2695.878147439794
+            },
+            "timing": {
+              "finished_ns": 1789736911308453830,
+              "started_ns": 1789736909786056675
+            },
+            "valid": true
+          },
+          "pre_02": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 314.15341850000004,
+              "latency_p95": 422.91755140000004,
+              "throughput": 2658.8094675201696
+            },
+            "timing": {
+              "finished_ns": 1789736912943973329,
+              "started_ns": 1789736911400472880
+            },
+            "valid": true
+          },
+          "pre_03": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 310.78688750000003,
+              "latency_p95": 419.3190285,
+              "throughput": 2702.6400354508773
+            },
+            "timing": {
+              "finished_ns": 1789736914553072686,
+              "started_ns": 1789736913034433324
+            },
+            "valid": true
+          },
+          "pre_04": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 310.96320049999997,
+              "latency_p95": 419.91609530000005,
+              "throughput": 2701.861473055667
+            },
+            "timing": {
+              "finished_ns": 1789736916163145250,
+              "started_ns": 1789736914644134360
+            },
+            "valid": true
+          },
+          "warmup": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 312.86667350000005,
+              "latency_p95": 422.57460084999997,
+              "throughput": 2991.594103161864
+            },
+            "timing": {
+              "finished_ns": 1789736909674407384,
+              "started_ns": 1789736898717561070
+            },
+            "valid": true
+          }
+        },
+        "startup_reset": {
+          "errors": [],
+          "reset": {
+            "available": true,
+            "counts": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "grad": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "info": [
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "intercepts": [
+              -0.20000000298023224,
+              -0.20000000298023224,
+              -0.20000000298023224,
+              -0.20000000298023224
+            ],
+            "refits": 0,
+            "slope": 0.5,
+            "steps_since_refit": 0
+          },
+          "server_ready": {
+            "available": true,
+            "counts": [
+              66.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "grad": [
+              [
+                21.319517135620117,
+                -22.1414794921875
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "info": [
+              [
+                13.933040618896484,
+                -14.187692642211914,
+                14.699986457824707
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "intercepts": [
+              -0.20000000298023224,
+              -0.20000000298023224,
+              -0.20000000298023224,
+              -0.20000000298023224
+            ],
+            "refits": 0,
+            "slope": 0.5,
+            "steps_since_refit": 6
+          },
+          "valid": true
+        },
+        "valid": true
+      },
+      "perf_pair_01_placebo": {
+        "budget": null,
+        "errors": [],
+        "estimator": {},
+        "metadata": {
+          "adaptive": true,
+          "arm": "placebo",
+          "created_at": "2026-09-18T13:05:01,550947386+00:00",
+          "detailed_metrics": false,
+          "pair_id": "01",
+          "poison_token_id": 279,
+          "protocol_version": "avep-tenant-short-followup-v2",
+          "run_name": "perf_pair_01_placebo",
+          "stage": "performance",
+          "telemetry": false
+        },
+        "phases": {
+          "intervention": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 64.86299249999999,
+              "latency_p95": 66.96191775,
+              "throughput": 246.28797435526516
+            },
+            "timing": {
+              "finished_ns": 1789736822854266911,
+              "started_ns": 1789736789589461952
+            },
+            "valid": true
+          },
+          "post_01": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 345.7970235,
+              "latency_p95": 434.7753515,
+              "throughput": 2334.0288070576366
+            },
+            "timing": {
+              "finished_ns": 1789736824786431498,
+              "started_ns": 1789736823028394585
+            },
+            "valid": true
+          },
+          "post_02": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 345.4545825,
+              "latency_p95": 421.97122920000004,
+              "throughput": 2550.531532670608
+            },
+            "timing": {
+              "finished_ns": 1789736826489532977,
+              "started_ns": 1789736824880659639
+            },
+            "valid": true
+          },
+          "post_03": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 349.07731550000005,
+              "latency_p95": 438.34186454999997,
+              "throughput": 2561.280747627445
+            },
+            "timing": {
+              "finished_ns": 1789736828182858339,
+              "started_ns": 1789736826580622348
+            },
+            "valid": true
+          },
+          "post_04": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 368.411958,
+              "latency_p95": 435.1837008,
+              "throughput": 2452.5203305717428
+            },
+            "timing": {
+              "finished_ns": 1789736829947040841,
+              "started_ns": 1789736828273988231
+            },
+            "valid": true
+          },
+          "post_05": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 364.1750915,
+              "latency_p95": 427.16624125,
+              "throughput": 2480.8640180219845
+            },
+            "timing": {
+              "finished_ns": 1789736831692023538,
+              "started_ns": 1789736830038014070
+            },
+            "valid": true
+          },
+          "post_06": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 370.7267095,
+              "latency_p95": 429.89463374999997,
+              "throughput": 2472.1586247110213
+            },
+            "timing": {
+              "finished_ns": 1789736833443094170,
+              "started_ns": 1789736831783193610
+            },
+            "valid": true
+          },
+          "post_07": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 367.88840000000005,
+              "latency_p95": 427.7381454,
+              "throughput": 2455.395763722474
+            },
+            "timing": {
+              "finished_ns": 1789736835204442457,
+              "started_ns": 1789736833533361048
+            },
+            "valid": true
+          },
+          "post_08": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 366.1554035,
+              "latency_p95": 431.30183079999995,
+              "throughput": 2463.2231803681298
+            },
+            "timing": {
+              "finished_ns": 1789736836961217635,
+              "started_ns": 1789736835295350817
+            },
+            "valid": true
+          },
+          "pre_01": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 309.972348,
+              "latency_p95": 419.2427967,
+              "throughput": 2690.749318017564
+            },
+            "timing": {
+              "finished_ns": 1789736784624327820,
+              "started_ns": 1789736783099166747
+            },
+            "valid": true
+          },
+          "pre_02": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 311.7288365,
+              "latency_p95": 420.47223269999995,
+              "throughput": 2690.194729712671
+            },
+            "timing": {
+              "finished_ns": 1789736786238535219,
+              "started_ns": 1789736784713044399
+            },
+            "valid": true
+          },
+          "pre_03": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 313.39346,
+              "latency_p95": 423.37905194999996,
+              "throughput": 2684.953563754335
+            },
+            "timing": {
+              "finished_ns": 1789736787855969288,
+              "started_ns": 1789736786327409250
+            },
+            "valid": true
+          },
+          "pre_04": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 315.1411945,
+              "latency_p95": 423.6038668,
+              "throughput": 2640.2635856098723
+            },
+            "timing": {
+              "finished_ns": 1789736789500942621,
+              "started_ns": 1789736787946607653
+            },
+            "valid": true
+          },
+          "warmup": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 313.03364899999997,
+              "latency_p95": 422.77343705,
+              "throughput": 2995.0240172112053
+            },
+            "timing": {
+              "finished_ns": 1789736782991701649,
+              "started_ns": 1789736772047701621
+            },
+            "valid": true
+          }
+        },
+        "startup_reset": {
+          "errors": [],
+          "reset": {
+            "available": true,
+            "counts": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "grad": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "info": [
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "intercepts": [
+              -0.20000000298023224,
+              -0.20000000298023224,
+              -0.20000000298023224,
+              -0.20000000298023224
+            ],
+            "refits": 0,
+            "slope": 0.5,
+            "steps_since_refit": 0
+          },
+          "server_ready": {
+            "available": true,
+            "counts": [
+              66.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "grad": [
+              [
+                21.319517135620117,
+                -22.1414794921875
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "info": [
+              [
+                13.933040618896484,
+                -14.187692642211914,
+                14.699986457824707
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "intercepts": [
+              -0.20000000298023224,
+              -0.20000000298023224,
+              -0.20000000298023224,
+              -0.20000000298023224
+            ],
+            "refits": 0,
+            "slope": 0.5,
+            "steps_since_refit": 6
+          },
+          "valid": true
+        },
+        "valid": true
+      },
+      "perf_pair_02_attack": {
+        "budget": null,
+        "errors": [],
+        "estimator": {},
+        "metadata": {
+          "adaptive": true,
+          "arm": "attack",
+          "created_at": "2026-09-18T13:09:29,846091529+00:00",
+          "detailed_metrics": false,
+          "pair_id": "02",
+          "poison_token_id": 279,
+          "protocol_version": "avep-tenant-short-followup-v2",
+          "run_name": "perf_pair_02_attack",
+          "stage": "performance",
+          "telemetry": false
+        },
+        "phases": {
+          "intervention": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 64.984474,
+              "latency_p95": 67.13817800000001,
+              "throughput": 245.77173795743846
+            },
+            "timing": {
+              "finished_ns": 1789737081193043526,
+              "started_ns": 1789737047858372597
+            },
+            "valid": true
+          },
+          "post_01": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 384.051461,
+              "latency_p95": 775.344428,
+              "throughput": 2019.422640312718
+            },
+            "timing": {
+              "finished_ns": 1789737083397599068,
+              "started_ns": 1789737081366276450
+            },
+            "valid": true
+          },
+          "post_02": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 439.457157,
+              "latency_p95": 602.76318765,
+              "throughput": 2053.995483414371
+            },
+            "timing": {
+              "finished_ns": 1789737085486089023,
+              "started_ns": 1789737083488820512
+            },
+            "valid": true
+          },
+          "post_03": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 583.085178,
+              "latency_p95": 600.93895585,
+              "throughput": 1728.9028717097804
+            },
+            "timing": {
+              "finished_ns": 1789737087949446591,
+              "started_ns": 1789737085577490170
+            },
+            "valid": true
+          },
+          "post_04": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 584.3997425,
+              "latency_p95": 602.5437453,
+              "throughput": 1725.461679308764
+            },
+            "timing": {
+              "finished_ns": 1789737090417923358,
+              "started_ns": 1789737088041203624
+            },
+            "valid": true
+          },
+          "post_05": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 584.784049,
+              "latency_p95": 607.9094494,
+              "throughput": 1723.881128127002
+            },
+            "timing": {
+              "finished_ns": 1789737092888858117,
+              "started_ns": 1789737090509925375
+            },
+            "valid": true
+          },
+          "post_06": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 552.9367795000001,
+              "latency_p95": 608.07216925,
+              "throughput": 1745.977459007298
+            },
+            "timing": {
+              "finished_ns": 1789737095328127707,
+              "started_ns": 1789737092979213215
+            },
+            "valid": true
+          },
+          "post_07": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 507.5233895,
+              "latency_p95": 592.02268285,
+              "throughput": 1855.6920287420112
+            },
+            "timing": {
+              "finished_ns": 1789737097628998313,
+              "started_ns": 1789737095418577809
+            },
+            "valid": true
+          },
+          "post_08": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 534.073979,
+              "latency_p95": 607.8195519,
+              "throughput": 1773.8596267444225
+            },
+            "timing": {
+              "finished_ns": 1789737100032167599,
+              "started_ns": 1789737097720142588
+            },
+            "valid": true
+          },
+          "pre_01": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 311.19930550000004,
+              "latency_p95": 420.720827,
+              "throughput": 2718.8948434846975
+            },
+            "timing": {
+              "finished_ns": 1789737042921844453,
+              "started_ns": 1789737041412287579
+            },
+            "valid": true
+          },
+          "pre_02": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 311.0706535,
+              "latency_p95": 419.60669195,
+              "throughput": 2698.532018478351
+            },
+            "timing": {
+              "finished_ns": 1789737044532503343,
+              "started_ns": 1789737043011739161
+            },
+            "valid": true
+          },
+          "pre_03": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 311.65382850000003,
+              "latency_p95": 421.9563363,
+              "throughput": 2677.0686714505423
+            },
+            "timing": {
+              "finished_ns": 1789737046157039486,
+              "started_ns": 1789737044624099320
+            },
+            "valid": true
+          },
+          "pre_04": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 313.294436,
+              "latency_p95": 423.1201103,
+              "throughput": 2695.2680510668856
+            },
+            "timing": {
+              "finished_ns": 1789737047769945951,
+              "started_ns": 1789737046247324236
+            },
+            "valid": true
+          },
+          "warmup": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 313.108103,
+              "latency_p95": 422.89644784999996,
+              "throughput": 2991.024869063213
+            },
+            "timing": {
+              "finished_ns": 1789737041300846009,
+              "started_ns": 1789737030342075899
+            },
+            "valid": true
+          }
+        },
+        "startup_reset": {
+          "errors": [],
+          "reset": {
+            "available": true,
+            "counts": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "grad": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "info": [
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "intercepts": [
+              -0.20000000298023224,
+              -0.20000000298023224,
+              -0.20000000298023224,
+              -0.20000000298023224
+            ],
+            "refits": 0,
+            "slope": 0.5,
+            "steps_since_refit": 0
+          },
+          "server_ready": {
+            "available": true,
+            "counts": [
+              66.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "grad": [
+              [
+                21.319517135620117,
+                -22.1414794921875
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "info": [
+              [
+                13.933040618896484,
+                -14.187692642211914,
+                14.699986457824707
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "intercepts": [
+              -0.20000000298023224,
+              -0.20000000298023224,
+              -0.20000000298023224,
+              -0.20000000298023224
+            ],
+            "refits": 0,
+            "slope": 0.5,
+            "steps_since_refit": 6
+          },
+          "valid": true
+        },
+        "valid": true
+      },
+      "perf_pair_02_placebo": {
+        "budget": null,
+        "errors": [],
+        "estimator": {},
+        "metadata": {
+          "adaptive": true,
+          "arm": "placebo",
+          "created_at": "2026-09-18T13:11:41,295147692+00:00",
+          "detailed_metrics": false,
+          "pair_id": "02",
+          "poison_token_id": 279,
+          "protocol_version": "avep-tenant-short-followup-v2",
+          "run_name": "perf_pair_02_placebo",
+          "stage": "performance",
+          "telemetry": false
+        },
+        "phases": {
+          "intervention": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 64.884169,
+              "latency_p95": 66.97579925,
+              "throughput": 246.2726675359182
+            },
+            "timing": {
+              "finished_ns": 1789737212620002613,
+              "started_ns": 1789737179353181516
+            },
+            "valid": true
+          },
+          "post_01": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 345.56007750000003,
+              "latency_p95": 421.40504639999995,
+              "throughput": 2342.171139490001
+            },
+            "timing": {
+              "finished_ns": 1789737214548618423,
+              "started_ns": 1789737212796762338
+            },
+            "valid": true
+          },
+          "post_02": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 345.04821400000003,
+              "latency_p95": 435.4771385,
+              "throughput": 2507.8581678462056
+            },
+            "timing": {
+              "finished_ns": 1789737216276944137,
+              "started_ns": 1789737214640755969
+            },
+            "valid": true
+          },
+          "post_03": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 348.5187335,
+              "latency_p95": 436.82917969999994,
+              "throughput": 2587.04246810218
+            },
+            "timing": {
+              "finished_ns": 1789737217954300616,
+              "started_ns": 1789737216368050335
+            },
+            "valid": true
+          },
+          "post_04": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 355.370365,
+              "latency_p95": 426.29898599999996,
+              "throughput": 2471.723049307495
+            },
+            "timing": {
+              "finished_ns": 1789737219706243884,
+              "started_ns": 1789737218046056795
+            },
+            "valid": true
+          },
+          "post_05": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 368.5391085,
+              "latency_p95": 433.84681779999994,
+              "throughput": 2474.5591590831273
+            },
+            "timing": {
+              "finished_ns": 1789737221458379364,
+              "started_ns": 1789737219800016827
+            },
+            "valid": true
+          },
+          "post_06": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 361.045327,
+              "latency_p95": 421.28470834999996,
+              "throughput": 2466.8154304123173
+            },
+            "timing": {
+              "finished_ns": 1789737223213310669,
+              "started_ns": 1789737221549860168
+            },
+            "valid": true
+          },
+          "post_07": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 361.33798950000005,
+              "latency_p95": 422.35748755,
+              "throughput": 2484.1756901695226
+            },
+            "timing": {
+              "finished_ns": 1789737224955050817,
+              "started_ns": 1789737223303268928
+            },
+            "valid": true
+          },
+          "post_08": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 372.37262350000003,
+              "latency_p95": 430.82687784999996,
+              "throughput": 2453.442877066016
+            },
+            "timing": {
+              "finished_ns": 1789737226718909412,
+              "started_ns": 1789737225046373042
+            },
+            "valid": true
+          },
+          "pre_01": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 313.2508335,
+              "latency_p95": 423.52374045,
+              "throughput": 2681.5429521680903
+            },
+            "timing": {
+              "finished_ns": 1789737174386572282,
+              "started_ns": 1789737172856039557
+            },
+            "valid": true
+          },
+          "pre_02": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 313.94093499999997,
+              "latency_p95": 424.59722045,
+              "throughput": 2657.1265858011707
+            },
+            "timing": {
+              "finished_ns": 1789737176023110096,
+              "started_ns": 1789737174478614192
+            },
+            "valid": true
+          },
+          "pre_03": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 313.536629,
+              "latency_p95": 423.61345295,
+              "throughput": 2681.283630262595
+            },
+            "timing": {
+              "finished_ns": 1789737177644992670,
+              "started_ns": 1789737176114394255
+            },
+            "valid": true
+          },
+          "pre_04": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 313.0920415,
+              "latency_p95": 424.7041234,
+              "throughput": 2686.440350787406
+            },
+            "timing": {
+              "finished_ns": 1789737179263260238,
+              "started_ns": 1789737177735500787
+            },
+            "valid": true
+          },
+          "warmup": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 312.5361815,
+              "latency_p95": 421.89319020000005,
+              "throughput": 2992.910178304315
+            },
+            "timing": {
+              "finished_ns": 1789737172743451423,
+              "started_ns": 1789737161791573671
+            },
+            "valid": true
+          }
+        },
+        "startup_reset": {
+          "errors": [],
+          "reset": {
+            "available": true,
+            "counts": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "grad": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "info": [
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "intercepts": [
+              -0.20000000298023224,
+              -0.20000000298023224,
+              -0.20000000298023224,
+              -0.20000000298023224
+            ],
+            "refits": 0,
+            "slope": 0.5,
+            "steps_since_refit": 0
+          },
+          "server_ready": {
+            "available": true,
+            "counts": [
+              66.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "grad": [
+              [
+                21.319517135620117,
+                -22.1414794921875
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "info": [
+              [
+                13.933040618896484,
+                -14.187692642211914,
+                14.699986457824707
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "intercepts": [
+              -0.20000000298023224,
+              -0.20000000298023224,
+              -0.20000000298023224,
+              -0.20000000298023224
+            ],
+            "refits": 0,
+            "slope": 0.5,
+            "steps_since_refit": 6
+          },
+          "valid": true
+        },
+        "valid": true
+      },
+      "perf_pair_03_attack": {
+        "budget": null,
+        "errors": [],
+        "estimator": {},
+        "metadata": {
+          "adaptive": true,
+          "arm": "attack",
+          "created_at": "2026-09-18T13:13:47,984156731+00:00",
+          "detailed_metrics": false,
+          "pair_id": "03",
+          "poison_token_id": 279,
+          "protocol_version": "avep-tenant-short-followup-v2",
+          "run_name": "perf_pair_03_attack",
+          "stage": "performance",
+          "telemetry": false
+        },
+        "phases": {
+          "intervention": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 64.9956905,
+              "latency_p95": 67.18046149999999,
+              "throughput": 245.77366135108582
+            },
+            "timing": {
+              "finished_ns": 1789737339342828921,
+              "started_ns": 1789737306008439447
+            },
+            "valid": true
+          },
+          "post_01": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 352.30040399999996,
+              "latency_p95": 788.3123503,
+              "throughput": 2044.207202486992
+            },
+            "timing": {
+              "finished_ns": 1789737341524381549,
+              "started_ns": 1789737339517686759
+            },
+            "valid": true
+          },
+          "post_02": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 457.60008849999997,
+              "latency_p95": 608.3426196,
+              "throughput": 2040.0163684020379
+            },
+            "timing": {
+              "finished_ns": 1789737343627178599,
+              "started_ns": 1789737341616302678
+            },
+            "valid": true
+          },
+          "post_03": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 580.1067674999999,
+              "latency_p95": 598.2447865500001,
+              "throughput": 1733.0321674320219
+            },
+            "timing": {
+              "finished_ns": 1789737346084627666,
+              "started_ns": 1789737343718263076
+            },
+            "valid": true
+          },
+          "post_04": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 583.1406830000001,
+              "latency_p95": 622.10805095,
+              "throughput": 1708.7858972404713
+            },
+            "timing": {
+              "finished_ns": 1789737348576674629,
+              "started_ns": 1789737346176765209
+            },
+            "valid": true
+          },
+          "post_05": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 585.9381135000001,
+              "latency_p95": 608.72955435,
+              "throughput": 1725.2745477279332
+            },
+            "timing": {
+              "finished_ns": 1789737351045287340,
+              "started_ns": 1789737348668326904
+            },
+            "valid": true
+          },
+          "post_06": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 585.086236,
+              "latency_p95": 614.57681385,
+              "throughput": 1698.5275455998924
+            },
+            "timing": {
+              "finished_ns": 1789737353550705475,
+              "started_ns": 1789737351136214214
+            },
+            "valid": true
+          },
+          "post_07": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 519.0437605,
+              "latency_p95": 593.6746232999999,
+              "throughput": 1805.6024277975075
+            },
+            "timing": {
+              "finished_ns": 1789737355913788853,
+              "started_ns": 1789737353642259318
+            },
+            "valid": true
+          },
+          "post_08": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 544.04361,
+              "latency_p95": 614.481862,
+              "throughput": 1765.190281726804
+            },
+            "timing": {
+              "finished_ns": 1789737358328754217,
+              "started_ns": 1789737356005206722
+            },
+            "valid": true
+          },
+          "pre_01": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 310.804492,
+              "latency_p95": 419.66380645000004,
+              "throughput": 2704.012101721661
+            },
+            "timing": {
+              "finished_ns": 1789737301016854642,
+              "started_ns": 1789737299499093272
+            },
+            "valid": true
+          },
+          "pre_02": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 314.401323,
+              "latency_p95": 436.56236509999985,
+              "throughput": 2634.7443036615887
+            },
+            "timing": {
+              "finished_ns": 1789737302665856735,
+              "started_ns": 1789737301108044160
+            },
+            "valid": true
+          },
+          "pre_03": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 311.1524885,
+              "latency_p95": 421.2615707,
+              "throughput": 2667.2615111326068
+            },
+            "timing": {
+              "finished_ns": 1789737304296595625,
+              "started_ns": 1789737302757939099
+            },
+            "valid": true
+          },
+          "pre_04": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 311.6898615,
+              "latency_p95": 422.0577288,
+              "throughput": 2682.397745416404
+            },
+            "timing": {
+              "finished_ns": 1789737305917841775,
+              "started_ns": 1789737304387937137
+            },
+            "valid": true
+          },
+          "warmup": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 311.730673,
+              "latency_p95": 421.31709055,
+              "throughput": 3006.1700507289497
+            },
+            "timing": {
+              "finished_ns": 1789737299388187527,
+              "started_ns": 1789737288484606485
+            },
+            "valid": true
+          }
+        },
+        "startup_reset": {
+          "errors": [],
+          "reset": {
+            "available": true,
+            "counts": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "grad": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "info": [
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "intercepts": [
+              -0.20000000298023224,
+              -0.20000000298023224,
+              -0.20000000298023224,
+              -0.20000000298023224
+            ],
+            "refits": 0,
+            "slope": 0.5,
+            "steps_since_refit": 0
+          },
+          "server_ready": {
+            "available": true,
+            "counts": [
+              66.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "grad": [
+              [
+                21.319517135620117,
+                -22.1414794921875
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "info": [
+              [
+                13.933040618896484,
+                -14.187692642211914,
+                14.699986457824707
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "intercepts": [
+              -0.20000000298023224,
+              -0.20000000298023224,
+              -0.20000000298023224,
+              -0.20000000298023224
+            ],
+            "refits": 0,
+            "slope": 0.5,
+            "steps_since_refit": 6
+          },
+          "valid": true
+        },
+        "valid": true
+      },
+      "perf_pair_03_placebo": {
+        "budget": null,
+        "errors": [],
+        "estimator": {},
+        "metadata": {
+          "adaptive": true,
+          "arm": "placebo",
+          "created_at": "2026-09-18T13:15:59,391366315+00:00",
+          "detailed_metrics": false,
+          "pair_id": "03",
+          "poison_token_id": 279,
+          "protocol_version": "avep-tenant-short-followup-v2",
+          "run_name": "perf_pair_03_placebo",
+          "stage": "performance",
+          "telemetry": false
+        },
+        "phases": {
+          "intervention": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 64.85320150000001,
+              "latency_p95": 67.06002,
+              "throughput": 246.26858843892018
+            },
+            "timing": {
+              "finished_ns": 1789737470635872029,
+              "started_ns": 1789737437368500475
+            },
+            "valid": true
+          },
+          "post_01": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 344.64975949999996,
+              "latency_p95": 426.95302245000005,
+              "throughput": 2351.551337765004
+            },
+            "timing": {
+              "finished_ns": 1789737472556353825,
+              "started_ns": 1789737470811470454
+            },
+            "valid": true
+          },
+          "post_02": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 344.96863900000005,
+              "latency_p95": 426.1217547,
+              "throughput": 2515.9380714963922
+            },
+            "timing": {
+              "finished_ns": 1789737474278485068,
+              "started_ns": 1789737472647575911
+            },
+            "valid": true
+          },
+          "post_03": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 342.5860965,
+              "latency_p95": 429.55883530000006,
+              "throughput": 2629.1831808838547
+            },
+            "timing": {
+              "finished_ns": 1789737475931342694,
+              "started_ns": 1789737474370268710
+            },
+            "valid": true
+          },
+          "post_04": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 371.1099385,
+              "latency_p95": 426.46131429999997,
+              "throughput": 2440.96591426437
+            },
+            "timing": {
+              "finished_ns": 1789737477702776204,
+              "started_ns": 1789737476021727290
+            },
+            "valid": true
+          },
+          "post_05": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 363.742932,
+              "latency_p95": 435.35307894999994,
+              "throughput": 2464.203336029211
+            },
+            "timing": {
+              "finished_ns": 1789737479459482919,
+              "started_ns": 1789737477794365967
+            },
+            "valid": true
+          },
+          "post_06": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 358.1496635,
+              "latency_p95": 417.50489204999997,
+              "throughput": 2481.864339845814
+            },
+            "timing": {
+              "finished_ns": 1789737481204170083,
+              "started_ns": 1789737479550774566
+            },
+            "valid": true
+          },
+          "post_07": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 360.32725100000005,
+              "latency_p95": 434.7045691,
+              "throughput": 2445.6445848163235
+            },
+            "timing": {
+              "finished_ns": 1789737482972308263,
+              "started_ns": 1789737481294521855
+            },
+            "valid": true
+          },
+          "post_08": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 370.574928,
+              "latency_p95": 430.9389580999999,
+              "throughput": 2468.0684024603393
+            },
+            "timing": {
+              "finished_ns": 1789737484725765507,
+              "started_ns": 1789737483063113702
+            },
+            "valid": true
+          },
+          "pre_01": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 311.215423,
+              "latency_p95": 421.1512058,
+              "throughput": 2705.8130558066846
+            },
+            "timing": {
+              "finished_ns": 1789737432410582892,
+              "started_ns": 1789737430893826221
+            },
+            "valid": true
+          },
+          "pre_02": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 312.570422,
+              "latency_p95": 423.1121448,
+              "throughput": 2659.820240880334
+            },
+            "timing": {
+              "finished_ns": 1789737434043278085,
+              "started_ns": 1789737432500132116
+            },
+            "valid": true
+          },
+          "pre_03": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 312.66774499999997,
+              "latency_p95": 421.7856245,
+              "throughput": 2697.4921564257947
+            },
+            "timing": {
+              "finished_ns": 1789737435656092799,
+              "started_ns": 1789737434134682527
+            },
+            "valid": true
+          },
+          "pre_04": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 312.0362285,
+              "latency_p95": 421.42707375,
+              "throughput": 2679.8508489230994
+            },
+            "timing": {
+              "finished_ns": 1789737437278177444,
+              "started_ns": 1789737435746824588
+            },
+            "valid": true
+          },
+          "warmup": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 311.21950300000003,
+              "latency_p95": 420.28475335,
+              "throughput": 3009.0353758323863
+            },
+            "timing": {
+              "finished_ns": 1789737430784227691,
+              "started_ns": 1789737419891054664
+            },
+            "valid": true
+          }
+        },
+        "startup_reset": {
+          "errors": [],
+          "reset": {
+            "available": true,
+            "counts": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "grad": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "info": [
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "intercepts": [
+              -0.20000000298023224,
+              -0.20000000298023224,
+              -0.20000000298023224,
+              -0.20000000298023224
+            ],
+            "refits": 0,
+            "slope": 0.5,
+            "steps_since_refit": 0
+          },
+          "server_ready": {
+            "available": true,
+            "counts": [
+              66.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "grad": [
+              [
+                21.319517135620117,
+                -22.1414794921875
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "info": [
+              [
+                13.933040618896484,
+                -14.187692642211914,
+                14.699986457824707
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "intercepts": [
+              -0.20000000298023224,
+              -0.20000000298023224,
+              -0.20000000298023224,
+              -0.20000000298023224
+            ],
+            "refits": 0,
+            "slope": 0.5,
+            "steps_since_refit": 6
+          },
+          "valid": true
+        },
+        "valid": true
+      },
+      "perf_pair_04_attack": {
+        "budget": null,
+        "errors": [],
+        "estimator": {},
+        "metadata": {
+          "adaptive": true,
+          "arm": "attack",
+          "created_at": "2026-09-18T13:20:12,548826652+00:00",
+          "detailed_metrics": false,
+          "pair_id": "04",
+          "poison_token_id": 279,
+          "protocol_version": "avep-tenant-short-followup-v2",
+          "run_name": "perf_pair_04_attack",
+          "stage": "performance",
+          "telemetry": false
+        },
+        "phases": {
+          "intervention": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 65.0417135,
+              "latency_p95": 67.084661,
+              "throughput": 245.6689508465702
+            },
+            "timing": {
+              "finished_ns": 1789737723949853926,
+              "started_ns": 1789737690601189539
+            },
+            "valid": true
+          },
+          "post_01": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 380.9875915,
+              "latency_p95": 777.13784085,
+              "throughput": 2025.1986358801912
+            },
+            "timing": {
+              "finished_ns": 1789737726150259972,
+              "started_ns": 1789737724124830981
+            },
+            "valid": true
+          },
+          "post_02": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 438.510177,
+              "latency_p95": 611.3625153999999,
+              "throughput": 2019.0309012201292
+            },
+            "timing": {
+              "finished_ns": 1789737728273923786,
+              "started_ns": 1789737726242136215
+            },
+            "valid": true
+          },
+          "post_03": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 582.7808875000001,
+              "latency_p95": 611.75182955,
+              "throughput": 1726.5808414635892
+            },
+            "timing": {
+              "finished_ns": 1789737730740907112,
+              "started_ns": 1789737728365687828
+            },
+            "valid": true
+          },
+          "post_04": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 585.2283895,
+              "latency_p95": 607.10815695,
+              "throughput": 1711.027611218495
+            },
+            "timing": {
+              "finished_ns": 1789737733229029114,
+              "started_ns": 1789737730832327459
+            },
+            "valid": true
+          },
+          "post_05": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 581.734946,
+              "latency_p95": 603.4318946,
+              "throughput": 1729.475910880983
+            },
+            "timing": {
+              "finished_ns": 1789737735691821416,
+              "started_ns": 1789737733320434120
+            },
+            "valid": true
+          },
+          "post_06": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 568.8116265,
+              "latency_p95": 610.30522655,
+              "throughput": 1699.3155578442918
+            },
+            "timing": {
+              "finished_ns": 1789737738196305290,
+              "started_ns": 1789737735782989769
+            },
+            "valid": true
+          },
+          "post_07": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 509.56903,
+              "latency_p95": 600.4213642499999,
+              "throughput": 1774.195320123225
+            },
+            "timing": {
+              "finished_ns": 1789737740598427249,
+              "started_ns": 1789737738286726481
+            },
+            "valid": true
+          },
+          "post_08": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 522.3741984999999,
+              "latency_p95": 594.5562820499999,
+              "throughput": 1802.9387648328513
+            },
+            "timing": {
+              "finished_ns": 1789737742964570655,
+              "started_ns": 1789737740689745803
+            },
+            "valid": true
+          },
+          "pre_01": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 311.191832,
+              "latency_p95": 421.4748006,
+              "throughput": 2671.6717410231595
+            },
+            "timing": {
+              "finished_ns": 1789737685649434887,
+              "started_ns": 1789737684113278732
+            },
+            "valid": true
+          },
+          "pre_02": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 313.394982,
+              "latency_p95": 423.24153264999995,
+              "throughput": 2688.148997126524
+            },
+            "timing": {
+              "finished_ns": 1789737687267239663,
+              "started_ns": 1789737685740500374
+            },
+            "valid": true
+          },
+          "pre_03": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 312.259565,
+              "latency_p95": 421.20948995000003,
+              "throughput": 2666.3822161091707
+            },
+            "timing": {
+              "finished_ns": 1789737688895555286,
+              "started_ns": 1789737687356367820
+            },
+            "valid": true
+          },
+          "pre_04": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 311.524839,
+              "latency_p95": 420.73540699999995,
+              "throughput": 2693.830486887638
+            },
+            "timing": {
+              "finished_ns": 1789737690510468957,
+              "started_ns": 1789737688986932758
+            },
+            "valid": true
+          },
+          "warmup": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 313.171969,
+              "latency_p95": 423.14746875000003,
+              "throughput": 2991.32360108062
+            },
+            "timing": {
+              "finished_ns": 1789737684002393881,
+              "started_ns": 1789737673044845344
+            },
+            "valid": true
+          }
+        },
+        "startup_reset": {
+          "errors": [],
+          "reset": {
+            "available": true,
+            "counts": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "grad": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "info": [
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "intercepts": [
+              -0.20000000298023224,
+              -0.20000000298023224,
+              -0.20000000298023224,
+              -0.20000000298023224
+            ],
+            "refits": 0,
+            "slope": 0.5,
+            "steps_since_refit": 0
+          },
+          "server_ready": {
+            "available": true,
+            "counts": [
+              66.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "grad": [
+              [
+                21.319517135620117,
+                -22.1414794921875
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "info": [
+              [
+                13.933040618896484,
+                -14.187692642211914,
+                14.699986457824707
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "intercepts": [
+              -0.20000000298023224,
+              -0.20000000298023224,
+              -0.20000000298023224,
+              -0.20000000298023224
+            ],
+            "refits": 0,
+            "slope": 0.5,
+            "steps_since_refit": 6
+          },
+          "valid": true
+        },
+        "valid": true
+      },
+      "perf_pair_04_placebo": {
+        "budget": null,
+        "errors": [],
+        "estimator": {},
+        "metadata": {
+          "adaptive": true,
+          "arm": "placebo",
+          "created_at": "2026-09-18T13:18:05,990212221+00:00",
+          "detailed_metrics": false,
+          "pair_id": "04",
+          "poison_token_id": 279,
+          "protocol_version": "avep-tenant-short-followup-v2",
+          "run_name": "perf_pair_04_placebo",
+          "stage": "performance",
+          "telemetry": false
+        },
+        "phases": {
+          "intervention": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 64.8601205,
+              "latency_p95": 66.899143,
+              "throughput": 246.2426279788778
+            },
+            "timing": {
+              "finished_ns": 1789737597245404001,
+              "started_ns": 1789737563974584285
+            },
+            "valid": true
+          },
+          "post_01": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 345.4085055,
+              "latency_p95": 435.6735900499999,
+              "throughput": 2330.430858318281
+            },
+            "timing": {
+              "finished_ns": 1789737599181032826,
+              "started_ns": 1789737597420186638
+            },
+            "valid": true
+          },
+          "post_02": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 345.06593050000004,
+              "latency_p95": 427.3959696,
+              "throughput": 2524.4068479624007
+            },
+            "timing": {
+              "finished_ns": 1789737600898560838,
+              "started_ns": 1789737599272969297
+            },
+            "valid": true
+          },
+          "post_03": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 342.714071,
+              "latency_p95": 434.65391615,
+              "throughput": 2597.166260806599
+            },
+            "timing": {
+              "finished_ns": 1789737602569118662,
+              "started_ns": 1789737600988924646
+            },
+            "valid": true
+          },
+          "post_04": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 359.0340885,
+              "latency_p95": 419.52365175,
+              "throughput": 2494.3491102475555
+            },
+            "timing": {
+              "finished_ns": 1789737604305167940,
+              "started_ns": 1789737602660123289
+            },
+            "valid": true
+          },
+          "post_05": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 366.1127805,
+              "latency_p95": 434.2637128,
+              "throughput": 2461.763773580183
+            },
+            "timing": {
+              "finished_ns": 1789737606064096421,
+              "started_ns": 1789737604397232533
+            },
+            "valid": true
+          },
+          "post_06": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 360.0403795,
+              "latency_p95": 421.40216675,
+              "throughput": 2484.0263355331963
+            },
+            "timing": {
+              "finished_ns": 1789737607807805124,
+              "started_ns": 1789737606155896880
+            },
+            "valid": true
+          },
+          "post_07": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 355.535632,
+              "latency_p95": 416.4019279,
+              "throughput": 2521.7259822227516
+            },
+            "timing": {
+              "finished_ns": 1789737609526460903,
+              "started_ns": 1789737607899220097
+            },
+            "valid": true
+          },
+          "post_08": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 355.235823,
+              "latency_p95": 431.0078787499999,
+              "throughput": 2462.375319916118
+            },
+            "timing": {
+              "finished_ns": 1789737611284538500,
+              "started_ns": 1789737609618112150
+            },
+            "valid": true
+          },
+          "pre_01": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 312.7297685,
+              "latency_p95": 421.78816685000004,
+              "throughput": 2676.410534755679
+            },
+            "timing": {
+              "finished_ns": 1789737559035860520,
+              "started_ns": 1789737557502434022
+            },
+            "valid": true
+          },
+          "pre_02": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 310.8120355,
+              "latency_p95": 419.2903323,
+              "throughput": 2680.3963144731288
+            },
+            "timing": {
+              "finished_ns": 1789737560658071348,
+              "started_ns": 1789737559126868172
+            },
+            "valid": true
+          },
+          "pre_03": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 313.60816650000004,
+              "latency_p95": 423.13001610000003,
+              "throughput": 2685.565515725341
+            },
+            "timing": {
+              "finished_ns": 1789737562277094199,
+              "started_ns": 1789737560748937768
+            },
+            "valid": true
+          },
+          "pre_04": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 310.76557,
+              "latency_p95": 419.68073845,
+              "throughput": 2707.725740131727
+            },
+            "timing": {
+              "finished_ns": 1789737563884029883,
+              "started_ns": 1789737562368439976
+            },
+            "valid": true
+          },
+          "warmup": {
+            "draft_acceptance_rate": null,
+            "errors": [],
+            "metrics": {
+              "latency_p50": 311.63865799999996,
+              "latency_p95": 420.78991035,
+              "throughput": 3007.4415595017135
+            },
+            "timing": {
+              "finished_ns": 1789737557390789030,
+              "started_ns": 1789737546491921716
+            },
+            "valid": true
+          }
+        },
+        "startup_reset": {
+          "errors": [],
+          "reset": {
+            "available": true,
+            "counts": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "grad": [
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "info": [
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "intercepts": [
+              -0.20000000298023224,
+              -0.20000000298023224,
+              -0.20000000298023224,
+              -0.20000000298023224
+            ],
+            "refits": 0,
+            "slope": 0.5,
+            "steps_since_refit": 0
+          },
+          "server_ready": {
+            "available": true,
+            "counts": [
+              66.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "grad": [
+              [
+                21.319517135620117,
+                -22.1414794921875
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "info": [
+              [
+                13.933040618896484,
+                -14.187692642211914,
+                14.699986457824707
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ],
+              [
+                0.0,
+                0.0,
+                0.0
+              ]
+            ],
+            "intercepts": [
+              -0.20000000298023224,
+              -0.20000000298023224,
+              -0.20000000298023224,
+              -0.20000000298023224
+            ],
+            "refits": 0,
+            "slope": 0.5,
+            "steps_since_refit": 6
+          },
+          "valid": true
+        },
+        "valid": true
+      }
+    },
+    "valid": true
+  },
+  "potency": {
+    "gates": {
+      "attack_acceptance": true,
+      "intercept0_delta_delta": true,
+      "placebo_minus_attack_acceptance": true,
+      "post1_budget_attack_minus_placebo": true
+    },
+    "observed": {
+      "attack_acceptance": 0.0,
+      "attack_intercept0_delta": -13.80907253921032,
+      "attack_post1_over_pre_budget_mean": 0.6981364434683073,
+      "intercept0_delta_delta": -13.83423755504191,
+      "placebo_acceptance": 0.1875,
+      "placebo_intercept0_delta": 0.0251650158315897,
+      "placebo_minus_attack_acceptance": 0.1875,
+      "placebo_post1_over_pre_budget_mean": 0.7689526099005409,
+      "post1_budget_attack_minus_placebo": -0.07081616643223365
+    },
+    "pass": true,
+    "thresholds": {
+      "attack_acceptance_max": 0.05,
+      "intercept0_delta_delta_max": -0.5,
+      "placebo_minus_attack_acceptance_min": 0.1,
+      "post1_budget_attack_minus_placebo_max": -0.05
+    }
+  },
+  "protocol_version": "avep-tenant-short-followup-v2",
+  "provenance": {
+    "errors": [],
+    "fixed_process_order": [
+      "screen",
+      "gate_placebo",
+      "gate_attack",
+      "perf_pair_01_placebo",
+      "perf_pair_01_attack",
+      "perf_pair_02_attack",
+      "perf_pair_02_placebo",
+      "perf_pair_03_attack",
+      "perf_pair_03_placebo",
+      "perf_pair_04_placebo",
+      "perf_pair_04_attack"
+    ],
+    "manifest_sha256": "ccf4b1c6bae846233d814909b92454aa4f065e72654c262dde44ce7595e6f4e8",
+    "timeline": [
+      {
+        "completed_at": "2026-09-18T13:00:39.083788+00:00",
+        "created_at": "2026-09-18T12:59:19.962674+00:00",
+        "run": "screen"
+      },
+      {
+        "completed_at": "2026-09-18T13:02:48.090794+00:00",
+        "created_at": "2026-09-18T13:00:39.090274+00:00",
+        "run": "gate_placebo"
+      },
+      {
+        "completed_at": "2026-09-18T13:05:00.726043+00:00",
+        "created_at": "2026-09-18T13:02:48.097242+00:00",
+        "run": "gate_attack"
+      },
+      {
+        "completed_at": "2026-09-18T13:07:18.217637+00:00",
+        "created_at": "2026-09-18T13:05:01.550947+00:00",
+        "run": "perf_pair_01_placebo"
+      },
+      {
+        "completed_at": "2026-09-18T13:09:29.838959+00:00",
+        "created_at": "2026-09-18T13:07:18.224166+00:00",
+        "run": "perf_pair_01_attack"
+      },
+      {
+        "completed_at": "2026-09-18T13:11:41.288612+00:00",
+        "created_at": "2026-09-18T13:09:29.846091+00:00",
+        "run": "perf_pair_02_attack"
+      },
+      {
+        "completed_at": "2026-09-18T13:13:47.976782+00:00",
+        "created_at": "2026-09-18T13:11:41.295147+00:00",
+        "run": "perf_pair_02_placebo"
+      },
+      {
+        "completed_at": "2026-09-18T13:15:59.384587+00:00",
+        "created_at": "2026-09-18T13:13:47.984156+00:00",
+        "run": "perf_pair_03_attack"
+      },
+      {
+        "completed_at": "2026-09-18T13:18:05.982933+00:00",
+        "created_at": "2026-09-18T13:15:59.391366+00:00",
+        "run": "perf_pair_03_placebo"
+      },
+      {
+        "completed_at": "2026-09-18T13:20:12.541924+00:00",
+        "created_at": "2026-09-18T13:18:05.990212+00:00",
+        "run": "perf_pair_04_placebo"
+      },
+      {
+        "completed_at": "2026-09-18T13:22:24.221544+00:00",
+        "created_at": "2026-09-18T13:20:12.548826+00:00",
+        "run": "perf_pair_04_attack"
+      }
+    ],
+    "valid": true
+  },
+  "rules": {
+    "errors": [],
+    "sha256": "610f44f5465e942270359365d57f6769fe2836d4ecca3efe0bea518b85de4433",
+    "valid": true
+  },
+  "schema_version": 1,
+  "screen": {
+    "candidate_count": 12,
+    "candidates": [
+      {
+        "draft_acceptance_rate": 0.0,
+        "tie_break_position": 0,
+        "token_id": 279,
+        "valid": true
+      },
+      {
+        "draft_acceptance_rate": 0.0,
+        "tie_break_position": 1,
+        "token_id": 323,
+        "valid": true
+      },
+      {
+        "draft_acceptance_rate": 0.0,
+        "tie_break_position": 2,
+        "token_id": 6303,
+        "valid": true
+      },
+      {
+        "draft_acceptance_rate": 0.0,
+        "tie_break_position": 3,
+        "token_id": 8251,
+        "valid": true
+      },
+      {
+        "draft_acceptance_rate": 0.0,
+        "tie_break_position": 4,
+        "token_id": 23811,
+        "valid": true
+      },
+      {
+        "draft_acceptance_rate": 0.0,
+        "tie_break_position": 5,
+        "token_id": 3015,
+        "valid": true
+      },
+      {
+        "draft_acceptance_rate": 0.0,
+        "tie_break_position": 6,
+        "token_id": 8094,
+        "valid": true
+      },
+      {
+        "draft_acceptance_rate": 0.0,
+        "tie_break_position": 7,
+        "token_id": 12095,
+        "valid": true
+      },
+      {
+        "draft_acceptance_rate": 0.0,
+        "tie_break_position": 8,
+        "token_id": 13,
+        "valid": true
+      },
+      {
+        "draft_acceptance_rate": 0.0,
+        "tie_break_position": 9,
+        "token_id": 11,
+        "valid": true
+      },
+      {
+        "draft_acceptance_rate": 0.0,
+        "tie_break_position": 10,
+        "token_id": 0,
+        "valid": true
+      },
+      {
+        "draft_acceptance_rate": 0.0,
+        "tie_break_position": 11,
+        "token_id": 30,
+        "valid": true
+      }
+    ],
+    "errors": [],
+    "metadata": {
+      "adaptive": false,
+      "arm": "screen",
+      "created_at": "2026-09-18T12:59:19,962674868+00:00",
+      "detailed_metrics": true,
+      "pair_id": null,
+      "poison_token_id": null,
+      "protocol_version": "avep-tenant-short-followup-v2",
+      "run_name": "screen",
+      "stage": "screen",
+      "telemetry": false
+    },
+    "selected_token_id": 279,
+    "selection_rule": "minimum acceptance, then fixed-list position",
+    "valid": true
+  },
+  "structural_valid": true,
+  "tenant_evidence": {
+    "claim_scope": "two proxy-authenticated principals on one vLLM worker",
+    "declaration": {
+      "declaration": {
+        "gateway_url": "http://127.0.0.1:8001/v1",
+        "protocol_version": "avep-tenant-short-followup-v2",
+        "schema_version": 1,
+        "tenants": {
+          "attacker": {
+            "key_sha256": "85e8c2ce16d16c55f8407aea5cc18f094b4990e877ba83a1f38aba5c39a1f695"
+          },
+          "victim": {
+            "key_sha256": "eee44afe6bbeddf04f4eb21b050b6d9f39bcb5f61c6001dc62d5cdf2a5bc0864"
+          }
+        },
+        "upstream_key_sha256": "0e93b56dd2049e795d2a2fe725cbfc1e0e4172dd9d02fa228bbdf111293e38cd",
+        "upstream_url": "http://127.0.0.1:8000/v1"
+      },
+      "errors": [],
+      "valid": true
+    },
+    "errors": [],
+    "runs": {
+      "gate_attack": {
+        "auth_event_count": 6,
+        "errors": [],
+        "gateway_instance_id": "gateway-gate_attack-1789736628197240838",
+        "run_name": "gate_attack",
+        "upstream_marker": "short-followup-23361-1789736568119400731",
+        "valid": true,
+        "workload_event_count": 6656
+      },
+      "gate_placebo": {
+        "auth_event_count": 6,
+        "errors": [],
+        "gateway_instance_id": "gateway-gate_placebo-1789736499191321161",
+        "run_name": "gate_placebo",
+        "upstream_marker": "short-followup-23361-1789736439112271317",
+        "valid": true,
+        "workload_event_count": 6656
+      },
+      "perf_pair_01_attack": {
+        "auth_event_count": 6,
+        "errors": [],
+        "gateway_instance_id": "gateway-perf_pair_01_attack-1789736898327308529",
+        "run_name": "perf_pair_01_attack",
+        "upstream_marker": "short-followup-23361-1789736838246626102",
+        "valid": true,
+        "workload_event_count": 6656
+      },
+      "perf_pair_01_placebo": {
+        "auth_event_count": 6,
+        "errors": [],
+        "gateway_instance_id": "gateway-perf_pair_01_placebo-1789736771658798765",
+        "run_name": "perf_pair_01_placebo",
+        "upstream_marker": "short-followup-23361-1789736701573195240",
+        "valid": true,
+        "workload_event_count": 6656
+      },
+      "perf_pair_02_attack": {
+        "auth_event_count": 6,
+        "errors": [],
+        "gateway_instance_id": "gateway-perf_pair_02_attack-1789737029950175944",
+        "run_name": "perf_pair_02_attack",
+        "upstream_marker": "short-followup-23361-1789736969868251866",
+        "valid": true,
+        "workload_event_count": 6656
+      },
+      "perf_pair_02_placebo": {
+        "auth_event_count": 6,
+        "errors": [],
+        "gateway_instance_id": "gateway-perf_pair_02_placebo-1789737161399502363",
+        "run_name": "perf_pair_02_placebo",
+        "upstream_marker": "short-followup-23361-1789737101317603066",
+        "valid": true,
+        "workload_event_count": 6656
+      },
+      "perf_pair_03_attack": {
+        "auth_event_count": 6,
+        "errors": [],
+        "gateway_instance_id": "gateway-perf_pair_03_attack-1789737288093228816",
+        "run_name": "perf_pair_03_attack",
+        "upstream_marker": "short-followup-23361-1789737228006895101",
+        "valid": true,
+        "workload_event_count": 6656
+      },
+      "perf_pair_03_placebo": {
+        "auth_event_count": 6,
+        "errors": [],
+        "gateway_instance_id": "gateway-perf_pair_03_placebo-1789737419499634679",
+        "run_name": "perf_pair_03_placebo",
+        "upstream_marker": "short-followup-23361-1789737359413782343",
+        "valid": true,
+        "workload_event_count": 6656
+      },
+      "perf_pair_04_attack": {
+        "auth_event_count": 6,
+        "errors": [],
+        "gateway_instance_id": "gateway-perf_pair_04_attack-1789737672654786541",
+        "run_name": "perf_pair_04_attack",
+        "upstream_marker": "short-followup-23361-1789737612571007155",
+        "valid": true,
+        "workload_event_count": 6656
+      },
+      "perf_pair_04_placebo": {
+        "auth_event_count": 6,
+        "errors": [],
+        "gateway_instance_id": "gateway-perf_pair_04_placebo-1789737546101181050",
+        "run_name": "perf_pair_04_placebo",
+        "upstream_marker": "short-followup-23361-1789737486012774629",
+        "valid": true,
+        "workload_event_count": 6656
+      },
+      "screen": {
+        "auth_event_count": 6,
+        "errors": [],
+        "gateway_instance_id": "gateway-screen-1789736410057581326",
+        "run_name": "screen",
+        "upstream_marker": "short-followup-23361-1789736359984735903",
+        "valid": true,
+        "workload_event_count": 3584
+      }
+    },
+    "valid": true
+  },
+  "valid": true
+}

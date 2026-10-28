@@ -1,0 +1,61 @@
+{
+  "base_url": "http://127.0.0.1:8001/v1",
+  "results": [
+    {
+      "audit_event_id": "3065ef0745a2472faf87e1c0d82c80dd",
+      "authenticated_tenant": "attacker",
+      "expected_status": 200,
+      "gateway_instance_id": "gateway-gate_attack-1789736628197240838",
+      "name": "attacker_ok",
+      "status": 200,
+      "upstream_marker": "short-followup-23361-1789736568119400731"
+    },
+    {
+      "audit_event_id": "4eba8f96eec54b4aa2140500d93f0d53",
+      "authenticated_tenant": "victim",
+      "expected_status": 200,
+      "gateway_instance_id": "gateway-gate_attack-1789736628197240838",
+      "name": "victim_ok",
+      "status": 200,
+      "upstream_marker": "short-followup-23361-1789736568119400731"
+    },
+    {
+      "audit_event_id": "e25dd40619954af29f9d7688ac439735",
+      "authenticated_tenant": null,
+      "expected_status": 401,
+      "gateway_instance_id": "gateway-gate_attack-1789736628197240838",
+      "name": "missing_key",
+      "status": 401,
+      "upstream_marker": "short-followup-23361-1789736568119400731"
+    },
+    {
+      "audit_event_id": "b6ffd0003402466c83b85be4e2f9a44a",
+      "authenticated_tenant": null,
+      "expected_status": 401,
+      "gateway_instance_id": "gateway-gate_attack-1789736628197240838",
+      "name": "wrong_key",
+      "status": 401,
+      "upstream_marker": "short-followup-23361-1789736568119400731"
+    },
+    {
+      "audit_event_id": "3ad371ebc1194dd7ac2420a25cdef665",
+      "authenticated_tenant": null,
+      "expected_status": 403,
+      "gateway_instance_id": "gateway-gate_attack-1789736628197240838",
+      "name": "attacker_claims_victim",
+      "status": 403,
+      "upstream_marker": "short-followup-23361-1789736568119400731"
+    },
+    {
+      "audit_event_id": "8b2b7cf46e7f4b4d8e161aab22635502",
+      "authenticated_tenant": null,
+      "expected_status": 403,
+      "gateway_instance_id": "gateway-gate_attack-1789736628197240838",
+      "name": "victim_claims_attacker",
+      "status": 403,
+      "upstream_marker": "short-followup-23361-1789736568119400731"
+    }
+  ],
+  "schema_version": 1,
+  "valid": true
+}

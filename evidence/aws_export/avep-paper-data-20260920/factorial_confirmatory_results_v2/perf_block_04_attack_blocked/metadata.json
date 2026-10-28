@@ -1,0 +1,13 @@
+{
+  "protocol_version": "avep-factorial-confirmatory-v2",
+  "run_name": "perf_block_04_attack_blocked",
+  "stage": "performance",
+  "block_id": "04",
+  "arm": "attack_blocked",
+  "workload": "attack",
+  "update_mode": "blocked",
+  "poison_token_id": 279,
+  "telemetry": false,
+  "detailed_metrics": false,
+  "created_at": "2026-09-19T12:08:20,994056465+00:00"
+}

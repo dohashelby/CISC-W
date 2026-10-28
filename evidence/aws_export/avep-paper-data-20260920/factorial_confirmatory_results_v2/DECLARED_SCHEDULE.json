@@ -1,0 +1,87 @@
+{
+  "protocol_version": "avep-factorial-confirmatory-v2",
+  "token_id": 279,
+  "gate_order": [
+    "placebo_blocked",
+    "placebo_shared",
+    "attack_blocked",
+    "attack_shared"
+  ],
+  "performance_orders": [
+    [
+      "attack_shared",
+      "attack_blocked",
+      "placebo_blocked",
+      "placebo_shared"
+    ],
+    [
+      "attack_blocked",
+      "placebo_shared",
+      "attack_shared",
+      "placebo_blocked"
+    ],
+    [
+      "placebo_shared",
+      "placebo_blocked",
+      "attack_blocked",
+      "attack_shared"
+    ],
+    [
+      "placebo_blocked",
+      "attack_shared",
+      "placebo_shared",
+      "attack_blocked"
+    ],
+    [
+      "attack_shared",
+      "attack_blocked",
+      "placebo_blocked",
+      "placebo_shared"
+    ],
+    [
+      "attack_blocked",
+      "placebo_shared",
+      "attack_shared",
+      "placebo_blocked"
+    ],
+    [
+      "placebo_shared",
+      "placebo_blocked",
+      "attack_blocked",
+      "attack_shared"
+    ],
+    [
+      "placebo_blocked",
+      "attack_shared",
+      "placebo_shared",
+      "attack_blocked"
+    ]
+  ],
+  "workload": {
+    "warmup": {
+      "requests": 1024,
+      "concurrency": 32,
+      "max_tokens": 32
+    },
+    "pre": {
+      "windows": 4,
+      "requests": 128,
+      "concurrency": 32,
+      "max_tokens": 32
+    },
+    "intervention": {
+      "requests": 4096,
+      "concurrency": 8,
+      "max_tokens": 2,
+      "attack_allowed_token_id": 279,
+      "placebo_allowed_token_id": null,
+      "return_token_ids": true
+    },
+    "post": {
+      "windows": 8,
+      "requests": 128,
+      "concurrency": 32,
+      "max_tokens": 32
+    }
+  }
+}

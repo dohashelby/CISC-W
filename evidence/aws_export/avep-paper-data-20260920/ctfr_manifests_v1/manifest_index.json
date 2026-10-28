@@ -1,0 +1,72 @@
+{
+  "bundle_sha256": "4907309051a485ae42c061be20b37f5f9c1514c81d7b4cda770d917ccf690088",
+  "corpus_id": "ctfr-stage-de-gate-locked-v1",
+  "corpus_sha256": "e55beb36cf349c78d2993edffe2e2e85ded6e812027c5b9bf92e3641a766db58",
+  "generator_schema": "ctfr-manifest-generator-v1",
+  "manifests": [
+    {
+      "canonical_sha256": "e42c5fcaf34fc51ccfe51fea4736ce503c22393807e192bb9f7ea03d9b982631",
+      "entry_count": 32,
+      "file": "compile_warmup.json",
+      "manifest_name": "compile_warmup",
+      "wave_count": 16
+    },
+    {
+      "canonical_sha256": "12ca02af551bd6d032042d97e52c3f5a5e3c22f34a96f27c2d2e060afa76dd2b",
+      "entry_count": 2048,
+      "file": "baseline_adaptation.json",
+      "manifest_name": "baseline_adaptation",
+      "wave_count": 1024
+    },
+    {
+      "canonical_sha256": "52f34ae8e484244be397638548a26353126c4ffe617cf67389ca7387583228cd",
+      "entry_count": 256,
+      "file": "baseline_evaluation.json",
+      "manifest_name": "baseline_evaluation",
+      "wave_count": 128
+    },
+    {
+      "canonical_sha256": "3b1ab4698b933e60f151e806f3a5590a0eb67b8ffcd6f309ceffed8b6481c81c",
+      "entry_count": 2048,
+      "file": "shifted_adaptation.json",
+      "manifest_name": "shifted_adaptation",
+      "wave_count": 1024
+    },
+    {
+      "canonical_sha256": "a537b79c4d60ec45ecd21f40c3f78ad8e29e64fa3cb4db4fbe79490c3e9920d7",
+      "entry_count": 256,
+      "file": "shifted_evaluation.json",
+      "manifest_name": "shifted_evaluation",
+      "wave_count": 128
+    },
+    {
+      "canonical_sha256": "4ee5d24e9b640dd874e7a8509d3ae3514e275d27cd058a2b80fbaa2241f1f1d9",
+      "entry_count": 1024,
+      "file": "stationary_adaptation.json",
+      "manifest_name": "stationary_adaptation",
+      "wave_count": 512
+    },
+    {
+      "canonical_sha256": "be812525b49f44f978b6d996c76be4612d10fd674e031c5006d90e1599afb895",
+      "entry_count": 1536,
+      "file": "e1_one_identity.json",
+      "manifest_name": "e1_one_identity",
+      "wave_count": 1536
+    },
+    {
+      "canonical_sha256": "9adf9d970c5db2137d4b64e11fab18a5d83be9ce4bc2fcd070267c1005098412",
+      "entry_count": 3072,
+      "file": "e2_disagreement.json",
+      "manifest_name": "e2_disagreement",
+      "wave_count": 1536
+    },
+    {
+      "canonical_sha256": "6bda787932d29a6fd2a6240427d22490cbd8ec25019a9929f5670e3fe2dbdb4d",
+      "entry_count": 3072,
+      "file": "e3_two_credentials.json",
+      "manifest_name": "e3_two_credentials",
+      "wave_count": 1536
+    }
+  ],
+  "schema": "ctfr-manifest-index-v1"
+}

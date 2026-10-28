@@ -1,0 +1,320 @@
+{
+  "allowed_paper_phrases": [],
+  "always_disallowed_without_separate_evidence": [
+    "controller-decision noninterference",
+    "Sybil-resistant",
+    "benignness oracle",
+    "arbitrary poisoning resistance",
+    "concurrent or crash-safe publication",
+    "cross-engine validation",
+    "isolated shadow-manager CPU overhead",
+    "causal calibration improvement without fixed common-depth replay"
+  ],
+  "analysis_stage": "stage-d-gate",
+  "claims": {
+    "adaptation_opportunity_established": false,
+    "arbitrary_poisoning_resistance": false,
+    "benign_adaptation_retained": false,
+    "benignness_oracle": false,
+    "controller_decision_noninterference": false,
+    "cross_engine_validation": false,
+    "disagreeing_candidate_squashed": false,
+    "held_out_output_semantic_equivalence": false,
+    "overhead_guardrails_pass": false,
+    "pre_retirement_committed_state_invariance": false,
+    "preferable_to_tenant_local": false,
+    "quorum_capture_limitation_observed": false,
+    "single_identity_quorum_rejected": false,
+    "sybil_resistant": false
+  },
+  "classification": "INVALID",
+  "declaration": {
+    "errors": [],
+    "overhead_order_by_block": {
+      "01": [
+        "shared",
+        "ctfr-full-no-retire"
+      ],
+      "02": [
+        "ctfr-full-no-retire",
+        "shared"
+      ],
+      "03": [
+        "shared",
+        "ctfr-full-no-retire"
+      ],
+      "04": [
+        "ctfr-full-no-retire",
+        "shared"
+      ],
+      "05": [
+        "shared",
+        "ctfr-full-no-retire"
+      ],
+      "06": [
+        "ctfr-full-no-retire",
+        "shared"
+      ],
+      "07": [
+        "shared",
+        "ctfr-full-no-retire"
+      ],
+      "08": [
+        "ctfr-full-no-retire",
+        "shared"
+      ]
+    },
+    "principal_fingerprints": {
+      "attacker": "5ff8be7daf8e9e4117f879b343cd158900d62f9960236dddc4e8ae6912dea3bc",
+      "upstream": "b8d5a393cb38e8793cf0b9ec625861a8d579efd0c4dca1fe4ae0090cf2c2eca6",
+      "victim": "4dd26583c013fc5b11411eb93da8c96930e66733d318122c511a2638de57fb8b"
+    },
+    "shadow_bound_bytes": 1024,
+    "shadow_bound_scope": "Persistent shadow-state tensors only; excludes transient retirement and validation workspace.",
+    "stage_d_order_by_block": {
+      "01": [
+        "shared",
+        "frozen",
+        "tenant-local",
+        "ctfr-shadow",
+        "ctfr-full"
+      ],
+      "02": [
+        "frozen",
+        "tenant-local",
+        "ctfr-shadow",
+        "ctfr-full",
+        "shared"
+      ],
+      "03": [
+        "tenant-local",
+        "ctfr-shadow",
+        "ctfr-full",
+        "shared",
+        "frozen"
+      ],
+      "04": [
+        "ctfr-shadow",
+        "ctfr-full",
+        "shared",
+        "frozen",
+        "tenant-local"
+      ],
+      "05": [
+        "ctfr-full",
+        "shared",
+        "frozen",
+        "tenant-local",
+        "ctfr-shadow"
+      ],
+      "06": [
+        "ctfr-full",
+        "ctfr-shadow",
+        "tenant-local",
+        "frozen",
+        "shared"
+      ],
+      "07": [
+        "shared",
+        "ctfr-full",
+        "ctfr-shadow",
+        "tenant-local",
+        "frozen"
+      ],
+      "08": [
+        "frozen",
+        "shared",
+        "ctfr-full",
+        "ctfr-shadow",
+        "tenant-local"
+      ]
+    },
+    "stage_e_order_by_block": {
+      "01": [
+        "e2-disagreement",
+        "e3-two-credentials"
+      ],
+      "02": [
+        "e2-disagreement",
+        "e3-two-credentials"
+      ],
+      "03": [
+        "e2-disagreement",
+        "e3-two-credentials"
+      ],
+      "04": [
+        "e2-disagreement",
+        "e3-two-credentials"
+      ],
+      "05": [
+        "e2-disagreement",
+        "e3-two-credentials"
+      ],
+      "06": [
+        "e2-disagreement",
+        "e3-two-credentials"
+      ],
+      "07": [
+        "e2-disagreement",
+        "e3-two-credentials"
+      ],
+      "08": [
+        "e2-disagreement",
+        "e3-two-credentials"
+      ]
+    },
+    "valid": true
+  },
+  "errors": [
+    "Stage D gate: gate ctfr-full: CTFR-full run has other than one retirement event",
+    "Stage D gate: gate ctfr-full: the declared benign retirement did not retire",
+    "Stage D gate: gate CTFR retirement: the declared benign retirement did not retire"
+  ],
+  "frozen_baseline": {
+    "baseline": {
+      "coefficient_sha256": "b7fea3032f4ecaabc04b1ad422c5b4aa4f2d99ecc334b37eec77c86e607e6b9a",
+      "intercepts": [
+        -0.13880087435245514,
+        0.22591091692447662,
+        -0.297431081533432,
+        -0.41593775153160095
+      ],
+      "path": "/home/ubuntu/avep/ctfr_baseline_committed_state_v2.json",
+      "slope": 0.7987819314002991
+    },
+    "errors": [],
+    "valid": true
+  },
+  "overhead": {
+    "errors": [
+      "overhead study was not run"
+    ],
+    "guardrails_pass": false,
+    "not_tested": true,
+    "valid": false
+  },
+  "protocol_version": "avep-ctfr-full-study-v2",
+  "run_count": 5,
+  "schema": "ctfr-full-analysis-v1",
+  "stage_d": {
+    "claims": {
+      "adaptation_opportunity_established": false,
+      "benign_adaptation_retained": false,
+      "held_out_output_semantic_equivalence": false,
+      "pre_retirement_committed_state_invariance": false,
+      "preferable_to_tenant_local": false
+    },
+    "comparisons": {},
+    "complete_blocks": 0,
+    "errors": [
+      "block 01 is missing arms ['ctfr-full', 'ctfr-shadow', 'frozen', 'shared', 'tenant-local']",
+      "block 02 is missing arms ['ctfr-full', 'ctfr-shadow', 'frozen', 'shared', 'tenant-local']",
+      "block 03 is missing arms ['ctfr-full', 'ctfr-shadow', 'frozen', 'shared', 'tenant-local']",
+      "block 04 is missing arms ['ctfr-full', 'ctfr-shadow', 'frozen', 'shared', 'tenant-local']",
+      "block 05 is missing arms ['ctfr-full', 'ctfr-shadow', 'frozen', 'shared', 'tenant-local']",
+      "block 06 is missing arms ['ctfr-full', 'ctfr-shadow', 'frozen', 'shared', 'tenant-local']",
+      "block 07 is missing arms ['ctfr-full', 'ctfr-shadow', 'frozen', 'shared', 'tenant-local']",
+      "block 08 is missing arms ['ctfr-full', 'ctfr-shadow', 'frozen', 'shared', 'tenant-local']",
+      "Stage D block 01 cannot verify declared order",
+      "Stage D block 02 cannot verify declared order",
+      "Stage D block 03 cannot verify declared order",
+      "Stage D block 04 cannot verify declared order",
+      "Stage D block 05 cannot verify declared order",
+      "Stage D block 06 cannot verify declared order",
+      "Stage D block 07 cannot verify declared order",
+      "Stage D block 08 cannot verify declared order",
+      "fixed Stage D field baseline_sha256 varies across runs",
+      "fixed Stage D field shadow_memory_bound_bytes varies across runs",
+      "fixed Stage D field shadow_memory_bound_scope varies across runs",
+      "fixed Stage D field source_sha256 varies across runs",
+      "fixed Stage D field target_model_revision varies across runs",
+      "fixed Stage D field draft_model_revision varies across runs",
+      "fixed Stage D field sampling_policy_sha256 varies across runs",
+      "fixed Stage D field feature_contract_version varies across runs",
+      "fixed Stage D compile_warmup manifest varies across runs",
+      "fixed Stage D baseline_evaluation manifest varies across runs"
+    ],
+    "observation_count_balance": {},
+    "secondary_calibration_metrics": {
+      "interpretation": "descriptive and selection-biased; no causal calibration claim is permitted without fixed common-depth replay",
+      "observation_support": {}
+    },
+    "semantic_equivalence_by_block": {},
+    "valid": false
+  },
+  "stage_d_gate": {
+    "arm_count": 5,
+    "ctfr_retirement_geometry_valid": false,
+    "errors": [
+      "gate ctfr-full: CTFR-full run has other than one retirement event",
+      "gate ctfr-full: the declared benign retirement did not retire",
+      "gate CTFR retirement: the declared benign retirement did not retire"
+    ],
+    "mixed_principal_binding_verified": true,
+    "pre_retirement_committed_state_invariance": true,
+    "shared_over_frozen_adaptation_opportunity": true,
+    "tenant_local_refit_valid": true,
+    "valid": false
+  },
+  "stage_e": {
+    "claims": {
+      "disagreeing_candidate_squashed": false,
+      "origin_binding_robust": false,
+      "overhead_guardrails_pass": false,
+      "quorum_capture_limitation_observed": false,
+      "single_identity_quorum_rejected": false,
+      "sybil_resistant": false
+    },
+    "complete": false,
+    "errors": [
+      "Stage E block 01 cannot verify declared order",
+      "Stage E block 02 cannot verify declared order",
+      "Stage E block 03 cannot verify declared order",
+      "Stage E block 04 cannot verify declared order",
+      "Stage E block 05 cannot verify declared order",
+      "Stage E block 06 cannot verify declared order",
+      "Stage E block 07 cannot verify declared order",
+      "Stage E block 08 cannot verify declared order"
+    ],
+    "origin_binding": {
+      "errors": [],
+      "pass": false,
+      "supplemental_origin_artifact_tested": false,
+      "tested": false
+    },
+    "overhead": {
+      "errors": [
+        "overhead is analyzed by the separate overhead stage"
+      ],
+      "guardrails_pass": false,
+      "not_applicable": true,
+      "valid": false
+    },
+    "sybil_boundary": {
+      "sybil-disagree": {
+        "errors": [
+          "scenario was not run"
+        ],
+        "pass": false,
+        "tested": false
+      },
+      "sybil-quorum-capture": {
+        "errors": [],
+        "quorum_capture_limitation_observed": false,
+        "retired_results": [],
+        "tested": false,
+        "valid": false
+      },
+      "sybil-single": {
+        "errors": [
+          "scenario was not run"
+        ],
+        "pass": false,
+        "tested": false
+      }
+    },
+    "sybil_complete": false,
+    "valid": false
+  },
+  "valid": false
+}

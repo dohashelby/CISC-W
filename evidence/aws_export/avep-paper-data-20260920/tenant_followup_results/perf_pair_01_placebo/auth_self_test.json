@@ -1,0 +1,61 @@
+{
+  "base_url": "http://127.0.0.1:8001/v1",
+  "results": [
+    {
+      "audit_event_id": "131f9bd0b45a4f71b4f95152ff26be78",
+      "authenticated_tenant": "attacker",
+      "expected_status": 200,
+      "gateway_instance_id": "gateway-perf_pair_01_placebo-1789736771658798765",
+      "name": "attacker_ok",
+      "status": 200,
+      "upstream_marker": "short-followup-23361-1789736701573195240"
+    },
+    {
+      "audit_event_id": "0a64dceb3abe438f95b68c8fe19dc139",
+      "authenticated_tenant": "victim",
+      "expected_status": 200,
+      "gateway_instance_id": "gateway-perf_pair_01_placebo-1789736771658798765",
+      "name": "victim_ok",
+      "status": 200,
+      "upstream_marker": "short-followup-23361-1789736701573195240"
+    },
+    {
+      "audit_event_id": "c6f638fbeecd474dadc843fb3d305d78",
+      "authenticated_tenant": null,
+      "expected_status": 401,
+      "gateway_instance_id": "gateway-perf_pair_01_placebo-1789736771658798765",
+      "name": "missing_key",
+      "status": 401,
+      "upstream_marker": "short-followup-23361-1789736701573195240"
+    },
+    {
+      "audit_event_id": "d76faeb102564f74be9d7f94fc4ae449",
+      "authenticated_tenant": null,
+      "expected_status": 401,
+      "gateway_instance_id": "gateway-perf_pair_01_placebo-1789736771658798765",
+      "name": "wrong_key",
+      "status": 401,
+      "upstream_marker": "short-followup-23361-1789736701573195240"
+    },
+    {
+      "audit_event_id": "24b74efd32724a10943cd7c78d763024",
+      "authenticated_tenant": null,
+      "expected_status": 403,
+      "gateway_instance_id": "gateway-perf_pair_01_placebo-1789736771658798765",
+      "name": "attacker_claims_victim",
+      "status": 403,
+      "upstream_marker": "short-followup-23361-1789736701573195240"
+    },
+    {
+      "audit_event_id": "c00a772cc704459c9419a3046972a6e7",
+      "authenticated_tenant": null,
+      "expected_status": 403,
+      "gateway_instance_id": "gateway-perf_pair_01_placebo-1789736771658798765",
+      "name": "victim_claims_attacker",
+      "status": 403,
+      "upstream_marker": "short-followup-23361-1789736701573195240"
+    }
+  ],
+  "schema_version": 1,
+  "valid": true
+}

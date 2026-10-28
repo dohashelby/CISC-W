@@ -1,0 +1,18 @@
+# Local operating-system metadata
+.DS_Store
+._*
+
+# Local credentials and private keys
+.avep_*credentials.json
+.env
+.env.*
+!.env.example
+.aws/
+.ssh/
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Original export contains runtime credentials; publish the reviewed extraction.
+/evidence/aws_export/avep-paper-data-20260920.tgz

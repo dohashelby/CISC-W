@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/home/ubuntu/avep/tenant_gateway.py", line 426, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/home/ubuntu/avep/tenant_gateway.py", line 412, in main
+    server = GatewayServer(
+             ^^^^^^^^^^^^^^
+  File "/home/ubuntu/avep/tenant_gateway.py", line 78, in __init__
+    super().__init__(address, GatewayHandler)
+  File "/usr/local/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/usr/local/lib/python3.12/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/usr/local/lib/python3.12/socketserver.py", line 478, in server_bind
+    self.socket.bind(self.server_address)
+OSError: [Errno 98] Address already in use

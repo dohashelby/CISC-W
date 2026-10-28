@@ -1,0 +1,16 @@
+{
+  "called": true,
+  "method": "avep_retire_ctfr",
+  "response": {
+    "results": [
+      {
+        "available": true,
+        "retirement": {
+          "retired": false,
+          "reason": "aggregate exceeds decision trust region",
+          "max_probability_shift": 0.1522071361541748
+        }
+      }
+    ]
+  }
+}

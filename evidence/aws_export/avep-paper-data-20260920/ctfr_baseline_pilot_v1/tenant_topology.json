@@ -1,0 +1,10 @@
+{
+  "protocol_version": "avep-ctfr-full-study-v1",
+  "gateway_instance_id": "ctfr-full-ctfr_baseline_pilot_v1-1789891618978209161",
+  "upstream_marker": "ctfr-full-6241-1789891548885452153",
+  "key_fingerprints": {
+    "attacker": "98cb8e76d54d1e67e9c88a9fb2379c86731dff34c0bc00e0f1812b0ce35f52f0",
+    "victim": "f605fa78112d83035dd8d38cf2d9eab269f8e7dab635d251766a9fdea21f0c19",
+    "upstream": "a64765a287c9879c1c15071d9b531ca75e374bee9c3d1885f4295cd8fcb0ee2d"
+  }
+}

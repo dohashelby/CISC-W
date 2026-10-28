@@ -1,0 +1,151 @@
+{
+  "stage_d_blocks": 8,
+  "stage_d_arms": [
+    "shared",
+    "frozen",
+    "tenant-local",
+    "ctfr-shadow",
+    "ctfr-full"
+  ],
+  "stage_d_order_by_block": {
+    "01": [
+      "shared",
+      "frozen",
+      "tenant-local",
+      "ctfr-shadow",
+      "ctfr-full"
+    ],
+    "02": [
+      "frozen",
+      "tenant-local",
+      "ctfr-shadow",
+      "ctfr-full",
+      "shared"
+    ],
+    "03": [
+      "tenant-local",
+      "ctfr-shadow",
+      "ctfr-full",
+      "shared",
+      "frozen"
+    ],
+    "04": [
+      "ctfr-shadow",
+      "ctfr-full",
+      "shared",
+      "frozen",
+      "tenant-local"
+    ],
+    "05": [
+      "ctfr-full",
+      "shared",
+      "frozen",
+      "tenant-local",
+      "ctfr-shadow"
+    ],
+    "06": [
+      "ctfr-full",
+      "ctfr-shadow",
+      "tenant-local",
+      "frozen",
+      "shared"
+    ],
+    "07": [
+      "shared",
+      "ctfr-full",
+      "ctfr-shadow",
+      "tenant-local",
+      "frozen"
+    ],
+    "08": [
+      "frozen",
+      "shared",
+      "ctfr-full",
+      "ctfr-shadow",
+      "tenant-local"
+    ]
+  },
+  "stage_e": [
+    "e1-one-identity",
+    "e2-disagreement",
+    "e3-two-credentials"
+  ],
+  "stage_e_initial": "e1-one-identity",
+  "stage_e_order_by_block": {
+    "01": [
+      "e2-disagreement",
+      "e3-two-credentials"
+    ],
+    "02": [
+      "e2-disagreement",
+      "e3-two-credentials"
+    ],
+    "03": [
+      "e2-disagreement",
+      "e3-two-credentials"
+    ],
+    "04": [
+      "e2-disagreement",
+      "e3-two-credentials"
+    ],
+    "05": [
+      "e2-disagreement",
+      "e3-two-credentials"
+    ],
+    "06": [
+      "e2-disagreement",
+      "e3-two-credentials"
+    ],
+    "07": [
+      "e2-disagreement",
+      "e3-two-credentials"
+    ],
+    "08": [
+      "e2-disagreement",
+      "e3-two-credentials"
+    ]
+  },
+  "overhead_blocks": 8,
+  "overhead_arms": [
+    "shared",
+    "ctfr-full-no-retire"
+  ],
+  "overhead_order_by_block": {
+    "01": [
+      "shared",
+      "ctfr-full-no-retire"
+    ],
+    "02": [
+      "ctfr-full-no-retire",
+      "shared"
+    ],
+    "03": [
+      "shared",
+      "ctfr-full-no-retire"
+    ],
+    "04": [
+      "ctfr-full-no-retire",
+      "shared"
+    ],
+    "05": [
+      "shared",
+      "ctfr-full-no-retire"
+    ],
+    "06": [
+      "ctfr-full-no-retire",
+      "shared"
+    ],
+    "07": [
+      "shared",
+      "ctfr-full-no-retire"
+    ],
+    "08": [
+      "ctfr-full-no-retire",
+      "shared"
+    ]
+  },
+  "fixed_shadow_tensor_bound_bytes": 1024,
+  "fresh_process_per_arm": true,
+  "barrier_attempts_per_run": 1,
+  "bootstrap_seed": 20260920
+}

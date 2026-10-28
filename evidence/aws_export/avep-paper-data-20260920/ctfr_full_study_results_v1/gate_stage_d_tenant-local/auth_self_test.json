@@ -1,0 +1,61 @@
+{
+  "base_url": "http://127.0.0.1:8001/v1",
+  "results": [
+    {
+      "audit_event_id": "27faede231aa47e0a512c366cf3d91ad",
+      "authenticated_tenant": "attacker",
+      "expected_status": 200,
+      "gateway_instance_id": "ctfr-full-gate_stage_d_tenant-local-1789892011991695298",
+      "name": "attacker_ok",
+      "status": 200,
+      "upstream_marker": "ctfr-full-9897-1789891951903929119"
+    },
+    {
+      "audit_event_id": "1093bbb19eb542ca828a13af02339a00",
+      "authenticated_tenant": "victim",
+      "expected_status": 200,
+      "gateway_instance_id": "ctfr-full-gate_stage_d_tenant-local-1789892011991695298",
+      "name": "victim_ok",
+      "status": 200,
+      "upstream_marker": "ctfr-full-9897-1789891951903929119"
+    },
+    {
+      "audit_event_id": "221eed53f8d64211a7e52a67f9979f94",
+      "authenticated_tenant": null,
+      "expected_status": 401,
+      "gateway_instance_id": "ctfr-full-gate_stage_d_tenant-local-1789892011991695298",
+      "name": "missing_key",
+      "status": 401,
+      "upstream_marker": "ctfr-full-9897-1789891951903929119"
+    },
+    {
+      "audit_event_id": "4018b957ba9f4da88973ea2d15d8d8f2",
+      "authenticated_tenant": null,
+      "expected_status": 401,
+      "gateway_instance_id": "ctfr-full-gate_stage_d_tenant-local-1789892011991695298",
+      "name": "wrong_key",
+      "status": 401,
+      "upstream_marker": "ctfr-full-9897-1789891951903929119"
+    },
+    {
+      "audit_event_id": "225da972a71240cd932a8e7ee9ff2281",
+      "authenticated_tenant": null,
+      "expected_status": 403,
+      "gateway_instance_id": "ctfr-full-gate_stage_d_tenant-local-1789892011991695298",
+      "name": "attacker_claims_victim",
+      "status": 403,
+      "upstream_marker": "ctfr-full-9897-1789891951903929119"
+    },
+    {
+      "audit_event_id": "3c8a31e893cb4c939cce3234aaf760ab",
+      "authenticated_tenant": null,
+      "expected_status": 403,
+      "gateway_instance_id": "ctfr-full-gate_stage_d_tenant-local-1789892011991695298",
+      "name": "victim_claims_attacker",
+      "status": 403,
+      "upstream_marker": "ctfr-full-9897-1789891951903929119"
+    }
+  ],
+  "schema_version": 1,
+  "valid": true
+}

@@ -1,0 +1,61 @@
+{
+  "base_url": "http://127.0.0.1:8001/v1",
+  "results": [
+    {
+      "audit_event_id": "70cc1104331649b9b305f10ea1cd8c34",
+      "authenticated_tenant": "attacker",
+      "expected_status": 200,
+      "gateway_instance_id": "causal-perf_pair_04_blocked-1789797129867214430",
+      "name": "attacker_ok",
+      "status": 200,
+      "upstream_marker": "causal-1672-1789797069773857486"
+    },
+    {
+      "audit_event_id": "23484f4afc0549839fe8d515cd8a1272",
+      "authenticated_tenant": "victim",
+      "expected_status": 200,
+      "gateway_instance_id": "causal-perf_pair_04_blocked-1789797129867214430",
+      "name": "victim_ok",
+      "status": 200,
+      "upstream_marker": "causal-1672-1789797069773857486"
+    },
+    {
+      "audit_event_id": "e06da60162ca45e79bc5bd5cc181f53c",
+      "authenticated_tenant": null,
+      "expected_status": 401,
+      "gateway_instance_id": "causal-perf_pair_04_blocked-1789797129867214430",
+      "name": "missing_key",
+      "status": 401,
+      "upstream_marker": "causal-1672-1789797069773857486"
+    },
+    {
+      "audit_event_id": "1cc0c9ad248241b98d216e9ee882f28a",
+      "authenticated_tenant": null,
+      "expected_status": 401,
+      "gateway_instance_id": "causal-perf_pair_04_blocked-1789797129867214430",
+      "name": "wrong_key",
+      "status": 401,
+      "upstream_marker": "causal-1672-1789797069773857486"
+    },
+    {
+      "audit_event_id": "92f5922481ce4d479fa457bf5ea2a6a7",
+      "authenticated_tenant": null,
+      "expected_status": 403,
+      "gateway_instance_id": "causal-perf_pair_04_blocked-1789797129867214430",
+      "name": "attacker_claims_victim",
+      "status": 403,
+      "upstream_marker": "causal-1672-1789797069773857486"
+    },
+    {
+      "audit_event_id": "3f7c350b1792489dbf83f3fe4ca6c0de",
+      "authenticated_tenant": null,
+      "expected_status": 403,
+      "gateway_instance_id": "causal-perf_pair_04_blocked-1789797129867214430",
+      "name": "victim_claims_attacker",
+      "status": 403,
+      "upstream_marker": "causal-1672-1789797069773857486"
+    }
+  ],
+  "schema_version": 1,
+  "valid": true
+}

@@ -1,0 +1,9 @@
+온라인 적응형 LLM 서빙의 인증 주체 간 제어 상태 오염
+이도하*
+*세종대학교 (학부생)
+Cross-Principal Control-State Contamination in Online-Adaptive LLM Serving: A vLLM Case Study and Feedback-Isolation Design Proposal
+Doha Lee*
+*Sejong University (Undergraduate Student)
+요 약
+대규모 언어 모델의 가중치는 추론 중 고정되지만 서빙 엔진은 실행 feedback으로 이후 정책을 조정한다. 본 논문은 한 인증 주체의 feedback이 공유 제어 상태를 거쳐 다른 주체의 후속 요청에 영향을 주는 ‘인증 주체 간 제어 상태 오염’을 정의한다. vLLM의 공격/대조×estimator 갱신 허용/차단 2×2 실험에서 처리량 interaction은 -0.2478(95% CI [-0.2586,-0.2380], 8/8 adverse)이었다. 또한 feedback을 문맥별 shadow state에 보관해 검증 후 retire하는 CTFR을 설계 제안으로 제시한다.
+주제어: LLM 서빙, 온라인 적응, speculative decoding, 상태 오염, vLLM

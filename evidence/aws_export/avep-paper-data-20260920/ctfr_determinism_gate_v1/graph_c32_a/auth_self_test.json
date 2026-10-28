@@ -1,0 +1,61 @@
+{
+  "base_url": "http://127.0.0.1:8001/v1",
+  "results": [
+    {
+      "audit_event_id": "a89944f7bf444a3db6ae6f4b3c4cc7b4",
+      "authenticated_tenant": "attacker",
+      "expected_status": 200,
+      "gateway_instance_id": "factorial-graph_c32_a-1789901818851795606",
+      "name": "attacker_ok",
+      "status": 200,
+      "upstream_marker": "determinism-1638-1789901668673952968"
+    },
+    {
+      "audit_event_id": "e4ed2fe775dc4438b24e1f193c22d43b",
+      "authenticated_tenant": "victim",
+      "expected_status": 200,
+      "gateway_instance_id": "factorial-graph_c32_a-1789901818851795606",
+      "name": "victim_ok",
+      "status": 200,
+      "upstream_marker": "determinism-1638-1789901668673952968"
+    },
+    {
+      "audit_event_id": "b94f9a825aa246f689dc3c611172907d",
+      "authenticated_tenant": null,
+      "expected_status": 401,
+      "gateway_instance_id": "factorial-graph_c32_a-1789901818851795606",
+      "name": "missing_key",
+      "status": 401,
+      "upstream_marker": "determinism-1638-1789901668673952968"
+    },
+    {
+      "audit_event_id": "02dd1490224e4848845485062760b605",
+      "authenticated_tenant": null,
+      "expected_status": 401,
+      "gateway_instance_id": "factorial-graph_c32_a-1789901818851795606",
+      "name": "wrong_key",
+      "status": 401,
+      "upstream_marker": "determinism-1638-1789901668673952968"
+    },
+    {
+      "audit_event_id": "bfece0c99b4841ce9422810ed1c02b96",
+      "authenticated_tenant": null,
+      "expected_status": 403,
+      "gateway_instance_id": "factorial-graph_c32_a-1789901818851795606",
+      "name": "attacker_claims_victim",
+      "status": 403,
+      "upstream_marker": "determinism-1638-1789901668673952968"
+    },
+    {
+      "audit_event_id": "050e39253f55464aac4161e626a5b837",
+      "authenticated_tenant": null,
+      "expected_status": 403,
+      "gateway_instance_id": "factorial-graph_c32_a-1789901818851795606",
+      "name": "victim_claims_attacker",
+      "status": 403,
+      "upstream_marker": "determinism-1638-1789901668673952968"
+    }
+  ],
+  "schema_version": 1,
+  "valid": true
+}

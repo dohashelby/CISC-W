@@ -1,0 +1,7 @@
+vllm_sha=4fe9e6f6e5647a159c9e65e4f3bf33dec5d12e1c
+source_stack_sha256=dcc2239dd80e8e4095a76d31a09ae96b5a4de603ca16850706760b4bfe6a2387
+cublas_workspace_config=:4096:8
+nvidia_tf32_override=0
+pythonhashseed=0
+Python 3.12.10
+torch=2.13.0+cu132

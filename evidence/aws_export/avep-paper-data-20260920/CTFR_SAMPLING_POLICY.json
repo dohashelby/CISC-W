@@ -1,0 +1,10 @@
+{
+  "allowed_token_ids": null,
+  "api": "v1/completions",
+  "feature_contract_version": "logit-max-draft-probability-v1",
+  "ignore_eos": true,
+  "return_token_ids": true,
+  "schema": "ctfr-sampling-policy-v1",
+  "stream": false,
+  "temperature": 0.0
+}

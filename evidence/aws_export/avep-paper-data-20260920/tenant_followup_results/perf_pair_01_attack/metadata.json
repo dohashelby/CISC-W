@@ -1,0 +1,12 @@
+{
+  "protocol_version": "avep-tenant-short-followup-v2",
+  "run_name": "perf_pair_01_attack",
+  "stage": "performance",
+  "pair_id": "01",
+  "arm": "attack",
+  "adaptive": true,
+  "telemetry": false,
+  "detailed_metrics": false,
+  "poison_token_id": 279,
+  "created_at": "2026-09-18T13:07:18,224166044+00:00"
+}

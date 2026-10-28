@@ -1,0 +1,463 @@
+diff --git a/vllm/v1/worker/gpu/model_runner.py b/vllm/v1/worker/gpu/model_runner.py
+index 6f9382552278f3b4fbebb370d6d6d05ea51e8b95..454a71d02adb46c99aca8b7400169792ebd585e9 100644
+--- a/vllm/v1/worker/gpu/model_runner.py
++++ b/vllm/v1/worker/gpu/model_runner.py
+@@ -2116,6 +2116,8 @@ class GPUModelRunner(LoRAModelRunnerMixin):
+             assert self.sampler is not None
+             if isinstance(self.speculator, DraftModelSpeculator):
+                 domain_activity = (True, False)
++                feedback_principals = None
++                principal_activity = (False, False)
+                 if self.speculator.requires_feedback_domains:
+                     allowed = (
+                         self.sampler.logit_bias_state.num_allowed_token_ids
+@@ -2126,11 +2128,33 @@ class GPUModelRunner(LoRAModelRunnerMixin):
+                         bool(np.any(~transformed)),
+                         bool(np.any(transformed)),
+                     )
++                if self.speculator.requires_feedback_principals:
++                    principal_values = [
++                        (
++                            0
++                            if req_id.startswith("cmpl-ctfr-auth-attacker-")
++                            else 1
++                            if req_id.startswith("cmpl-ctfr-auth-victim-")
++                            else -1
++                        )
++                        for req_id in input_batch.req_ids
++                    ]
++                    feedback_principals = torch.tensor(
++                        principal_values,
++                        dtype=torch.int32,
++                        device=input_batch.idx_mapping.device,
++                    )
++                    principal_activity = (
++                        0 in principal_values,
++                        1 in principal_values,
++                    )
+                 self.speculator.observe_verification(
+                     input_batch.idx_mapping,
+                     num_sampled,
+                     num_rejected,
+                     domain_activity,
++                    feedback_principals,
++                    principal_activity,
+                 )
+             # Let the target override the hidden state fed to the drafter
+             # (e.g. DeepSeek V4 MTP needs the pre-hc_head residual). The
+diff --git a/vllm/v1/worker/gpu/spec_decode/acceptance_estimator.py b/vllm/v1/worker/gpu/spec_decode/acceptance_estimator.py
+index 61722578eb6d5594ed8923bcdd5a179ea772deea..77efe48ab10d31810c7c63a83193293782cc67ab 100644
+--- a/vllm/v1/worker/gpu/spec_decode/acceptance_estimator.py
++++ b/vllm/v1/worker/gpu/spec_decode/acceptance_estimator.py
+@@ -2,6 +2,7 @@
+ # SPDX-FileCopyrightText: Copyright contributors to the vLLM project
+ 
+ import json
++import math
+ import os
+ 
+ import torch
+@@ -28,12 +29,19 @@ logger = init_logger(__name__)
+ _PCFR_SHARED = 0
+ _PCFR_DROP = 1
+ _PCFR_ROUTE = 2
++_CTFR_SHADOW = 3
++_CTFR_FULL = 4
+ _PCFR_MODES = {
+     "shared": _PCFR_SHARED,
+     "drop": _PCFR_DROP,
+     "route": _PCFR_ROUTE,
++    "ctfr-shadow": _CTFR_SHADOW,
++    "ctfr-full": _CTFR_FULL,
+ }
+-_NUM_FEEDBACK_DOMAINS = 2
++_NUM_POLICY_DOMAINS = 2
++_NUM_CTFR_PRINCIPALS = 2
++_CTFR_FIRST_SHADOW = _NUM_POLICY_DOMAINS
++_NUM_FEEDBACK_DOMAINS = _NUM_POLICY_DOMAINS + _NUM_CTFR_PRINCIPALS
+ 
+ 
+ @triton.jit
+@@ -44,6 +52,7 @@ def _accumulate_kernel(
+     num_sampled_ptr,
+     num_rejected_ptr,
+     feedback_domain_ptr,
++    feedback_principal_ptr,
+     features_ptr,
+     features_stride,
+     pred_ptr,
+@@ -90,6 +99,12 @@ def _accumulate_kernel(
+     if PCFR_MODE == _PCFR_SHARED:
+         request_domain = tl.zeros((BLOCK_R,), dtype=tl.int32)
+         eligible = req_mask
++    elif PCFR_MODE == _CTFR_SHADOW or PCFR_MODE == _CTFR_FULL:
++        principal = tl.load(
++            feedback_principal_ptr + req_block, mask=req_mask, other=-1
++        ).to(tl.int32)
++        eligible = req_mask & (principal >= 0) & (principal < _NUM_CTFR_PRINCIPALS)
++        request_domain = principal + _CTFR_FIRST_SHADOW
+     else:
+         transformed = tl.load(
+             feedback_domain_ptr + req_state_block, mask=req_mask, other=0
+@@ -440,7 +455,8 @@ class OnlineAcceptanceEstimator:
+         mode = os.environ.get("VLLM_AVEP_PCFR_MODE", "shared")
+         if mode not in _PCFR_MODES:
+             raise ValueError(
+-                "VLLM_AVEP_PCFR_MODE must be one of: shared, drop, route"
++                "VLLM_AVEP_PCFR_MODE must be one of: shared, drop, route, "
++                "ctfr-shadow, ctfr-full"
+             )
+         self.pcfr_mode = mode
+         self._pcfr_mode_id = _PCFR_MODES[mode]
+@@ -448,6 +464,28 @@ class OnlineAcceptanceEstimator:
+         self._refits = [0] * _NUM_FEEDBACK_DOMAINS
+         self._telemetry_enabled = os.environ.get("VLLM_AVEP_TELEMETRY") == "1"
+         self._updates_enabled = True
++        self._committed_version = 0
++        self._ctfr_min_observations = int(
++            os.environ.get("VLLM_AVEP_CTFR_MIN_OBSERVATIONS", "1024")
++        )
++        self._ctfr_delta_clip = float(
++            os.environ.get("VLLM_AVEP_CTFR_DELTA_CLIP", "2.0")
++        )
++        self._ctfr_min_cosine = float(
++            os.environ.get("VLLM_AVEP_CTFR_MIN_COSINE", "0.8")
++        )
++        self._ctfr_max_commit_norm = float(
++            os.environ.get("VLLM_AVEP_CTFR_MAX_COMMIT_NORM", "1.0")
++        )
++        self._ctfr_max_probability_shift = float(
++            os.environ.get("VLLM_AVEP_CTFR_MAX_PROBABILITY_SHIFT", "0.15")
++        )
++        self._ctfr_bucket_capacity = float(
++            os.environ.get("VLLM_AVEP_CTFR_BUCKET_CAPACITY", "2.0")
++        )
++        self._ctfr_influence_credits = [
++            self._ctfr_bucket_capacity
++        ] * _NUM_CTFR_PRINCIPALS
+         self.feedback_domains = torch.zeros(
+             max_num_reqs, dtype=torch.int32, device=device
+         )
+@@ -527,7 +565,11 @@ class OnlineAcceptanceEstimator:
+ 
+     @property
+     def requires_feedback_domains(self) -> bool:
+-        return self._pcfr_mode_id != _PCFR_SHARED
++        return self._pcfr_mode_id in {_PCFR_DROP, _PCFR_ROUTE}
++
++    @property
++    def requires_feedback_principals(self) -> bool:
++        return self._pcfr_mode_id in {_CTFR_SHADOW, _CTFR_FULL}
+ 
+     def set_feedback_domains(self, source: torch.Tensor) -> None:
+         if self.requires_feedback_domains:
+@@ -539,6 +581,8 @@ class OnlineAcceptanceEstimator:
+         return {
+             "available": True,
+             "pcfr_mode": self.pcfr_mode,
++            "committed_version": self._committed_version,
++            "ctfr_influence_credits": list(self._ctfr_influence_credits),
+             "steps_since_refit": list(self._steps_since_refit),
+             "refits": list(self._refits),
+             "updates_enabled": self._updates_enabled,
+@@ -576,6 +620,10 @@ class OnlineAcceptanceEstimator:
+         self._steps_since_refit = [0] * _NUM_FEEDBACK_DOMAINS
+         self._refits = [0] * _NUM_FEEDBACK_DOMAINS
+         self._updates_enabled = True
++        self._committed_version = 0
++        self._ctfr_influence_credits = [
++            self._ctfr_bucket_capacity
++        ] * _NUM_CTFR_PRINCIPALS
+         torch.accelerator.synchronize()
+         after = self.avep_state()
+         logger.warning(
+@@ -598,6 +646,8 @@ class OnlineAcceptanceEstimator:
+         num_sampled: torch.Tensor,
+         num_rejected: torch.Tensor,
+         domain_activity: tuple[bool, bool],
++        feedback_principals: torch.Tensor | None = None,
++        principal_activity: tuple[bool, bool] = (False, False),
+     ) -> None:
+         if not self._updates_enabled:
+             return
+@@ -611,6 +661,11 @@ class OnlineAcceptanceEstimator:
+             num_sampled,
+             num_rejected,
+             self.feedback_domains,
++            (
++                feedback_principals
++                if feedback_principals is not None
++                else idx_mapping
++            ),
+             self.features,
+             self.features.stride(0),
+             self.predictions,
+@@ -625,7 +680,11 @@ class OnlineAcceptanceEstimator:
+             PCFR_MODE=self._pcfr_mode_id,
+             NUM_ACTIVE_DOMAINS=(
+                 _NUM_FEEDBACK_DOMAINS
+-                if self._pcfr_mode_id == _PCFR_ROUTE
++                if self._pcfr_mode_id in {
++                    _PCFR_ROUTE,
++                    _CTFR_SHADOW,
++                    _CTFR_FULL,
++                }
+                 else 1
+             ),
+             BLOCK_R=triton.next_power_of_2(max(num_reqs, 1)),
+@@ -636,6 +695,14 @@ class OnlineAcceptanceEstimator:
+         elif self._pcfr_mode_id == _PCFR_DROP:
+             domain_activity = (domain_activity[0], False)
+ 
++        if self._pcfr_mode_id in {_CTFR_SHADOW, _CTFR_FULL}:
++            for principal, is_active in enumerate(principal_activity):
++                if is_active:
++                    self._steps_since_refit[
++                        _CTFR_FIRST_SHADOW + principal
++                    ] += 1
++            return
++
+         for domain, is_active in enumerate(domain_activity):
+             if not is_active:
+                 continue
+@@ -691,6 +758,179 @@ class OnlineAcceptanceEstimator:
+                     ),
+                 )
+ 
++    def avep_retire_ctfr(self) -> dict[str, object]:
++        """Validate and retire two principal shadows at a quiescent barrier."""
++        if self._pcfr_mode_id != _CTFR_FULL:
++            return {
++                "retired": False,
++                "reason": "CTFR retirement requires ctfr-full mode",
++            }
++
++        torch.accelerator.synchronize()
++        shadow_domains = range(
++            _CTFR_FIRST_SHADOW,
++            _CTFR_FIRST_SHADOW + _NUM_CTFR_PRINCIPALS,
++        )
++        observation_counts = [
++            float(self.counts[domain].sum().item())
++            for domain in shadow_domains
++        ]
++        if any(
++            count < self._ctfr_min_observations
++            for count in observation_counts
++        ):
++            return {
++                "retired": False,
++                "reason": "insufficient independent-principal observations",
++                "observation_counts": observation_counts,
++            }
++
++        base = torch.cat((self.slope[0:1], self.intercepts[0]))
++        deltas: list[torch.Tensor] = []
++        raw_norms: list[float] = []
++        clipped_norms: list[float] = []
++        for principal, domain in enumerate(shadow_domains):
++            candidate_slope = self.slope.clone()
++            candidate_intercepts = self.intercepts.clone()
++            candidate_info = self.info.clone()
++            candidate_grad = self.grad.clone()
++            candidate_counts = self.counts.clone()
++            with torch.no_grad():
++                candidate_slope[domain].copy_(self.slope[0])
++                candidate_intercepts[domain].copy_(self.intercepts[0])
++            _refit_kernel[(1,)](
++                candidate_slope,
++                candidate_slope.stride(0),
++                candidate_intercepts,
++                candidate_intercepts.stride(0),
++                candidate_info,
++                candidate_info.stride(0),
++                candidate_info.stride(1),
++                candidate_grad,
++                candidate_grad.stride(0),
++                candidate_grad.stride(1),
++                candidate_counts,
++                candidate_counts.stride(0),
++                DOMAIN=domain,
++                NUM_SPECULATIVE_STEPS=self.num_speculative_steps,
++                L2=self.L2,
++                DAMPING=self.DAMPING_OBSERVATIONS,
++                BLOCK=triton.next_power_of_2(self.num_speculative_steps),
++            )
++            torch.accelerator.synchronize()
++            candidate = torch.cat(
++                (
++                    candidate_slope[domain : domain + 1],
++                    candidate_intercepts[domain],
++                )
++            )
++            delta = candidate - base
++            raw_norm = float(torch.linalg.vector_norm(delta).item())
++            raw_norms.append(raw_norm)
++            if not torch.isfinite(delta).all() or raw_norm == 0.0:
++                return {
++                    "retired": False,
++                    "reason": "non-finite or zero candidate update",
++                    "observation_counts": observation_counts,
++                    "raw_delta_norms": raw_norms,
++                }
++            scale = min(1.0, self._ctfr_delta_clip / raw_norm)
++            delta = delta * scale
++            clipped_norm = float(torch.linalg.vector_norm(delta).item())
++            if clipped_norm > self._ctfr_influence_credits[principal]:
++                return {
++                    "retired": False,
++                    "reason": "principal influence budget exhausted",
++                    "principal": principal,
++                    "clipped_delta_norm": clipped_norm,
++                }
++            clipped_norms.append(clipped_norm)
++            deltas.append(delta)
++
++        cosine = float(
++            torch.nn.functional.cosine_similarity(
++                deltas[0], deltas[1], dim=0
++            ).item()
++        )
++        if not math.isfinite(cosine) or cosine < self._ctfr_min_cosine:
++            return {
++                "retired": False,
++                "reason": "independent-principal candidates disagree",
++                "cosine": cosine,
++                "observation_counts": observation_counts,
++                "raw_delta_norms": raw_norms,
++                "clipped_delta_norms": clipped_norms,
++            }
++
++        aggregate = torch.stack(deltas).mean(dim=0)
++        aggregate_norm = float(torch.linalg.vector_norm(aggregate).item())
++        if aggregate_norm > self._ctfr_max_commit_norm:
++            return {
++                "retired": False,
++                "reason": "aggregate exceeds parameter trust region",
++                "aggregate_norm": aggregate_norm,
++            }
++
++        proposed = base + aggregate
++        feature_grid = torch.linspace(
++            -_MAX_LOG_ODDS,
++            _MAX_LOG_ODDS,
++            161,
++            dtype=torch.float32,
++            device=self.device,
++        )
++        old_prob = torch.sigmoid(
++            base[0] * feature_grid[:, None] + base[1:][None, :]
++        )
++        new_prob = torch.sigmoid(
++            proposed[0] * feature_grid[:, None]
++            + proposed[1:][None, :]
++        )
++        max_probability_shift = float(
++            torch.max(torch.abs(new_prob - old_prob)).item()
++        )
++        if max_probability_shift > self._ctfr_max_probability_shift:
++            return {
++                "retired": False,
++                "reason": "aggregate exceeds decision trust region",
++                "max_probability_shift": max_probability_shift,
++            }
++
++        version_before = self._committed_version
++        with torch.no_grad():
++            self.slope[0].copy_(proposed[0])
++            self.intercepts[0].copy_(proposed[1:])
++            for domain in shadow_domains:
++                self.slope[domain].copy_(self.slope[0])
++                self.intercepts[domain].copy_(self.intercepts[0])
++                self.info[domain].zero_()
++                self.grad[domain].zero_()
++                self.counts[domain].zero_()
++        for principal, clipped_norm in enumerate(clipped_norms):
++            self._ctfr_influence_credits[principal] -= clipped_norm
++            self._steps_since_refit[_CTFR_FIRST_SHADOW + principal] = 0
++            self._refits[_CTFR_FIRST_SHADOW + principal] += 1
++        self._steps_since_refit[0] = 0
++        self._refits[0] += 1
++        self._committed_version += 1
++        torch.accelerator.synchronize()
++        result = {
++            "retired": True,
++            "version_before": version_before,
++            "version_after": self._committed_version,
++            "observation_counts": observation_counts,
++            "raw_delta_norms": raw_norms,
++            "clipped_delta_norms": clipped_norms,
++            "cosine": cosine,
++            "aggregate_norm": aggregate_norm,
++            "max_probability_shift": max_probability_shift,
++            "remaining_influence_credits": list(
++                self._ctfr_influence_credits
++            ),
++        }
++        logger.warning("AVEP_CTFR_RETIRE %s", json.dumps(result, sort_keys=True))
++        return result
++
+     def predict(
+         self,
+         logits: torch.Tensor,
+diff --git a/vllm/v1/worker/gpu/spec_decode/speculator.py b/vllm/v1/worker/gpu/spec_decode/speculator.py
+index d0d99b604089d463f4716b32534b727a32265452..6f2312cd7460cb93e47857d75114bf647058d829 100644
+--- a/vllm/v1/worker/gpu/spec_decode/speculator.py
++++ b/vllm/v1/worker/gpu/spec_decode/speculator.py
+@@ -457,6 +457,8 @@ class DraftModelSpeculator(BaseSpeculator):
+         num_sampled: torch.Tensor,
+         num_rejected: torch.Tensor,
+         domain_activity: tuple[bool, bool] = (True, False),
++        feedback_principals: torch.Tensor | None = None,
++        principal_activity: tuple[bool, bool] = (False, False),
+     ) -> None:
+         """Fold the target's verdict on the last drafts into the estimator.
+ 
+@@ -469,6 +471,8 @@ class DraftModelSpeculator(BaseSpeculator):
+                 num_sampled,
+                 num_rejected,
+                 domain_activity,
++                feedback_principals,
++                principal_activity,
+             )
+ 
+     @property
+@@ -482,6 +486,13 @@ class DraftModelSpeculator(BaseSpeculator):
+         if self.acceptance_estimator is not None:
+             self.acceptance_estimator.set_feedback_domains(source)
+ 
++    @property
++    def requires_feedback_principals(self) -> bool:
++        return bool(
++            self.acceptance_estimator is not None
++            and self.acceptance_estimator.requires_feedback_principals
++        )
++
+     def prepare_watermarking(
+         self, contexts: torch.Tensor, watermarking: torch.Tensor
+     ) -> None:
+diff --git a/vllm/v1/worker/gpu_worker.py b/vllm/v1/worker/gpu_worker.py
+index 2e575db61689084dba89fc767f55a4129cbf91e6..7216495c7a24f003b727259720b493e07189664e 100644
+--- a/vllm/v1/worker/gpu_worker.py
++++ b/vllm/v1/worker/gpu_worker.py
+@@ -1018,6 +1018,20 @@ class Worker(WorkerBase):
+             "update_gate": result,
+         }
+ 
++    def avep_retire_ctfr(self) -> dict[str, Any]:
++        """Retire CTFR shadows at a localhost research barrier."""
++        speculator = getattr(self.model_runner, "speculator", None)
++        estimator = getattr(speculator, "acceptance_estimator", None)
++        if estimator is None:
++            return {
++                "available": False,
++                "reason": "No online acceptance estimator is active",
++            }
++        return {
++            "available": True,
++            "retirement": estimator.avep_retire_ctfr(),
++        }
++
+     def get_model(self) -> nn.Module:
+         return self.model_runner.get_model()
+ 

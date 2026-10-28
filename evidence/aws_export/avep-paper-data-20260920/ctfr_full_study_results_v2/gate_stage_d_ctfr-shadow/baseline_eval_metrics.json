@@ -1,0 +1,1 @@
+{"results":[{"available":true,"eval_metrics":{"enabled":true,"principals":[{"principal":0,"count":3988.0,"mean_log_loss":0.45680327114154967,"mean_brier":0.1531417525280921,"counts_by_position":[1916.0,984.0,661.0,427.0]},{"principal":1,"count":3988.0,"mean_log_loss":0.4530226115357792,"mean_brier":0.15170563570594597,"counts_by_position":[1916.0,980.0,666.0,426.0]}]}}]}

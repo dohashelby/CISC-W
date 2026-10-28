@@ -1,0 +1,19 @@
+diff --git a/vllm/v1/worker/gpu/model_runner.py b/vllm/v1/worker/gpu/model_runner.py
+--- a/vllm/v1/worker/gpu/model_runner.py
++++ b/vllm/v1/worker/gpu/model_runner.py
+@@ -2156,6 +2156,15 @@ class GPUModelRunner(LoRAModelRunnerMixin):
+                                         input_batch.idx_mapping_np.tolist()
+                                     ),
+                                     "principals": principal_values,
++                                    "num_sampled": (
++                                        num_sampled.detach().cpu().tolist()
++                                    ),
++                                    "num_rejected": (
++                                        num_rejected.detach().cpu().tolist()
++                                    ),
++                                    "num_speculative_steps": (
++                                        self.num_speculative_steps
++                                    ),
+                                 },
+                                 sort_keys=True,
+                             ),

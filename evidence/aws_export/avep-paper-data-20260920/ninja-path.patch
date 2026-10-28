@@ -1,0 +1,39 @@
+--- /dev/fd/11	2026-09-18 21:48:47
++++ security_avep_experiment/run_tenant_short_followup.sh	2026-09-18 21:47:44
+@@ -5,6 +5,7 @@
+ readonly WORK_DIR="/home/ubuntu/avep"
+ readonly REPO_DIR="${WORK_DIR}/vllm"
+ readonly VENV_DIR="${REPO_DIR}/.venv"
++export PATH="${VENV_DIR}/bin:${PATH:-}"
+ readonly RESULT_ROOT="${WORK_DIR}/tenant_followup_results"
+ readonly CREDENTIALS_FILE="${WORK_DIR}/.avep_tenant_credentials.json"
+ readonly RULES_SOURCE="${WORK_DIR}/TENANT_SHORT_FOLLOWUP_DECISION_RULES.md"
+@@ -270,13 +271,19 @@
+ runtime_preflight() {
+     local command_name
+     for command_name in \
+-        curl cut find grep jq openssl ps setsid sha256sum ss stat tar timeout; do
++        curl cut find grep jq ninja openssl ps setsid sha256sum ss stat tar \
++        timeout; do
+         if ! command -v "${command_name}" >/dev/null 2>&1; then
+             printf 'Required command is unavailable: %s\n' \
+                 "${command_name}" >&2
+             return 1
+         fi
+     done
++    if [[ "$(command -v ninja)" != "${VENV_DIR}/bin/ninja" ]]; then
++        printf 'Required venv command is unavailable: %s\n' \
++            "${VENV_DIR}/bin/ninja" >&2
++        return 1
++    fi
+     if ! [[ "${PHASE_TIMEOUT_SECONDS}" =~ ^[1-9][0-9]*$ ]]; then
+         printf 'PHASE_TIMEOUT_SECONDS must be a positive integer.\n' >&2
+         return 1
+@@ -288,6 +295,7 @@
+     fi
+     local required_file
+     for required_file in \
++        "${VENV_DIR}/bin/ninja" \
+         "${VENV_DIR}/bin/vllm" \
+         "${VENV_DIR}/bin/python" \
+         "${PROBE}" \

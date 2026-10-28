@@ -1,0 +1,10 @@
+{
+  "condition": "graph_c32_a",
+  "execution_mode": "cuda-graph",
+  "process_uuid": "determinism-1638-1789901668673952968",
+  "started_at": "2026-09-20T10:56:59,153092757+00:00",
+  "concurrency": 32,
+  "waves_per_batch": 16,
+  "repetitions": 2,
+  "estimator_updates": false
+}

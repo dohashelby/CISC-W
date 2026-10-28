@@ -1,0 +1,61 @@
+{
+  "base_url": "http://127.0.0.1:8001/v1",
+  "results": [
+    {
+      "audit_event_id": "1904371ef96d4000bf0927f0e69d9344",
+      "authenticated_tenant": "attacker",
+      "expected_status": 200,
+      "gateway_instance_id": "causal-perf_pair_03_shared-1789799581053766530",
+      "name": "attacker_ok",
+      "status": 200,
+      "upstream_marker": "causal-107090-1789799520971966004"
+    },
+    {
+      "audit_event_id": "0679cf884d734471b3bbef095ff01edf",
+      "authenticated_tenant": "victim",
+      "expected_status": 200,
+      "gateway_instance_id": "causal-perf_pair_03_shared-1789799581053766530",
+      "name": "victim_ok",
+      "status": 200,
+      "upstream_marker": "causal-107090-1789799520971966004"
+    },
+    {
+      "audit_event_id": "de978b7bc61d482ba324b9c1ff2dae19",
+      "authenticated_tenant": null,
+      "expected_status": 401,
+      "gateway_instance_id": "causal-perf_pair_03_shared-1789799581053766530",
+      "name": "missing_key",
+      "status": 401,
+      "upstream_marker": "causal-107090-1789799520971966004"
+    },
+    {
+      "audit_event_id": "a78551e66f2a4d91a47b110f9982a342",
+      "authenticated_tenant": null,
+      "expected_status": 401,
+      "gateway_instance_id": "causal-perf_pair_03_shared-1789799581053766530",
+      "name": "wrong_key",
+      "status": 401,
+      "upstream_marker": "causal-107090-1789799520971966004"
+    },
+    {
+      "audit_event_id": "9609f8f1752c4d869bc6adbdfab59d70",
+      "authenticated_tenant": null,
+      "expected_status": 403,
+      "gateway_instance_id": "causal-perf_pair_03_shared-1789799581053766530",
+      "name": "attacker_claims_victim",
+      "status": 403,
+      "upstream_marker": "causal-107090-1789799520971966004"
+    },
+    {
+      "audit_event_id": "8400dedfa1274308a20e78b603c5b123",
+      "authenticated_tenant": null,
+      "expected_status": 403,
+      "gateway_instance_id": "causal-perf_pair_03_shared-1789799581053766530",
+      "name": "victim_claims_attacker",
+      "status": 403,
+      "upstream_marker": "causal-107090-1789799520971966004"
+    }
+  ],
+  "schema_version": 1,
+  "valid": true
+}

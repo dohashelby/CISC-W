@@ -1,0 +1,8 @@
+{
+  "run_name": "reset_02",
+  "pair_id": null,
+  "arm": "reset",
+  "adaptive": true,
+  "telemetry": false,
+  "poison_token_id": 23811
+}

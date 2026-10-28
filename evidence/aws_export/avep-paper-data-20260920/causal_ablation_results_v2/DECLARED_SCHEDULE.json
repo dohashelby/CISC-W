@@ -1,0 +1,60 @@
+{
+  "protocol_version": "avep-causal-ablation-v2",
+  "token_id": 279,
+  "gate_order": [
+    "blocked",
+    "shared"
+  ],
+  "performance_orders": [
+    [
+      "shared",
+      "blocked"
+    ],
+    [
+      "blocked",
+      "shared"
+    ],
+    [
+      "shared",
+      "blocked"
+    ],
+    [
+      "blocked",
+      "shared"
+    ],
+    [
+      "shared",
+      "blocked"
+    ],
+    [
+      "blocked",
+      "shared"
+    ]
+  ],
+  "workload": {
+    "warmup": {
+      "requests": 1024,
+      "concurrency": 32,
+      "max_tokens": 32
+    },
+    "pre": {
+      "windows": 4,
+      "requests": 128,
+      "concurrency": 32,
+      "max_tokens": 32
+    },
+    "intervention": {
+      "requests": 4096,
+      "concurrency": 8,
+      "max_tokens": 2,
+      "allowed_token_id": 279,
+      "return_token_ids": true
+    },
+    "post": {
+      "windows": 8,
+      "requests": 128,
+      "concurrency": 32,
+      "max_tokens": 32
+    }
+  }
+}

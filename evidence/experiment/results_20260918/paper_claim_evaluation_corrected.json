@@ -1,0 +1,1101 @@
+{
+  "archive_note": "The final classification is valid only after SHA-256, member, completion-marker, and live/archive byte-equivalence checks pass.",
+  "archive_required": true,
+  "classification": "INCONCLUSIVE",
+  "classification_reason": "The complete evidence does not satisfy a terminal rule.",
+  "control_attenuation": {
+    "adaptive_off_interpretation": "Descriptive ablation only; no matched adaptive-off placebo arm exists, so this is not a factorial interaction estimate.",
+    "all_controls_pass": false,
+    "metrics": {
+      "latency_p50": {
+        "attack_mean_ratio": 0.9916002165651875,
+        "controls": {
+          "adaptive_off": {
+            "attenuation": null,
+            "expected_direction": false,
+            "harm": -0.007842405644502115,
+            "mean_ratio": 1.0033198818456397,
+            "passes_50_percent_rule": false,
+            "residual_harm": null
+          },
+          "reset": {
+            "attenuation": null,
+            "expected_direction": false,
+            "harm": -0.007842405644502115,
+            "mean_ratio": 0.9929909351431556,
+            "passes_50_percent_rule": false,
+            "residual_harm": null
+          }
+        },
+        "placebo_mean_ratio": 0.9994426222096896
+      },
+      "latency_p95": {
+        "attack_mean_ratio": 0.999890468782186,
+        "controls": {
+          "adaptive_off": {
+            "attenuation": null,
+            "expected_direction": false,
+            "harm": -0.004122965879626128,
+            "mean_ratio": 1.004111065661026,
+            "passes_50_percent_rule": false,
+            "residual_harm": null
+          },
+          "reset": {
+            "attenuation": null,
+            "expected_direction": false,
+            "harm": -0.004122965879626128,
+            "mean_ratio": 1.0013427548726885,
+            "passes_50_percent_rule": false,
+            "residual_harm": null
+          }
+        },
+        "placebo_mean_ratio": 1.0040134346618121
+      },
+      "throughput": {
+        "attack_mean_ratio": 0.9882953820985173,
+        "controls": {
+          "adaptive_off": {
+            "attenuation": null,
+            "expected_direction": false,
+            "harm": -0.0037200458894900423,
+            "mean_ratio": 0.9862101465188416,
+            "passes_50_percent_rule": false,
+            "residual_harm": null
+          },
+          "reset": {
+            "attenuation": null,
+            "expected_direction": false,
+            "harm": -0.0037200458894900423,
+            "mean_ratio": 0.9866721496461336,
+            "passes_50_percent_rule": false,
+            "residual_harm": null
+          }
+        },
+        "placebo_mean_ratio": 0.9845753362090273
+      }
+    }
+  },
+  "decision": {
+    "control_attenuation_passes": false,
+    "estimator_movement_stronger_after_attack": true,
+    "integrity_valid": true,
+    "latency_corroborates": false,
+    "mechanism_sanity_passes": false,
+    "primary_adverse_ci": false,
+    "primary_complete": true,
+    "primary_wholly_non_adverse_ci": false,
+    "reproduced_evidence_passes": false
+  },
+  "decision_rules_source": "PREDECLARED_DECISION_RULES.md",
+  "estimator_coefficient_movement": {
+    "attack_mean_l2_norm": 3.296343481708179,
+    "movement_definition": "Euclidean norm of [slope, *intercepts] intervention-minus-baseline",
+    "paired": [
+      {
+        "attack_l2_norm": 3.307904357415816,
+        "attack_minus_placebo": 3.1680206325414177,
+        "pair_id": "01",
+        "placebo_l2_norm": 0.13988372487439793
+      },
+      {
+        "attack_l2_norm": 3.290361153229112,
+        "attack_minus_placebo": 3.169380941060068,
+        "pair_id": "02",
+        "placebo_l2_norm": 0.12098021216904412
+      },
+      {
+        "attack_l2_norm": 3.293762413594838,
+        "attack_minus_placebo": 3.1633966949035996,
+        "pair_id": "03",
+        "placebo_l2_norm": 0.13036571869123836
+      },
+      {
+        "attack_l2_norm": 3.2973284450566847,
+        "attack_minus_placebo": 3.161421971651584,
+        "pair_id": "04",
+        "placebo_l2_norm": 0.13590647340510068
+      },
+      {
+        "attack_l2_norm": 3.3079132179483537,
+        "attack_minus_placebo": 3.2287017149420025,
+        "pair_id": "05",
+        "placebo_l2_norm": 0.079211503006351
+      },
+      {
+        "attack_l2_norm": 3.2807913030042672,
+        "attack_minus_placebo": 3.126895468480347,
+        "pair_id": "06",
+        "placebo_l2_norm": 0.15389583452391992
+      }
+    ],
+    "placebo_mean_l2_norm": 0.12670724444500867,
+    "runs": {
+      "adaptive_off_01": null,
+      "adaptive_off_02": null,
+      "adaptive_off_03": null,
+      "mechanism_attack": {
+        "baseline": [
+          0.8586058020591736,
+          0.005636261776089668,
+          -0.20609411597251892,
+          0.2854982912540436,
+          1.343168020248413
+        ],
+        "delta": [
+          0.3048771023750305,
+          -0.4636297691613436,
+          1.8290644586086273,
+          2.655125230550766,
+          0.5040832757949829
+        ],
+        "intervention": [
+          1.163482904434204,
+          -0.4579935073852539,
+          1.6229703426361084,
+          2.9406235218048096,
+          1.847251296043396
+        ],
+        "l2_norm": 3.3101615282330146
+      },
+      "mechanism_placebo": {
+        "baseline": [
+          0.8558219075202942,
+          0.004490661434829235,
+          -0.20240463316440582,
+          0.2930174469947815,
+          1.359856128692627
+        ],
+        "delta": [
+          0.02849400043487549,
+          -0.06699307542294264,
+          0.002492949366569519,
+          -0.029705286026000977,
+          -0.029235124588012695
+        ],
+        "intervention": [
+          0.8843159079551697,
+          -0.0625024139881134,
+          -0.1999116837978363,
+          0.2633121609687805,
+          1.3306210041046143
+        ],
+        "l2_norm": 0.08392432031011153
+      },
+      "pair_01_attack": {
+        "baseline": [
+          0.8575980067253113,
+          -0.003666909411549568,
+          -0.2047099471092224,
+          0.28640374541282654,
+          1.3401473760604858
+        ],
+        "delta": [
+          0.30956369638442993,
+          -0.45694595389068127,
+          1.816795527935028,
+          2.6621102392673492,
+          0.5000250339508057
+        ],
+        "intervention": [
+          1.1671617031097412,
+          -0.46061286330223083,
+          1.6120855808258057,
+          2.948513984680176,
+          1.8401724100112915
+        ],
+        "l2_norm": 3.307904357415816
+      },
+      "pair_01_placebo": {
+        "baseline": [
+          0.8531991243362427,
+          0.004891953431069851,
+          -0.1968812346458435,
+          0.2892225384712219,
+          1.359890103340149
+        ],
+        "delta": [
+          0.03695899248123169,
+          -0.056670243851840496,
+          -0.01968543231487274,
+          0.014731407165527344,
+          -0.11993932723999023
+        ],
+        "intervention": [
+          0.8901581168174744,
+          -0.051778290420770645,
+          -0.21656666696071625,
+          0.30395394563674927,
+          1.2399507761001587
+        ],
+        "l2_norm": 0.13988372487439793
+      },
+      "pair_02_attack": {
+        "baseline": [
+          0.8581213355064392,
+          -0.005468636751174927,
+          -0.20407211780548096,
+          0.2808525562286377,
+          1.3856515884399414
+        ],
+        "delta": [
+          0.3099222779273987,
+          -0.4598098695278168,
+          1.8210653066635132,
+          2.6425416469573975,
+          0.4687156677246094
+        ],
+        "intervention": [
+          1.168043613433838,
+          -0.4652785062789917,
+          1.6169931888580322,
+          2.923394203186035,
+          1.8543672561645508
+        ],
+        "l2_norm": 3.290361153229112
+      },
+      "pair_02_placebo": {
+        "baseline": [
+          0.8516181111335754,
+          0.002575518563389778,
+          -0.20311449468135834,
+          0.28141194581985474,
+          1.3611865043640137
+        ],
+        "delta": [
+          0.036395370960235596,
+          -0.054851705208420753,
+          -0.015405848622322083,
+          0.0036436617374420166,
+          -0.10026097297668457
+        ],
+        "intervention": [
+          0.888013482093811,
+          -0.052276186645030975,
+          -0.21852034330368042,
+          0.28505560755729675,
+          1.260925531387329
+        ],
+        "l2_norm": 0.12098021216904412
+      },
+      "pair_03_attack": {
+        "baseline": [
+          0.8552718162536621,
+          -0.00040673650801181793,
+          -0.20575107634067535,
+          0.28800949454307556,
+          1.3558508157730103
+        ],
+        "delta": [
+          0.30924201011657715,
+          -0.4608250614255667,
+          1.8340658098459244,
+          2.6353956758975983,
+          0.48142778873443604
+        ],
+        "intervention": [
+          1.1645138263702393,
+          -0.4612317979335785,
+          1.628314733505249,
+          2.923405170440674,
+          1.8372786045074463
+        ],
+        "l2_norm": 3.293762413594838
+      },
+      "pair_03_placebo": {
+        "baseline": [
+          0.8516181111335754,
+          0.0025755073875188828,
+          -0.20311449468135834,
+          0.28141194581985474,
+          1.3611865043640137
+        ],
+        "delta": [
+          0.03869146108627319,
+          -0.0528839435428381,
+          -0.017766237258911133,
+          0.027920275926589966,
+          -0.10773253440856934
+        ],
+        "intervention": [
+          0.8903095722198486,
+          -0.050308436155319214,
+          -0.22088073194026947,
+          0.3093322217464447,
+          1.2534539699554443
+        ],
+        "l2_norm": 0.13036571869123836
+      },
+      "pair_04_attack": {
+        "baseline": [
+          0.8538579344749451,
+          0.001722283661365509,
+          -0.20412173867225647,
+          0.2888636291027069,
+          1.3725305795669556
+        ],
+        "delta": [
+          0.3098827004432678,
+          -0.45565608888864517,
+          1.8545686304569244,
+          2.6380827724933624,
+          0.4120917320251465
+        ],
+        "intervention": [
+          1.163740634918213,
+          -0.45393380522727966,
+          1.650446891784668,
+          2.9269464015960693,
+          1.784622311592102
+        ],
+        "l2_norm": 3.2973284450566847
+      },
+      "pair_04_placebo": {
+        "baseline": [
+          0.8524318337440491,
+          0.0035608429461717606,
+          -0.20173263549804688,
+          0.2832831144332886,
+          1.3537983894348145
+        ],
+        "delta": [
+          0.04501628875732422,
+          -0.053519243374466896,
+          -0.027551651000976562,
+          0.017549335956573486,
+          -0.11186027526855469
+        ],
+        "intervention": [
+          0.8974481225013733,
+          -0.049958400428295135,
+          -0.22928428649902344,
+          0.30083245038986206,
+          1.2419381141662598
+        ],
+        "l2_norm": 0.13590647340510068
+      },
+      "pair_05_attack": {
+        "baseline": [
+          0.8516192436218262,
+          0.0025812536478042603,
+          -0.20307593047618866,
+          0.28142279386520386,
+          1.3608732223510742
+        ],
+        "delta": [
+          0.30927979946136475,
+          -0.4537632018327713,
+          1.8548551052808762,
+          2.651127874851227,
+          0.41444945335388184
+        ],
+        "intervention": [
+          1.160899043083191,
+          -0.45118194818496704,
+          1.6517791748046875,
+          2.9325506687164307,
+          1.775322675704956
+        ],
+        "l2_norm": 3.3079132179483537
+      },
+      "pair_05_placebo": {
+        "baseline": [
+          0.8560692071914673,
+          -0.004895640537142754,
+          -0.20364037156105042,
+          0.2821783125400543,
+          1.3515045642852783
+        ],
+        "delta": [
+          0.026691675186157227,
+          -0.06228535808622837,
+          0.008610263466835022,
+          0.019046276807785034,
+          -0.0352938175201416
+        ],
+        "intervention": [
+          0.8827608823776245,
+          -0.06718099862337112,
+          -0.1950301080942154,
+          0.30122458934783936,
+          1.3162107467651367
+        ],
+        "l2_norm": 0.079211503006351
+      },
+      "pair_06_attack": {
+        "baseline": [
+          0.8529755473136902,
+          0.0025024525821208954,
+          -0.20515160262584686,
+          0.28454044461250305,
+          1.3495135307312012
+        ],
+        "delta": [
+          0.3120117783546448,
+          -0.452221792191267,
+          1.855544850230217,
+          2.612927407026291,
+          0.43737781047821045
+        ],
+        "intervention": [
+          1.164987325668335,
+          -0.4497193396091461,
+          1.6503932476043701,
+          2.897467851638794,
+          1.7868913412094116
+        ],
+        "l2_norm": 3.2807913030042672
+      },
+      "pair_06_placebo": {
+        "baseline": [
+          0.8516181111335754,
+          0.002575516700744629,
+          -0.20311449468135834,
+          0.28141194581985474,
+          1.3611865043640137
+        ],
+        "delta": [
+          0.04163205623626709,
+          -0.04937803000211716,
+          -0.019724681973457336,
+          0.03456494212150574,
+          -0.13389813899993896
+        ],
+        "intervention": [
+          0.8932501673698425,
+          -0.04680251330137253,
+          -0.22283917665481567,
+          0.3159768879413605,
+          1.2272883653640747
+        ],
+        "l2_norm": 0.15389583452391992
+      },
+      "reset_01": {
+        "baseline": [
+          0.8564930558204651,
+          0.0007170308381319046,
+          -0.20438367128372192,
+          0.29359567165374756,
+          1.3442882299423218
+        ],
+        "delta": [
+          0.3080143332481384,
+          -0.45562569983303547,
+          1.859093725681305,
+          2.6454721689224243,
+          0.42524611949920654
+        ],
+        "intervention": [
+          1.1645073890686035,
+          -0.45490866899490356,
+          1.654710054397583,
+          2.939067840576172,
+          1.7695343494415283
+        ],
+        "l2_norm": 3.3072729472171605
+      },
+      "reset_02": {
+        "baseline": [
+          0.8548521995544434,
+          -0.0003581792116165161,
+          -0.20429110527038574,
+          0.29614773392677307,
+          1.3313393592834473
+        ],
+        "delta": [
+          0.30866551399230957,
+          -0.45309264957904816,
+          1.8667587041854858,
+          2.6358958184719086,
+          0.4340277910232544
+        ],
+        "intervention": [
+          1.163517713546753,
+          -0.4534508287906647,
+          1.6624675989151,
+          2.9320435523986816,
+          1.7653671503067017
+        ],
+        "l2_norm": 3.3047968617603702
+      },
+      "reset_03": {
+        "baseline": [
+          0.8516181111335754,
+          0.0025755129754543304,
+          -0.20311449468135834,
+          0.28141194581985474,
+          1.3611865043640137
+        ],
+        "delta": [
+          0.31158846616744995,
+          -0.452777411788702,
+          1.8477102369070053,
+          2.6147467494010925,
+          0.4342297315597534
+        ],
+        "intervention": [
+          1.1632065773010254,
+          -0.4502018988132477,
+          1.644595742225647,
+          2.8961586952209473,
+          1.795416235923767
+        ],
+        "l2_norm": 3.2774355675923874
+      }
+    },
+    "stronger_after_attack": true
+  },
+  "integrity": {
+    "adaptive_initial_states": {
+      "byte_identical": true,
+      "errors": [],
+      "expected_count": 17,
+      "semantically_identical": true,
+      "sha256": "b6a11c48ced23cadaaeba72b4dce71aaf45be5d33649c28828b21ba48be24aaf",
+      "sha256_by_run": {
+        "mechanism_attack": "b6a11c48ced23cadaaeba72b4dce71aaf45be5d33649c28828b21ba48be24aaf",
+        "mechanism_placebo": "b6a11c48ced23cadaaeba72b4dce71aaf45be5d33649c28828b21ba48be24aaf",
+        "pair_01_attack": "b6a11c48ced23cadaaeba72b4dce71aaf45be5d33649c28828b21ba48be24aaf",
+        "pair_01_placebo": "b6a11c48ced23cadaaeba72b4dce71aaf45be5d33649c28828b21ba48be24aaf",
+        "pair_02_attack": "b6a11c48ced23cadaaeba72b4dce71aaf45be5d33649c28828b21ba48be24aaf",
+        "pair_02_placebo": "b6a11c48ced23cadaaeba72b4dce71aaf45be5d33649c28828b21ba48be24aaf",
+        "pair_03_attack": "b6a11c48ced23cadaaeba72b4dce71aaf45be5d33649c28828b21ba48be24aaf",
+        "pair_03_placebo": "b6a11c48ced23cadaaeba72b4dce71aaf45be5d33649c28828b21ba48be24aaf",
+        "pair_04_attack": "b6a11c48ced23cadaaeba72b4dce71aaf45be5d33649c28828b21ba48be24aaf",
+        "pair_04_placebo": "b6a11c48ced23cadaaeba72b4dce71aaf45be5d33649c28828b21ba48be24aaf",
+        "pair_05_attack": "b6a11c48ced23cadaaeba72b4dce71aaf45be5d33649c28828b21ba48be24aaf",
+        "pair_05_placebo": "b6a11c48ced23cadaaeba72b4dce71aaf45be5d33649c28828b21ba48be24aaf",
+        "pair_06_attack": "b6a11c48ced23cadaaeba72b4dce71aaf45be5d33649c28828b21ba48be24aaf",
+        "pair_06_placebo": "b6a11c48ced23cadaaeba72b4dce71aaf45be5d33649c28828b21ba48be24aaf",
+        "reset_01": "b6a11c48ced23cadaaeba72b4dce71aaf45be5d33649c28828b21ba48be24aaf",
+        "reset_02": "b6a11c48ced23cadaaeba72b4dce71aaf45be5d33649c28828b21ba48be24aaf",
+        "reset_03": "b6a11c48ced23cadaaeba72b4dce71aaf45be5d33649c28828b21ba48be24aaf"
+      },
+      "startup_profile_errors": {},
+      "startup_profile_valid": true,
+      "valid": true,
+      "valid_count": 17
+    },
+    "archive": {
+      "archive": "security_avep_experiment/results_20260918/avep-paper-results.tgz",
+      "archive_sha256": "cbbc6e33e4645898eace76e0ba6c97082dc0d22ffa83521fecd0674c2307af8c",
+      "archived_result_file_count": 730,
+      "content_mismatches": [],
+      "errors": [],
+      "extra_archive_files": [],
+      "live_result_file_count": 730,
+      "missing_live_files": [],
+      "recorded_sha256": "cbbc6e33e4645898eace76e0ba6c97082dc0d22ffa83521fecd0674c2307af8c",
+      "sidecar": "security_avep_experiment/results_20260918/avep-paper-results.tgz.sha256",
+      "sidecar_archive_name": "/home/ubuntu/avep/avep-paper-results.tgz",
+      "unexpected_top_level": [],
+      "valid": true
+    },
+    "discovered_run_count": 20,
+    "environments": {
+      "all_match": true,
+      "manifest_sha256": "ccf4b1c6bae846233d814909b92454aa4f065e72654c262dde44ce7595e6f4e8",
+      "run_environment_sha256": {
+        "adaptive_off_01": "ccf4b1c6bae846233d814909b92454aa4f065e72654c262dde44ce7595e6f4e8",
+        "adaptive_off_02": "ccf4b1c6bae846233d814909b92454aa4f065e72654c262dde44ce7595e6f4e8",
+        "adaptive_off_03": "ccf4b1c6bae846233d814909b92454aa4f065e72654c262dde44ce7595e6f4e8",
+        "mechanism_attack": "ccf4b1c6bae846233d814909b92454aa4f065e72654c262dde44ce7595e6f4e8",
+        "mechanism_placebo": "ccf4b1c6bae846233d814909b92454aa4f065e72654c262dde44ce7595e6f4e8",
+        "pair_01_attack": "ccf4b1c6bae846233d814909b92454aa4f065e72654c262dde44ce7595e6f4e8",
+        "pair_01_placebo": "ccf4b1c6bae846233d814909b92454aa4f065e72654c262dde44ce7595e6f4e8",
+        "pair_02_attack": "ccf4b1c6bae846233d814909b92454aa4f065e72654c262dde44ce7595e6f4e8",
+        "pair_02_placebo": "ccf4b1c6bae846233d814909b92454aa4f065e72654c262dde44ce7595e6f4e8",
+        "pair_03_attack": "ccf4b1c6bae846233d814909b92454aa4f065e72654c262dde44ce7595e6f4e8",
+        "pair_03_placebo": "ccf4b1c6bae846233d814909b92454aa4f065e72654c262dde44ce7595e6f4e8",
+        "pair_04_attack": "ccf4b1c6bae846233d814909b92454aa4f065e72654c262dde44ce7595e6f4e8",
+        "pair_04_placebo": "ccf4b1c6bae846233d814909b92454aa4f065e72654c262dde44ce7595e6f4e8",
+        "pair_05_attack": "ccf4b1c6bae846233d814909b92454aa4f065e72654c262dde44ce7595e6f4e8",
+        "pair_05_placebo": "ccf4b1c6bae846233d814909b92454aa4f065e72654c262dde44ce7595e6f4e8",
+        "pair_06_attack": "ccf4b1c6bae846233d814909b92454aa4f065e72654c262dde44ce7595e6f4e8",
+        "pair_06_placebo": "ccf4b1c6bae846233d814909b92454aa4f065e72654c262dde44ce7595e6f4e8",
+        "reset_01": "ccf4b1c6bae846233d814909b92454aa4f065e72654c262dde44ce7595e6f4e8",
+        "reset_02": "ccf4b1c6bae846233d814909b92454aa4f065e72654c262dde44ce7595e6f4e8",
+        "reset_03": "ccf4b1c6bae846233d814909b92454aa4f065e72654c262dde44ce7595e6f4e8"
+      }
+    },
+    "errors": [],
+    "expected_run_count": 20,
+    "missing_runs": [],
+    "poison_token_ids": [
+      23811
+    ],
+    "runs": {
+      "adaptive_off_01": {
+        "errors": [],
+        "metadata_mismatches": {},
+        "phase_errors": {}
+      },
+      "adaptive_off_02": {
+        "errors": [],
+        "metadata_mismatches": {},
+        "phase_errors": {}
+      },
+      "adaptive_off_03": {
+        "errors": [],
+        "metadata_mismatches": {},
+        "phase_errors": {}
+      },
+      "mechanism_attack": {
+        "errors": [],
+        "metadata_mismatches": {},
+        "phase_errors": {}
+      },
+      "mechanism_placebo": {
+        "errors": [],
+        "metadata_mismatches": {},
+        "phase_errors": {}
+      },
+      "pair_01_attack": {
+        "errors": [],
+        "metadata_mismatches": {},
+        "phase_errors": {}
+      },
+      "pair_01_placebo": {
+        "errors": [],
+        "metadata_mismatches": {},
+        "phase_errors": {}
+      },
+      "pair_02_attack": {
+        "errors": [],
+        "metadata_mismatches": {},
+        "phase_errors": {}
+      },
+      "pair_02_placebo": {
+        "errors": [],
+        "metadata_mismatches": {},
+        "phase_errors": {}
+      },
+      "pair_03_attack": {
+        "errors": [],
+        "metadata_mismatches": {},
+        "phase_errors": {}
+      },
+      "pair_03_placebo": {
+        "errors": [],
+        "metadata_mismatches": {},
+        "phase_errors": {}
+      },
+      "pair_04_attack": {
+        "errors": [],
+        "metadata_mismatches": {},
+        "phase_errors": {}
+      },
+      "pair_04_placebo": {
+        "errors": [],
+        "metadata_mismatches": {},
+        "phase_errors": {}
+      },
+      "pair_05_attack": {
+        "errors": [],
+        "metadata_mismatches": {},
+        "phase_errors": {}
+      },
+      "pair_05_placebo": {
+        "errors": [],
+        "metadata_mismatches": {},
+        "phase_errors": {}
+      },
+      "pair_06_attack": {
+        "errors": [],
+        "metadata_mismatches": {},
+        "phase_errors": {}
+      },
+      "pair_06_placebo": {
+        "errors": [],
+        "metadata_mismatches": {},
+        "phase_errors": {}
+      },
+      "reset_01": {
+        "errors": [],
+        "metadata_mismatches": {},
+        "phase_errors": {}
+      },
+      "reset_02": {
+        "errors": [],
+        "metadata_mismatches": {},
+        "phase_errors": {}
+      },
+      "reset_03": {
+        "errors": [],
+        "metadata_mismatches": {},
+        "phase_errors": {}
+      }
+    },
+    "selected_token": {
+      "candidate_acceptance_rates": {
+        "279": 0.21875,
+        "323": 0.3004158004158004,
+        "3015": 0.29835589941972923,
+        "6303": 0.45454545454545453,
+        "8251": 0.33760683760683763,
+        "23811": 0.20991735537190082
+      },
+      "cohort_match": true,
+      "ordinary_candidate_match": true,
+      "ordinary_model_revision_match": true,
+      "selected_token_id": 23811
+    },
+    "unexpected_runs": [],
+    "valid": true
+  },
+  "mechanism_sanity": {
+    "budget_change_consistent": false,
+    "budget_change_rule": "For both the per-step mean of budget ratios and the weighted budget ratio, attack post-1 minus baseline is negative and its change is more negative than placebo. Intervention is descriptive because its workload differs from the victim workload.",
+    "budget_rules": {
+      "mean_of_ratios": {
+        "attack_minus_placebo_change": 0.0011889677352443506,
+        "attack_post1_minus_baseline": 0.004778647246631684,
+        "passes": false,
+        "placebo_post1_minus_baseline": 0.0035896795113873337
+      },
+      "weighted_ratio": {
+        "attack_minus_placebo_change": 0.0011539000380511588,
+        "attack_post1_minus_baseline": 0.0023112002588723257,
+        "passes": false,
+        "placebo_post1_minus_baseline": 0.001157300220821167
+      }
+    },
+    "passes": false,
+    "runs": {
+      "attack": {
+        "analyzer_fields": {
+          "baseline_budget_ratio": 0.7804529950663625,
+          "baseline_post1_exact_token_match": 0.994140625,
+          "intervention_budget_ratio": 0.7806153958149944,
+          "post1_budget_ratio": 0.7852316423129941
+        },
+        "exact_token_match": {
+          "comparable": 1024,
+          "errors": [],
+          "expected": 1024,
+          "match_rate": 0.994140625,
+          "matches": 1018,
+          "passes": false
+        },
+        "mean_intervention_minus_baseline": 0.0001624007486319412,
+        "mean_of_ratios": {
+          "baseline": 0.7804529950663625,
+          "intervention": 0.7806153958149944,
+          "post_01": 0.7852316423129941
+        },
+        "mean_post1_minus_baseline": 0.004778647246631684,
+        "telemetry": {
+          "errors": [],
+          "first_step": 1,
+          "last_step": 5372,
+          "phases": {
+            "baseline": {
+              "event_count": 1126,
+              "mean_of_ratios": 0.7804529950663625,
+              "usable_event_count": 1126,
+              "weighted_ratio": 0.7780773908590449
+            },
+            "intervention": {
+              "event_count": 257,
+              "mean_of_ratios": 0.7806153958149944,
+              "usable_event_count": 257,
+              "weighted_ratio": 0.7727423394225104
+            },
+            "post_01": {
+              "event_count": 571,
+              "mean_of_ratios": 0.7852316423129941,
+              "usable_event_count": 571,
+              "weighted_ratio": 0.7803885911179173
+            },
+            "post_02": {
+              "event_count": 570,
+              "mean_of_ratios": 0.7850022743137136,
+              "usable_event_count": 570,
+              "weighted_ratio": 0.7799295774647887
+            },
+            "post_03": {
+              "event_count": 570,
+              "mean_of_ratios": 0.7843044024453193,
+              "usable_event_count": 570,
+              "weighted_ratio": 0.77928
+            },
+            "post_04": {
+              "event_count": 569,
+              "mean_of_ratios": 0.7846899879582283,
+              "usable_event_count": 569,
+              "weighted_ratio": 0.7801318568776804
+            },
+            "post_05": {
+              "event_count": 571,
+              "mean_of_ratios": 0.7841824368442312,
+              "usable_event_count": 571,
+              "weighted_ratio": 0.779390119032382
+            },
+            "post_06": {
+              "event_count": 569,
+              "mean_of_ratios": 0.7839563648621848,
+              "usable_event_count": 569,
+              "weighted_ratio": 0.7796856996543337
+            },
+            "warmup": {
+              "event_count": 569,
+              "mean_of_ratios": 0.7848348344945862,
+              "usable_event_count": 569,
+              "weighted_ratio": 0.7800460770510688
+            }
+          },
+          "total_event_count": 5372,
+          "valid": true
+        },
+        "weighted_intervention_minus_baseline": -0.005335051436534566,
+        "weighted_post1_minus_baseline": 0.0023112002588723257,
+        "weighted_ratio": {
+          "baseline": 0.7780773908590449,
+          "intervention": 0.7727423394225104,
+          "post_01": 0.7803885911179173
+        }
+      },
+      "placebo": {
+        "analyzer_fields": {
+          "baseline_budget_ratio": 0.7803042714698625,
+          "baseline_post1_exact_token_match": 0.9951171875,
+          "intervention_budget_ratio": 0.7875717020526543,
+          "post1_budget_ratio": 0.7838939509812498
+        },
+        "exact_token_match": {
+          "comparable": 1024,
+          "errors": [],
+          "expected": 1024,
+          "match_rate": 0.9951171875,
+          "matches": 1019,
+          "passes": false
+        },
+        "mean_intervention_minus_baseline": 0.0072674305827917784,
+        "mean_of_ratios": {
+          "baseline": 0.7803042714698625,
+          "intervention": 0.7875717020526543,
+          "post_01": 0.7838939509812498
+        },
+        "mean_post1_minus_baseline": 0.0035896795113873337,
+        "telemetry": {
+          "errors": [],
+          "first_step": 1,
+          "last_step": 5409,
+          "phases": {
+            "baseline": {
+              "event_count": 1126,
+              "mean_of_ratios": 0.7803042714698625,
+              "usable_event_count": 1126,
+              "weighted_ratio": 0.7781226997791788
+            },
+            "intervention": {
+              "event_count": 295,
+              "mean_of_ratios": 0.7875717020526543,
+              "usable_event_count": 295,
+              "weighted_ratio": 0.7782383584270377
+            },
+            "post_01": {
+              "event_count": 570,
+              "mean_of_ratios": 0.7838939509812498,
+              "usable_event_count": 570,
+              "weighted_ratio": 0.77928
+            },
+            "post_02": {
+              "event_count": 570,
+              "mean_of_ratios": 0.7841952832101486,
+              "usable_event_count": 570,
+              "weighted_ratio": 0.7794926748128719
+            },
+            "post_03": {
+              "event_count": 569,
+              "mean_of_ratios": 0.7841217707005769,
+              "usable_event_count": 569,
+              "weighted_ratio": 0.7796772954283518
+            },
+            "post_04": {
+              "event_count": 570,
+              "mean_of_ratios": 0.7839062425192668,
+              "usable_event_count": 570,
+              "weighted_ratio": 0.7792885021434512
+            },
+            "post_05": {
+              "event_count": 570,
+              "mean_of_ratios": 0.7852426847398551,
+              "usable_event_count": 570,
+              "weighted_ratio": 0.780224
+            },
+            "post_06": {
+              "event_count": 569,
+              "mean_of_ratios": 0.7841520765057634,
+              "usable_event_count": 569,
+              "weighted_ratio": 0.7798354568154171
+            },
+            "warmup": {
+              "event_count": 570,
+              "mean_of_ratios": 0.7843170381835053,
+              "usable_event_count": 570,
+              "weighted_ratio": 0.7794493828739528
+            }
+          },
+          "total_event_count": 5409,
+          "valid": true
+        },
+        "weighted_intervention_minus_baseline": 0.00011565864785889612,
+        "weighted_post1_minus_baseline": 0.001157300220821167,
+        "weighted_ratio": {
+          "baseline": 0.7781226997791788,
+          "intervention": 0.7782383584270377,
+          "post_01": 0.77928
+        }
+      }
+    },
+    "source": "raw server logs and raw request records",
+    "telemetry_coverage_valid": true,
+    "token_match_sanity": false
+  },
+  "paired_effects": {
+    "pair_count": 6,
+    "pairs": [
+      {
+        "metrics": {
+          "latency_p50": {
+            "attack_minus_placebo": 0.02250751434473941,
+            "attack_ratio": 1.0053823573273653,
+            "placebo_ratio": 0.9828748429826258
+          },
+          "latency_p95": {
+            "attack_minus_placebo": 0.0026583347078188435,
+            "attack_ratio": 1.0029691420990456,
+            "placebo_ratio": 1.0003108073912268
+          },
+          "throughput": {
+            "attack_minus_placebo": -0.003267364185843835,
+            "attack_ratio": 0.9851997962391909,
+            "placebo_ratio": 0.9884671604250347
+          }
+        },
+        "pair_id": "01"
+      },
+      {
+        "metrics": {
+          "latency_p50": {
+            "attack_minus_placebo": -0.061267435125422764,
+            "attack_ratio": 0.9456986089681858,
+            "placebo_ratio": 1.0069660440936086
+          },
+          "latency_p95": {
+            "attack_minus_placebo": -0.006101321448293118,
+            "attack_ratio": 0.9976842231123443,
+            "placebo_ratio": 1.0037855445606374
+          },
+          "throughput": {
+            "attack_minus_placebo": 0.007842946796789318,
+            "attack_ratio": 0.9923567773324223,
+            "placebo_ratio": 0.984513830535633
+          }
+        },
+        "pair_id": "02"
+      },
+      {
+        "metrics": {
+          "latency_p50": {
+            "attack_minus_placebo": -0.026343912358014143,
+            "attack_ratio": 0.9860521278559483,
+            "placebo_ratio": 1.0123960402139625
+          },
+          "latency_p95": {
+            "attack_minus_placebo": -0.008967407704110975,
+            "attack_ratio": 0.9950680457471067,
+            "placebo_ratio": 1.0040354534512177
+          },
+          "throughput": {
+            "attack_minus_placebo": 0.009165865336658752,
+            "attack_ratio": 0.9930813371450259,
+            "placebo_ratio": 0.9839154718083671
+          }
+        },
+        "pair_id": "03"
+      },
+      {
+        "metrics": {
+          "latency_p50": {
+            "attack_minus_placebo": -0.0037789951862754467,
+            "attack_ratio": 1.002254596228683,
+            "placebo_ratio": 1.0060335914149585
+          },
+          "latency_p95": {
+            "attack_minus_placebo": -0.006216890371611772,
+            "attack_ratio": 0.9983027947827168,
+            "placebo_ratio": 1.0045196851543285
+          },
+          "throughput": {
+            "attack_minus_placebo": 0.005572562327164854,
+            "attack_ratio": 0.9893311808197924,
+            "placebo_ratio": 0.9837586184926276
+          }
+        },
+        "pair_id": "04"
+      },
+      {
+        "metrics": {
+          "latency_p50": {
+            "attack_minus_placebo": 0.032335442898358324,
+            "attack_ratio": 1.016773037834835,
+            "placebo_ratio": 0.9844375949364766
+          },
+          "latency_p95": {
+            "attack_minus_placebo": 0.002760825578039583,
+            "attack_ratio": 1.0068883663667376,
+            "placebo_ratio": 1.004127540788698
+          },
+          "throughput": {
+            "attack_minus_placebo": -0.004974998605103087,
+            "attack_ratio": 0.9804382402316955,
+            "placebo_ratio": 0.9854132388367985
+          }
+        },
+        "pair_id": "05"
+      },
+      {
+        "metrics": {
+          "latency_p50": {
+            "attack_minus_placebo": -0.010507048440398736,
+            "attack_ratio": 0.9934405711761068,
+            "placebo_ratio": 1.0039476196165056
+          },
+          "latency_p95": {
+            "attack_minus_placebo": -0.008871336039600664,
+            "attack_ratio": 0.9984302405851646,
+            "placebo_ratio": 1.0073015766247653
+          },
+          "throughput": {
+            "attack_minus_placebo": 0.007981263667274363,
+            "attack_ratio": 0.9893649608229773,
+            "placebo_ratio": 0.981383697155703
+          }
+        },
+        "pair_id": "06"
+      }
+    ],
+    "summary": {
+      "latency_p50": {
+        "ci95_high": 0.01589997847658688,
+        "ci95_low": -0.03302429197165696,
+        "mean": -0.007842405644502226,
+        "n": 6
+      },
+      "latency_p95": {
+        "ci95_high": -0.0002317464051775353,
+        "ci95_low": -0.007983271273802975,
+        "mean": -0.00412296587962635,
+        "n": 6
+      },
+      "throughput": {
+        "ci95_high": 0.0079516278553034,
+        "ci95_low": -0.0007961418128664873,
+        "mean": 0.003720045889490061,
+        "n": 6
+      }
+    }
+  },
+  "schema_version": 2
+}

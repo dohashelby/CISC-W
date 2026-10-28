@@ -1,0 +1,12 @@
+{
+  "protocol_version": "avep-tenant-short-followup-v2",
+  "run_name": "gate_attack",
+  "stage": "gate",
+  "pair_id": "gate",
+  "arm": "attack",
+  "adaptive": true,
+  "telemetry": true,
+  "detailed_metrics": true,
+  "poison_token_id": 279,
+  "created_at": "2026-09-18T13:02:48,097242557+00:00"
+}

@@ -1,0 +1,13 @@
+{
+  "protocol_version": "avep-factorial-confirmatory-v2",
+  "run_name": "gate_attack_blocked",
+  "stage": "gate",
+  "block_id": "gate",
+  "arm": "attack_blocked",
+  "workload": "attack",
+  "update_mode": "blocked",
+  "poison_token_id": 279,
+  "telemetry": true,
+  "detailed_metrics": true,
+  "created_at": "2026-09-19T11:32:16,926674210+00:00"
+}

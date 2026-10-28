@@ -1,0 +1,61 @@
+{
+  "base_url": "http://127.0.0.1:8001/v1",
+  "results": [
+    {
+      "audit_event_id": "0714f8e281634d2ca0e6acab4c31cfbb",
+      "authenticated_tenant": "attacker",
+      "expected_status": 200,
+      "gateway_instance_id": "ctfr-full-gate_stage_d_shared-1789896289124133746",
+      "name": "attacker_ok",
+      "status": 200,
+      "upstream_marker": "ctfr-full-5319-1789896229050244874"
+    },
+    {
+      "audit_event_id": "f4c62010d0cc4255b077dc97248b3298",
+      "authenticated_tenant": "victim",
+      "expected_status": 200,
+      "gateway_instance_id": "ctfr-full-gate_stage_d_shared-1789896289124133746",
+      "name": "victim_ok",
+      "status": 200,
+      "upstream_marker": "ctfr-full-5319-1789896229050244874"
+    },
+    {
+      "audit_event_id": "83e5d36e175647a4ad3a51881cd8a117",
+      "authenticated_tenant": null,
+      "expected_status": 401,
+      "gateway_instance_id": "ctfr-full-gate_stage_d_shared-1789896289124133746",
+      "name": "missing_key",
+      "status": 401,
+      "upstream_marker": "ctfr-full-5319-1789896229050244874"
+    },
+    {
+      "audit_event_id": "74468db1f77d4308bac8185b7161093b",
+      "authenticated_tenant": null,
+      "expected_status": 401,
+      "gateway_instance_id": "ctfr-full-gate_stage_d_shared-1789896289124133746",
+      "name": "wrong_key",
+      "status": 401,
+      "upstream_marker": "ctfr-full-5319-1789896229050244874"
+    },
+    {
+      "audit_event_id": "816fa34350804fbf9c0ff2fb607fe6a1",
+      "authenticated_tenant": null,
+      "expected_status": 403,
+      "gateway_instance_id": "ctfr-full-gate_stage_d_shared-1789896289124133746",
+      "name": "attacker_claims_victim",
+      "status": 403,
+      "upstream_marker": "ctfr-full-5319-1789896229050244874"
+    },
+    {
+      "audit_event_id": "a79ef36699af4772a1fe99f4192afcbe",
+      "authenticated_tenant": null,
+      "expected_status": 403,
+      "gateway_instance_id": "ctfr-full-gate_stage_d_shared-1789896289124133746",
+      "name": "victim_claims_attacker",
+      "status": 403,
+      "upstream_marker": "ctfr-full-5319-1789896229050244874"
+    }
+  ],
+  "schema_version": 1,
+  "valid": true
+}

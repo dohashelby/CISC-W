@@ -1,0 +1,47 @@
+{
+  "protocol_version": "avep-ctfr-full-study-v2",
+  "run_id": "gate_stage_d_shared",
+  "stage": "stage-d-gate",
+  "scenario": "benign-adaptation",
+  "block_id": "gate",
+  "arm": "shared",
+  "source_sha256": "dcc2239dd80e8e4095a76d31a09ae96b5a4de603ca16850706760b4bfe6a2387",
+  "target_model_revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+  "draft_model_revision": "b74e3a329c4d963783143b1e970d95b002be72bd",
+  "sampling_policy_sha256": "11f2877dd4e821ca70f4bdfa9bf6adaf0e53610c716d3a06ccf31227dc483976",
+  "feature_contract_version": "logit-max-draft-probability-v1",
+  "process_uuid": "ctfr-full-5319-1789896229050244874",
+  "created_at": "2026-09-20T09:24:49,463915983+00:00",
+  "confirmatory": false,
+  "fresh_process": true,
+  "baseline_sha256": "b7fea3032f4ecaabc04b1ad422c5b4aa4f2d99ecc334b37eec77c86e607e6b9a",
+  "shadow_memory_bound_bytes": 1024,
+  "shadow_memory_bound_scope": "Persistent shadow-state tensors only; excludes transient retirement and validation workspace.",
+  "adaptation_manifest_sha256": "3b1ab4698b933e60f151e806f3a5590a0eb67b8ffcd6f309ceffed8b6481c81c",
+  "evaluation_manifest_sha256": "a537b79c4d60ec45ecd21f40c3f78ad8e29e64fa3cb4db4fbe79490c3e9920d7",
+  "observation_budget_by_principal": {
+    "attacker": 1024,
+    "victim": 1024
+  },
+  "evaluation_budget_by_principal": {
+    "attacker": 128,
+    "victim": 128
+  },
+  "resource_measurement_window": "whole-run",
+  "adaptation_updates_enabled": true,
+  "evaluation_metrics_enabled": true,
+  "binding_telemetry_enabled": true,
+  "principal_ownership": "independent",
+  "credential_control_by_principal": {
+    "attacker": "experiment-benign",
+    "victim": "experiment-benign"
+  },
+  "barrier_evidence": {
+    "queue_drained": true,
+    "admitted_requests": 2048,
+    "completed_requests": 2048,
+    "active_requests": 0,
+    "called_after_ns": 1789896330501093600,
+    "completed_ns": 1789896330520585200
+  }
+}

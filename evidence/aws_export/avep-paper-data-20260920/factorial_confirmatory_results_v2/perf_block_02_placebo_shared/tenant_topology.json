@@ -1,0 +1,10 @@
+{
+  "protocol_version": "avep-factorial-confirmatory-v2",
+  "gateway_instance_id": "factorial-perf_block_02_placebo_shared-1789818486375736427",
+  "upstream_marker": "factorial-33069-1789818426290221037",
+  "key_fingerprints": {
+    "attacker": "c59a154ef91be99ff9abfd3c180322341f11c8fd92eccc72c8cd7cf9dcc8dd94",
+    "victim": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+    "upstream": "a55050a156f39b7186caeca03e531912adfd8c65cf79d1b906f42fabeb889f0b"
+  }
+}

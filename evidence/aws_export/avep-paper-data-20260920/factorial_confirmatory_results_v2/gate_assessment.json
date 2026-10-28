@@ -1,0 +1,4012 @@
+{
+  "analysis_mode": "gate_only",
+  "claim_scope": "attack-by-update factorial interaction for two gateway-authenticated principals on one pinned vLLM worker",
+  "classification": "CONFIRMATORY_FACTORIAL_INCONCLUSIVE",
+  "declarations": {
+    "errors": [],
+    "valid": true
+  },
+  "errors": [],
+  "gate_runs": {
+    "gate_attack_blocked": {
+      "arm": "attack_blocked",
+      "blocked_state_invariant": true,
+      "budgets": {
+        "errors": [],
+        "ratios": {
+          "intervention": 1.0,
+          "post_01": 0.797782874617737,
+          "post_02": 0.7994884910485933,
+          "post_03": 0.7972662238119571,
+          "post_04": 0.8003064351378958,
+          "post_05": 0.8017638036809815,
+          "post_06": 0.7983623336745138,
+          "post_07": 0.7991344195519349,
+          "post_08": 0.8003048780487805,
+          "pre_01": 0.8011218765935747,
+          "pre_02": 0.7981896991330953,
+          "pre_03": 0.7997967479674797,
+          "pre_04": 0.7967635066258919,
+          "warmup": 0.7797550524430801
+        },
+        "valid": true
+      },
+      "created_at": "2026-09-19T11:32:16,926674210+00:00",
+      "errors": [],
+      "phases": {
+        "intervention": {
+          "config": {
+            "allowed_token_id": 279,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 8,
+            "gateway_instance_id": "factorial-gate_attack_blocked-1789817597029581309",
+            "max_tokens": 2,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "intervention",
+            "principal": "attacker",
+            "requests": 4096,
+            "return_token_ids": true,
+            "run_id": "gate_attack_blocked",
+            "seed": 20260918,
+            "tenant_key_sha256": "c59a154ef91be99ff9abfd3c180322341f11c8fd92eccc72c8cd7cf9dcc8dd94",
+            "upstream_marker": "factorial-33069-1789817536947950732"
+          },
+          "finished_ns": 1789817648409333553,
+          "started_ns": 1789817615049794053,
+          "summary": {
+            "accepted_draft_tokens": 0,
+            "aggregate_output_tokens_per_second": 245.58897434082073,
+            "authenticated_tenant_counts": {
+              "attacker": 4096
+            },
+            "completion_tokens": 8192,
+            "control_token_fraction": 1.0,
+            "draft_acceptance_rate": 0.0,
+            "draft_tokens": 16384,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_attack_blocked-1789817597029581309": 4096
+            },
+            "latency_ms_p50": 65.00623949999999,
+            "latency_ms_p95": 66.45818875,
+            "latency_ms_p99": 67.33898549999999,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 4096,
+            "per_request_tokens_per_second_p50": 40.08973445618926,
+            "per_request_tokens_per_second_p95": 41.79659902378239,
+            "phase_output_digest": "f60c80659d85b3114f8afd01f432e7d2968e22fc3befa41b233f750065614e1c",
+            "requests": 4096,
+            "spec_requests": 4096,
+            "spec_steps": 4096,
+            "successful": 4096,
+            "unique_audit_event_ids": 4096,
+            "unique_output_count": 1,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817536947950732": 4096
+            },
+            "wall_seconds": 33.356546327
+          }
+        },
+        "post_01": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_attack_blocked-1789817597029581309",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "post_01",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_attack_blocked",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817536947950732"
+          },
+          "finished_ns": 1789817650260883873,
+          "started_ns": 1789817648723453248,
+          "summary": {
+            "accepted_draft_tokens": 2329,
+            "aggregate_output_tokens_per_second": 2669.1546280961484,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.31472972972972973,
+            "draft_tokens": 7400,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_attack_blocked-1789817597029581309": 128
+            },
+            "latency_ms_p50": 317.48141899999996,
+            "latency_ms_p95": 423.10207885,
+            "latency_ms_p99": 448.40631962,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 107.41484264400657,
+            "per_request_tokens_per_second_p95": 145.49736893731207,
+            "phase_output_digest": "80e7af1842c09aebababad6af343450e89185486a59444af9e8a12a961689d2c",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 1850,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 10,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817536947950732": 128
+            },
+            "wall_seconds": 1.53456827
+          }
+        },
+        "post_02": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_attack_blocked-1789817597029581309",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "post_02",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_attack_blocked",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817536947950732"
+          },
+          "finished_ns": 1789817651873767272,
+          "started_ns": 1789817650361687449,
+          "summary": {
+            "accepted_draft_tokens": 2347,
+            "aggregate_output_tokens_per_second": 2714.1222046099297,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.31836679327183937,
+            "draft_tokens": 7372,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_attack_blocked-1789817597029581309": 128
+            },
+            "latency_ms_p50": 310.0581795,
+            "latency_ms_p95": 420.87209995,
+            "latency_ms_p99": 466.6316717,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 114.2404480189166,
+            "per_request_tokens_per_second_p95": 146.3960666513822,
+            "phase_output_digest": "598d1f9a7c393cd92a5f9893b09ca289af2b71eaab352f10fea07ed4080668bc",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 1843,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 8,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817536947950732": 128
+            },
+            "wall_seconds": 1.509143543
+          }
+        },
+        "post_03": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_attack_blocked-1789817597029581309",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "post_03",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_attack_blocked",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817536947950732"
+          },
+          "finished_ns": 1789817653506483267,
+          "started_ns": 1789817651975545485,
+          "summary": {
+            "accepted_draft_tokens": 2337,
+            "aggregate_output_tokens_per_second": 2680.749558624664,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.31666666666666665,
+            "draft_tokens": 7380,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_attack_blocked-1789817597029581309": 128
+            },
+            "latency_ms_p50": 317.505825,
+            "latency_ms_p95": 421.88944915,
+            "latency_ms_p99": 433.03597987,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 110.74892115830723,
+            "per_request_tokens_per_second_p95": 145.71202590726443,
+            "phase_output_digest": "1564ec622912f8915fd2d9d8ccde762d25f8e8f5e443b6fde3681962ffd23373",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 1845,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 10,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817536947950732": 128
+            },
+            "wall_seconds": 1.527930868
+          }
+        },
+        "post_04": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_attack_blocked-1789817597029581309",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "post_04",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_attack_blocked",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817536947950732"
+          },
+          "finished_ns": 1789817655144254298,
+          "started_ns": 1789817653608230009,
+          "summary": {
+            "accepted_draft_tokens": 2341,
+            "aggregate_output_tokens_per_second": 2671.827858806756,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.3170368364030336,
+            "draft_tokens": 7384,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_attack_blocked-1789817597029581309": 128
+            },
+            "latency_ms_p50": 310.57281950000004,
+            "latency_ms_p95": 421.64661915,
+            "latency_ms_p99": 480.37661964,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 113.0488253615799,
+            "per_request_tokens_per_second_p95": 145.93521356809603,
+            "phase_output_digest": "598d1f9a7c393cd92a5f9893b09ca289af2b71eaab352f10fea07ed4080668bc",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 1846,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 8,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817536947950732": 128
+            },
+            "wall_seconds": 1.533032896
+          }
+        },
+        "post_05": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_attack_blocked-1789817597029581309",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "post_05",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_attack_blocked",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817536947950732"
+          },
+          "finished_ns": 1789817656788654286,
+          "started_ns": 1789817655244192446,
+          "summary": {
+            "accepted_draft_tokens": 2346,
+            "aggregate_output_tokens_per_second": 2657.3547489310345,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.318058568329718,
+            "draft_tokens": 7376,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_attack_blocked-1789817597029581309": 128
+            },
+            "latency_ms_p50": 318.6442125,
+            "latency_ms_p95": 423.6575315,
+            "latency_ms_p99": 438.68021778,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 108.00968135019173,
+            "per_request_tokens_per_second_p95": 145.04381435306863,
+            "phase_output_digest": "598d1f9a7c393cd92a5f9893b09ca289af2b71eaab352f10fea07ed4080668bc",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 1844,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 8,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817536947950732": 128
+            },
+            "wall_seconds": 1.54138246
+          }
+        },
+        "post_06": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_attack_blocked-1789817597029581309",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "post_06",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_attack_blocked",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817536947950732"
+          },
+          "finished_ns": 1789817658420737170,
+          "started_ns": 1789817656892171288,
+          "summary": {
+            "accepted_draft_tokens": 2344,
+            "aggregate_output_tokens_per_second": 2685.149378458915,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.31813246471226925,
+            "draft_tokens": 7368,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_attack_blocked-1789817597029581309": 128
+            },
+            "latency_ms_p50": 309.92976699999997,
+            "latency_ms_p95": 421.75503345,
+            "latency_ms_p99": 473.35288534999995,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 115.0334052622706,
+            "per_request_tokens_per_second_p95": 145.97009239981244,
+            "phase_output_digest": "598d1f9a7c393cd92a5f9893b09ca289af2b71eaab352f10fea07ed4080668bc",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 1842,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 8,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817536947950732": 128
+            },
+            "wall_seconds": 1.525427238
+          }
+        },
+        "post_07": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_attack_blocked-1789817597029581309",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "post_07",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_attack_blocked",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817536947950732"
+          },
+          "finished_ns": 1789817660033457873,
+          "started_ns": 1789817658520540508,
+          "summary": {
+            "accepted_draft_tokens": 2329,
+            "aggregate_output_tokens_per_second": 2712.9713454304006,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.31438984881209503,
+            "draft_tokens": 7408,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_attack_blocked-1789817597029581309": 128
+            },
+            "latency_ms_p50": 316.3380345,
+            "latency_ms_p95": 422.0444214,
+            "latency_ms_p99": 434.52887977,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 110.6962097524158,
+            "per_request_tokens_per_second_p95": 145.953068463324,
+            "phase_output_digest": "2d9807b2b53cea667a40c61c0476ae49f6b0057e784224001eb2baac6497adb9",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 1852,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 11,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817536947950732": 128
+            },
+            "wall_seconds": 1.509783731
+          }
+        },
+        "post_08": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_attack_blocked-1789817597029581309",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "post_08",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_attack_blocked",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817536947950732"
+          },
+          "finished_ns": 1789817661678793162,
+          "started_ns": 1789817660135431259,
+          "summary": {
+            "accepted_draft_tokens": 2321,
+            "aggregate_output_tokens_per_second": 2659.2853130078897,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.31263469827586204,
+            "draft_tokens": 7424,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_attack_blocked-1789817597029581309": 128
+            },
+            "latency_ms_p50": 324.18937,
+            "latency_ms_p95": 422.28786935,
+            "latency_ms_p99": 447.14788594000004,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 104.6463663704423,
+            "per_request_tokens_per_second_p95": 145.97805593616224,
+            "phase_output_digest": "1382738e9c80c2b6ff4bac63ef3b59cf47bd898e5ee5d09149688b3569492982",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 1856,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 11,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817536947950732": 128
+            },
+            "wall_seconds": 1.540263461
+          }
+        },
+        "pre_01": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_attack_blocked-1789817597029581309",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "pre_01",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_attack_blocked",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817536947950732"
+          },
+          "finished_ns": 1789817610053977860,
+          "started_ns": 1789817608527810140,
+          "summary": {
+            "accepted_draft_tokens": 2335,
+            "aggregate_output_tokens_per_second": 2689.025493484759,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.31571119524067065,
+            "draft_tokens": 7396,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_attack_blocked-1789817597029581309": 128
+            },
+            "latency_ms_p50": 319.0366965,
+            "latency_ms_p95": 422.6096649,
+            "latency_ms_p99": 452.60048577000015,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 113.83430957639979,
+            "per_request_tokens_per_second_p95": 145.25792787175732,
+            "phase_output_digest": "d650cfe593c99876aab9c3ce9cd39f517c9aa91ceb3f6949be7ac9f871a455cd",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 1849,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 11,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817536947950732": 128
+            },
+            "wall_seconds": 1.5232284
+          }
+        },
+        "pre_02": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_attack_blocked-1789817597029581309",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "pre_02",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_attack_blocked",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817536947950732"
+          },
+          "finished_ns": 1789817611676961318,
+          "started_ns": 1789817610153795714,
+          "summary": {
+            "accepted_draft_tokens": 2334,
+            "aggregate_output_tokens_per_second": 2694.4791488556643,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.31557598702001083,
+            "draft_tokens": 7396,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_attack_blocked-1789817597029581309": 128
+            },
+            "latency_ms_p50": 308.8395855,
+            "latency_ms_p95": 423.9001954,
+            "latency_ms_p99": 455.63588146,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 109.07574901798438,
+            "per_request_tokens_per_second_p95": 145.84041348327062,
+            "phase_output_digest": "1537ca0c036e5f9fd67d5b8baace29c5921d9b2ab3f525a1d05e9d74b9815414",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 1849,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 10,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817536947950732": 128
+            },
+            "wall_seconds": 1.520145369
+          }
+        },
+        "pre_03": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_attack_blocked-1789817597029581309",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "pre_03",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_attack_blocked",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817536947950732"
+          },
+          "finished_ns": 1789817613297928549,
+          "started_ns": 1789817611778066529,
+          "summary": {
+            "accepted_draft_tokens": 2329,
+            "aggregate_output_tokens_per_second": 2700.3851880591887,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.3137122844827586,
+            "draft_tokens": 7424,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_attack_blocked-1789817597029581309": 128
+            },
+            "latency_ms_p50": 316.93769999999995,
+            "latency_ms_p95": 423.2522338,
+            "latency_ms_p99": 449.24534854,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 109.35748967461066,
+            "per_request_tokens_per_second_p95": 145.33978235163636,
+            "phase_output_digest": "f805d188e51f6ee331a502aeeae946a41a8596acd6d4fa839624a3ada0717a43",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 1856,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 11,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817536947950732": 128
+            },
+            "wall_seconds": 1.516820644
+          }
+        },
+        "pre_04": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_attack_blocked-1789817597029581309",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "pre_04",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_attack_blocked",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817536947950732"
+          },
+          "finished_ns": 1789817614929703293,
+          "started_ns": 1789817613397788926,
+          "summary": {
+            "accepted_draft_tokens": 2333,
+            "aggregate_output_tokens_per_second": 2679.078963341462,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.31527027027027027,
+            "draft_tokens": 7400,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_attack_blocked-1789817597029581309": 128
+            },
+            "latency_ms_p50": 311.837759,
+            "latency_ms_p95": 423.17746094999995,
+            "latency_ms_p99": 430.84072502000004,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 109.09664965826548,
+            "per_request_tokens_per_second_p95": 145.47093325025241,
+            "phase_output_digest": "c5fe89356637ee1a0e9a986cafde11569e087dd242e3f4e030722db8defb4b34",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 1850,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 9,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817536947950732": 128
+            },
+            "wall_seconds": 1.528883641
+          }
+        },
+        "warmup": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_attack_blocked-1789817597029581309",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "warmup",
+            "principal": "victim",
+            "requests": 1024,
+            "return_token_ids": true,
+            "run_id": "gate_attack_blocked",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817536947950732"
+          },
+          "finished_ns": 1789817608364889424,
+          "started_ns": 1789817597423677668,
+          "summary": {
+            "accepted_draft_tokens": 18775,
+            "aggregate_output_tokens_per_second": 2995.82045899917,
+            "authenticated_tenant_counts": {
+              "victim": 1024
+            },
+            "completion_tokens": 32768,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.31843622795115334,
+            "draft_tokens": 58960,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_attack_blocked-1789817597029581309": 1024
+            },
+            "latency_ms_p50": 328.6553485,
+            "latency_ms_p95": 422.1449335,
+            "latency_ms_p99": 832.5738675199999,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 128,
+            "per_request_tokens_per_second_p50": 102.93329460011077,
+            "per_request_tokens_per_second_p95": 145.47820616320865,
+            "phase_output_digest": "bbebe2d15b05a5e65e901d16f8461eb09747cd0d6f7b444847ac342eb0f14a8c",
+            "requests": 1024,
+            "spec_requests": 1024,
+            "spec_steps": 14740,
+            "successful": 1024,
+            "unique_audit_event_ids": 1024,
+            "unique_output_count": 10,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817536947950732": 1024
+            },
+            "wall_seconds": 10.937905141
+          }
+        }
+      },
+      "run_name": "gate_attack_blocked",
+      "states": {
+        "intervention": {
+          "available": true,
+          "counts": [
+            15.0,
+            7.0,
+            5.0,
+            3.0
+          ],
+          "grad": [
+            [
+              -6.291421413421631,
+              -4.008993625640869
+            ],
+            [
+              -0.5274928212165833,
+              0.5114107131958008
+            ],
+            [
+              -0.9169384837150574,
+              -0.9723650217056274
+            ],
+            [
+              -0.03466632962226868,
+              0.3003506660461426
+            ]
+          ],
+          "info": [
+            [
+              4.334714889526367,
+              2.3229763507843018,
+              2.51545786857605
+            ],
+            [
+              2.378389835357666,
+              0.4052061438560486,
+              0.9961423277854919
+            ],
+            [
+              0.9785425662994385,
+              0.4553486704826355,
+              0.6877920627593994
+            ],
+            [
+              0.27407383918762207,
+              -0.008547916077077389,
+              0.21769705414772034
+            ]
+          ],
+          "intercepts": [
+            0.0043693529441952705,
+            -0.21837835013866425,
+            0.34972527623176575,
+            1.1867828369140625
+          ],
+          "refits": 9,
+          "slope": 0.867902398109436,
+          "steps_since_refit": 9,
+          "updates_enabled": false
+        },
+        "pre_intervention": {
+          "available": true,
+          "counts": [
+            15.0,
+            7.0,
+            5.0,
+            3.0
+          ],
+          "grad": [
+            [
+              -6.291421413421631,
+              -4.008993625640869
+            ],
+            [
+              -0.5274928212165833,
+              0.5114107131958008
+            ],
+            [
+              -0.9169384837150574,
+              -0.9723650217056274
+            ],
+            [
+              -0.03466632962226868,
+              0.3003506660461426
+            ]
+          ],
+          "info": [
+            [
+              4.334714889526367,
+              2.3229763507843018,
+              2.51545786857605
+            ],
+            [
+              2.378389835357666,
+              0.4052061438560486,
+              0.9961423277854919
+            ],
+            [
+              0.9785425662994385,
+              0.4553486704826355,
+              0.6877920627593994
+            ],
+            [
+              0.27407383918762207,
+              -0.008547916077077389,
+              0.21769705414772034
+            ]
+          ],
+          "intercepts": [
+            0.0043693529441952705,
+            -0.21837835013866425,
+            0.34972527623176575,
+            1.1867828369140625
+          ],
+          "refits": 9,
+          "slope": 0.867902398109436,
+          "steps_since_refit": 9,
+          "updates_enabled": false
+        },
+        "reenabled": {
+          "available": true,
+          "counts": [
+            15.0,
+            7.0,
+            5.0,
+            3.0
+          ],
+          "grad": [
+            [
+              -6.291421413421631,
+              -4.008993625640869
+            ],
+            [
+              -0.5274928212165833,
+              0.5114107131958008
+            ],
+            [
+              -0.9169384837150574,
+              -0.9723650217056274
+            ],
+            [
+              -0.03466632962226868,
+              0.3003506660461426
+            ]
+          ],
+          "info": [
+            [
+              4.334714889526367,
+              2.3229763507843018,
+              2.51545786857605
+            ],
+            [
+              2.378389835357666,
+              0.4052061438560486,
+              0.9961423277854919
+            ],
+            [
+              0.9785425662994385,
+              0.4553486704826355,
+              0.6877920627593994
+            ],
+            [
+              0.27407383918762207,
+              -0.008547916077077389,
+              0.21769705414772034
+            ]
+          ],
+          "intercepts": [
+            0.0043693529441952705,
+            -0.21837835013866425,
+            0.34972527623176575,
+            1.1867828369140625
+          ],
+          "refits": 9,
+          "slope": 0.867902398109436,
+          "steps_since_refit": 9,
+          "updates_enabled": true
+        }
+      },
+      "update_gates": {
+        "after_intervention": {
+          "after": true,
+          "before": false
+        },
+        "before_intervention": {
+          "after": false,
+          "before": true
+        }
+      },
+      "update_mode": "blocked",
+      "valid": true,
+      "workload": "attack"
+    },
+    "gate_attack_shared": {
+      "arm": "attack_shared",
+      "blocked_state_invariant": null,
+      "budgets": {
+        "errors": [],
+        "ratios": {
+          "intervention": 1.0,
+          "post_01": 0.29530548843631343,
+          "post_02": 0.5029239766081871,
+          "post_03": 0.033220866856994546,
+          "post_04": 0.03393369877316627,
+          "post_05": 0.04750467040298906,
+          "post_06": 0.1332174462705436,
+          "post_07": 0.08675963197239793,
+          "post_08": 0.15398067954696867,
+          "pre_01": 0.7995150587034201,
+          "pre_02": 0.7993890020366599,
+          "pre_03": 0.7984406952965235,
+          "pre_04": 0.797945205479452,
+          "warmup": 0.7803500575963138
+        },
+        "valid": true
+      },
+      "created_at": "2026-09-19T11:34:22,735371897+00:00",
+      "errors": [],
+      "phases": {
+        "intervention": {
+          "config": {
+            "allowed_token_id": 279,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 8,
+            "gateway_instance_id": "factorial-gate_attack_shared-1789817722839137186",
+            "max_tokens": 2,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "intervention",
+            "principal": "attacker",
+            "requests": 4096,
+            "return_token_ids": true,
+            "run_id": "gate_attack_shared",
+            "seed": 20260918,
+            "tenant_key_sha256": "c59a154ef91be99ff9abfd3c180322341f11c8fd92eccc72c8cd7cf9dcc8dd94",
+            "upstream_marker": "factorial-33069-1789817662756758466"
+          },
+          "finished_ns": 1789817771221347107,
+          "started_ns": 1789817740845941105,
+          "summary": {
+            "accepted_draft_tokens": 0,
+            "aggregate_output_tokens_per_second": 269.7180247857629,
+            "authenticated_tenant_counts": {
+              "attacker": 4096
+            },
+            "completion_tokens": 8192,
+            "control_token_fraction": 1.0,
+            "draft_acceptance_rate": 0.0,
+            "draft_tokens": 16384,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_attack_shared-1789817722839137186": 4096
+            },
+            "latency_ms_p50": 63.2986065,
+            "latency_ms_p95": 66.9204365,
+            "latency_ms_p99": 69.26295715000002,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 4096,
+            "per_request_tokens_per_second_p50": 42.63103917530263,
+            "per_request_tokens_per_second_p95": 58.03938320343665,
+            "phase_output_digest": "f60c80659d85b3114f8afd01f432e7d2968e22fc3befa41b233f750065614e1c",
+            "requests": 4096,
+            "spec_requests": 4096,
+            "spec_steps": 4096,
+            "successful": 4096,
+            "unique_audit_event_ids": 4096,
+            "unique_output_count": 1,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817662756758466": 4096
+            },
+            "wall_seconds": 30.3724603
+          }
+        },
+        "post_01": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_attack_shared-1789817722839137186",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "post_01",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_attack_shared",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817662756758466"
+          },
+          "finished_ns": 1789817773752139681,
+          "started_ns": 1789817771533216930,
+          "summary": {
+            "accepted_draft_tokens": 1277,
+            "aggregate_output_tokens_per_second": 1848.4409424603593,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.1128889674681754,
+            "draft_tokens": 11312,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_attack_shared-1789817722839137186": 128
+            },
+            "latency_ms_p50": 444.96773900000005,
+            "latency_ms_p95": 792.1540553,
+            "latency_ms_p99": 800.78173916,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 74.98426624371227,
+            "per_request_tokens_per_second_p95": 133.52630814051878,
+            "phase_output_digest": "57b0d8fb28f9a7a5e0f059b6c2534708fd94114baad45466e2a761f15aa70faf",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 2828,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 13,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817662756758466": 128
+            },
+            "wall_seconds": 2.215921486
+          }
+        },
+        "post_02": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_attack_shared-1789817722839137186",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "post_02",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_attack_shared",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817662756758466"
+          },
+          "finished_ns": 1789817775636417304,
+          "started_ns": 1789817773854010637,
+          "summary": {
+            "accepted_draft_tokens": 1818,
+            "aggregate_output_tokens_per_second": 2301.784947460252,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.19666810904370402,
+            "draft_tokens": 9244,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_attack_shared-1789817722839137186": 128
+            },
+            "latency_ms_p50": 347.5479765,
+            "latency_ms_p95": 571.7234391,
+            "latency_ms_p99": 592.4898097500001,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 97.4238982646736,
+            "per_request_tokens_per_second_p95": 146.00641324944112,
+            "phase_output_digest": "fd3da99a3f3d2046e23d62d31b25cd2e3e73200b21a832263d70103ba87365e2",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 2311,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 11,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817662756758466": 128
+            },
+            "wall_seconds": 1.779488568
+          }
+        },
+        "post_03": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_attack_shared-1789817722839137186",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "post_03",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_attack_shared",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817662756758466"
+          },
+          "finished_ns": 1789817778124800497,
+          "started_ns": 1789817775737391689,
+          "summary": {
+            "accepted_draft_tokens": 154,
+            "aggregate_output_tokens_per_second": 1717.7897864126264,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.01001040041601664,
+            "draft_tokens": 15384,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_attack_shared-1789817722839137186": 128
+            },
+            "latency_ms_p50": 584.082824,
+            "latency_ms_p95": 620.5870152,
+            "latency_ms_p99": 624.82928378,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 57.948760698952356,
+            "per_request_tokens_per_second_p95": 68.35828769364022,
+            "phase_output_digest": "c454dc560bef4848bc2bdb8c4bdf5506586d278bd913378fc11f9e7b158c3383",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 3846,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 11,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817662756758466": 128
+            },
+            "wall_seconds": 2.384459398
+          }
+        },
+        "post_04": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_attack_shared-1789817722839137186",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "post_04",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_attack_shared",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817662756758466"
+          },
+          "finished_ns": 1789817780617315352,
+          "started_ns": 1789817778228250371,
+          "summary": {
+            "accepted_draft_tokens": 192,
+            "aggregate_output_tokens_per_second": 1716.6235567980934,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.012549019607843137,
+            "draft_tokens": 15300,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_attack_shared-1789817722839137186": 128
+            },
+            "latency_ms_p50": 585.492655,
+            "latency_ms_p95": 618.84080395,
+            "latency_ms_p99": 622.823016,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 57.46832726978172,
+            "per_request_tokens_per_second_p95": 68.48027112718212,
+            "phase_output_digest": "94c35d4bfdaeb70dbc16d32821d48a98fa21b572582b026f7036c18fa7d445e8",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 3825,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 11,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817662756758466": 128
+            },
+            "wall_seconds": 2.386079338
+          }
+        },
+        "post_05": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_attack_shared-1789817722839137186",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "post_05",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_attack_shared",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817662756758466"
+          },
+          "finished_ns": 1789817783123171766,
+          "started_ns": 1789817780720586494,
+          "summary": {
+            "accepted_draft_tokens": 291,
+            "aggregate_output_tokens_per_second": 1707.010854110199,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.019477911646586344,
+            "draft_tokens": 14940,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_attack_shared-1789817722839137186": 128
+            },
+            "latency_ms_p50": 578.1752604999999,
+            "latency_ms_p95": 616.2959567,
+            "latency_ms_p99": 621.68478304,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 57.26346357859698,
+            "per_request_tokens_per_second_p95": 69.65576844080469,
+            "phase_output_digest": "a1fb74c7041ac46c6582158e19728d12f73fe2ceace0fe7dceb54e5455b88c8a",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 3735,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 13,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817662756758466": 128
+            },
+            "wall_seconds": 2.399516084
+          }
+        },
+        "post_06": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_attack_shared-1789817722839137186",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "post_06",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_attack_shared",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817662756758466"
+          },
+          "finished_ns": 1789817785478275941,
+          "started_ns": 1789817783225424498,
+          "summary": {
+            "accepted_draft_tokens": 990,
+            "aggregate_output_tokens_per_second": 1820.6988187270058,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.0799160477881821,
+            "draft_tokens": 12388,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_attack_shared-1789817722839137186": 128
+            },
+            "latency_ms_p50": 498.346743,
+            "latency_ms_p95": 610.8760546,
+            "latency_ms_p99": 625.0232522,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 67.78246426003254,
+            "per_request_tokens_per_second_p95": 93.91463089185291,
+            "phase_output_digest": "2a4c2d6ad863b2fe04687adc6e9f91857730cb829d0554f2df535a58f21f60cd",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 3097,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 13,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817662756758466": 128
+            },
+            "wall_seconds": 2.249685647
+          }
+        },
+        "post_07": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_attack_shared-1789817722839137186",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "post_07",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_attack_shared",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817662756758466"
+          },
+          "finished_ns": 1789817787921979521,
+          "started_ns": 1789817785583479214,
+          "summary": {
+            "accepted_draft_tokens": 660,
+            "aggregate_output_tokens_per_second": 1753.7995457010065,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.04817518248175182,
+            "draft_tokens": 13700,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_attack_shared-1789817722839137186": 128
+            },
+            "latency_ms_p50": 552.097589,
+            "latency_ms_p95": 606.5184743,
+            "latency_ms_p99": 629.7517143200001,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 61.1448797806257,
+            "per_request_tokens_per_second_p95": 77.35396715599175,
+            "phase_output_digest": "6b9ae3372a55e3e4df568eb6ac60613cf71147776757d672be4f2e67672a29f1",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 3425,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 10,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817662756758466": 128
+            },
+            "wall_seconds": 2.335500662
+          }
+        },
+        "post_08": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_attack_shared-1789817722839137186",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "post_08",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_attack_shared",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817662756758466"
+          },
+          "finished_ns": 1789817790115033399,
+          "started_ns": 1789817788023775164,
+          "summary": {
+            "accepted_draft_tokens": 1138,
+            "aggregate_output_tokens_per_second": 1961.5034668733338,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.0969335604770017,
+            "draft_tokens": 11740,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_attack_shared-1789817722839137186": 128
+            },
+            "latency_ms_p50": 472.321322,
+            "latency_ms_p95": 580.7175715000001,
+            "latency_ms_p99": 594.1829463,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 71.67066674116981,
+            "per_request_tokens_per_second_p95": 107.75525515214137,
+            "phase_output_digest": "09ebe3bafac800c28f19e23b6d326d2df2a4e29c50ec756f677cbeb7c337534b",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 2935,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 15,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817662756758466": 128
+            },
+            "wall_seconds": 2.088194117
+          }
+        },
+        "pre_01": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_attack_shared-1789817722839137186",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "pre_01",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_attack_shared",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817662756758466"
+          },
+          "finished_ns": 1789817735834780155,
+          "started_ns": 1789817734295101281,
+          "summary": {
+            "accepted_draft_tokens": 2336,
+            "aggregate_output_tokens_per_second": 2665.543724809729,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.3161884136437466,
+            "draft_tokens": 7388,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_attack_shared-1789817722839137186": 128
+            },
+            "latency_ms_p50": 318.28533600000003,
+            "latency_ms_p95": 420.53783795,
+            "latency_ms_p99": 482.55045734000004,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 113.42480792170925,
+            "per_request_tokens_per_second_p95": 146.1748235746684,
+            "phase_output_digest": "071c8d51bdb14bb09f04aa4ee254a3c2cf3309d9a331bdb8a898fedddfcf28df",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 1847,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 9,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817662756758466": 128
+            },
+            "wall_seconds": 1.536647087
+          }
+        },
+        "pre_02": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_attack_shared-1789817722839137186",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "pre_02",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_attack_shared",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817662756758466"
+          },
+          "finished_ns": 1789817737471241062,
+          "started_ns": 1789817735934311695,
+          "summary": {
+            "accepted_draft_tokens": 2331,
+            "aggregate_output_tokens_per_second": 2670.5037197805555,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.3146598272138229,
+            "draft_tokens": 7408,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_attack_shared-1789817722839137186": 128
+            },
+            "latency_ms_p50": 311.9164015,
+            "latency_ms_p95": 422.6643262,
+            "latency_ms_p99": 456.1822123500001,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 111.67454819080513,
+            "per_request_tokens_per_second_p95": 145.57608623417914,
+            "phase_output_digest": "816fe7decf1f0739400da4a22fa6ad54a64c36998e5212436732a8121deafcf0",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 1852,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 11,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817662756758466": 128
+            },
+            "wall_seconds": 1.533793033
+          }
+        },
+        "pre_03": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_attack_shared-1789817722839137186",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "pre_03",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_attack_shared",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817662756758466"
+          },
+          "finished_ns": 1789817739097307797,
+          "started_ns": 1789817737573979710,
+          "summary": {
+            "accepted_draft_tokens": 2341,
+            "aggregate_output_tokens_per_second": 2694.2888687217596,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.31738069414316705,
+            "draft_tokens": 7376,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_attack_shared-1789817722839137186": 128
+            },
+            "latency_ms_p50": 311.00355349999995,
+            "latency_ms_p95": 420.39261910000005,
+            "latency_ms_p99": 468.9311504,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 115.06971948971787,
+            "per_request_tokens_per_second_p95": 146.31708325673975,
+            "phase_output_digest": "598d1f9a7c393cd92a5f9893b09ca289af2b71eaab352f10fea07ed4080668bc",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 1844,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 8,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817662756758466": 128
+            },
+            "wall_seconds": 1.520252727
+          }
+        },
+        "pre_04": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_attack_shared-1789817722839137186",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "pre_04",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_attack_shared",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817662756758466"
+          },
+          "finished_ns": 1789817740726773228,
+          "started_ns": 1789817739198599676,
+          "summary": {
+            "accepted_draft_tokens": 2327,
+            "aggregate_output_tokens_per_second": 2685.6543020300965,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.3129370629370629,
+            "draft_tokens": 7436,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_attack_shared-1789817722839137186": 128
+            },
+            "latency_ms_p50": 320.466651,
+            "latency_ms_p95": 423.8146673,
+            "latency_ms_p99": 455.85117292000007,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 107.87036912824587,
+            "per_request_tokens_per_second_p95": 145.3325808542125,
+            "phase_output_digest": "b666288e0281338a0a1aab025f387979c3eb12069ab22f722573040489d976c9",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 1859,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 11,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817662756758466": 128
+            },
+            "wall_seconds": 1.525140446
+          }
+        },
+        "warmup": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_attack_shared-1789817722839137186",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "warmup",
+            "principal": "victim",
+            "requests": 1024,
+            "return_token_ids": true,
+            "run_id": "gate_attack_shared",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817662756758466"
+          },
+          "finished_ns": 1789817734130186962,
+          "started_ns": 1789817723233180424,
+          "summary": {
+            "accepted_draft_tokens": 18789,
+            "aggregate_output_tokens_per_second": 3007.992689132519,
+            "authenticated_tenant_counts": {
+              "victim": 1024
+            },
+            "completion_tokens": 32768,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.3188900203665988,
+            "draft_tokens": 58920,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_attack_shared-1789817722839137186": 1024
+            },
+            "latency_ms_p50": 327.7771285,
+            "latency_ms_p95": 422.26210419999995,
+            "latency_ms_p99": 816.3434532399998,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 128,
+            "per_request_tokens_per_second_p50": 103.19349441156749,
+            "per_request_tokens_per_second_p95": 145.77534821715741,
+            "phase_output_digest": "15da49dcf0e400735e03ca111617fa84b2964d896df833d53aae8a9855b39e1a",
+            "requests": 1024,
+            "spec_requests": 1024,
+            "spec_steps": 14730,
+            "successful": 1024,
+            "unique_audit_event_ids": 1024,
+            "unique_output_count": 8,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817662756758466": 1024
+            },
+            "wall_seconds": 10.893643498
+          }
+        }
+      },
+      "run_name": "gate_attack_shared",
+      "states": {
+        "intervention": {
+          "available": true,
+          "counts": [
+            70.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "grad": [
+            [
+              -3.378575638635084e-05,
+              -7.044787344057113e-05
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "info": [
+            [
+              0.0003619843628257513,
+              3.3785701816668734e-05,
+              7.04478079569526e-05
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "intercepts": [
+            -13.828312873840332,
+            -0.13779368996620178,
+            0.21624939143657684,
+            1.3267961740493774
+          ],
+          "refits": 27,
+          "slope": 0.054637014865875244,
+          "steps_since_refit": 27,
+          "updates_enabled": true
+        },
+        "pre_intervention": {
+          "available": true,
+          "counts": [
+            28.0,
+            12.0,
+            8.0,
+            5.0
+          ],
+          "grad": [
+            [
+              -8.32652473449707,
+              -7.005388259887695
+            ],
+            [
+              -0.8758329153060913,
+              0.7636826038360596
+            ],
+            [
+              -0.024637514725327492,
+              -1.1469976902008057
+            ],
+            [
+              0.1299958974123001,
+              0.3695223927497864
+            ]
+          ],
+          "info": [
+            [
+              7.134966850280762,
+              2.9846408367156982,
+              4.770346164703369
+            ],
+            [
+              3.841857671737671,
+              0.9028852581977844,
+              1.6181633472442627
+            ],
+            [
+              2.021470308303833,
+              0.3671067953109741,
+              1.0154300928115845
+            ],
+            [
+              0.6239702105522156,
+              0.14891278743743896,
+              0.2861785590648651
+            ]
+          ],
+          "intercepts": [
+            0.01558805350214243,
+            -0.22908127307891846,
+            0.3718986213207245,
+            1.2098203897476196
+          ],
+          "refits": 9,
+          "slope": 0.8802943229675293,
+          "steps_since_refit": 10,
+          "updates_enabled": true
+        },
+        "reenabled": {
+          "available": true,
+          "counts": [
+            70.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "grad": [
+            [
+              -3.378575638635084e-05,
+              -7.044787344057113e-05
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "info": [
+            [
+              0.0003619843628257513,
+              3.3785701816668734e-05,
+              7.04478079569526e-05
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0
+            ]
+          ],
+          "intercepts": [
+            -13.828312873840332,
+            -0.13779368996620178,
+            0.21624939143657684,
+            1.3267961740493774
+          ],
+          "refits": 27,
+          "slope": 0.054637014865875244,
+          "steps_since_refit": 27,
+          "updates_enabled": true
+        }
+      },
+      "update_gates": {
+        "after_intervention": {
+          "after": true,
+          "before": true
+        },
+        "before_intervention": {
+          "after": true,
+          "before": true
+        }
+      },
+      "update_mode": "shared",
+      "valid": true,
+      "workload": "attack"
+    },
+    "gate_placebo_blocked": {
+      "arm": "placebo_blocked",
+      "blocked_state_invariant": true,
+      "budgets": {
+        "errors": [],
+        "ratios": {
+          "intervention": 1.0,
+          "post_01": 0.7976190476190477,
+          "post_02": 0.7969704684317719,
+          "post_03": 0.8029531568228105,
+          "post_04": 0.7994379151762903,
+          "post_05": 0.7996697154471545,
+          "post_06": 0.7971770091556459,
+          "post_07": 0.797138477261114,
+          "post_08": 0.800383631713555,
+          "pre_01": 0.8028723945094052,
+          "pre_02": 0.7987461617195496,
+          "pre_03": 0.7982881962187021,
+          "pre_04": 0.7992385786802031,
+          "warmup": 0.7793938812083974
+        },
+        "valid": true
+      },
+      "created_at": "2026-09-19T11:28:04,099820564+00:00",
+      "errors": [],
+      "phases": {
+        "intervention": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 8,
+            "gateway_instance_id": "factorial-gate_placebo_blocked-1789817344203208172",
+            "max_tokens": 2,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "intervention",
+            "principal": "attacker",
+            "requests": 4096,
+            "return_token_ids": true,
+            "run_id": "gate_placebo_blocked",
+            "seed": 20260918,
+            "tenant_key_sha256": "c59a154ef91be99ff9abfd3c180322341f11c8fd92eccc72c8cd7cf9dcc8dd94",
+            "upstream_marker": "factorial-33069-1789817284120810527"
+          },
+          "finished_ns": 1789817395543920062,
+          "started_ns": 1789817362272586766,
+          "summary": {
+            "accepted_draft_tokens": 3072,
+            "aggregate_output_tokens_per_second": 246.23990497329856,
+            "authenticated_tenant_counts": {
+              "attacker": 4096
+            },
+            "completion_tokens": 8192,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.1875,
+            "draft_tokens": 16384,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_placebo_blocked-1789817344203208172": 4096
+            },
+            "latency_ms_p50": 64.840281,
+            "latency_ms_p95": 66.59810775,
+            "latency_ms_p99": 67.60697280000001,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 512,
+            "per_request_tokens_per_second_p50": 39.91495719184908,
+            "per_request_tokens_per_second_p95": 42.696637444841755,
+            "phase_output_digest": "8a90b2e51b4aca51c24e7af04ceef91ba95576a1458fe8f3ece893a35f3322f3",
+            "requests": 4096,
+            "spec_requests": 4096,
+            "spec_steps": 4096,
+            "successful": 4096,
+            "unique_audit_event_ids": 4096,
+            "unique_output_count": 8,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817284120810527": 4096
+            },
+            "wall_seconds": 33.268368914
+          }
+        },
+        "post_01": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_placebo_blocked-1789817344203208172",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "post_01",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_placebo_blocked",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817284120810527"
+          },
+          "finished_ns": 1789817397386343604,
+          "started_ns": 1789817395853080893,
+          "summary": {
+            "accepted_draft_tokens": 2345,
+            "aggregate_output_tokens_per_second": 2676.8419441401393,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.31844106463878324,
+            "draft_tokens": 7364,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_placebo_blocked-1789817344203208172": 128
+            },
+            "latency_ms_p50": 311.47711449999997,
+            "latency_ms_p95": 419.6755895,
+            "latency_ms_p99": 483.09360938000003,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 115.37223708640246,
+            "per_request_tokens_per_second_p95": 146.29963090095285,
+            "phase_output_digest": "598d1f9a7c393cd92a5f9893b09ca289af2b71eaab352f10fea07ed4080668bc",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 1841,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 8,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817284120810527": 128
+            },
+            "wall_seconds": 1.530161319
+          }
+        },
+        "post_02": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_placebo_blocked-1789817344203208172",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "post_02",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_placebo_blocked",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817284120810527"
+          },
+          "finished_ns": 1789817399028686549,
+          "started_ns": 1789817397485895212,
+          "summary": {
+            "accepted_draft_tokens": 2325,
+            "aggregate_output_tokens_per_second": 2660.077115323845,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.31384989200863933,
+            "draft_tokens": 7408,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_placebo_blocked-1789817344203208172": 128
+            },
+            "latency_ms_p50": 324.87277500000005,
+            "latency_ms_p95": 422.88079085,
+            "latency_ms_p99": 505.24035954,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 112.92802819351775,
+            "per_request_tokens_per_second_p95": 145.67509269788138,
+            "phase_output_digest": "92c7dedaf85b2e729bae8260b2f0ca64f5bffc13bdb060f9d1f04dd14ee6bf2c",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 1852,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 10,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817284120810527": 128
+            },
+            "wall_seconds": 1.539804984
+          }
+        },
+        "post_03": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_placebo_blocked-1789817344203208172",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "post_03",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_placebo_blocked",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817284120810527"
+          },
+          "finished_ns": 1789817400664226415,
+          "started_ns": 1789817399129659050,
+          "summary": {
+            "accepted_draft_tokens": 2328,
+            "aggregate_output_tokens_per_second": 2674.383377035822,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.3142548596112311,
+            "draft_tokens": 7408,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_placebo_blocked-1789817344203208172": 128
+            },
+            "latency_ms_p50": 320.1910615,
+            "latency_ms_p95": 421.44249990000003,
+            "latency_ms_p99": 440.85473933000003,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 107.59567801896964,
+            "per_request_tokens_per_second_p95": 146.19447894040655,
+            "phase_output_digest": "d533a3fa4c99f9ee9a4b9f2c0509e58ec2103cb38e57dfaebc9cd8113ce18fbf",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 1852,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 10,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817284120810527": 128
+            },
+            "wall_seconds": 1.531568
+          }
+        },
+        "post_04": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_placebo_blocked-1789817344203208172",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "post_04",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_placebo_blocked",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817284120810527"
+          },
+          "finished_ns": 1789817402303040964,
+          "started_ns": 1789817400765035285,
+          "summary": {
+            "accepted_draft_tokens": 2339,
+            "aggregate_output_tokens_per_second": 2668.464975790013,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.31693766937669376,
+            "draft_tokens": 7380,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_placebo_blocked-1789817344203208172": 128
+            },
+            "latency_ms_p50": 313.558663,
+            "latency_ms_p95": 424.3641101,
+            "latency_ms_p99": 446.4527886000001,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 108.64406232060864,
+            "per_request_tokens_per_second_p95": 145.92159269496452,
+            "phase_output_digest": "71ec0bc3d60a9d3722db4ef37f4d0232d2500bf710da89482fc1d3176928a7c2",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 1845,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 10,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817284120810527": 128
+            },
+            "wall_seconds": 1.534964872
+          }
+        },
+        "post_05": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_placebo_blocked-1789817344203208172",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "post_05",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_placebo_blocked",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817284120810527"
+          },
+          "finished_ns": 1789817403942693100,
+          "started_ns": 1789817402403131425,
+          "summary": {
+            "accepted_draft_tokens": 2321,
+            "aggregate_output_tokens_per_second": 2665.887358020647,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.31263469827586204,
+            "draft_tokens": 7424,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_placebo_blocked-1789817344203208172": 128
+            },
+            "latency_ms_p50": 322.120892,
+            "latency_ms_p95": 424.2998701,
+            "latency_ms_p99": 442.33241497,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 107.75007878345133,
+            "per_request_tokens_per_second_p95": 147.28833441251513,
+            "phase_output_digest": "7be4a473d1e71de011ad33c2cdbf86931a978432c57aecda88d0e5c3244ec0ed",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 1856,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 12,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817284120810527": 128
+            },
+            "wall_seconds": 1.536449013
+          }
+        },
+        "post_06": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_placebo_blocked-1789817344203208172",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "post_06",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_placebo_blocked",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817284120810527"
+          },
+          "finished_ns": 1789817405582994191,
+          "started_ns": 1789817404042276196,
+          "summary": {
+            "accepted_draft_tokens": 2326,
+            "aggregate_output_tokens_per_second": 2663.847299937839,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.31347708894878706,
+            "draft_tokens": 7420,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_placebo_blocked-1789817344203208172": 128
+            },
+            "latency_ms_p50": 322.51869999999997,
+            "latency_ms_p95": 423.6904139999999,
+            "latency_ms_p99": 503.35412421,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 113.52566120038821,
+            "per_request_tokens_per_second_p95": 145.658975013469,
+            "phase_output_digest": "9ed55defa43055ed347fc632e86c916851c3af2451234039ac5e18ddd05bba19",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 1855,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 10,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817284120810527": 128
+            },
+            "wall_seconds": 1.537625674
+          }
+        },
+        "post_07": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_placebo_blocked-1789817344203208172",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "post_07",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_placebo_blocked",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817284120810527"
+          },
+          "finished_ns": 1789817407223180994,
+          "started_ns": 1789817405683554524,
+          "summary": {
+            "accepted_draft_tokens": 2340,
+            "aggregate_output_tokens_per_second": 2666.115662486743,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.3170731707317073,
+            "draft_tokens": 7380,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_placebo_blocked-1789817344203208172": 128
+            },
+            "latency_ms_p50": 320.87553249999996,
+            "latency_ms_p95": 420.79828039999995,
+            "latency_ms_p99": 448.90760313,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 110.59578784462836,
+            "per_request_tokens_per_second_p95": 146.29578129052197,
+            "phase_output_digest": "be1c0b7b0c3c414457a87e08113d2711486458c50c264c8a14fc1762f19810a9",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 1845,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 9,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817284120810527": 128
+            },
+            "wall_seconds": 1.536317444
+          }
+        },
+        "post_08": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_placebo_blocked-1789817344203208172",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "post_08",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_placebo_blocked",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817284120810527"
+          },
+          "finished_ns": 1789817408856984561,
+          "started_ns": 1789817407323576245,
+          "summary": {
+            "accepted_draft_tokens": 2343,
+            "aggregate_output_tokens_per_second": 2676.7358848521753,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.31782419967444386,
+            "draft_tokens": 7372,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_placebo_blocked-1789817344203208172": 128
+            },
+            "latency_ms_p50": 311.488417,
+            "latency_ms_p95": 420.08471080000004,
+            "latency_ms_p99": 483.29306572,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 115.41535883879007,
+            "per_request_tokens_per_second_p95": 146.5470186837405,
+            "phase_output_digest": "598d1f9a7c393cd92a5f9893b09ca289af2b71eaab352f10fea07ed4080668bc",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 1843,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 8,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817284120810527": 128
+            },
+            "wall_seconds": 1.530221948
+          }
+        },
+        "pre_01": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_placebo_blocked-1789817344203208172",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "pre_01",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_placebo_blocked",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817284120810527"
+          },
+          "finished_ns": 1789817357248417910,
+          "started_ns": 1789817355713482930,
+          "summary": {
+            "accepted_draft_tokens": 2322,
+            "aggregate_output_tokens_per_second": 2674.014594155378,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.3129380053908356,
+            "draft_tokens": 7420,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_placebo_blocked-1789817344203208172": 128
+            },
+            "latency_ms_p50": 315.6806995,
+            "latency_ms_p95": 421.95591945,
+            "latency_ms_p99": 438.65664238000005,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 107.27650700213285,
+            "per_request_tokens_per_second_p95": 147.44038517390604,
+            "phase_output_digest": "1382738e9c80c2b6ff4bac63ef3b59cf47bd898e5ee5d09149688b3569492982",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 1855,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 11,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817284120810527": 128
+            },
+            "wall_seconds": 1.531779224
+          }
+        },
+        "pre_02": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_placebo_blocked-1789817344203208172",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "pre_02",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_placebo_blocked",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817284120810527"
+          },
+          "finished_ns": 1789817358879441249,
+          "started_ns": 1789817357349545223,
+          "summary": {
+            "accepted_draft_tokens": 2343,
+            "aggregate_output_tokens_per_second": 2682.49951931128,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.31799674267100975,
+            "draft_tokens": 7368,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_placebo_blocked-1789817344203208172": 128
+            },
+            "latency_ms_p50": 308.98360249999996,
+            "latency_ms_p95": 419.45746695,
+            "latency_ms_p99": 463.00342669,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 114.56577974497391,
+            "per_request_tokens_per_second_p95": 146.89173324372905,
+            "phase_output_digest": "598d1f9a7c393cd92a5f9893b09ca289af2b71eaab352f10fea07ed4080668bc",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 1842,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 8,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817284120810527": 128
+            },
+            "wall_seconds": 1.526934104
+          }
+        },
+        "pre_03": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_placebo_blocked-1789817344203208172",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "pre_03",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_placebo_blocked",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817284120810527"
+          },
+          "finished_ns": 1789817360501087159,
+          "started_ns": 1789817358980255751,
+          "summary": {
+            "accepted_draft_tokens": 2346,
+            "aggregate_output_tokens_per_second": 2698.7103077570296,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.3178861788617886,
+            "draft_tokens": 7380,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_placebo_blocked-1789817344203208172": 128
+            },
+            "latency_ms_p50": 306.78348700000004,
+            "latency_ms_p95": 423.02789395,
+            "latency_ms_p99": 439.55748876000007,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 112.27876167473354,
+            "per_request_tokens_per_second_p95": 145.4936906887609,
+            "phase_output_digest": "598d1f9a7c393cd92a5f9893b09ca289af2b71eaab352f10fea07ed4080668bc",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 1845,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 8,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817284120810527": 128
+            },
+            "wall_seconds": 1.517762017
+          }
+        },
+        "pre_04": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_placebo_blocked-1789817344203208172",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "pre_04",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_placebo_blocked",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817284120810527"
+          },
+          "finished_ns": 1789817362151702864,
+          "started_ns": 1789817360603114183,
+          "summary": {
+            "accepted_draft_tokens": 2320,
+            "aggregate_output_tokens_per_second": 2650.263346529676,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.31216361679224974,
+            "draft_tokens": 7432,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_placebo_blocked-1789817344203208172": 128
+            },
+            "latency_ms_p50": 323.7491755,
+            "latency_ms_p95": 420.95324785,
+            "latency_ms_p99": 444.53181157999995,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 104.77607105125901,
+            "per_request_tokens_per_second_p95": 146.33471413478017,
+            "phase_output_digest": "7be4a473d1e71de011ad33c2cdbf86931a978432c57aecda88d0e5c3244ec0ed",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 1858,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 12,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817284120810527": 128
+            },
+            "wall_seconds": 1.545506791
+          }
+        },
+        "warmup": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_placebo_blocked-1789817344203208172",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "warmup",
+            "principal": "victim",
+            "requests": 1024,
+            "return_token_ids": true,
+            "run_id": "gate_placebo_blocked",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817284120810527"
+          },
+          "finished_ns": 1789817355550894002,
+          "started_ns": 1789817344596514298,
+          "summary": {
+            "accepted_draft_tokens": 18783,
+            "aggregate_output_tokens_per_second": 2992.23587213735,
+            "authenticated_tenant_counts": {
+              "victim": 1024
+            },
+            "completion_tokens": 32768,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.3188314774579033,
+            "draft_tokens": 58912,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_placebo_blocked-1789817344203208172": 1024
+            },
+            "latency_ms_p50": 327.62063950000004,
+            "latency_ms_p95": 423.46396495,
+            "latency_ms_p99": 833.15677892,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 128,
+            "per_request_tokens_per_second_p50": 102.81226820277716,
+            "per_request_tokens_per_second_p95": 145.19180834257264,
+            "phase_output_digest": "15da49dcf0e400735e03ca111617fa84b2964d896df833d53aae8a9855b39e1a",
+            "requests": 1024,
+            "spec_requests": 1024,
+            "spec_steps": 14728,
+            "successful": 1024,
+            "unique_audit_event_ids": 1024,
+            "unique_output_count": 8,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817284120810527": 1024
+            },
+            "wall_seconds": 10.951008343
+          }
+        }
+      },
+      "run_name": "gate_placebo_blocked",
+      "states": {
+        "intervention": {
+          "available": true,
+          "counts": [
+            32.0,
+            14.0,
+            9.0,
+            6.0
+          ],
+          "grad": [
+            [
+              -8.52148723602295,
+              -6.716187953948975
+            ],
+            [
+              -0.249202698469162,
+              1.000326156616211
+            ],
+            [
+              -0.11907864362001419,
+              -1.1082611083984375
+            ],
+            [
+              0.15510772168636322,
+              0.45390599966049194
+            ]
+          ],
+          "info": [
+            [
+              8.862500190734863,
+              3.801929473876953,
+              5.514153003692627
+            ],
+            [
+              4.605017185211182,
+              1.0604958534240723,
+              2.08416748046875
+            ],
+            [
+              2.1705548763275146,
+              0.5536167621612549,
+              1.0974335670471191
+            ],
+            [
+              0.6950887441635132,
+              0.17604592442512512,
+              0.3482004702091217
+            ]
+          ],
+          "intercepts": [
+            -0.01690366305410862,
+            -0.2485530972480774,
+            0.38143518567085266,
+            1.1451925039291382
+          ],
+          "refits": 9,
+          "slope": 0.8882855772972107,
+          "steps_since_refit": 12,
+          "updates_enabled": false
+        },
+        "pre_intervention": {
+          "available": true,
+          "counts": [
+            32.0,
+            14.0,
+            9.0,
+            6.0
+          ],
+          "grad": [
+            [
+              -8.52148723602295,
+              -6.716187953948975
+            ],
+            [
+              -0.249202698469162,
+              1.000326156616211
+            ],
+            [
+              -0.11907864362001419,
+              -1.1082611083984375
+            ],
+            [
+              0.15510772168636322,
+              0.45390599966049194
+            ]
+          ],
+          "info": [
+            [
+              8.862500190734863,
+              3.801929473876953,
+              5.514153003692627
+            ],
+            [
+              4.605017185211182,
+              1.0604958534240723,
+              2.08416748046875
+            ],
+            [
+              2.1705548763275146,
+              0.5536167621612549,
+              1.0974335670471191
+            ],
+            [
+              0.6950887441635132,
+              0.17604592442512512,
+              0.3482004702091217
+            ]
+          ],
+          "intercepts": [
+            -0.01690366305410862,
+            -0.2485530972480774,
+            0.38143518567085266,
+            1.1451925039291382
+          ],
+          "refits": 9,
+          "slope": 0.8882855772972107,
+          "steps_since_refit": 12,
+          "updates_enabled": false
+        },
+        "reenabled": {
+          "available": true,
+          "counts": [
+            32.0,
+            14.0,
+            9.0,
+            6.0
+          ],
+          "grad": [
+            [
+              -8.52148723602295,
+              -6.716187953948975
+            ],
+            [
+              -0.249202698469162,
+              1.000326156616211
+            ],
+            [
+              -0.11907864362001419,
+              -1.1082611083984375
+            ],
+            [
+              0.15510772168636322,
+              0.45390599966049194
+            ]
+          ],
+          "info": [
+            [
+              8.862500190734863,
+              3.801929473876953,
+              5.514153003692627
+            ],
+            [
+              4.605017185211182,
+              1.0604958534240723,
+              2.08416748046875
+            ],
+            [
+              2.1705548763275146,
+              0.5536167621612549,
+              1.0974335670471191
+            ],
+            [
+              0.6950887441635132,
+              0.17604592442512512,
+              0.3482004702091217
+            ]
+          ],
+          "intercepts": [
+            -0.01690366305410862,
+            -0.2485530972480774,
+            0.38143518567085266,
+            1.1451925039291382
+          ],
+          "refits": 9,
+          "slope": 0.8882855772972107,
+          "steps_since_refit": 12,
+          "updates_enabled": true
+        }
+      },
+      "update_gates": {
+        "after_intervention": {
+          "after": true,
+          "before": false
+        },
+        "before_intervention": {
+          "after": false,
+          "before": true
+        }
+      },
+      "update_mode": "blocked",
+      "valid": true,
+      "workload": "placebo"
+    },
+    "gate_placebo_shared": {
+      "arm": "placebo_shared",
+      "blocked_state_invariant": null,
+      "budgets": {
+        "errors": [],
+        "ratios": {
+          "intervention": 1.0,
+          "post_01": 0.6562947067238912,
+          "post_02": 0.5980093676814988,
+          "post_03": 0.6993226898887276,
+          "post_04": 0.5259799453053783,
+          "post_05": 0.5262197902416781,
+          "post_06": 0.5271291208791209,
+          "post_07": 0.5269718948322756,
+          "post_08": 0.5263277349069451,
+          "pre_01": 0.8011770726714432,
+          "pre_02": 0.8001278772378516,
+          "pre_03": 0.8009708737864077,
+          "pre_04": 0.799642674834099,
+          "warmup": 0.7796880991946823
+        },
+        "valid": true
+      },
+      "created_at": "2026-09-19T11:30:09,912699384+00:00",
+      "errors": [],
+      "phases": {
+        "intervention": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 8,
+            "gateway_instance_id": "factorial-gate_placebo_shared-1789817470016649624",
+            "max_tokens": 2,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "intervention",
+            "principal": "attacker",
+            "requests": 4096,
+            "return_token_ids": true,
+            "run_id": "gate_placebo_shared",
+            "seed": 20260918,
+            "tenant_key_sha256": "c59a154ef91be99ff9abfd3c180322341f11c8fd92eccc72c8cd7cf9dcc8dd94",
+            "upstream_marker": "factorial-33069-1789817409934880008"
+          },
+          "finished_ns": 1789817521369375353,
+          "started_ns": 1789817488084831379,
+          "summary": {
+            "accepted_draft_tokens": 3072,
+            "aggregate_output_tokens_per_second": 246.14236008480634,
+            "authenticated_tenant_counts": {
+              "attacker": 4096
+            },
+            "completion_tokens": 8192,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.1875,
+            "draft_tokens": 16384,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_placebo_shared-1789817470016649624": 4096
+            },
+            "latency_ms_p50": 64.830479,
+            "latency_ms_p95": 66.95308175,
+            "latency_ms_p99": 77.50027510000001,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 512,
+            "per_request_tokens_per_second_p50": 40.35215569301478,
+            "per_request_tokens_per_second_p95": 42.80024314644014,
+            "phase_output_digest": "8a90b2e51b4aca51c24e7af04ceef91ba95576a1458fe8f3ece893a35f3322f3",
+            "requests": 4096,
+            "spec_requests": 4096,
+            "spec_steps": 4096,
+            "successful": 4096,
+            "unique_audit_event_ids": 4096,
+            "unique_output_count": 8,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817409934880008": 4096
+            },
+            "wall_seconds": 33.281552989
+          }
+        },
+        "post_01": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_placebo_shared-1789817470016649624",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "post_01",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_placebo_shared",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817409934880008"
+          },
+          "finished_ns": 1789817523432224858,
+          "started_ns": 1789817521682126756,
+          "summary": {
+            "accepted_draft_tokens": 2081,
+            "aggregate_output_tokens_per_second": 2344.512909799041,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.26103863522328147,
+            "draft_tokens": 7972,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_placebo_shared-1789817470016649624": 128
+            },
+            "latency_ms_p50": 331.7612555,
+            "latency_ms_p95": 423.8541066,
+            "latency_ms_p99": 517.1476467400003,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 102.6197438904778,
+            "per_request_tokens_per_second_p95": 145.02022440802943,
+            "phase_output_digest": "41d95e90abf7b37715cfbeb9781b6d5f576cfe3b2645691d3e4e7268690de75c",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 1993,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 11,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817409934880008": 128
+            },
+            "wall_seconds": 1.747057985
+          }
+        },
+        "post_02": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_placebo_shared-1789817470016649624",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "post_02",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_placebo_shared",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817409934880008"
+          },
+          "finished_ns": 1789817525166204972,
+          "started_ns": 1789817523532961864,
+          "summary": {
+            "accepted_draft_tokens": 2021,
+            "aggregate_output_tokens_per_second": 2512.698567254185,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.24889162561576356,
+            "draft_tokens": 8120,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_placebo_shared-1789817470016649624": 128
+            },
+            "latency_ms_p50": 341.93027900000004,
+            "latency_ms_p95": 421.71330405,
+            "latency_ms_p99": 435.33766532000004,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 102.97812333971999,
+            "per_request_tokens_per_second_p95": 129.71102014228805,
+            "phase_output_digest": "45339f7e6e5e5c081b73650cdffcf4f52f0cbecbc1de38d6a993c284b367237d",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 2030,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 9,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817409934880008": 128
+            },
+            "wall_seconds": 1.630119925
+          }
+        },
+        "post_03": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_placebo_shared-1789817470016649624",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "post_03",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_placebo_shared",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817409934880008"
+          },
+          "finished_ns": 1789817526848138973,
+          "started_ns": 1789817525266456364,
+          "summary": {
+            "accepted_draft_tokens": 2108,
+            "aggregate_output_tokens_per_second": 2594.7221189409993,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.26887755102040817,
+            "draft_tokens": 7840,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_placebo_shared-1789817470016649624": 128
+            },
+            "latency_ms_p50": 330.3132115,
+            "latency_ms_p95": 427.8983274999999,
+            "latency_ms_p99": 474.16783659000004,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 103.20543833749674,
+            "per_request_tokens_per_second_p95": 146.36509540791758,
+            "phase_output_digest": "43927fb5bbd50dc99535caa3e0f2585973e29e662f2764990cc9fc7e3b92c0b6",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 1960,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 10,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817409934880008": 128
+            },
+            "wall_seconds": 1.578589079
+          }
+        },
+        "post_04": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_placebo_shared-1789817470016649624",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "post_04",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_placebo_shared",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817409934880008"
+          },
+          "finished_ns": 1789817528640964413,
+          "started_ns": 1789817526950735825,
+          "summary": {
+            "accepted_draft_tokens": 1951,
+            "aggregate_output_tokens_per_second": 2427.6002094148935,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.23237255836112433,
+            "draft_tokens": 8396,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_placebo_shared-1789817470016649624": 128
+            },
+            "latency_ms_p50": 363.3646725,
+            "latency_ms_p95": 419.34747185000003,
+            "latency_ms_p99": 452.62206805000005,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 92.72948730504115,
+            "per_request_tokens_per_second_p95": 126.32696005949879,
+            "phase_output_digest": "0e1e3f37838d7201a3c09c754a06f1845348f06244b72cf48f3785ce1bb72527",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 2099,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 12,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817409934880008": 128
+            },
+            "wall_seconds": 1.687262995
+          }
+        },
+        "post_05": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_placebo_shared-1789817470016649624",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "post_05",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_placebo_shared",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817409934880008"
+          },
+          "finished_ns": 1789817530435457906,
+          "started_ns": 1789817528742036350,
+          "summary": {
+            "accepted_draft_tokens": 1937,
+            "aggregate_output_tokens_per_second": 2423.083829921569,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.2309251311397234,
+            "draft_tokens": 8388,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_placebo_shared-1789817470016649624": 128
+            },
+            "latency_ms_p50": 364.4815535,
+            "latency_ms_p95": 420.68580614999996,
+            "latency_ms_p99": 455.85672065000006,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 92.05612328686493,
+            "per_request_tokens_per_second_p95": 126.61087635670188,
+            "phase_output_digest": "87a1e3cd2f55857db497af853950d9a06d15445e93ff5ba3aa4e9c75f59075e7",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 2097,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 11,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817409934880008": 128
+            },
+            "wall_seconds": 1.69040788
+          }
+        },
+        "post_06": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_placebo_shared-1789817470016649624",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "post_06",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_placebo_shared",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817409934880008"
+          },
+          "finished_ns": 1789817532139075847,
+          "started_ns": 1789817530535771562,
+          "summary": {
+            "accepted_draft_tokens": 1951,
+            "aggregate_output_tokens_per_second": 2559.5016954139855,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.2340451055662188,
+            "draft_tokens": 8336,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_placebo_shared-1789817470016649624": 128
+            },
+            "latency_ms_p50": 351.4917675,
+            "latency_ms_p95": 415.2031972,
+            "latency_ms_p99": 464.74901873000005,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 99.56032744782289,
+            "per_request_tokens_per_second_p95": 126.77209158881054,
+            "phase_output_digest": "46d02a039d6eaaccc1bcf9aac67250c3a69004302993efcfb2795f8944528a2c",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 2084,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 9,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817409934880008": 128
+            },
+            "wall_seconds": 1.600311501
+          }
+        },
+        "post_07": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_placebo_shared-1789817470016649624",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "post_07",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_placebo_shared",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817409934880008"
+          },
+          "finished_ns": 1789817533909671729,
+          "started_ns": 1789817532239477449,
+          "summary": {
+            "accepted_draft_tokens": 1929,
+            "aggregate_output_tokens_per_second": 2456.8558581616276,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.22844623401231645,
+            "draft_tokens": 8444,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_placebo_shared-1789817470016649624": 128
+            },
+            "latency_ms_p50": 370.87168499999996,
+            "latency_ms_p95": 418.34006575,
+            "latency_ms_p99": 520.60476479,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 91.11461960598291,
+            "per_request_tokens_per_second_p95": 126.34211375869086,
+            "phase_output_digest": "e45f99cf4be008b7739ba266332d66ca54d4006c75f3479d28adeae29aaf8412",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 2111,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 11,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817409934880008": 128
+            },
+            "wall_seconds": 1.667171473
+          }
+        },
+        "post_08": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_placebo_shared-1789817470016649624",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "post_08",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_placebo_shared",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817409934880008"
+          },
+          "finished_ns": 1789817535669320664,
+          "started_ns": 1789817534009399995,
+          "summary": {
+            "accepted_draft_tokens": 1933,
+            "aggregate_output_tokens_per_second": 2472.140378173743,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.22946343779677114,
+            "draft_tokens": 8424,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_placebo_shared-1789817470016649624": 128
+            },
+            "latency_ms_p50": 359.873084,
+            "latency_ms_p95": 419.04611094999996,
+            "latency_ms_p99": 523.3429623400001,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 93.25761152500166,
+            "per_request_tokens_per_second_p95": 126.51274377301917,
+            "phase_output_digest": "895e0df6755758516ac5f89d86f5301f7ad73c67c628600e452925c55ae18635",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 2106,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 11,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817409934880008": 128
+            },
+            "wall_seconds": 1.65686384
+          }
+        },
+        "pre_01": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_placebo_shared-1789817470016649624",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "pre_01",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_placebo_shared",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817409934880008"
+          },
+          "finished_ns": 1789817483070913821,
+          "started_ns": 1789817481541501215,
+          "summary": {
+            "accepted_draft_tokens": 2347,
+            "aggregate_output_tokens_per_second": 2683.6525414200705,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.31853963083604775,
+            "draft_tokens": 7368,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_placebo_shared-1789817470016649624": 128
+            },
+            "latency_ms_p50": 311.15887050000003,
+            "latency_ms_p95": 421.0397102,
+            "latency_ms_p99": 460.6735093600001,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 112.07508722652568,
+            "per_request_tokens_per_second_p95": 146.3068765628051,
+            "phase_output_digest": "598d1f9a7c393cd92a5f9893b09ca289af2b71eaab352f10fea07ed4080668bc",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 1842,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 8,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817409934880008": 128
+            },
+            "wall_seconds": 1.526278062
+          }
+        },
+        "pre_02": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_placebo_shared-1789817470016649624",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "pre_02",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_placebo_shared",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817409934880008"
+          },
+          "finished_ns": 1789817484689668424,
+          "started_ns": 1789817483171440591,
+          "summary": {
+            "accepted_draft_tokens": 2343,
+            "aggregate_output_tokens_per_second": 2703.274162502994,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.31782419967444386,
+            "draft_tokens": 7372,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_placebo_shared-1789817470016649624": 128
+            },
+            "latency_ms_p50": 309.1781205,
+            "latency_ms_p95": 420.88876319999997,
+            "latency_ms_p99": 462.93235374000005,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 115.01606280632701,
+            "per_request_tokens_per_second_p95": 146.28685111527597,
+            "phase_output_digest": "598d1f9a7c393cd92a5f9893b09ca289af2b71eaab352f10fea07ed4080668bc",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 1843,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 8,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817409934880008": 128
+            },
+            "wall_seconds": 1.515199626
+          }
+        },
+        "pre_03": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_placebo_shared-1789817470016649624",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "pre_03",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_placebo_shared",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817409934880008"
+          },
+          "finished_ns": 1789817486325194821,
+          "started_ns": 1789817484790291841,
+          "summary": {
+            "accepted_draft_tokens": 2346,
+            "aggregate_output_tokens_per_second": 2673.78775724495,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.3177139761646804,
+            "draft_tokens": 7384,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_placebo_shared-1789817470016649624": 128
+            },
+            "latency_ms_p50": 311.436914,
+            "latency_ms_p95": 422.35655205,
+            "latency_ms_p99": 477.68919081999996,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 110.81244156917265,
+            "per_request_tokens_per_second_p95": 145.50121466137875,
+            "phase_output_digest": "598d1f9a7c393cd92a5f9893b09ca289af2b71eaab352f10fea07ed4080668bc",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 1846,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 8,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817409934880008": 128
+            },
+            "wall_seconds": 1.531909176
+          }
+        },
+        "pre_04": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_placebo_shared-1789817470016649624",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "pre_04",
+            "principal": "victim",
+            "requests": 128,
+            "return_token_ids": true,
+            "run_id": "gate_placebo_shared",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817409934880008"
+          },
+          "finished_ns": 1789817487964441243,
+          "started_ns": 1789817486424991882,
+          "summary": {
+            "accepted_draft_tokens": 2338,
+            "aggregate_output_tokens_per_second": 2666.100783303925,
+            "authenticated_tenant_counts": {
+              "victim": 128
+            },
+            "completion_tokens": 4096,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.31645912290200323,
+            "draft_tokens": 7388,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_placebo_shared-1789817470016649624": 128
+            },
+            "latency_ms_p50": 315.0215985,
+            "latency_ms_p95": 419.94762590000005,
+            "latency_ms_p99": 487.98509996000007,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 16,
+            "per_request_tokens_per_second_p50": 114.57861891220678,
+            "per_request_tokens_per_second_p95": 146.18986023824667,
+            "phase_output_digest": "598d1f9a7c393cd92a5f9893b09ca289af2b71eaab352f10fea07ed4080668bc",
+            "requests": 128,
+            "spec_requests": 128,
+            "spec_steps": 1847,
+            "successful": 128,
+            "unique_audit_event_ids": 128,
+            "unique_output_count": 8,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817409934880008": 128
+            },
+            "wall_seconds": 1.536326018
+          }
+        },
+        "warmup": {
+          "config": {
+            "allowed_token_id": null,
+            "base_url": "http://127.0.0.1:8001/v1",
+            "concurrency": 32,
+            "gateway_instance_id": "factorial-gate_placebo_shared-1789817470016649624",
+            "max_tokens": 32,
+            "model": "Qwen/Qwen3-4B",
+            "phase": "warmup",
+            "principal": "victim",
+            "requests": 1024,
+            "return_token_ids": true,
+            "run_id": "gate_placebo_shared",
+            "seed": 20260918,
+            "tenant_key_sha256": "1bb8e8e97103f673708cdceda0a9b206c6b4fef87e2c33043d79e12b63a33b8b",
+            "upstream_marker": "factorial-33069-1789817409934880008"
+          },
+          "finished_ns": 1789817481378426376,
+          "started_ns": 1789817470411633600,
+          "summary": {
+            "accepted_draft_tokens": 18754,
+            "aggregate_output_tokens_per_second": 2988.848068790034,
+            "authenticated_tenant_counts": {
+              "victim": 1024
+            },
+            "completion_tokens": 32768,
+            "control_token_fraction": null,
+            "draft_acceptance_rate": 0.317864406779661,
+            "draft_tokens": 59000,
+            "errors": [],
+            "failed": 0,
+            "gateway_instance_counts": {
+              "factorial-gate_placebo_shared-1789817470016649624": 1024
+            },
+            "latency_ms_p50": 329.219583,
+            "latency_ms_p95": 423.88116355,
+            "latency_ms_p99": 831.0139002499999,
+            "missing_audit_event_ids": 0,
+            "most_common_output_count": 128,
+            "per_request_tokens_per_second_p50": 102.57794551835676,
+            "per_request_tokens_per_second_p95": 144.989008418388,
+            "phase_output_digest": "ed61a56f7b85ef9ff0b28086b8da0138d7d180bd68cefd5cabfe3d793f1184f6",
+            "requests": 1024,
+            "spec_requests": 1024,
+            "spec_steps": 14750,
+            "successful": 1024,
+            "unique_audit_event_ids": 1024,
+            "unique_output_count": 10,
+            "upstream_marker_counts": {
+              "factorial-33069-1789817409934880008": 1024
+            },
+            "wall_seconds": 10.963421106
+          }
+        }
+      },
+      "run_name": "gate_placebo_shared",
+      "states": {
+        "intervention": {
+          "available": true,
+          "counts": [
+            119.0,
+            60.0,
+            15.0,
+            15.0
+          ],
+          "grad": [
+            [
+              -1.6933029890060425,
+              0.42204785346984863
+            ],
+            [
+              1.0158511400222778,
+              -8.940696716308594e-07
+            ],
+            [
+              -0.010782679542899132,
+              0.00794827938079834
+            ],
+            [
+              0.01701291836798191,
+              -0.012043662369251251
+            ]
+          ],
+          "info": [
+            [
+              40.282203674316406,
+              -1.1079118251800537,
+              29.336227416992188
+            ],
+            [
+              9.270631790161133,
+              -0.6539897322654724,
+              11.178861618041992
+            ],
+            [
+              0.014620091766119003,
+              -0.010776964016258717,
+              0.007944067940115929
+            ],
+            [
+              0.024013210088014603,
+              -0.01699925772845745,
+              0.012033992446959019
+            ]
+          ],
+          "intercepts": [
+            0.009860535152256489,
+            -1.0786263942718506,
+            7.816478729248047,
+            -6.841100692749023
+          ],
+          "refits": 29,
+          "slope": 0.2020123302936554,
+          "steps_since_refit": 59,
+          "updates_enabled": true
+        },
+        "pre_intervention": {
+          "available": true,
+          "counts": [
+            27.0,
+            12.0,
+            9.0,
+            7.0
+          ],
+          "grad": [
+            [
+              -5.120261192321777,
+              -5.962518215179443
+            ],
+            [
+              0.7661357522010803,
+              1.1115446090698242
+            ],
+            [
+              0.48254430294036865,
+              0.17538028955459595
+            ],
+            [
+              -1.3845458030700684,
+              0.14716100692749023
+            ]
+          ],
+          "info": [
+            [
+              6.880813121795654,
+              3.4089548587799072,
+              4.999885082244873
+            ],
+            [
+              3.5752251148223877,
+              1.4898555278778076,
+              2.10845947265625
+            ],
+            [
+              2.5639915466308594,
+              0.48603275418281555,
+              1.1641767024993896
+            ],
+            [
+              1.3653738498687744,
+              -0.13629794120788574,
+              0.6987941265106201
+            ]
+          ],
+          "intercepts": [
+            0.0029193926602602005,
+            -0.21059633791446686,
+            0.36697953939437866,
+            1.1609537601470947
+          ],
+          "refits": 9,
+          "slope": 0.876969039440155,
+          "steps_since_refit": 11,
+          "updates_enabled": true
+        },
+        "reenabled": {
+          "available": true,
+          "counts": [
+            119.0,
+            60.0,
+            15.0,
+            15.0
+          ],
+          "grad": [
+            [
+              -1.6933029890060425,
+              0.42204785346984863
+            ],
+            [
+              1.0158511400222778,
+              -8.940696716308594e-07
+            ],
+            [
+              -0.010782679542899132,
+              0.00794827938079834
+            ],
+            [
+              0.01701291836798191,
+              -0.012043662369251251
+            ]
+          ],
+          "info": [
+            [
+              40.282203674316406,
+              -1.1079118251800537,
+              29.336227416992188
+            ],
+            [
+              9.270631790161133,
+              -0.6539897322654724,
+              11.178861618041992
+            ],
+            [
+              0.014620091766119003,
+              -0.010776964016258717,
+              0.007944067940115929
+            ],
+            [
+              0.024013210088014603,
+              -0.01699925772845745,
+              0.012033992446959019
+            ]
+          ],
+          "intercepts": [
+            0.009860535152256489,
+            -1.0786263942718506,
+            7.816478729248047,
+            -6.841100692749023
+          ],
+          "refits": 29,
+          "slope": 0.2020123302936554,
+          "steps_since_refit": 59,
+          "updates_enabled": true
+        }
+      },
+      "update_gates": {
+        "after_intervention": {
+          "after": true,
+          "before": true
+        },
+        "before_intervention": {
+          "after": true,
+          "before": true
+        }
+      },
+      "update_mode": "shared",
+      "valid": true,
+      "workload": "placebo"
+    }
+  },
+  "mechanism_gate": {
+    "checks": {
+      "attack_acceptance_at_most_0_05": true,
+      "attack_acceptance_difference_at_most_0_02": true,
+      "both_blocked_states_invariant": true,
+      "intercept0_interaction_at_most_minus_0_50": true,
+      "mean_budget_interaction_at_most_minus_0_05": true,
+      "placebo_acceptance_margins_at_least_0_10": true
+    },
+    "observed": {
+      "acceptance_rates": {
+        "attack_blocked": 0.0,
+        "attack_shared": 0.0,
+        "placebo_blocked": 0.1875,
+        "placebo_shared": 0.1875
+      },
+      "intercept0_deltas": {
+        "attack_blocked": 0.0,
+        "attack_shared": -13.843900927342474,
+        "placebo_blocked": 0.0,
+        "placebo_shared": 0.006941142491996288
+      },
+      "intercept0_interaction": -13.85084206983447,
+      "mean_normalized_post_budget_interaction": -0.5163087954134407,
+      "normalized_post_budget_interactions": {
+        "post_01": -0.4514274231764901,
+        "post_02": -0.12165445611852277,
+        "post_03": -0.8259527966408085,
+        "post_04": -0.6167122391135439,
+        "post_05": -0.6015573817056884,
+        "post_06": -0.494253847850497,
+        "post_07": -0.5532298344655474,
+        "post_08": -0.46568238423642727
+      },
+      "normalized_post_budget_trajectories": {
+        "attack_blocked": {
+          "post_01": 0.998516732803825,
+          "post_02": 1.0006515073147109,
+          "post_03": 0.9978700850867566,
+          "post_04": 1.001675258119161,
+          "post_05": 1.0034993219370643,
+          "post_06": 0.9992419922479358,
+          "post_07": 1.0002083462426061,
+          "post_08": 1.001673309243614
+        },
+        "attack_shared": {
+          "post_01": 0.3696759818269527,
+          "post_02": 0.6295816438137175,
+          "post_03": 0.041587295371756976,
+          "post_04": 0.04247964871027341,
+          "post_05": 0.059468368724132595,
+          "post_06": 0.1667672704199108,
+          "post_07": 0.10860940073336375,
+          "post_08": 0.19275956974359865
+        },
+        "placebo_blocked": {
+          "post_01": 0.9972901697940015,
+          "post_02": 0.9964792292206365,
+          "post_03": 1.0039595875936391,
+          "post_04": 0.9995643616408613,
+          "post_05": 0.999854189387802,
+          "post_06": 0.9967374740985597,
+          "post_07": 0.9966892963628914,
+          "post_08": 1.0007468231290129
+        },
+        "placebo_shared": {
+          "post_01": 0.8198768419936193,
+          "post_02": 0.7470638218381659,
+          "post_03": 0.873629594519448,
+          "post_04": 0.6570809913455176,
+          "post_05": 0.6573806178805589,
+          "post_06": 0.6585166001210317,
+          "post_07": 0.6583201853191964,
+          "post_08": 0.6575154678654246
+        }
+      },
+      "placebo_minus_attack_acceptance": {
+        "blocked": 0.1875,
+        "shared": 0.1875
+      }
+    },
+    "pass": true
+  },
+  "performance": {
+    "errors": [],
+    "not_evaluated": true,
+    "signal": false,
+    "valid": true
+  },
+  "protocol_version": "avep-factorial-confirmatory-v2",
+  "schema_version": 2,
+  "valid": true
+}

@@ -1,0 +1,12 @@
+vllm_sha=4fe9e6f6e5647a159c9e65e4f3bf33dec5d12e1c
+paper_patch_sha256=4cbc2736357f47fd5305e125854d4eb2a681d0834599046888dada8bb4b78450
+causal_patch_sha256=a292236003b211cdfd742630080fbb0896855a2f84794fc99bcccf95ac8166b1
+vllm_version=0.29.1rc1.dev190+g4fe9e6f6e.d20260918.precompiled
+Python 3.12.10
+uv 0.12.16 (x86_64-unknown-linux-gnu)
+NVIDIA L40S, 580.126.09, 46068 MiB
+7956e41938f37e709bceff728aa86c5328f48e8a6f132b0d97b76614a99b733b  /home/ubuntu/avep/run_causal_ablation.sh
+9170e7f0e554bf5a735eece42f404d126da914617d7d690adf2de52f770951e0  /home/ubuntu/avep/analyze_causal_ablation.py
+5943e3dca28a5564d2cfe79bd06248c6df9e5ad2d96e5109850cb76bd93f9d75  /home/ubuntu/avep/test_analyze_causal_ablation.py
+2141de977591643daeb13a559243e11843da8558f2b053799df49cd134e2db81  /home/ubuntu/avep/tenant_probe.py
+a54e300c32c8b3133353128d33a8734be211867ec964b49b6b5f7375dff9ecd0  /home/ubuntu/avep/tenant_gateway.py

@@ -1,0 +1,11 @@
+--- /dev/fd/11	2026-09-18 21:57:52
++++ security_avep_experiment/tenant_gateway.py	2026-09-18 21:56:39
+@@ -61,7 +61,7 @@
+ 
+ class GatewayServer(ThreadingHTTPServer):
+     daemon_threads = True
+-    allow_reuse_address = False
++    allow_reuse_address = True
+     request_queue_size = 128
+ 
+     def __init__(

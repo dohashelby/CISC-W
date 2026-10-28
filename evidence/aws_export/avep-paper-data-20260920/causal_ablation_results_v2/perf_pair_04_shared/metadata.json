@@ -1,0 +1,11 @@
+{
+  "protocol_version": "avep-causal-ablation-v2",
+  "run_name": "perf_pair_04_shared",
+  "stage": "performance",
+  "pair_id": "04",
+  "arm": "shared",
+  "poison_token_id": 279,
+  "telemetry": false,
+  "detailed_metrics": false,
+  "created_at": "2026-09-19T06:38:23,215692097+00:00"
+}

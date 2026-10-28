@@ -1,0 +1,62 @@
+{
+  "schema": "ctfr-determinism-gate-v1",
+  "evaluation_requests": 256,
+  "source_sha256": "dcc2239dd80e8e4095a76d31a09ae96b5a4de603ca16850706760b4bfe6a2387",
+  "baseline_sha256": "b7fea3032f4ecaabc04b1ad422c5b4aa4f2d99ecc334b37eec77c86e607e6b9a",
+  "deterministic_environment": {
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+    "NVIDIA_TF32_OVERRIDE": "0",
+    "PYTHONHASHSEED": "0"
+  },
+  "conditions": [
+    {
+      "name": "graph_c32_a",
+      "execution_mode": "cuda-graph",
+      "concurrency": 32,
+      "waves_per_batch": 16,
+      "repetitions": 2
+    },
+    {
+      "name": "graph_c32_b",
+      "execution_mode": "cuda-graph",
+      "concurrency": 32,
+      "waves_per_batch": 16,
+      "repetitions": 1
+    },
+    {
+      "name": "graph_c2_a",
+      "execution_mode": "cuda-graph",
+      "concurrency": 2,
+      "waves_per_batch": 1,
+      "repetitions": 2
+    },
+    {
+      "name": "graph_c2_b",
+      "execution_mode": "cuda-graph",
+      "concurrency": 2,
+      "waves_per_batch": 1,
+      "repetitions": 1
+    },
+    {
+      "name": "eager_c2_a",
+      "execution_mode": "eager",
+      "concurrency": 2,
+      "waves_per_batch": 1,
+      "repetitions": 2
+    },
+    {
+      "name": "eager_c2_b",
+      "execution_mode": "eager",
+      "concurrency": 2,
+      "waves_per_batch": 1,
+      "repetitions": 1
+    }
+  ],
+  "inference_policy": {
+    "estimator_updates": false,
+    "estimator_state": "frozen committed baseline",
+    "temperature": 0,
+    "return_token_ids": true,
+    "prefix_caching": false
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "protocol_version": "avep-tenant-short-followup-v2",
+  "screen": {
+    "token_ids": [
+      279,
+      323,
+      6303,
+      8251,
+      23811,
+      3015,
+      8094,
+      12095,
+      13,
+      11,
+      0,
+      30
+    ],
+    "warmup": {
+      "requests": 512,
+      "concurrency": 32,
+      "max_tokens": 32
+    },
+    "candidate": {
+      "requests": 256,
+      "concurrency": 8,
+      "max_tokens": 2
+    }
+  },
+  "gate_order": [
+    "placebo",
+    "attack"
+  ],
+  "performance_orders": [
+    [
+      "placebo",
+      "attack"
+    ],
+    [
+      "attack",
+      "placebo"
+    ],
+    [
+      "attack",
+      "placebo"
+    ],
+    [
+      "placebo",
+      "attack"
+    ]
+  ],
+  "adaptive_workload": {
+    "reset_after_server_ready": true,
+    "warmup": {
+      "requests": 1024,
+      "concurrency": 32,
+      "max_tokens": 32
+    },
+    "pre": {
+      "windows": 4,
+      "requests_per_window": 128,
+      "concurrency": 32,
+      "max_tokens": 32
+    },
+    "intervention": {
+      "requests": 4096,
+      "concurrency": 8,
+      "max_tokens": 2
+    },
+    "post": {
+      "windows": 8,
+      "requests_per_window": 128,
+      "concurrency": 32,
+      "max_tokens": 32
+    }
+  },
+  "tenant_topology": {
+    "gateway_url": "http://127.0.0.1:8001/v1",
+    "upstream_url": "http://127.0.0.1:8000/v1",
+    "intervention_tenant": "attacker",
+    "all_other_workload_tenant": "victim",
+    "same_worker_required": true,
+    "negative_auth_tests_required": true,
+    "audit_join_required": true
+  }
+}

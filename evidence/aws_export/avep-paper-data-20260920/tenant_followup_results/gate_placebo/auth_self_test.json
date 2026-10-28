@@ -1,0 +1,61 @@
+{
+  "base_url": "http://127.0.0.1:8001/v1",
+  "results": [
+    {
+      "audit_event_id": "853dcc1612b842458a82c1ef1e84ec58",
+      "authenticated_tenant": "attacker",
+      "expected_status": 200,
+      "gateway_instance_id": "gateway-gate_placebo-1789736499191321161",
+      "name": "attacker_ok",
+      "status": 200,
+      "upstream_marker": "short-followup-23361-1789736439112271317"
+    },
+    {
+      "audit_event_id": "1f06ae7574044fbab3044039a40e7893",
+      "authenticated_tenant": "victim",
+      "expected_status": 200,
+      "gateway_instance_id": "gateway-gate_placebo-1789736499191321161",
+      "name": "victim_ok",
+      "status": 200,
+      "upstream_marker": "short-followup-23361-1789736439112271317"
+    },
+    {
+      "audit_event_id": "d2099448ba6f4aca95c16d9043bb3043",
+      "authenticated_tenant": null,
+      "expected_status": 401,
+      "gateway_instance_id": "gateway-gate_placebo-1789736499191321161",
+      "name": "missing_key",
+      "status": 401,
+      "upstream_marker": "short-followup-23361-1789736439112271317"
+    },
+    {
+      "audit_event_id": "5a53a7cacb6b4f709735556fe672d643",
+      "authenticated_tenant": null,
+      "expected_status": 401,
+      "gateway_instance_id": "gateway-gate_placebo-1789736499191321161",
+      "name": "wrong_key",
+      "status": 401,
+      "upstream_marker": "short-followup-23361-1789736439112271317"
+    },
+    {
+      "audit_event_id": "ef91da383d394e1693804e9f8234c81f",
+      "authenticated_tenant": null,
+      "expected_status": 403,
+      "gateway_instance_id": "gateway-gate_placebo-1789736499191321161",
+      "name": "attacker_claims_victim",
+      "status": 403,
+      "upstream_marker": "short-followup-23361-1789736439112271317"
+    },
+    {
+      "audit_event_id": "ce7168c913f24c7f856a44f2ab2de986",
+      "authenticated_tenant": null,
+      "expected_status": 403,
+      "gateway_instance_id": "gateway-gate_placebo-1789736499191321161",
+      "name": "victim_claims_attacker",
+      "status": 403,
+      "upstream_marker": "short-followup-23361-1789736439112271317"
+    }
+  ],
+  "schema_version": 1,
+  "valid": true
+}

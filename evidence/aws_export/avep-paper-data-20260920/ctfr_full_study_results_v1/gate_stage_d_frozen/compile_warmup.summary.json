@@ -1,0 +1,64 @@
+{
+  "accepted_draft_tokens": 262,
+  "aggregate_output_tokens_per_second": 603.6862500647755,
+  "authenticated_principal_counts": {
+    "attacker": 16,
+    "victim": 16
+  },
+  "by_principal": {
+    "attacker": {
+      "accepted_draft_tokens": 130,
+      "aggregate_output_tokens_per_second": 301.8431250323878,
+      "completion_tokens": 272,
+      "draft_acceptance_rate": 0.22108843537414966,
+      "draft_tokens": 588,
+      "failed": 0,
+      "latency_ms_p50": 722.8390095,
+      "latency_ms_p95": 889.31186325,
+      "latency_ms_p99": 894.60703905,
+      "requests": 16,
+      "spec_requests": 16,
+      "successful": 16,
+      "wall_seconds": 0.901130347
+    },
+    "victim": {
+      "accepted_draft_tokens": 132,
+      "aggregate_output_tokens_per_second": 302.14834896522257,
+      "completion_tokens": 272,
+      "draft_acceptance_rate": 0.22758620689655173,
+      "draft_tokens": 580,
+      "failed": 0,
+      "latency_ms_p50": 722.0561415,
+      "latency_ms_p95": 889.2765852499999,
+      "latency_ms_p99": 894.86072825,
+      "requests": 16,
+      "spec_requests": 16,
+      "successful": 16,
+      "wall_seconds": 0.900220044
+    }
+  },
+  "completion_tokens": 544,
+  "draft_acceptance_rate": 0.2243150684931507,
+  "draft_tokens": 1168,
+  "evidence_ok": true,
+  "expected_principal_counts": {
+    "attacker": 16,
+    "victim": 16
+  },
+  "failed": 0,
+  "gateway_instance_counts": {
+    "ctfr-full-gate_stage_d_frozen-1789891903334146365": 32
+  },
+  "latency_ms_p50": 722.6361609999999,
+  "latency_ms_p95": 891.07692185,
+  "latency_ms_p99": 896.1557253899999,
+  "missing_audit_event_ids": 0,
+  "requests": 32,
+  "spec_requests": 32,
+  "successful": 32,
+  "unique_audit_event_ids": 32,
+  "upstream_marker_counts": {
+    "ctfr-full-9897-1789891843251724583": 32
+  },
+  "wall_seconds": 0.901130347
+}

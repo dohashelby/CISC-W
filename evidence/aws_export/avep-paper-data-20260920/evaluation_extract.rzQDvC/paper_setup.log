@@ -1,0 +1,450 @@
+2026-09-18T09:02:29+00:00
+Fri Sep 18 09:02:29 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.126.09             Driver Version: 580.126.09     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA L40S                    On  |   00000000:30:00.0 Off |                    0 |
+| N/A   30C    P8             23W /  350W |       0MiB /  46068MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+downloading uv 0.12.16 x86_64-unknown-linux-gnu
+installing to /home/ubuntu/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Cloning into '/home/ubuntu/avep/vllm'...
+From https://github.com/vllm-project/vllm
+ * branch                  4fe9e6f6e5647a159c9e65e4f3bf33dec5d12e1c -> FETCH_HEAD
+HEAD is now at 4fe9e6f6e5 [Refactor][GLM-5.3-Flash] Move sparse_attn_indexer_kpool into the model folder and split AMD/NVIDIA (#55358)
+Using CPython 3.12.10 interpreter at: /usr/local/bin/python3.12
+Creating virtual environment at: .venv
+Activate with: source .venv/bin/activate
+Resolved 10 packages in 97ms
+Downloading virtualenv (5.1MiB)
+ Downloaded virtualenv
+Prepared 10 packages in 37ms
+Installed 10 packages in 6ms
+ + cfgv==3.5.0
+ + distlib==0.4.3
+ + filelock==3.32.7
+ + identify==2.6.19
+ + nodeenv==1.10.0
+ + platformdirs==4.11.10
+ + pre-commit==4.6.2
+ + python-discovery==1.6.1
+ + pyyaml==6.0.3
+ + virtualenv==21.7.14
+pre-commit installed at .git/hooks/pre-commit
+pre-commit installed at .git/hooks/commit-msg
+Resolved 196 packages in 31.16s
+   Building vllm @ file:///home/ubuntu/avep/vllm
+Downloading torchcodec (9.2MiB)
+Downloading tiktoken (1.1MiB)
+Downloading openai (1.9MiB)
+Downloading anthropic (1.2MiB)
+Downloading aiohttp (1.7MiB)
+Downloading nvidia-cutlass-dsl-libs-cu12 (84.6MiB)
+Downloading nvidia-cutlass-dsl-libs-base (2.7MiB)
+Downloading pydantic-core (2.0MiB)
+Downloading pygments (1.2MiB)
+Downloading pycountry (7.7MiB)
+Downloading nvidia-cutlass-dsl-libs-core (1.2MiB)
+Downloading transformers (11.7MiB)
+Downloading apache-tvm-ffi (2.6MiB)
+Downloading uvloop (4.2MiB)
+Downloading nvidia-cuda-cccl (3.7MiB)
+Downloading llguidance (2.9MiB)
+Downloading tilelang (48.2MiB)
+Downloading z3-solver (27.9MiB)
+Downloading outlines-core (2.2MiB)
+Downloading llvmlite (53.7MiB)
+Downloading opencv-python-headless (58.4MiB)
+Downloading mistral-common (6.2MiB)
+Downloading numpy (15.8MiB)
+Downloading hf-xet (4.3MiB)
+Downloading flashinfer-python (17.5MiB)
+Downloading cryptography (4.5MiB)
+Downloading pillow (6.6MiB)
+Downloading grpcio (6.8MiB)
+Downloading xgrammar (1.2MiB)
+Downloading tokenizers (3.2MiB)
+Downloading sentencepiece (1.3MiB)
+Downloading instanttensor (5.9MiB)
+Downloading nvidia-cudnn-frontend (7.0MiB)
+Downloading nvidia-cutlass-dsl-libs-cu13 (84.2MiB)
+Downloading nccl4py (3.4MiB)
+Downloading numba (3.6MiB)
+Downloading nvidia-nvvm (69.2MiB)
+Downloading pynvvideocodec (41.2MiB)
+Downloading openai-harmony (2.8MiB)
+Downloading cuda-core (6.3MiB)
+Downloading fastsafetensors (2.0MiB)
+Downloading nvidia-cuda-nvcc (45.5MiB)
+Downloading tokenspeed-triton (77.9MiB)
+ Downloaded tiktoken
+ Downloaded pygments
+ Downloaded xgrammar
+ Downloaded nvidia-cutlass-dsl-libs-core
+ Downloaded anthropic
+Downloading torchvision (7.5MiB)
+ Downloaded sentencepiece
+Downloading nvidia-cuda-nvdisasm (5.0MiB)
+ Downloaded torchcodec
+ Downloaded openai
+ Downloaded aiohttp
+ Downloaded pydantic-core
+ Downloaded fastsafetensors
+ Downloaded torchvision
+ Downloaded outlines-core
+ Downloaded nvidia-cutlass-dsl-libs-base
+ Downloaded apache-tvm-ffi
+ Downloaded openai-harmony
+ Downloaded llguidance
+ Downloaded tokenizers
+ Downloaded nccl4py
+ Downloaded numba
+ Downloaded nvidia-cuda-cccl
+ Downloaded hf-xet
+ Downloaded uvloop
+ Downloaded cryptography
+ Downloaded instanttensor
+ Downloaded nvidia-cuda-nvdisasm
+ Downloaded mistral-common
+ Downloaded cuda-core
+ Downloaded pillow
+ Downloaded grpcio
+ Downloaded pycountry
+ Downloaded nvidia-cudnn-frontend
+ Downloaded transformers
+ Downloaded numpy
+ Downloaded flashinfer-python
+ Downloaded z3-solver
+ Downloaded pynvvideocodec
+ Downloaded nvidia-cuda-nvcc
+ Downloaded tilelang
+ Downloaded llvmlite
+ Downloaded opencv-python-headless
+ Downloaded nvidia-nvvm
+ Downloaded tokenspeed-triton
+ Downloaded nvidia-cutlass-dsl-libs-cu12
+ Downloaded nvidia-cutlass-dsl-libs-cu13
+      Built vllm @ file:///home/ubuntu/avep/vllm
+Prepared 165 packages in 19.77s
+Installed 193 packages in 648ms
+Prepared 1 package without build isolation in 0.09ms
+Installed 1 package in 357ms
+ + agent-detector==2.0.0
+ + aiohappyeyeballs==2.7.1
+ + aiohttp==3.14.3
+ + aiosignal==1.4.0
+ + annotated-doc==0.0.5
+ + annotated-types==0.8.0
+ + anthropic==1.6.0
+ + anyio==4.15.1
+ + apache-tvm-ffi==0.1.11
+ + astor==0.8.1
+ + attrs==26.1.0
+ + blake3==1.0.9
+ + cachetools==7.2.0
+ + cbor2==6.1.4
+ + certifi==2026.7.22
+ + cffi==2.1.1
+ + charset-normalizer==3.5.1
+ + click==8.5.0
+ + cloudpickle==3.1.2
+ + compressed-tensors==0.17.0
+ + cryptography==50.0.1
+ + cuda-bindings==13.4.2
+ + cuda-core==1.2.0
+ + cuda-pathfinder==1.8.2
+ + cuda-python==13.4.1
+ + cuda-tile==1.6.0
+ + cuda-toolkit==13.2.1
+ + depyf==0.20.0
+ + detect-installer==0.2.1
+ + dill==0.4.1
+ + dnspython==2.8.0
+ + docstring-parser==0.18.0
+ + einops==0.8.2
+ + email-validator==2.3.0
+ + fastapi==0.136.3
+ + fastapi-cli==0.0.32
+ + fastapi-cloud-cli==0.26.0
+ + fastar==0.12.0
+ + fastsafetensors==0.4.0
+ + flashinfer-python==0.6.18.post1
+ + frozenlist==1.8.0
+ + fsspec==2026.7.0
+ + googleapis-common-protos==1.75.3
+ + grpcio==1.84.0
+ + h11==0.16.0
+ + hf-xet==1.6.0
+ + httpcore==1.0.9
+ + httpcore2==2.13.0
+ + httptools==0.8.0
+ + httpx==0.28.1
+ + httpx2==2.13.0
+ + huggingface-hub==1.32.0
+ + humming-kernels==0.1.12
+ + idna==3.20
+ + ijson==3.5.1
+ + instanttensor==0.2.0
+ + interegular==0.3.3
+ + jinja2==3.1.6
+ + jiter==0.17.0
+ + jmespath==1.1.0
+ + jsonschema==4.26.0
+ + jsonschema-specifications==2025.9.1
+ + lark==1.2.2
+ + llguidance==1.7.6
+ + llvmlite==0.47.0
+ + lm-format-enforcer==0.11.3
+ + loguru==0.7.3
+ + markdown-it-py==4.2.0
+ + markupsafe==3.0.3
+ + mcp==2.2.0
+ + mcp-types==2.2.0
+ + mdurl==0.1.2
+ + mistral-common==1.11.7
+ + ml-dtypes==0.6.0
+ + model-hosting-container-standards==0.1.16
+ + mpmath==1.3.0
+ + msgspec==0.21.1
+ + multidict==6.8.0
+ + nccl4py==0.5.0
+ + networkx==3.6.1
+ + ninja==1.13.2
+ + numba==0.65.0
+ + numpy==2.3.5
+ + nvidia-cublas==13.4.0.1
+ + nvidia-cuda-cccl==13.3.4.3.1
+ + nvidia-cuda-crt==13.4.92
+ + nvidia-cuda-cupti==13.2.75
+ + nvidia-cuda-nvcc==13.4.92
+ + nvidia-cuda-nvdisasm==13.4.92
+ + nvidia-cuda-nvrtc==13.2.78
+ + nvidia-cuda-runtime==13.2.75
+ + nvidia-cudnn-cu13==9.20.0.48
+ + nvidia-cudnn-frontend==1.29.0
+ + nvidia-cufft==12.2.0.46
+ + nvidia-cufile==1.17.1.22
+ + nvidia-curand==10.4.2.55
+ + nvidia-cusolver==12.2.0.1
+ + nvidia-cusparse==12.7.10.1
+ + nvidia-cusparselt-cu13==0.8.1
+ + nvidia-cutlass-dsl==4.7.1
+ + nvidia-cutlass-dsl-libs-base==4.7.1
+ + nvidia-cutlass-dsl-libs-core==4.7.1
+ + nvidia-cutlass-dsl-libs-cu12==4.7.1
+ + nvidia-cutlass-dsl-libs-cu13==4.7.1
+ + nvidia-ml-py==13.610.43
+ + nvidia-nccl-cu13==2.29.7
+ + nvidia-nvjitlink==13.4.92
+ + nvidia-nvshmem-cu13==3.4.5
+ + nvidia-nvtx==13.2.75
+ + nvidia-nvvm==13.4.92
+ + nvtx==0.2.15
+ + openai==3.15.0
+ + openai-harmony==0.0.8
+ + opencv-python-headless==5.0.0.93
+ + opentelemetry-api==1.44.0
+ + opentelemetry-exporter-otlp==1.44.0
+ + opentelemetry-exporter-otlp-proto-common==1.44.0
+ + opentelemetry-exporter-otlp-proto-grpc==1.44.0
+ + opentelemetry-exporter-otlp-proto-http==1.44.0
+ + opentelemetry-proto==1.44.0
+ + opentelemetry-sdk==1.44.0
+ + opentelemetry-semantic-conventions==0.65b0
+ + opentelemetry-semantic-conventions-ai==0.5.1
+ + outlines-core==0.2.14
+ + packaging==26.3
+ + partial-json-parser==0.2.1.1.post7
+ + pillow==12.3.0
+ + prometheus-client==0.26.0
+ + prometheus-fastapi-instrumentator==8.1.0
+ + propcache==0.5.4
+ + protobuf==7.36.2
+ + psutil==7.2.2
+ + py-cpuinfo==9.0.0
+ + pybase64==1.5.0
+ + pycountry==26.2.16
+ + pycparser==3.0
+ + pydantic==2.13.5
+ + pydantic-core==2.46.5
+ + pydantic-extra-types==2.11.1
+ + pydantic-settings==2.15.0
+ + pygments==2.21.0
+ + pyjwt==2.14.0
+ + pynvvideocodec==2.0.4
+ + python-dotenv==1.2.3
+ + python-json-logger==4.2.0
+ + python-multipart==0.0.32
+ + pyzmq==27.2.0
+ + quack-kernels==0.6.5
+ + referencing==0.37.0
+ + regex==2026.9.10
+ + requests==2.34.2
+ + rich==15.0.0
+ + rich-toolkit==0.20.5
+ + rignore==0.8.1
+ + rpds-py==2026.6.3
+ + safetensors==0.8.0
+ + sentencepiece==0.2.2
+ + sentry-sdk==2.69.2
+ + setproctitle==1.3.7
+ + setuptools==80.10.2
+ + shellingham==1.5.4
+ + six==1.17.0
+ + sniffio==1.3.1
+ + sse-starlette==3.4.11
+ + starlette==1.6.0
+ + supervisor==4.3.0
+ + sympy==1.14.0
+ + tabulate==0.10.0
+ + tiktoken==0.14.0
+ + tilelang==0.1.12
+ + tokenizers==0.23.2
+ + tokenspeed-mla==0.1.8
+ + tokenspeed-triton==3.8.10.post20260906
+ + torch==2.13.0+cu132
+ + torch-c-dlpack-ext==0.1.5
+ + torchaudio==2.11.0+cpu
+ + torchcodec==0.16.0+cu132
+ + torchvision==0.28.0+cu132
+ + tqdm==4.70.1
+ + transformers==5.17.0
+ + triton==3.7.1
+ + truststore==0.10.4
+ + typer==0.27.2
+ + typing-extensions==4.16.0
+ + typing-inspection==0.4.4
+ + urllib3==2.8.0
+ + uvicorn==0.53.0
+ + uvloop==0.22.1
+ + vllm==0.29.1rc1.dev190+g4fe9e6f6e.d20260918.precompiled (from file:///home/ubuntu/avep/vllm)
+ + watchfiles==1.2.0
+ + websockets==17.1
+ + xgrammar==0.2.7
+ + yarl==1.25.1
+ + z3-solver==4.15.4.0
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+{
+  "model": "Qwen/Qwen3-4B",
+  "ordinary_single_tokens": [
+    {
+      "decoded": " the",
+      "text": " the",
+      "token": "\u0120the",
+      "token_id": 279
+    },
+    {
+      "decoded": " and",
+      "text": " and",
+      "token": "\u0120and",
+      "token_id": 323
+    },
+    {
+      "decoded": " blue",
+      "text": " blue",
+      "token": "\u0120blue",
+      "token_id": 6303
+    },
+    {
+      "decoded": " cat",
+      "text": " cat",
+      "token": "\u0120cat",
+      "token_id": 8251
+    },
+    {
+      "decoded": " hello",
+      "text": " hello",
+      "token": "\u0120hello",
+      "token_id": 23811
+    },
+    {
+      "decoded": " water",
+      "text": " water",
+      "token": "\u0120water",
+      "token_id": 3015
+    },
+    {
+      "decoded": " seven",
+      "text": " seven",
+      "token": "\u0120seven",
+      "token_id": 8094
+    },
+    {
+      "decoded": " Paris",
+      "text": " Paris",
+      "token": "\u0120Paris",
+      "token_id": 12095
+    },
+    {
+      "decoded": ".",
+      "text": ".",
+      "token": ".",
+      "token_id": 13
+    },
+    {
+      "decoded": ",",
+      "text": ",",
+      "token": ",",
+      "token_id": 11
+    },
+    {
+      "decoded": "!",
+      "text": "!",
+      "token": "!",
+      "token_id": 0
+    },
+    {
+      "decoded": "?",
+      "text": "?",
+      "token": "?",
+      "token_id": 30
+    }
+  ],
+  "revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+  "special_token_ids": [
+    151643,
+    151644,
+    151645,
+    151646,
+    151647,
+    151648,
+    151649,
+    151650,
+    151651,
+    151652,
+    151653,
+    151654,
+    151655,
+    151656
+  ]
+}
+vllm_sha=4fe9e6f6e5647a159c9e65e4f3bf33dec5d12e1c
+paper_patch_sha256=4cbc2736357f47fd5305e125854d4eb2a681d0834599046888dada8bb4b78450
+probe_sha256=3db98a3e0868f18aea097ee2f32856580f9243c4cf9c430922265c1d771a435f
+analyzer_sha256=76b8d004c0baf641d10a88a3b247bd3070dbfee88a19ded5aacbd98437eb6f1e
+uv 0.12.16 (x86_64-unknown-linux-gnu)
+Python 3.12.10
+0.29.1rc1.dev190+g4fe9e6f6e.d20260918.precompiled
+NVIDIA L40S, 580.126.09, 46068 MiB
+2026-09-18T09:04:19+00:00

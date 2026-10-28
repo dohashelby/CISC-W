@@ -1,0 +1,82 @@
+{
+  "source": {
+    "remote_assessment": "/home/ubuntu/avep/factorial_confirmatory_results_v2/factorial_assessment.json",
+    "remote_archive": "/home/ubuntu/avep/avep-factorial-confirmatory-v2-results.tgz",
+    "archive_sha256": "24d66078399e3a8a9a7a9c78c2dc26f8cfefa8a71a25f26a45dd91d82738a032",
+    "note": "Compact transcription of fields read from the authoritative remote assessment; not a replacement for the raw archive."
+  },
+  "protocol_version": "avep-factorial-confirmatory-v2",
+  "valid": true,
+  "classification": "CONFIRMATORY_FACTORIAL_SIGNAL",
+  "errors": [],
+  "claim_scope": "attack-by-update factorial interaction for two gateway-authenticated principals on one pinned vLLM worker",
+  "mechanism_gate": {
+    "pass": true,
+    "acceptance_rates": {
+      "attack_blocked": 0.0,
+      "attack_shared": 0.0,
+      "placebo_blocked": 0.1875,
+      "placebo_shared": 0.1875
+    },
+    "intercept0_interaction": -13.85084206983447,
+    "mean_normalized_post_budget_interaction": -0.5163087954134407
+  },
+  "performance": {
+    "signal": true,
+    "complete_blocks": 8,
+    "complete_arms": 32,
+    "negative_throughput_block_count": 8,
+    "one_sided_exact_sign_probability": 0.00390625,
+    "mean_normalized_throughput_by_arm": {
+      "attack_shared": 0.6846787552699936,
+      "attack_blocked": 1.0018433910163493,
+      "placebo_shared": 0.9268819665098045,
+      "placebo_blocked": 0.996215478798242
+    },
+    "simple_update_effects": {
+      "attack": -0.3171646357463559,
+      "placebo": -0.0693335122884374
+    },
+    "summaries": {
+      "throughput": {
+        "mean": -0.24783112345791852,
+        "ci95_low": -0.25861848320242886,
+        "ci95_high": -0.23800894716465198,
+        "n": 8
+      },
+      "latency_p50": {
+        "mean": 0.5052635454170425,
+        "ci95_low": 0.4859499393838312,
+        "ci95_high": 0.5266963733306161,
+        "n": 8
+      },
+      "latency_p95": {
+        "mean": 0.4787769226577582,
+        "ci95_low": 0.4556720338323784,
+        "ci95_high": 0.4935381990796727,
+        "n": 8
+      }
+    },
+    "throughput_block_interactions": [
+      -0.277154383766121,
+      -0.2441248108814641,
+      -0.2624616714509661,
+      -0.24527289557276188,
+      -0.25008210331202274,
+      -0.2415005255344116,
+      -0.23771671278292894,
+      -0.2243358843626717
+    ],
+    "throughput_interaction_trajectory": {
+      "post_01": -0.09549622633054279,
+      "post_02": -0.18789169123906493,
+      "post_03": -0.3256740466441077,
+      "post_04": -0.2956505576550487,
+      "post_05": -0.29148293450618107,
+      "post_06": -0.2871623578387107,
+      "post_07": -0.2408017408683053,
+      "post_08": -0.25848943258138707
+    },
+    "mean_victim_harm_to_attacker_wall_ratio": 0.14318538224033017
+  }
+}

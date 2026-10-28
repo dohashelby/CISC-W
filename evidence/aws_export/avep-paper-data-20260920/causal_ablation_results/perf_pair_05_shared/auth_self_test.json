@@ -1,0 +1,61 @@
+{
+  "base_url": "http://127.0.0.1:8001/v1",
+  "results": [
+    {
+      "audit_event_id": "2ee1f3968ee34a68a95eaf0efbd9cae4",
+      "authenticated_tenant": "attacker",
+      "expected_status": 200,
+      "gateway_instance_id": "causal-perf_pair_05_shared-1789797386471611465",
+      "name": "attacker_ok",
+      "status": 200,
+      "upstream_marker": "causal-1672-1789797326385531801"
+    },
+    {
+      "audit_event_id": "b59e7e986ad247b5afc1c8a07bd49330",
+      "authenticated_tenant": "victim",
+      "expected_status": 200,
+      "gateway_instance_id": "causal-perf_pair_05_shared-1789797386471611465",
+      "name": "victim_ok",
+      "status": 200,
+      "upstream_marker": "causal-1672-1789797326385531801"
+    },
+    {
+      "audit_event_id": "6c8c5980b115449a8bdf75ca0b690be2",
+      "authenticated_tenant": null,
+      "expected_status": 401,
+      "gateway_instance_id": "causal-perf_pair_05_shared-1789797386471611465",
+      "name": "missing_key",
+      "status": 401,
+      "upstream_marker": "causal-1672-1789797326385531801"
+    },
+    {
+      "audit_event_id": "667f1d9d6a78400a90abae684e2f7e85",
+      "authenticated_tenant": null,
+      "expected_status": 401,
+      "gateway_instance_id": "causal-perf_pair_05_shared-1789797386471611465",
+      "name": "wrong_key",
+      "status": 401,
+      "upstream_marker": "causal-1672-1789797326385531801"
+    },
+    {
+      "audit_event_id": "d64c7ea1a55043229630124b93a3033a",
+      "authenticated_tenant": null,
+      "expected_status": 403,
+      "gateway_instance_id": "causal-perf_pair_05_shared-1789797386471611465",
+      "name": "attacker_claims_victim",
+      "status": 403,
+      "upstream_marker": "causal-1672-1789797326385531801"
+    },
+    {
+      "audit_event_id": "9d9fd8ca83984c8ba231b8ed799509dd",
+      "authenticated_tenant": null,
+      "expected_status": 403,
+      "gateway_instance_id": "causal-perf_pair_05_shared-1789797386471611465",
+      "name": "victim_claims_attacker",
+      "status": 403,
+      "upstream_marker": "causal-1672-1789797326385531801"
+    }
+  ],
+  "schema_version": 1,
+  "valid": true
+}

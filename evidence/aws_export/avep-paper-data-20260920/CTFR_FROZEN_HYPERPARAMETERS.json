@@ -1,0 +1,12 @@
+{
+  "bucket_capacity": 2.0,
+  "delta_clip": 2.0,
+  "fixed_shadow_tensor_bound_bytes": 1024,
+  "fixed_shadow_tensor_scope": "Persistent shadow-state tensors only; excludes transient retirement and validation workspace.",
+  "max_commit_norm": 1.0,
+  "max_probability_shift": 0.15,
+  "min_cosine": 0.8,
+  "min_observations": 1024,
+  "provenance": "Frozen from the pre-confirmatory CTFR mechanism design; not tuned on Stage D or E outcomes.",
+  "schema": "ctfr-hyperparameters-v1"
+}

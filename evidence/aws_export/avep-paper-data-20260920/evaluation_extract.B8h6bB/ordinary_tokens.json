@@ -1,0 +1,94 @@
+{
+  "model": "Qwen/Qwen3-4B",
+  "ordinary_single_tokens": [
+    {
+      "decoded": " the",
+      "text": " the",
+      "token": "\u0120the",
+      "token_id": 279
+    },
+    {
+      "decoded": " and",
+      "text": " and",
+      "token": "\u0120and",
+      "token_id": 323
+    },
+    {
+      "decoded": " blue",
+      "text": " blue",
+      "token": "\u0120blue",
+      "token_id": 6303
+    },
+    {
+      "decoded": " cat",
+      "text": " cat",
+      "token": "\u0120cat",
+      "token_id": 8251
+    },
+    {
+      "decoded": " hello",
+      "text": " hello",
+      "token": "\u0120hello",
+      "token_id": 23811
+    },
+    {
+      "decoded": " water",
+      "text": " water",
+      "token": "\u0120water",
+      "token_id": 3015
+    },
+    {
+      "decoded": " seven",
+      "text": " seven",
+      "token": "\u0120seven",
+      "token_id": 8094
+    },
+    {
+      "decoded": " Paris",
+      "text": " Paris",
+      "token": "\u0120Paris",
+      "token_id": 12095
+    },
+    {
+      "decoded": ".",
+      "text": ".",
+      "token": ".",
+      "token_id": 13
+    },
+    {
+      "decoded": ",",
+      "text": ",",
+      "token": ",",
+      "token_id": 11
+    },
+    {
+      "decoded": "!",
+      "text": "!",
+      "token": "!",
+      "token_id": 0
+    },
+    {
+      "decoded": "?",
+      "text": "?",
+      "token": "?",
+      "token_id": 30
+    }
+  ],
+  "revision": "1cfa9a7208912126459214e8b04321603b3df60c",
+  "special_token_ids": [
+    151643,
+    151644,
+    151645,
+    151646,
+    151647,
+    151648,
+    151649,
+    151650,
+    151651,
+    151652,
+    151653,
+    151654,
+    151655,
+    151656
+  ]
+}

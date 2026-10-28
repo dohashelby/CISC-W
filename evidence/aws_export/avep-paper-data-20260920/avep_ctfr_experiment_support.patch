@@ -1,0 +1,741 @@
+diff --git a/vllm/v1/worker/gpu/model_runner.py b/vllm/v1/worker/gpu/model_runner.py
+index 454a71d02adb46c99aca8b7400169792ebd585e9..0844e2bd66aa067810e681c3dcbbff9ac0b27198 100644
+--- a/vllm/v1/worker/gpu/model_runner.py
++++ b/vllm/v1/worker/gpu/model_runner.py
+@@ -19,6 +19,8 @@ instead of embedding feature-specific logic directly.
+ 
+ import functools
+ import gc
++import json
++import os
+ import time
+ from contextlib import AbstractContextManager
+ from copy import deepcopy
+@@ -2144,6 +2146,29 @@ class GPUModelRunner(LoRAModelRunnerMixin):
+                         dtype=torch.int32,
+                         device=input_batch.idx_mapping.device,
+                     )
++                    if os.environ.get("VLLM_AVEP_TELEMETRY") == "1":
++                        logger.warning(
++                            "AVEP_CTFR_BINDING %s",
++                            json.dumps(
++                                {
++                                    "request_ids": list(input_batch.req_ids),
++                                    "persistent_slots": (
++                                        input_batch.idx_mapping_np.tolist()
++                                    ),
++                                    "principals": principal_values,
++                                    "num_sampled": (
++                                        num_sampled.detach().cpu().tolist()
++                                    ),
++                                    "num_rejected": (
++                                        num_rejected.detach().cpu().tolist()
++                                    ),
++                                    "num_speculative_steps": (
++                                        self.num_speculative_steps
++                                    ),
++                                },
++                                sort_keys=True,
++                            ),
++                        )
+                     principal_activity = (
+                         0 in principal_values,
+                         1 in principal_values,
+diff --git a/vllm/v1/worker/gpu/spec_decode/acceptance_estimator.py b/vllm/v1/worker/gpu/spec_decode/acceptance_estimator.py
+index 77efe48ab10d31810c7c63a83193293782cc67ab..01a0d1bec56e18508a0515a95877c7fea14ccfdb 100644
+--- a/vllm/v1/worker/gpu/spec_decode/acceptance_estimator.py
++++ b/vllm/v1/worker/gpu/spec_decode/acceptance_estimator.py
+@@ -1,6 +1,7 @@
+ # SPDX-License-Identifier: Apache-2.0
+ # SPDX-FileCopyrightText: Copyright contributors to the vLLM project
+ 
++import hashlib
+ import json
+ import math
+ import os
+@@ -31,12 +32,14 @@ _PCFR_DROP = 1
+ _PCFR_ROUTE = 2
+ _CTFR_SHADOW = 3
+ _CTFR_FULL = 4
++_TENANT_LOCAL = 5
+ _PCFR_MODES = {
+     "shared": _PCFR_SHARED,
+     "drop": _PCFR_DROP,
+     "route": _PCFR_ROUTE,
+     "ctfr-shadow": _CTFR_SHADOW,
+     "ctfr-full": _CTFR_FULL,
++    "tenant-local": _TENANT_LOCAL,
+ }
+ _NUM_POLICY_DOMAINS = 2
+ _NUM_CTFR_PRINCIPALS = 2
+@@ -44,6 +47,83 @@ _CTFR_FIRST_SHADOW = _NUM_POLICY_DOMAINS
+ _NUM_FEEDBACK_DOMAINS = _NUM_POLICY_DOMAINS + _NUM_CTFR_PRINCIPALS
+ 
+ 
++@triton.jit
++def _evaluate_kernel(
++    idx_mapping_ptr,
++    num_sampled_ptr,
++    num_rejected_ptr,
++    feedback_principal_ptr,
++    pred_ptr,
++    pred_stride,
++    loss_ptr,
++    loss_principal_stride,
++    brier_ptr,
++    brier_principal_stride,
++    counts_ptr,
++    counts_principal_stride,
++    num_reqs,
++    BLOCK_R: tl.constexpr,
++):
++    step = tl.program_id(0).to(tl.int64)
++    req_block = tl.arange(0, BLOCK_R)
++    req_mask = req_block < num_reqs
++    req_state_block = tl.load(
++        idx_mapping_ptr + req_block, mask=req_mask, other=0
++    ).to(tl.int64)
++    principal = tl.load(
++        feedback_principal_ptr + req_state_block,
++        mask=req_mask,
++        other=-1,
++    ).to(tl.int32)
++    num_sampled = tl.load(
++        num_sampled_ptr + req_block, mask=req_mask, other=0
++    ).to(tl.int64)
++    num_accepted = tl.maximum(num_sampled - 1, 0)
++    num_rejected = tl.load(
++        num_rejected_ptr + req_block, mask=req_mask, other=0
++    ).to(tl.int64)
++    num_admitted = num_accepted + num_rejected
++    observed = req_mask & (step <= num_accepted) & (step < num_admitted)
++    label = tl.where(step < num_accepted, 1.0, 0.0)
++    prediction = tl.load(
++        pred_ptr + req_state_block * pred_stride + step,
++        mask=req_mask,
++        other=0.5,
++    ).to(tl.float32)
++    prediction = tl.minimum(tl.maximum(prediction, 1.0e-6), 1.0 - 1.0e-6)
++
++    for principal_id in tl.static_range(_NUM_CTFR_PRINCIPALS):
++        selected = observed & (principal == principal_id)
++        log_loss = -label * tl.log(prediction) - (1.0 - label) * tl.log(
++            1.0 - prediction
++        )
++        brier = (prediction - label) * (prediction - label)
++        offset = principal_id * loss_principal_stride + step
++        tl.store(
++            loss_ptr + offset,
++            tl.load(loss_ptr + offset)
++            + tl.sum(tl.where(selected, log_loss, 0.0), axis=0),
++        )
++        tl.store(
++            brier_ptr + principal_id * brier_principal_stride + step,
++            tl.load(
++                brier_ptr
++                + principal_id * brier_principal_stride
++                + step
++            )
++            + tl.sum(tl.where(selected, brier, 0.0), axis=0),
++        )
++        tl.store(
++            counts_ptr + principal_id * counts_principal_stride + step,
++            tl.load(
++                counts_ptr
++                + principal_id * counts_principal_stride
++                + step
++            )
++            + tl.sum(tl.where(selected, 1.0, 0.0), axis=0),
++        )
++
++
+ @triton.jit
+ def _accumulate_kernel(
+     info_ptr,
+@@ -99,9 +179,15 @@ def _accumulate_kernel(
+     if PCFR_MODE == _PCFR_SHARED:
+         request_domain = tl.zeros((BLOCK_R,), dtype=tl.int32)
+         eligible = req_mask
+-    elif PCFR_MODE == _CTFR_SHADOW or PCFR_MODE == _CTFR_FULL:
++    elif (
++        PCFR_MODE == _CTFR_SHADOW
++        or PCFR_MODE == _CTFR_FULL
++        or PCFR_MODE == _TENANT_LOCAL
++    ):
+         principal = tl.load(
+-            feedback_principal_ptr + req_block, mask=req_mask, other=-1
++            feedback_principal_ptr + req_state_block,
++            mask=req_mask,
++            other=-1,
+         ).to(tl.int32)
+         eligible = req_mask & (principal >= 0) & (principal < _NUM_CTFR_PRINCIPALS)
+         request_domain = principal + _CTFR_FIRST_SHADOW
+@@ -325,6 +411,7 @@ def _predict_kernel(
+     intercepts_ptr,
+     intercepts_domain_stride,
+     feedback_domain_ptr,
++    feedback_principal_ptr,
+     local_max_ptr,
+     local_max_stride,
+     local_sumexp_ptr,
+@@ -408,6 +495,16 @@ def _predict_kernel(
+         domain = (
+             tl.load(feedback_domain_ptr + req_state_idx).to(tl.int32) > 0
+         ).to(tl.int32)
++    elif PCFR_MODE == _TENANT_LOCAL:
++        principal = tl.load(feedback_principal_ptr + req_state_idx).to(tl.int32)
++        valid_principal = (principal >= 0) & (
++            principal < _NUM_CTFR_PRINCIPALS
++        )
++        domain = tl.where(
++            valid_principal,
++            principal + _CTFR_FIRST_SHADOW,
++            0,
++        )
+     else:
+         domain = 0
+     weight = tl.load(slope_ptr + domain * slope_domain_stride)
+@@ -456,15 +553,20 @@ class OnlineAcceptanceEstimator:
+         if mode not in _PCFR_MODES:
+             raise ValueError(
+                 "VLLM_AVEP_PCFR_MODE must be one of: shared, drop, route, "
+-                "ctfr-shadow, ctfr-full"
++                "ctfr-shadow, ctfr-full, tenant-local"
+             )
+         self.pcfr_mode = mode
+         self._pcfr_mode_id = _PCFR_MODES[mode]
+         self._steps_since_refit = [0] * _NUM_FEEDBACK_DOMAINS
+         self._refits = [0] * _NUM_FEEDBACK_DOMAINS
++        self._tenant_local_versions = [0] * _NUM_CTFR_PRINCIPALS
+         self._telemetry_enabled = os.environ.get("VLLM_AVEP_TELEMETRY") == "1"
++        self._eval_metrics_enabled = (
++            os.environ.get("VLLM_AVEP_EVAL_METRICS") == "1"
++        )
+         self._updates_enabled = True
+         self._committed_version = 0
++        self._baseline_sha256: str | None = None
+         self._ctfr_min_observations = int(
+             os.environ.get("VLLM_AVEP_CTFR_MIN_OBSERVATIONS", "1024")
+         )
+@@ -489,6 +591,9 @@ class OnlineAcceptanceEstimator:
+         self.feedback_domains = torch.zeros(
+             max_num_reqs, dtype=torch.int32, device=device
+         )
++        self.feedback_principals = torch.full(
++            (max_num_reqs,), -1, dtype=torch.int32, device=device
++        )
+ 
+         # Domain 0 is canonical and domain 1 is target-policy transformed.
+         self.slope = torch.full(
+@@ -562,6 +667,14 @@ class OnlineAcceptanceEstimator:
+             dtype=torch.float32,
+             device=device,
+         )
++        self.eval_log_loss = torch.zeros(
++            _NUM_CTFR_PRINCIPALS,
++            num_speculative_steps,
++            dtype=torch.float32,
++            device=device,
++        )
++        self.eval_brier = torch.zeros_like(self.eval_log_loss)
++        self.eval_counts = torch.zeros_like(self.eval_log_loss)
+ 
+     @property
+     def requires_feedback_domains(self) -> bool:
+@@ -569,7 +682,11 @@ class OnlineAcceptanceEstimator:
+ 
+     @property
+     def requires_feedback_principals(self) -> bool:
+-        return self._pcfr_mode_id in {_CTFR_SHADOW, _CTFR_FULL}
++        return self._eval_metrics_enabled or self._pcfr_mode_id in {
++            _CTFR_SHADOW,
++            _CTFR_FULL,
++            _TENANT_LOCAL,
++        }
+ 
+     def set_feedback_domains(self, source: torch.Tensor) -> None:
+         if self.requires_feedback_domains:
+@@ -582,10 +699,30 @@ class OnlineAcceptanceEstimator:
+             "available": True,
+             "pcfr_mode": self.pcfr_mode,
+             "committed_version": self._committed_version,
++            "baseline_sha256": self._baseline_sha256,
+             "ctfr_influence_credits": list(self._ctfr_influence_credits),
++            "tenant_local_versions": list(self._tenant_local_versions),
++            "bank_roles": (
++                ["canonical", "policy-transformed", "tenant-0", "tenant-1"]
++                if self._pcfr_mode_id == _TENANT_LOCAL
++                else ["canonical", "policy-transformed", "shadow-0", "shadow-1"]
++            ),
++            "principal_bank_map": {"0": 2, "1": 3},
++            "feedback_principal_slots": (
++                self.feedback_principals.detach().cpu().tolist()
++            ),
++            "retirement_hyperparameters": {
++                "min_observations": self._ctfr_min_observations,
++                "delta_clip": self._ctfr_delta_clip,
++                "min_cosine": self._ctfr_min_cosine,
++                "max_commit_norm": self._ctfr_max_commit_norm,
++                "max_probability_shift": self._ctfr_max_probability_shift,
++                "bucket_capacity": self._ctfr_bucket_capacity,
++            },
+             "steps_since_refit": list(self._steps_since_refit),
+             "refits": list(self._refits),
+             "updates_enabled": self._updates_enabled,
++            "eval_metrics_enabled": self._eval_metrics_enabled,
+             "slope": self.slope.detach().cpu().tolist(),
+             "intercepts": self.intercepts.detach().cpu().tolist(),
+             "counts": self.counts.detach().cpu().tolist(),
+@@ -617,10 +754,17 @@ class OnlineAcceptanceEstimator:
+             self.info.zero_()
+             self.grad.zero_()
+             self.counts.zero_()
++            self.feedback_domains.zero_()
++            self.feedback_principals.fill_(-1)
++            self.eval_log_loss.zero_()
++            self.eval_brier.zero_()
++            self.eval_counts.zero_()
+         self._steps_since_refit = [0] * _NUM_FEEDBACK_DOMAINS
+         self._refits = [0] * _NUM_FEEDBACK_DOMAINS
++        self._tenant_local_versions = [0] * _NUM_CTFR_PRINCIPALS
+         self._updates_enabled = True
+         self._committed_version = 0
++        self._baseline_sha256 = None
+         self._ctfr_influence_credits = [
+             self._ctfr_bucket_capacity
+         ] * _NUM_CTFR_PRINCIPALS
+@@ -640,6 +784,117 @@ class OnlineAcceptanceEstimator:
+         )
+         return {"before": before, "after": after}
+ 
++    def avep_load_committed_state(
++        self, serialized_json: str
++    ) -> dict[str, object]:
++        """Load one frozen baseline into every coefficient bank."""
++        payload = json.loads(serialized_json)
++        if not isinstance(payload, dict):
++            raise ValueError("baseline state must be a JSON object")
++        slope = payload.get("slope")
++        intercepts = payload.get("intercepts")
++        if (
++            isinstance(slope, bool)
++            or not isinstance(slope, (int, float))
++            or not math.isfinite(slope)
++        ):
++            raise ValueError("baseline slope must be finite")
++        if slope < 0:
++            raise ValueError("baseline slope must be non-negative")
++        if not isinstance(intercepts, list) or len(intercepts) != (
++            self.num_speculative_steps
++        ):
++            raise ValueError("baseline intercept count does not match draft depth")
++        if any(
++            isinstance(value, bool)
++            or not isinstance(value, (int, float))
++            or not math.isfinite(value)
++            for value in intercepts
++        ):
++            raise ValueError("baseline intercepts must be finite numbers")
++        normalized_intercepts = [float(value) for value in intercepts]
++
++        canonical = json.dumps(
++            {"slope": float(slope), "intercepts": normalized_intercepts},
++            sort_keys=True,
++            separators=(",", ":"),
++        )
++        digest = hashlib.sha256(canonical.encode()).hexdigest()
++        slope_tensor = torch.tensor(
++            float(slope), dtype=torch.float32, device=self.device
++        )
++        intercept_tensor = torch.tensor(
++            normalized_intercepts, dtype=torch.float32, device=self.device
++        )
++        with torch.no_grad():
++            self.slope.copy_(slope_tensor.expand_as(self.slope))
++            self.intercepts.copy_(
++                intercept_tensor.expand_as(self.intercepts)
++            )
++            self.info.zero_()
++            self.grad.zero_()
++            self.counts.zero_()
++            self.features.zero_()
++            self.predictions.zero_()
++            self.feedback_domains.zero_()
++            self.feedback_principals.fill_(-1)
++            self.eval_log_loss.zero_()
++            self.eval_brier.zero_()
++            self.eval_counts.zero_()
++        self._steps_since_refit = [0] * _NUM_FEEDBACK_DOMAINS
++        self._refits = [0] * _NUM_FEEDBACK_DOMAINS
++        self._tenant_local_versions = [0] * _NUM_CTFR_PRINCIPALS
++        self._committed_version = 0
++        self._ctfr_influence_credits = [
++            self._ctfr_bucket_capacity
++        ] * _NUM_CTFR_PRINCIPALS
++        self._baseline_sha256 = digest
++        torch.accelerator.synchronize()
++        result = {
++            "loaded": True,
++            "baseline_sha256": digest,
++            "slope": float(self.slope[0].item()),
++            "intercepts": self.intercepts[0].detach().cpu().tolist(),
++        }
++        logger.warning(
++            "AVEP_BASELINE_LOAD %s", json.dumps(result, sort_keys=True)
++        )
++        return result
++
++    def avep_reset_eval_metrics(self) -> dict[str, object]:
++        """Clear read-only calibration counters without changing policy state."""
++        torch.accelerator.synchronize()
++        before = self.avep_eval_metrics()
++        self.eval_log_loss.zero_()
++        self.eval_brier.zero_()
++        self.eval_counts.zero_()
++        torch.accelerator.synchronize()
++        return {"before": before, "after": self.avep_eval_metrics()}
++
++    def avep_eval_metrics(self) -> dict[str, object]:
++        """Return principal-scoped read-only calibration measurements."""
++        torch.accelerator.synchronize()
++        counts = self.eval_counts.detach().cpu()
++        log_loss = self.eval_log_loss.detach().cpu()
++        brier = self.eval_brier.detach().cpu()
++        principals = []
++        for principal in range(_NUM_CTFR_PRINCIPALS):
++            count = float(counts[principal].sum().item())
++            total_log_loss = float(log_loss[principal].sum().item())
++            total_brier = float(brier[principal].sum().item())
++            principals.append(
++                {
++                    "principal": principal,
++                    "count": count,
++                    "mean_log_loss": (
++                        total_log_loss / count if count else None
++                    ),
++                    "mean_brier": total_brier / count if count else None,
++                    "counts_by_position": counts[principal].tolist(),
++                }
++            )
++        return {"enabled": self._eval_metrics_enabled, "principals": principals}
++
+     def step(
+         self,
+         idx_mapping: torch.Tensor,
+@@ -649,6 +904,46 @@ class OnlineAcceptanceEstimator:
+         feedback_principals: torch.Tensor | None = None,
+         principal_activity: tuple[bool, bool] = (False, False),
+     ) -> None:
++        if self.requires_feedback_principals:
++            if feedback_principals is None:
++                raise ValueError("principal-routed feedback requires principal labels")
++            self.feedback_principals.index_copy_(
++                0, idx_mapping, feedback_principals
++            )
++            if self._telemetry_enabled:
++                logger.warning(
++                    "AVEP_CTFR_ATTRIBUTION %s",
++                    json.dumps(
++                        {
++                            "persistent_slots": idx_mapping.detach()
++                            .cpu()
++                            .tolist(),
++                            "principals": feedback_principals.detach()
++                            .cpu()
++                            .tolist(),
++                        },
++                        sort_keys=True,
++                    ),
++                )
++
++        if self._eval_metrics_enabled:
++            _evaluate_kernel[(self.num_speculative_steps,)](
++                idx_mapping,
++                num_sampled,
++                num_rejected,
++                self.feedback_principals,
++                self.predictions,
++                self.predictions.stride(0),
++                self.eval_log_loss,
++                self.eval_log_loss.stride(0),
++                self.eval_brier,
++                self.eval_brier.stride(0),
++                self.eval_counts,
++                self.eval_counts.stride(0),
++                idx_mapping.shape[0],
++                BLOCK_R=triton.next_power_of_2(max(idx_mapping.shape[0], 1)),
++            )
++
+         if not self._updates_enabled:
+             return
+ 
+@@ -661,11 +956,7 @@ class OnlineAcceptanceEstimator:
+             num_sampled,
+             num_rejected,
+             self.feedback_domains,
+-            (
+-                feedback_principals
+-                if feedback_principals is not None
+-                else idx_mapping
+-            ),
++            self.feedback_principals,
+             self.features,
+             self.features.stride(0),
+             self.predictions,
+@@ -684,6 +975,7 @@ class OnlineAcceptanceEstimator:
+                     _PCFR_ROUTE,
+                     _CTFR_SHADOW,
+                     _CTFR_FULL,
++                    _TENANT_LOCAL,
+                 }
+                 else 1
+             ),
+@@ -703,6 +995,14 @@ class OnlineAcceptanceEstimator:
+                     ] += 1
+             return
+ 
++        if self._pcfr_mode_id == _TENANT_LOCAL:
++            for principal, is_active in enumerate(principal_activity):
++                if is_active:
++                    self._steps_since_refit[
++                        _CTFR_FIRST_SHADOW + principal
++                    ] += 1
++            return
++
+         for domain, is_active in enumerate(domain_activity):
+             if not is_active:
+                 continue
+@@ -787,6 +1087,7 @@ class OnlineAcceptanceEstimator:
+ 
+         base = torch.cat((self.slope[0:1], self.intercepts[0]))
+         deltas: list[torch.Tensor] = []
++        raw_deltas: list[torch.Tensor] = []
+         raw_norms: list[float] = []
+         clipped_norms: list[float] = []
+         for principal, domain in enumerate(shadow_domains):
+@@ -825,6 +1126,7 @@ class OnlineAcceptanceEstimator:
+                 )
+             )
+             delta = candidate - base
++            raw_deltas.append(delta.clone())
+             raw_norm = float(torch.linalg.vector_norm(delta).item())
+             raw_norms.append(raw_norm)
+             if not torch.isfinite(delta).all() or raw_norm == 0.0:
+@@ -927,10 +1229,131 @@ class OnlineAcceptanceEstimator:
+             "remaining_influence_credits": list(
+                 self._ctfr_influence_credits
+             ),
++            "base_coefficients": base.detach().cpu().tolist(),
++            "raw_deltas": [
++                delta.detach().cpu().tolist() for delta in raw_deltas
++            ],
++            "clipped_deltas": [
++                delta.detach().cpu().tolist() for delta in deltas
++            ],
++            "aggregate_delta": aggregate.detach().cpu().tolist(),
++            "proposed_coefficients": proposed.detach().cpu().tolist(),
+         }
+         logger.warning("AVEP_CTFR_RETIRE %s", json.dumps(result, sort_keys=True))
+         return result
+ 
++    def avep_refit_tenant_local(self) -> dict[str, object]:
++        """Refit both isolated principal banks at a quiescent barrier."""
++        if self._pcfr_mode_id != _TENANT_LOCAL:
++            return {
++                "refit": False,
++                "reason": "tenant-local refit requires tenant-local mode",
++            }
++
++        torch.accelerator.synchronize()
++        local_domains = range(
++            _CTFR_FIRST_SHADOW,
++            _CTFR_FIRST_SHADOW + _NUM_CTFR_PRINCIPALS,
++        )
++        observation_counts = [
++            float(self.counts[domain].sum().item())
++            for domain in local_domains
++        ]
++        if any(
++            count < self._ctfr_min_observations
++            for count in observation_counts
++        ):
++            return {
++                "refit": False,
++                "reason": "insufficient per-principal observations",
++                "observation_counts": observation_counts,
++            }
++
++        candidate_slope = self.slope.clone()
++        candidate_intercepts = self.intercepts.clone()
++        candidate_info = self.info.clone()
++        candidate_grad = self.grad.clone()
++        candidate_counts = self.counts.clone()
++        before = [
++            torch.cat(
++                (
++                    self.slope[domain : domain + 1],
++                    self.intercepts[domain],
++                )
++            ).clone()
++            for domain in local_domains
++        ]
++        for domain in local_domains:
++            _refit_kernel[(1,)](
++                candidate_slope,
++                candidate_slope.stride(0),
++                candidate_intercepts,
++                candidate_intercepts.stride(0),
++                candidate_info,
++                candidate_info.stride(0),
++                candidate_info.stride(1),
++                candidate_grad,
++                candidate_grad.stride(0),
++                candidate_grad.stride(1),
++                candidate_counts,
++                candidate_counts.stride(0),
++                DOMAIN=domain,
++                NUM_SPECULATIVE_STEPS=self.num_speculative_steps,
++                L2=self.L2,
++                DAMPING=self.DAMPING_OBSERVATIONS,
++                BLOCK=triton.next_power_of_2(self.num_speculative_steps),
++            )
++        torch.accelerator.synchronize()
++        after = [
++            torch.cat(
++                (
++                    candidate_slope[domain : domain + 1],
++                    candidate_intercepts[domain],
++                )
++            ).clone()
++            for domain in local_domains
++        ]
++        if any(not torch.isfinite(parameters).all() for parameters in after):
++            return {
++                "refit": False,
++                "reason": "non-finite tenant-local candidate",
++                "observation_counts": observation_counts,
++            }
++
++        versions_before = list(self._tenant_local_versions)
++        with torch.no_grad():
++            for principal, domain in enumerate(local_domains):
++                self.slope[domain].copy_(candidate_slope[domain])
++                self.intercepts[domain].copy_(candidate_intercepts[domain])
++                self.info[domain].zero_()
++                self.grad[domain].zero_()
++                self.counts[domain].zero_()
++                self._steps_since_refit[domain] = 0
++                self._refits[domain] += 1
++                self._tenant_local_versions[principal] += 1
++        torch.accelerator.synchronize()
++        result = {
++            "refit": True,
++            "observation_counts": observation_counts,
++            "versions_before": versions_before,
++            "versions_after": list(self._tenant_local_versions),
++            "delta_norms": [
++                float(torch.linalg.vector_norm(a - b).item())
++                for a, b in zip(after, before)
++            ],
++            "parameters_before": [
++                value.detach().cpu().tolist() for value in before
++            ],
++            "parameters_after": [
++                value.detach().cpu().tolist() for value in after
++            ],
++        }
++        logger.warning(
++            "AVEP_TENANT_LOCAL_REFIT %s",
++            json.dumps(result, sort_keys=True),
++        )
++        return result
++
+     def predict(
+         self,
+         logits: torch.Tensor,
+@@ -972,6 +1395,7 @@ class OnlineAcceptanceEstimator:
+             self.intercepts,
+             self.intercepts.stride(0),
+             self.feedback_domains,
++            self.feedback_principals,
+             local_max,
+             local_max.stride(0),
+             local_sumexp,
+diff --git a/vllm/v1/worker/gpu_worker.py b/vllm/v1/worker/gpu_worker.py
+index 7216495c7a24f003b727259720b493e07189664e..0a71f65feeb1a391c78127b48ec5114e9038317f 100644
+--- a/vllm/v1/worker/gpu_worker.py
++++ b/vllm/v1/worker/gpu_worker.py
+@@ -1020,6 +1020,7 @@ class Worker(WorkerBase):
+ 
+     def avep_retire_ctfr(self) -> dict[str, Any]:
+         """Retire CTFR shadows at a localhost research barrier."""
++        logger.warning("AVEP_CTFR_RETIRE_CALL")
+         speculator = getattr(self.model_runner, "speculator", None)
+         estimator = getattr(speculator, "acceptance_estimator", None)
+         if estimator is None:
+@@ -1032,6 +1033,65 @@ class Worker(WorkerBase):
+             "retirement": estimator.avep_retire_ctfr(),
+         }
+ 
++    def avep_refit_tenant_local(self) -> dict[str, Any]:
++        """Refit isolated tenant banks at a localhost research barrier."""
++        logger.warning("AVEP_TENANT_LOCAL_REFIT_CALL")
++        speculator = getattr(self.model_runner, "speculator", None)
++        estimator = getattr(speculator, "acceptance_estimator", None)
++        if estimator is None:
++            return {
++                "available": False,
++                "reason": "No online acceptance estimator is active",
++            }
++        return {
++            "available": True,
++            "tenant_local_refit": estimator.avep_refit_tenant_local(),
++        }
++
++    def avep_load_acceptance_estimator_state(
++        self, serialized_json: str
++    ) -> dict[str, Any]:
++        """Load a frozen research baseline into the online estimator."""
++        speculator = getattr(self.model_runner, "speculator", None)
++        estimator = getattr(speculator, "acceptance_estimator", None)
++        if estimator is None:
++            return {
++                "available": False,
++                "reason": "No online acceptance estimator is active",
++            }
++        return {
++            "available": True,
++            "baseline": estimator.avep_load_committed_state(serialized_json),
++        }
++
++    def avep_reset_acceptance_estimator_eval_metrics(self) -> dict[str, Any]:
++        """Clear read-only acceptance calibration counters."""
++        speculator = getattr(self.model_runner, "speculator", None)
++        estimator = getattr(speculator, "acceptance_estimator", None)
++        if estimator is None:
++            return {
++                "available": False,
++                "reason": "No online acceptance estimator is active",
++            }
++        return {
++            "available": True,
++            "eval_metrics": estimator.avep_reset_eval_metrics(),
++        }
++
++    def avep_get_acceptance_estimator_eval_metrics(self) -> dict[str, Any]:
++        """Return read-only acceptance calibration counters."""
++        speculator = getattr(self.model_runner, "speculator", None)
++        estimator = getattr(speculator, "acceptance_estimator", None)
++        if estimator is None:
++            return {
++                "available": False,
++                "reason": "No online acceptance estimator is active",
++            }
++        return {
++            "available": True,
++            "eval_metrics": estimator.avep_eval_metrics(),
++        }
++
+     def get_model(self) -> nn.Module:
+         return self.model_runner.get_model()
+ 

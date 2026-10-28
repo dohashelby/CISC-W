@@ -1,0 +1,61 @@
+{
+  "base_url": "http://127.0.0.1:8001/v1",
+  "results": [
+    {
+      "audit_event_id": "f18c0333a9fc4b76ae67e1cc820243fc",
+      "authenticated_tenant": "attacker",
+      "expected_status": 200,
+      "gateway_instance_id": "factorial-perf_block_08_attack_shared-1789821538469254802",
+      "name": "attacker_ok",
+      "status": 200,
+      "upstream_marker": "factorial-33069-1789821478383469283"
+    },
+    {
+      "audit_event_id": "adb1f924eb114dc197d97e715ac3c1ee",
+      "authenticated_tenant": "victim",
+      "expected_status": 200,
+      "gateway_instance_id": "factorial-perf_block_08_attack_shared-1789821538469254802",
+      "name": "victim_ok",
+      "status": 200,
+      "upstream_marker": "factorial-33069-1789821478383469283"
+    },
+    {
+      "audit_event_id": "1340bfe2e68e4a7c803a0646a2908244",
+      "authenticated_tenant": null,
+      "expected_status": 401,
+      "gateway_instance_id": "factorial-perf_block_08_attack_shared-1789821538469254802",
+      "name": "missing_key",
+      "status": 401,
+      "upstream_marker": "factorial-33069-1789821478383469283"
+    },
+    {
+      "audit_event_id": "5055341d9097440ba6d40de740afc7ec",
+      "authenticated_tenant": null,
+      "expected_status": 401,
+      "gateway_instance_id": "factorial-perf_block_08_attack_shared-1789821538469254802",
+      "name": "wrong_key",
+      "status": 401,
+      "upstream_marker": "factorial-33069-1789821478383469283"
+    },
+    {
+      "audit_event_id": "54bc6e6d58914a379e1b8db84fbaba4c",
+      "authenticated_tenant": null,
+      "expected_status": 403,
+      "gateway_instance_id": "factorial-perf_block_08_attack_shared-1789821538469254802",
+      "name": "attacker_claims_victim",
+      "status": 403,
+      "upstream_marker": "factorial-33069-1789821478383469283"
+    },
+    {
+      "audit_event_id": "6a4eb16b0f01454ea784bafad0afb663",
+      "authenticated_tenant": null,
+      "expected_status": 403,
+      "gateway_instance_id": "factorial-perf_block_08_attack_shared-1789821538469254802",
+      "name": "victim_claims_attacker",
+      "status": 403,
+      "upstream_marker": "factorial-33069-1789821478383469283"
+    }
+  ],
+  "schema_version": 1,
+  "valid": true
+}

@@ -1,0 +1,61 @@
+{
+  "base_url": "http://127.0.0.1:8001/v1",
+  "results": [
+    {
+      "audit_event_id": "a0e920b3b5224cb5ac834adaa11c6e0e",
+      "authenticated_tenant": "attacker",
+      "expected_status": 200,
+      "gateway_instance_id": "factorial-gate_placebo_shared-1789817470016649624",
+      "name": "attacker_ok",
+      "status": 200,
+      "upstream_marker": "factorial-33069-1789817409934880008"
+    },
+    {
+      "audit_event_id": "5142e8d4a77c46969471fa68396ead6f",
+      "authenticated_tenant": "victim",
+      "expected_status": 200,
+      "gateway_instance_id": "factorial-gate_placebo_shared-1789817470016649624",
+      "name": "victim_ok",
+      "status": 200,
+      "upstream_marker": "factorial-33069-1789817409934880008"
+    },
+    {
+      "audit_event_id": "9fcb92fcff5d40f396ea5c93bb71e8f4",
+      "authenticated_tenant": null,
+      "expected_status": 401,
+      "gateway_instance_id": "factorial-gate_placebo_shared-1789817470016649624",
+      "name": "missing_key",
+      "status": 401,
+      "upstream_marker": "factorial-33069-1789817409934880008"
+    },
+    {
+      "audit_event_id": "141b3d0973ac40bcb2c970982094b844",
+      "authenticated_tenant": null,
+      "expected_status": 401,
+      "gateway_instance_id": "factorial-gate_placebo_shared-1789817470016649624",
+      "name": "wrong_key",
+      "status": 401,
+      "upstream_marker": "factorial-33069-1789817409934880008"
+    },
+    {
+      "audit_event_id": "ea8d98318ea448c99714f828278e3cc9",
+      "authenticated_tenant": null,
+      "expected_status": 403,
+      "gateway_instance_id": "factorial-gate_placebo_shared-1789817470016649624",
+      "name": "attacker_claims_victim",
+      "status": 403,
+      "upstream_marker": "factorial-33069-1789817409934880008"
+    },
+    {
+      "audit_event_id": "234de6357726405f8b6ab7324f71b2f7",
+      "authenticated_tenant": null,
+      "expected_status": 403,
+      "gateway_instance_id": "factorial-gate_placebo_shared-1789817470016649624",
+      "name": "victim_claims_attacker",
+      "status": 403,
+      "upstream_marker": "factorial-33069-1789817409934880008"
+    }
+  ],
+  "schema_version": 1,
+  "valid": true
+}

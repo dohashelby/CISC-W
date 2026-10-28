@@ -1,0 +1,61 @@
+{
+  "base_url": "http://127.0.0.1:8001/v1",
+  "results": [
+    {
+      "audit_event_id": "887a10cdf0ae465f84642ab7787e29a3",
+      "authenticated_tenant": "attacker",
+      "expected_status": 200,
+      "gateway_instance_id": "causal-gate_blocked-1789796100196957030",
+      "name": "attacker_ok",
+      "status": 200,
+      "upstream_marker": "causal-1672-1789795950028753131"
+    },
+    {
+      "audit_event_id": "0e86376a8f7f4c41bbb01679765ab2c7",
+      "authenticated_tenant": "victim",
+      "expected_status": 200,
+      "gateway_instance_id": "causal-gate_blocked-1789796100196957030",
+      "name": "victim_ok",
+      "status": 200,
+      "upstream_marker": "causal-1672-1789795950028753131"
+    },
+    {
+      "audit_event_id": "3daa956dbce94436b6bdc47d64ed5623",
+      "authenticated_tenant": null,
+      "expected_status": 401,
+      "gateway_instance_id": "causal-gate_blocked-1789796100196957030",
+      "name": "missing_key",
+      "status": 401,
+      "upstream_marker": "causal-1672-1789795950028753131"
+    },
+    {
+      "audit_event_id": "9a8274ae70b2479ea5904e41dcea1d60",
+      "authenticated_tenant": null,
+      "expected_status": 401,
+      "gateway_instance_id": "causal-gate_blocked-1789796100196957030",
+      "name": "wrong_key",
+      "status": 401,
+      "upstream_marker": "causal-1672-1789795950028753131"
+    },
+    {
+      "audit_event_id": "99410632ddd943949a8602538330ff7d",
+      "authenticated_tenant": null,
+      "expected_status": 403,
+      "gateway_instance_id": "causal-gate_blocked-1789796100196957030",
+      "name": "attacker_claims_victim",
+      "status": 403,
+      "upstream_marker": "causal-1672-1789795950028753131"
+    },
+    {
+      "audit_event_id": "432cae81f2044c51bde51454f5e3aa2d",
+      "authenticated_tenant": null,
+      "expected_status": 403,
+      "gateway_instance_id": "causal-gate_blocked-1789796100196957030",
+      "name": "victim_claims_attacker",
+      "status": 403,
+      "upstream_marker": "causal-1672-1789795950028753131"
+    }
+  ],
+  "schema_version": 1,
+  "valid": true
+}

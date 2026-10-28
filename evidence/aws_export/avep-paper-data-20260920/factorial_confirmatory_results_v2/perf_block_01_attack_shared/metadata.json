@@ -1,0 +1,13 @@
+{
+  "protocol_version": "avep-factorial-confirmatory-v2",
+  "run_name": "perf_block_01_attack_shared",
+  "stage": "performance",
+  "block_id": "01",
+  "arm": "attack_shared",
+  "workload": "attack",
+  "update_mode": "shared",
+  "poison_token_id": 279,
+  "telemetry": false,
+  "detailed_metrics": false,
+  "created_at": "2026-09-19T11:36:31,885202276+00:00"
+}

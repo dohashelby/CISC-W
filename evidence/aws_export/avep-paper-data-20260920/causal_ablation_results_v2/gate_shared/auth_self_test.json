@@ -1,0 +1,61 @@
+{
+  "base_url": "http://127.0.0.1:8001/v1",
+  "results": [
+    {
+      "audit_event_id": "f11a5a1fcd3e4fcfa78ef822308f2bdd",
+      "authenticated_tenant": "attacker",
+      "expected_status": 200,
+      "gateway_instance_id": "causal-gate_shared-1789798933993632518",
+      "name": "attacker_ok",
+      "status": 200,
+      "upstream_marker": "causal-107090-1789798873906948415"
+    },
+    {
+      "audit_event_id": "c5743a2696bb4f5d878aa2648294db68",
+      "authenticated_tenant": "victim",
+      "expected_status": 200,
+      "gateway_instance_id": "causal-gate_shared-1789798933993632518",
+      "name": "victim_ok",
+      "status": 200,
+      "upstream_marker": "causal-107090-1789798873906948415"
+    },
+    {
+      "audit_event_id": "3052b36f836b4722b081c0f927df870e",
+      "authenticated_tenant": null,
+      "expected_status": 401,
+      "gateway_instance_id": "causal-gate_shared-1789798933993632518",
+      "name": "missing_key",
+      "status": 401,
+      "upstream_marker": "causal-107090-1789798873906948415"
+    },
+    {
+      "audit_event_id": "6ebf9414009f47369368f5a7fcfa9e96",
+      "authenticated_tenant": null,
+      "expected_status": 401,
+      "gateway_instance_id": "causal-gate_shared-1789798933993632518",
+      "name": "wrong_key",
+      "status": 401,
+      "upstream_marker": "causal-107090-1789798873906948415"
+    },
+    {
+      "audit_event_id": "e0a817e08d464f0ab9483de856d39ecf",
+      "authenticated_tenant": null,
+      "expected_status": 403,
+      "gateway_instance_id": "causal-gate_shared-1789798933993632518",
+      "name": "attacker_claims_victim",
+      "status": 403,
+      "upstream_marker": "causal-107090-1789798873906948415"
+    },
+    {
+      "audit_event_id": "8cf57ee6f66d48858e9562e5bbd18541",
+      "authenticated_tenant": null,
+      "expected_status": 403,
+      "gateway_instance_id": "causal-gate_shared-1789798933993632518",
+      "name": "victim_claims_attacker",
+      "status": 403,
+      "upstream_marker": "causal-107090-1789798873906948415"
+    }
+  ],
+  "schema_version": 1,
+  "valid": true
+}

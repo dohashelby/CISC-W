@@ -1,0 +1,10 @@
+{
+  "protocol_version": "avep-causal-ablation-v2",
+  "gateway_instance_id": "causal-perf_pair_05_shared-1789800094594735063",
+  "upstream_marker": "causal-107090-1789800034497247723",
+  "key_fingerprints": {
+    "attacker": "0108e89c9afa407238878b5c5560ddce1ba18766331d3ee81df01e42d7b92f80",
+    "victim": "9e2a59d1092a59c848194fb57f92abc56c295fcd7e22dfb3170bd9f49e0b39c7",
+    "upstream": "fd82a516a8a956c1197f588a9424de1c98e0773958c576b545b7c827726b2a66"
+  }
+}

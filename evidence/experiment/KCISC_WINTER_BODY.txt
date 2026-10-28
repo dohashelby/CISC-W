@@ -1,0 +1,80 @@
+1. 서 론
+
+고성능 LLM 서빙 엔진은 모델 가중치와 별도로 변하는 runtime control state를 유지한다. Speculative decoding은 draft model이 제안한 토큰을 target model이 검증하여 직렬 추론 비용을 줄이며[1], 일부 시스템은 acceptance feedback으로 이후 검증량이나 draft policy를 온라인 조정한다[2]. 서로 신뢰하지 않는 요청이 하나의 controller state에 기여하면 request data plane과 장기 제어 상태 사이에 새로운 trust boundary가 생긴다.
+
+본 연구는 이를 cross-principal adaptive control-state contamination으로 정의한다. 핵심은 동시 자원 경합이나 모델 학습 poisoning이 아니다. 주체 A의 요청이 종료된 뒤에도 A가 만든 feedback이 공유 상태에 남아 시간적으로 겹치지 않는 주체 B의 serving policy를 바꾸는지가 문제다. 본 논문의 기여는 ① 일반적인 상태 전이와 성립 조건 정의, ② 고정된 vLLM[3] 구성에서 estimator-update 개입을 통한 인과 검증, ③ feedback을 즉시 공유 상태에 반영하지 않는 CTFR 설계 제안이다. 모든 온라인 적응형 엔진이 취약하다고 주장하지 않는다.
+
+2. 배경 및 문제 정의
+
+2.1 온라인 적응형 검증
+
+Draft 제안이 자주 채택되면 긴 speculation이 유리하지만 acceptance가 낮으면 검증 비용이 증가한다. Controller는 accept/reject 기록으로 acceptance를 추정하고 다음 요청의 verification budget을 조정할 수 있다. 이는 모델 가중치의 온라인 학습이 아니라 serving-control adaptation이다. Online Speculative Decoding은 실제 질의에 대한 지속적 적응의 성능 이점을 보였고[2], test-time adaptation 연구는 비신뢰 표본이 공유 적응 상태를 오염시킬 수 있음을 지적하였다[4]. 본 연구는 이 두 맥락 사이의 요청 주체→공유 controller→다른 주체의 후속 policy 경로를 시스템 보안 경계로 다룬다.
+
+공유 상태를 s, 주체 p의 feedback과 문맥을 y_p, c_p, 후속 주체 q의 검증량을 b_q라 하면 다음과 같다.
+
+s_(t+1)=F(s_t,y_p(t),c_p(t)),  b_q(t+1)=π(s_(t+1),x_q(t+1)).  (1)
+
+검사가 필요한 조건은 ① mutable state가 요청·주체 간 공유되고, ② 비신뢰 요청이 feedback에 영향을 주며, ③ estimator가 주체나 유효 policy 문맥을 구분하지 않고, ④ 변경 상태가 후속 자원 배분을 바꾸며, ⑤ 요청 종료 뒤에도 유지되고, ⑥ 주체별 격리나 기여량 제한이 없는 경우다.
+
+2.2 위협 모델
+
+공격자와 victim은 gateway가 인증한 서로 다른 principal이며 한 worker를 합법적으로 공유한다. Gateway는 외부 identity claim을 제거하고 내부 principal을 부여한다. 공격자는 지원되는 inference API의 prompt, sampling parameter와 요청 수를 선택하지만 host, 가중치, GPU memory, telemetry 또는 update gate에는 접근하지 못한다. 공격 queue를 비운 뒤 victim을 측정하여 두 phase를 비중첩시켰다. 이 principal은 실험용 trust boundary이며 vLLM의 native tenancy를 뜻하지 않는다.
+
+시험 경로는 ‘request별 target policy 변형→draft/target acceptance 저하→worker-shared OnlineAcceptanceEstimator 갱신→verification budget 변화→후속 victim 성능 저하’다. 보호 자산은 출력 의미나 모델 가중치가 아니라 availability에 영향을 주는 controller state다.
+
+3. vLLM 사례 실험
+
+3.1 방법
+
+vLLM commit 4fe9e6f6e5647a159c9e65e4f3bf33dec5d12e1c, Qwen3-4B target, Qwen3-4B-DFlash-b16 draft, 4 speculative tokens, NVIDIA L40S(AWS g6e.2xlarge) 단일 worker를 사용하였다. 인증 gateway를 유일한 진입점으로 두고 두 principal의 audit event를 worker 요청과 1:1 결합하였다.
+
+Workload(attack/placebo)와 공격 phase의 estimator update(shared/blocked)를 교차해 P-S, P-B, A-S, A-B 네 arm을 구성하였다. Blocked도 동일한 speculative decoding과 target verification을 수행하되 estimator의 accumulate/refit만 공격 phase 동안 억제한다. 각 arm은 fresh process에서 victim warm-up 1,024건, pre 128건×4, attacker intervention 4,096건, 비중첩 victim post 128건×8을 수행하였다. 네 arm을 Williams-balanced order로 배치한 8개 temporal block을 독립 단위로 삼았다. 주 효과량은 8-window pre-normalized throughput interaction이다.
+
+I=[(A-S)-(A-B)]-[(P-S)-(P-B)].  (2)
+
+신뢰구간은 paired-block bootstrap, 방향 일관성은 exact sign test로 계산하였다. 32개 arm이 모두 완료되었고 요청 실패와 audit 누락은 없었다.
+
+3.2 결과
+
+Attack의 draft acceptance는 blocked/shared 모두 0.0000, placebo는 모두 0.1875였다. Blocked 두 arm의 serialized estimator state는 정확히 불변이었다. Shared가 허용되었을 때 intercept[0]의 attack-by-update interaction은 -13.8508, 8-window 평균 normalized verification-budget interaction은 -0.5163이었다. 즉 stimulus는 같지만 estimator 변경 여부에 따라 후속 policy가 달라졌다.
+
+평균 post/pre 처리량은 A-S 0.6847, A-B 1.0018, P-S 0.9269, P-B 0.9962였다. 주 interaction은 -0.2478(95% bootstrap CI [-0.2586,-0.2380])이며 8/8 block이 피해 방향이었다(one-sided exact p=0.00390625). p50과 p95 latency interaction도 +0.5053, +0.4788로 불리했다. 처리량 interaction은 post_01~08에서 모두 음수여서 공격 종료 후 arm당 1,024 victim 요청까지 관측되었다. 이 값은 baseline-normalized arm 사이의 24.78 percentage-point interaction이며 보편적인 raw 처리량 손실이나 무기한 지속성을 뜻하지 않는다.
+
+같은 공격 연산과 검증을 수행한 A-B에서는 상태와 후속 policy가 유지되었고, 각 block의 placebo update 효과도 차감하였다. 따라서 시험 구성에서는 ‘공격자 feedback→공유 estimator update→후속 policy→성능 저하’라는 인과 경로가 지지된다.
+
+4. 피드백 격리 설계 제안
+
+4.1 Context-Tagged Feedback Retirement
+
+온라인 갱신을 모두 끄면 안전하지만 정상 workload에 대한 적응 이점도 사라진다. 이에 CPU speculative execution의 shadow state와 retire/squash 생명주기[5], optimistic validation[6]에서 착안한 CTFR을 제안한다. 개별 기법 자체가 아니라 이를 서빙 feedback의 trust boundary로 구성하는 설계다.
+
+CTFR은 committed state C^v와 공개되지 않은 shadow U[(p,τ),v]를 구분한다. p는 gateway-authenticated principal이고 τ는 서버가 model revision, estimator feature contract, 유효 sampling policy와 verification 설정으로 만든 context tag다. 요청은 C^v만 읽고 충분통계, observation count, refit clock은 U에만 쓴다. Epoch마다 shadow candidate를 만들고 최소 관측량, 서로 다른 principal의 quorum, 방향 일치, principal별 weight·누적 influence credit, coefficient norm과 고정 feature-grid의 확률변화 trust region을 검사한다. 모두 통과할 때만 quiescent barrier에서 새 version을 retire하고 실패하면 squash한다.
+
+핵심 속성은 retire 전 committed-state invariance다.
+
+C(after unretired feedback from p)=C(before feedback from p).  (3)
+
+계수뿐 아니라 refit timing과 숨은 누적 통계까지 shadowing해야 한다. Retirement 후 안전성은 인증, validator coverage, influence bound와 공모 주체 수에 조건부다. CPU branch와 달리 feedback이 benign임을 증명하는 resolution oracle은 없다.
+
+4.2 예비 관찰과 경계
+
+단일 worker·두 principal prototype의 예비 five-arm gate(shared, frozen, tenant-local, ctfr-shadow, ctfr-full)는 총 12,960건을 오류 없이 완료했고 ctfr-shadow의 식 (3)을 확인했다. 그러나 정상 candidate의 최대 acceptance-probability 변화가 사전 고정한 0.15보다 큰 0.152207이어서 ctfr-full retirement는 fail-closed로 거부되었고 부분 commit은 없었다. 이는 shadow/commit 경계의 실행 가능성만 지지한다. 공격 완화, 정상 적응성, tenant-local 대비 우월성, overhead 및 분산 원자성은 입증되지 않았으므로 CTFR은 검증 완료된 방어가 아닌 설계 제안이다.
+
+5. 논의 및 한계
+
+본 연구가 일반화하는 것은 취약성의 존재가 아니라 식 (1)의 검사 조건이다. 다른 엔진도 공유 state, 비신뢰 feedback, 문맥 누락, 후속 policy 연결과 지속성을 별도로 확인해야 한다. Principal별 estimator는 직접 오염을 막지만 상태가 증가하고 정상 evidence 공유를 잃는다. Global clipping·decay는 slow-drip 누적을 허용할 수 있다. CTFR은 이 trade-off를 명시하지만 quorum은 Sybil resistance가 아니며 validator도 benignness oracle이 아니다.
+
+실험은 한 commit, model pair, GPU, worker와 workload에 한정된다. Native tenant 격리, 8개 window 이후 recovery, 다른 부하·엔진, 경제적 증폭을 확립하지 않았다. CTFR도 quiescent prototype이므로 concurrent version pinning, stale feedback, crash atomicity, multi-worker publication과 동적 principal 관리는 향후 과제다.
+
+6. 결 론
+
+온라인 적응형 서빙은 모델과 별도의 mutable trust boundary를 만든다. 본 연구는 이를 인증 주체 간 제어 상태 오염으로 정의하고 고정된 vLLM 구성에서 estimator-mediated 후속 성능 저하를 인과적으로 확인하였다. 또한 feedback을 context-tagged shadow에 보관하고 검증 후 retire 또는 squash하는 CTFR을 설계 방향으로 제안하였다. 후속 연구에서는 두 번째 controller와 다양한 workload에서 재현성을 확인하고 CTFR의 적응성·overhead·동시성을 검증해야 한다.
+
+참고문헌
+
+[1] Y. Leviathan, M. Kalman, and Y. Matias, “Fast Inference from Transformers via Speculative Decoding,” Proc. ICML, pp. 19274–19286, 2023.
+[2] X. Liu et al., “Online Speculative Decoding,” Proc. ICML, pp. 31131–31146, 2024.
+[3] W. Kwon et al., “Efficient Memory Management for Large Language Model Serving with PagedAttention,” Proc. SOSP, 2023.
+[4] T. Wu et al., “Uncovering Adversarial Risks of Test-Time Adaptation,” Proc. ICML, pp. 37456–37495, 2023.
+[5] K. N. Khasawneh et al., “SafeSpec: Banishing the Spectre of a Meltdown with Leakage-Free Speculation,” Proc. DAC, 2019.
+[6] H. T. Kung and J. T. Robinson, “On Optimistic Methods for Concurrency Control,” ACM TODS, vol. 6, no. 2, pp. 213–226, 1981.

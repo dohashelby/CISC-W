@@ -1,0 +1,86 @@
+diff --git a/vllm/v1/worker/gpu/spec_decode/acceptance_estimator.py b/vllm/v1/worker/gpu/spec_decode/acceptance_estimator.py
+--- a/vllm/v1/worker/gpu/spec_decode/acceptance_estimator.py
++++ b/vllm/v1/worker/gpu/spec_decode/acceptance_estimator.py
+@@ -354,6 +354,7 @@ class OnlineAcceptanceEstimator:
+         self._steps_since_refit = 0
+         self._refits = 0
+         self._telemetry_enabled = os.environ.get("VLLM_AVEP_TELEMETRY") == "1"
++        self._updates_enabled = True
+ 
+         # The learned coefficients used for predicting acceptance.
+         self.slope = torch.full((1,), _INIT_SLOPE, dtype=torch.float32, device=device)
+@@ -410,6 +411,7 @@ class OnlineAcceptanceEstimator:
+             "available": True,
+             "steps_since_refit": self._steps_since_refit,
+             "refits": self._refits,
++            "updates_enabled": self._updates_enabled,
+             "slope": float(self.slope.item()),
+             "intercepts": self.intercepts.detach().cpu().tolist(),
+             "counts": self.counts.detach().cpu().tolist(),
+@@ -417,6 +419,19 @@ class OnlineAcceptanceEstimator:
+             "grad": self.grad.detach().cpu().tolist(),
+         }
+ 
++    def avep_set_updates_enabled(self, enabled: bool) -> dict[str, object]:
++        """Enable or suppress estimator observations for causal ablation."""
++        before = self._updates_enabled
++        self._updates_enabled = enabled
++        logger.warning(
++            "AVEP_UPDATE_GATE %s",
++            json.dumps(
++                {"before": before, "after": self._updates_enabled},
++                sort_keys=True,
++            ),
++        )
++        return {"before": before, "after": self._updates_enabled}
++
+     def avep_reset(self) -> dict[str, object]:
+         """Reset only the online estimator, preserving models and server state."""
+         before = self.avep_state()
+@@ -430,6 +445,7 @@ class OnlineAcceptanceEstimator:
+             self.counts.zero_()
+         self._steps_since_refit = 0
+         self._refits = 0
++        self._updates_enabled = True
+         torch.accelerator.synchronize()
+         after = self.avep_state()
+         logger.warning(
+@@ -454,6 +470,9 @@ class OnlineAcceptanceEstimator:
+         num_sampled: torch.Tensor,
+         num_rejected: torch.Tensor,
+     ) -> None:
++        if not self._updates_enabled:
++            return
++
+         # Accumulate the previous step's graded drafts into the IRLS statistics.
+         num_reqs = idx_mapping.shape[0]
+         _accumulate_kernel[(self.num_speculative_steps,)](
+diff --git a/vllm/v1/worker/gpu_worker.py b/vllm/v1/worker/gpu_worker.py
+--- a/vllm/v1/worker/gpu_worker.py
++++ b/vllm/v1/worker/gpu_worker.py
+@@ -997,6 +997,25 @@ class Worker(WorkerBase):
+             "reset": result,
+         }
+ 
++    def avep_set_acceptance_estimator_updates(
++        self, enabled: str
++    ) -> dict[str, Any]:
++        """Toggle estimator observations for a localhost research ablation."""
++        if enabled not in {"true", "false"}:
++            raise ValueError("enabled must be the string 'true' or 'false'")
++        speculator = getattr(self.model_runner, "speculator", None)
++        estimator = getattr(speculator, "acceptance_estimator", None)
++        if estimator is None:
++            return {
++                "available": False,
++                "reason": "No online acceptance estimator is active",
++            }
++        result = estimator.avep_set_updates_enabled(enabled == "true")
++        return {
++            "available": True,
++            "update_gate": result,
++        }
++
+     def get_model(self) -> nn.Module:
+         return self.model_runner.get_model()
+ 

@@ -1,0 +1,8 @@
+{
+  "run_name": "mechanism_attack",
+  "pair_id": null,
+  "arm": "attack",
+  "adaptive": true,
+  "telemetry": true,
+  "poison_token_id": 23811
+}

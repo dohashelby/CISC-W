@@ -1,0 +1,94 @@
+test_eager_gate_is_selected_after_graph_divergence (test_analyze_ctfr_determinism_gate.DeterminismGateTests.test_eager_gate_is_selected_after_graph_divergence) ... ok
+test_non_hash_fallback_is_selected_when_all_modes_diverge (test_analyze_ctfr_determinism_gate.DeterminismGateTests.test_non_hash_fallback_is_selected_when_all_modes_diverge) ... ok
+test_probe_configuration_mismatch_fails_closed (test_analyze_ctfr_determinism_gate.DeterminismGateTests.test_probe_configuration_mismatch_fails_closed) ... ok
+test_realistic_gate_is_selected_when_every_control_is_exact (test_analyze_ctfr_determinism_gate.DeterminismGateTests.test_realistic_gate_is_selected_when_every_control_is_exact) ... ok
+test_small_batch_gate_is_selected_after_c32_divergence (test_analyze_ctfr_determinism_gate.DeterminismGateTests.test_small_batch_gate_is_selected_after_c32_divergence) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.015s
+
+OK
+Running timer as unit: ctfr-determinism-shutdown-1789901666.timer
+Will run service as unit: ctfr-determinism-shutdown-1789901666.service
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+{
+  "accepted_draft_tokens": 264,
+  "aggregate_output_tokens_per_second": 549.8892267358431,
+  "authenticated_principal_counts": {
+    "attacker": 16,
+    "victim": 16
+  },
+  "by_principal": {
+    "attacker": {
+      "accepted_draft_tokens": 132,
+      "aggregate_output_tokens_per_second": 274.94461336792153,
+      "completion_tokens": 272,
+      "draft_acceptance_rate": 0.2462686567164179,
+      "draft_tokens": 536,
+      "failed": 0,
+      "latency_ms_p50": 803.9246985,
+      "latency_ms_p95": 977.7212535000001,
+      "latency_ms_p99": 982.9974147,
+      "requests": 16,
+      "spec_requests": 16,
+      "successful": 16,
+      "wall_seconds": 0.989290158
+    },
+    "victim": {
+      "accepted_draft_tokens": 132,
+      "aggregate_output_tokens_per_second": 275.1022635773296,
+      "completion_tokens": 272,
+      "draft_acceptance_rate": 0.2462686567164179,
+      "draft_tokens": 536,
+      "failed": 0,
+      "latency_ms_p50": 796.4480719999999,
+      "latency_ms_p95": 978.1889014999999,
+      "latency_ms_p99": 983.1154643,
+      "requests": 16,
+      "spec_requests": 16,
+      "successful": 16,
+      "wall_seconds": 0.988723235
+    }
+  },
+  "completion_tokens": 544,
+  "draft_acceptance_rate": 0.2462686567164179,
+  "draft_tokens": 1072,
+  "evidence_ok": true,
+  "expected_principal_counts": {
+    "attacker": 16,
+    "victim": 16
+  },
+  "failed": 0,
+  "gateway_instance_counts": {
+    "factorial-graph_c32_a-1789901818851795606": 32
+  },
+  "latency_ms_p50": 797.389034,
+  "latency_ms_p95": 979.8172966,
+  "latency_ms_p99": 984.3376035000001,
+  "missing_audit_event_ids": 0,
+  "requests": 32,
+  "spec_requests": 32,
+  "successful": 32,
+  "unique_audit_event_ids": 32,
+  "upstream_marker_counts": {
+    "determinism-1638-1789901668673952968": 32
+  },
+  "wall_seconds": 0.989290158
+}
+jq: error: syntax error, unexpected label, expecting IDENT or __loc__ (Unix shell quoting issues?) at <top-level>, line 1:
+{label: $label, sampled_at: $sampled_at,         
+jq: 1 compile error

@@ -1,0 +1,3803 @@
+{
+  "classification": "execution_nondeterminism_detected",
+  "divergent_identical_policy_controls": [
+    "baseline_evaluation:ctfr-full__ctfr-shadow",
+    "baseline_evaluation:ctfr-full__frozen",
+    "baseline_evaluation:ctfr-full__shared",
+    "baseline_evaluation:ctfr-full__tenant-local",
+    "baseline_evaluation:ctfr-shadow__frozen",
+    "baseline_evaluation:ctfr-shadow__shared",
+    "baseline_evaluation:ctfr-shadow__tenant-local",
+    "baseline_evaluation:frozen__shared",
+    "baseline_evaluation:frozen__tenant-local",
+    "baseline_evaluation:shared__tenant-local",
+    "evaluation:frozen__ctfr-shadow"
+  ],
+  "frozen_identical_input_instability_groups": 8,
+  "phases": {
+    "baseline_evaluation": {
+      "all_arm_common_ordinals": 256,
+      "all_arm_exact_equal": 145,
+      "all_arm_exact_equal_rate": 0.56640625,
+      "arms": {
+        "ctfr-full": {
+          "successful_records": 256,
+          "within_arm": {
+            "identical_prompt_seed_distinct_output_counts": {
+              "eval-code-001:1085703203": 2,
+              "eval-code-001:1580833790": 1,
+              "eval-code-001:1761284431": 1,
+              "eval-code-001:1824429159": 1,
+              "eval-code-001:194033995": 1,
+              "eval-code-001:746059925": 1,
+              "eval-code-001:847570270": 1,
+              "eval-code-001:966577195": 1,
+              "eval-code-002:1096910635": 2,
+              "eval-code-002:1412526977": 1,
+              "eval-code-002:1457557491": 1,
+              "eval-code-002:1459976365": 1,
+              "eval-code-002:1488412850": 2,
+              "eval-code-002:1503193803": 2,
+              "eval-code-002:25907774": 1,
+              "eval-code-002:7786633": 1,
+              "eval-code-003:1117167124": 1,
+              "eval-code-003:1146567803": 1,
+              "eval-code-003:1196480403": 1,
+              "eval-code-003:1918198685": 1,
+              "eval-code-003:301647354": 1,
+              "eval-code-003:576201928": 1,
+              "eval-code-003:614616360": 1,
+              "eval-code-003:966618419": 1,
+              "eval-code-011:1165552555": 1,
+              "eval-code-011:1526247266": 1,
+              "eval-code-011:209178142": 1,
+              "eval-code-011:2145345473": 1,
+              "eval-code-011:292393474": 1,
+              "eval-code-011:299075742": 1,
+              "eval-code-011:340235054": 1,
+              "eval-code-011:997544028": 1,
+              "eval-code-015:100806733": 1,
+              "eval-code-015:1088532721": 1,
+              "eval-code-015:1213849276": 1,
+              "eval-code-015:1292196556": 1,
+              "eval-code-015:1689822918": 1,
+              "eval-code-015:329864095": 1,
+              "eval-code-015:492744463": 1,
+              "eval-code-015:563208355": 1,
+              "eval-cs-016:1425162936": 1,
+              "eval-cs-016:1479580458": 1,
+              "eval-cs-016:1507106167": 1,
+              "eval-cs-016:160965508": 1,
+              "eval-cs-016:1645103593": 1,
+              "eval-cs-016:388477386": 1,
+              "eval-cs-016:433539416": 1,
+              "eval-cs-016:847600798": 1,
+              "eval-ko-009:102859416": 1,
+              "eval-ko-009:1207547708": 1,
+              "eval-ko-009:1890711126": 1,
+              "eval-ko-009:20588963": 1,
+              "eval-ko-009:393537098": 1,
+              "eval-ko-009:736070303": 1,
+              "eval-ko-009:857797446": 1,
+              "eval-ko-009:870687198": 1,
+              "eval-ko-010:1186250654": 1,
+              "eval-ko-010:1525527472": 1,
+              "eval-ko-010:155104043": 1,
+              "eval-ko-010:1771072006": 1,
+              "eval-ko-010:1835991361": 1,
+              "eval-ko-010:1959586947": 1,
+              "eval-ko-010:459781911": 1,
+              "eval-ko-010:575988188": 1,
+              "eval-math-005:1285043651": 1,
+              "eval-math-005:1289644071": 1,
+              "eval-math-005:1445210281": 2,
+              "eval-math-005:1572828843": 1,
+              "eval-math-005:431534122": 1,
+              "eval-math-005:461932657": 1,
+              "eval-math-005:643732222": 1,
+              "eval-math-005:719000482": 1,
+              "eval-math-006:1512722949": 1,
+              "eval-math-006:1840435870": 1,
+              "eval-math-006:1893623393": 1,
+              "eval-math-006:247523083": 1,
+              "eval-math-006:40042286": 1,
+              "eval-math-006:402919697": 1,
+              "eval-math-006:60294057": 1,
+              "eval-math-006:737181564": 1,
+              "eval-math-007:1014185879": 1,
+              "eval-math-007:1142444539": 1,
+              "eval-math-007:1181765375": 1,
+              "eval-math-007:1296510348": 1,
+              "eval-math-007:417514896": 1,
+              "eval-math-007:487046108": 1,
+              "eval-math-007:6619627": 1,
+              "eval-math-007:716495122": 1,
+              "eval-math-008:1142687778": 1,
+              "eval-math-008:1425061433": 1,
+              "eval-math-008:1610537981": 1,
+              "eval-math-008:1747573225": 1,
+              "eval-math-008:1939595002": 1,
+              "eval-math-008:288445798": 1,
+              "eval-math-008:659861734": 1,
+              "eval-math-008:70878306": 1,
+              "eval-sec-014:1688518071": 1,
+              "eval-sec-014:1875237294": 1,
+              "eval-sec-014:1948279750": 1,
+              "eval-sec-014:477135279": 1,
+              "eval-sec-014:605723199": 1,
+              "eval-sec-014:632513243": 1,
+              "eval-sec-014:733156513": 1,
+              "eval-sec-014:972329979": 1,
+              "eval-struct-004:1051827221": 1,
+              "eval-struct-004:1213337324": 1,
+              "eval-struct-004:1609734128": 1,
+              "eval-struct-004:1946024400": 1,
+              "eval-struct-004:1948567290": 1,
+              "eval-struct-004:20374942": 1,
+              "eval-struct-004:694516262": 1,
+              "eval-struct-004:78772373": 1,
+              "eval-struct-012:1248449888": 1,
+              "eval-struct-012:1384475419": 1,
+              "eval-struct-012:1675495668": 1,
+              "eval-struct-012:1681987860": 1,
+              "eval-struct-012:1752526240": 1,
+              "eval-struct-012:177045504": 1,
+              "eval-struct-012:2035145058": 1,
+              "eval-struct-012:2093249117": 1,
+              "eval-struct-013:1024845489": 1,
+              "eval-struct-013:1029181413": 1,
+              "eval-struct-013:1321110339": 1,
+              "eval-struct-013:1958632731": 1,
+              "eval-struct-013:2119571135": 1,
+              "eval-struct-013:238546449": 1,
+              "eval-struct-013:553815693": 1,
+              "eval-struct-013:86033321": 1
+            },
+            "identical_prompt_seed_groups_with_multiple_outputs": 5,
+            "max_outputs_for_one_prompt": 4,
+            "prompt_distinct_output_counts": {
+              "eval-code-001": 2,
+              "eval-code-002": 3,
+              "eval-code-003": 1,
+              "eval-code-011": 1,
+              "eval-code-015": 1,
+              "eval-cs-016": 2,
+              "eval-ko-009": 4,
+              "eval-ko-010": 1,
+              "eval-math-005": 2,
+              "eval-math-006": 2,
+              "eval-math-007": 1,
+              "eval-math-008": 1,
+              "eval-sec-014": 2,
+              "eval-struct-004": 1,
+              "eval-struct-012": 2,
+              "eval-struct-013": 1
+            },
+            "prompts_with_multiple_outputs": 8
+          }
+        },
+        "ctfr-shadow": {
+          "successful_records": 256,
+          "within_arm": {
+            "identical_prompt_seed_distinct_output_counts": {
+              "eval-code-001:1085703203": 1,
+              "eval-code-001:1580833790": 1,
+              "eval-code-001:1761284431": 1,
+              "eval-code-001:1824429159": 1,
+              "eval-code-001:194033995": 1,
+              "eval-code-001:746059925": 2,
+              "eval-code-001:847570270": 1,
+              "eval-code-001:966577195": 1,
+              "eval-code-002:1096910635": 2,
+              "eval-code-002:1412526977": 1,
+              "eval-code-002:1457557491": 1,
+              "eval-code-002:1459976365": 2,
+              "eval-code-002:1488412850": 1,
+              "eval-code-002:1503193803": 1,
+              "eval-code-002:25907774": 2,
+              "eval-code-002:7786633": 1,
+              "eval-code-003:1117167124": 1,
+              "eval-code-003:1146567803": 1,
+              "eval-code-003:1196480403": 1,
+              "eval-code-003:1918198685": 1,
+              "eval-code-003:301647354": 1,
+              "eval-code-003:576201928": 1,
+              "eval-code-003:614616360": 1,
+              "eval-code-003:966618419": 1,
+              "eval-code-011:1165552555": 1,
+              "eval-code-011:1526247266": 1,
+              "eval-code-011:209178142": 1,
+              "eval-code-011:2145345473": 1,
+              "eval-code-011:292393474": 1,
+              "eval-code-011:299075742": 1,
+              "eval-code-011:340235054": 1,
+              "eval-code-011:997544028": 1,
+              "eval-code-015:100806733": 1,
+              "eval-code-015:1088532721": 1,
+              "eval-code-015:1213849276": 1,
+              "eval-code-015:1292196556": 1,
+              "eval-code-015:1689822918": 1,
+              "eval-code-015:329864095": 1,
+              "eval-code-015:492744463": 1,
+              "eval-code-015:563208355": 1,
+              "eval-cs-016:1425162936": 1,
+              "eval-cs-016:1479580458": 1,
+              "eval-cs-016:1507106167": 1,
+              "eval-cs-016:160965508": 1,
+              "eval-cs-016:1645103593": 1,
+              "eval-cs-016:388477386": 1,
+              "eval-cs-016:433539416": 1,
+              "eval-cs-016:847600798": 1,
+              "eval-ko-009:102859416": 1,
+              "eval-ko-009:1207547708": 1,
+              "eval-ko-009:1890711126": 1,
+              "eval-ko-009:20588963": 1,
+              "eval-ko-009:393537098": 1,
+              "eval-ko-009:736070303": 1,
+              "eval-ko-009:857797446": 1,
+              "eval-ko-009:870687198": 1,
+              "eval-ko-010:1186250654": 1,
+              "eval-ko-010:1525527472": 1,
+              "eval-ko-010:155104043": 1,
+              "eval-ko-010:1771072006": 1,
+              "eval-ko-010:1835991361": 1,
+              "eval-ko-010:1959586947": 1,
+              "eval-ko-010:459781911": 1,
+              "eval-ko-010:575988188": 1,
+              "eval-math-005:1285043651": 1,
+              "eval-math-005:1289644071": 1,
+              "eval-math-005:1445210281": 1,
+              "eval-math-005:1572828843": 2,
+              "eval-math-005:431534122": 1,
+              "eval-math-005:461932657": 1,
+              "eval-math-005:643732222": 1,
+              "eval-math-005:719000482": 1,
+              "eval-math-006:1512722949": 1,
+              "eval-math-006:1840435870": 1,
+              "eval-math-006:1893623393": 1,
+              "eval-math-006:247523083": 1,
+              "eval-math-006:40042286": 1,
+              "eval-math-006:402919697": 1,
+              "eval-math-006:60294057": 1,
+              "eval-math-006:737181564": 1,
+              "eval-math-007:1014185879": 1,
+              "eval-math-007:1142444539": 1,
+              "eval-math-007:1181765375": 1,
+              "eval-math-007:1296510348": 1,
+              "eval-math-007:417514896": 1,
+              "eval-math-007:487046108": 1,
+              "eval-math-007:6619627": 1,
+              "eval-math-007:716495122": 1,
+              "eval-math-008:1142687778": 1,
+              "eval-math-008:1425061433": 1,
+              "eval-math-008:1610537981": 1,
+              "eval-math-008:1747573225": 1,
+              "eval-math-008:1939595002": 1,
+              "eval-math-008:288445798": 1,
+              "eval-math-008:659861734": 1,
+              "eval-math-008:70878306": 1,
+              "eval-sec-014:1688518071": 1,
+              "eval-sec-014:1875237294": 1,
+              "eval-sec-014:1948279750": 1,
+              "eval-sec-014:477135279": 1,
+              "eval-sec-014:605723199": 1,
+              "eval-sec-014:632513243": 1,
+              "eval-sec-014:733156513": 1,
+              "eval-sec-014:972329979": 1,
+              "eval-struct-004:1051827221": 1,
+              "eval-struct-004:1213337324": 1,
+              "eval-struct-004:1609734128": 1,
+              "eval-struct-004:1946024400": 1,
+              "eval-struct-004:1948567290": 1,
+              "eval-struct-004:20374942": 1,
+              "eval-struct-004:694516262": 1,
+              "eval-struct-004:78772373": 1,
+              "eval-struct-012:1248449888": 1,
+              "eval-struct-012:1384475419": 1,
+              "eval-struct-012:1675495668": 1,
+              "eval-struct-012:1681987860": 1,
+              "eval-struct-012:1752526240": 1,
+              "eval-struct-012:177045504": 1,
+              "eval-struct-012:2035145058": 1,
+              "eval-struct-012:2093249117": 1,
+              "eval-struct-013:1024845489": 1,
+              "eval-struct-013:1029181413": 1,
+              "eval-struct-013:1321110339": 1,
+              "eval-struct-013:1958632731": 1,
+              "eval-struct-013:2119571135": 1,
+              "eval-struct-013:238546449": 1,
+              "eval-struct-013:553815693": 1,
+              "eval-struct-013:86033321": 1
+            },
+            "identical_prompt_seed_groups_with_multiple_outputs": 5,
+            "max_outputs_for_one_prompt": 4,
+            "prompt_distinct_output_counts": {
+              "eval-code-001": 2,
+              "eval-code-002": 2,
+              "eval-code-003": 1,
+              "eval-code-011": 1,
+              "eval-code-015": 1,
+              "eval-cs-016": 1,
+              "eval-ko-009": 4,
+              "eval-ko-010": 1,
+              "eval-math-005": 2,
+              "eval-math-006": 2,
+              "eval-math-007": 1,
+              "eval-math-008": 1,
+              "eval-sec-014": 2,
+              "eval-struct-004": 2,
+              "eval-struct-012": 2,
+              "eval-struct-013": 1
+            },
+            "prompts_with_multiple_outputs": 8
+          }
+        },
+        "frozen": {
+          "successful_records": 256,
+          "within_arm": {
+            "identical_prompt_seed_distinct_output_counts": {
+              "eval-code-001:1085703203": 1,
+              "eval-code-001:1580833790": 1,
+              "eval-code-001:1761284431": 2,
+              "eval-code-001:1824429159": 2,
+              "eval-code-001:194033995": 1,
+              "eval-code-001:746059925": 1,
+              "eval-code-001:847570270": 1,
+              "eval-code-001:966577195": 1,
+              "eval-code-002:1096910635": 1,
+              "eval-code-002:1412526977": 1,
+              "eval-code-002:1457557491": 1,
+              "eval-code-002:1459976365": 1,
+              "eval-code-002:1488412850": 1,
+              "eval-code-002:1503193803": 1,
+              "eval-code-002:25907774": 1,
+              "eval-code-002:7786633": 1,
+              "eval-code-003:1117167124": 1,
+              "eval-code-003:1146567803": 1,
+              "eval-code-003:1196480403": 1,
+              "eval-code-003:1918198685": 1,
+              "eval-code-003:301647354": 1,
+              "eval-code-003:576201928": 1,
+              "eval-code-003:614616360": 1,
+              "eval-code-003:966618419": 1,
+              "eval-code-011:1165552555": 1,
+              "eval-code-011:1526247266": 1,
+              "eval-code-011:209178142": 1,
+              "eval-code-011:2145345473": 1,
+              "eval-code-011:292393474": 1,
+              "eval-code-011:299075742": 1,
+              "eval-code-011:340235054": 1,
+              "eval-code-011:997544028": 1,
+              "eval-code-015:100806733": 1,
+              "eval-code-015:1088532721": 1,
+              "eval-code-015:1213849276": 1,
+              "eval-code-015:1292196556": 1,
+              "eval-code-015:1689822918": 1,
+              "eval-code-015:329864095": 1,
+              "eval-code-015:492744463": 1,
+              "eval-code-015:563208355": 1,
+              "eval-cs-016:1425162936": 1,
+              "eval-cs-016:1479580458": 1,
+              "eval-cs-016:1507106167": 1,
+              "eval-cs-016:160965508": 1,
+              "eval-cs-016:1645103593": 1,
+              "eval-cs-016:388477386": 1,
+              "eval-cs-016:433539416": 1,
+              "eval-cs-016:847600798": 1,
+              "eval-ko-009:102859416": 1,
+              "eval-ko-009:1207547708": 1,
+              "eval-ko-009:1890711126": 1,
+              "eval-ko-009:20588963": 1,
+              "eval-ko-009:393537098": 1,
+              "eval-ko-009:736070303": 1,
+              "eval-ko-009:857797446": 1,
+              "eval-ko-009:870687198": 1,
+              "eval-ko-010:1186250654": 1,
+              "eval-ko-010:1525527472": 1,
+              "eval-ko-010:155104043": 1,
+              "eval-ko-010:1771072006": 1,
+              "eval-ko-010:1835991361": 1,
+              "eval-ko-010:1959586947": 1,
+              "eval-ko-010:459781911": 1,
+              "eval-ko-010:575988188": 1,
+              "eval-math-005:1285043651": 1,
+              "eval-math-005:1289644071": 1,
+              "eval-math-005:1445210281": 1,
+              "eval-math-005:1572828843": 1,
+              "eval-math-005:431534122": 1,
+              "eval-math-005:461932657": 1,
+              "eval-math-005:643732222": 1,
+              "eval-math-005:719000482": 1,
+              "eval-math-006:1512722949": 1,
+              "eval-math-006:1840435870": 1,
+              "eval-math-006:1893623393": 1,
+              "eval-math-006:247523083": 1,
+              "eval-math-006:40042286": 1,
+              "eval-math-006:402919697": 1,
+              "eval-math-006:60294057": 2,
+              "eval-math-006:737181564": 1,
+              "eval-math-007:1014185879": 1,
+              "eval-math-007:1142444539": 1,
+              "eval-math-007:1181765375": 1,
+              "eval-math-007:1296510348": 1,
+              "eval-math-007:417514896": 1,
+              "eval-math-007:487046108": 1,
+              "eval-math-007:6619627": 1,
+              "eval-math-007:716495122": 1,
+              "eval-math-008:1142687778": 1,
+              "eval-math-008:1425061433": 1,
+              "eval-math-008:1610537981": 1,
+              "eval-math-008:1747573225": 1,
+              "eval-math-008:1939595002": 1,
+              "eval-math-008:288445798": 1,
+              "eval-math-008:659861734": 1,
+              "eval-math-008:70878306": 1,
+              "eval-sec-014:1688518071": 1,
+              "eval-sec-014:1875237294": 1,
+              "eval-sec-014:1948279750": 1,
+              "eval-sec-014:477135279": 1,
+              "eval-sec-014:605723199": 1,
+              "eval-sec-014:632513243": 1,
+              "eval-sec-014:733156513": 1,
+              "eval-sec-014:972329979": 1,
+              "eval-struct-004:1051827221": 1,
+              "eval-struct-004:1213337324": 1,
+              "eval-struct-004:1609734128": 1,
+              "eval-struct-004:1946024400": 1,
+              "eval-struct-004:1948567290": 1,
+              "eval-struct-004:20374942": 1,
+              "eval-struct-004:694516262": 1,
+              "eval-struct-004:78772373": 1,
+              "eval-struct-012:1248449888": 1,
+              "eval-struct-012:1384475419": 1,
+              "eval-struct-012:1675495668": 1,
+              "eval-struct-012:1681987860": 1,
+              "eval-struct-012:1752526240": 1,
+              "eval-struct-012:177045504": 1,
+              "eval-struct-012:2035145058": 1,
+              "eval-struct-012:2093249117": 1,
+              "eval-struct-013:1024845489": 1,
+              "eval-struct-013:1029181413": 1,
+              "eval-struct-013:1321110339": 1,
+              "eval-struct-013:1958632731": 1,
+              "eval-struct-013:2119571135": 1,
+              "eval-struct-013:238546449": 1,
+              "eval-struct-013:553815693": 1,
+              "eval-struct-013:86033321": 1
+            },
+            "identical_prompt_seed_groups_with_multiple_outputs": 3,
+            "max_outputs_for_one_prompt": 4,
+            "prompt_distinct_output_counts": {
+              "eval-code-001": 2,
+              "eval-code-002": 2,
+              "eval-code-003": 1,
+              "eval-code-011": 1,
+              "eval-code-015": 1,
+              "eval-cs-016": 1,
+              "eval-ko-009": 4,
+              "eval-ko-010": 1,
+              "eval-math-005": 2,
+              "eval-math-006": 3,
+              "eval-math-007": 1,
+              "eval-math-008": 1,
+              "eval-sec-014": 2,
+              "eval-struct-004": 1,
+              "eval-struct-012": 2,
+              "eval-struct-013": 1
+            },
+            "prompts_with_multiple_outputs": 7
+          }
+        },
+        "shared": {
+          "successful_records": 256,
+          "within_arm": {
+            "identical_prompt_seed_distinct_output_counts": {
+              "eval-code-001:1085703203": 2,
+              "eval-code-001:1580833790": 1,
+              "eval-code-001:1761284431": 1,
+              "eval-code-001:1824429159": 1,
+              "eval-code-001:194033995": 1,
+              "eval-code-001:746059925": 1,
+              "eval-code-001:847570270": 1,
+              "eval-code-001:966577195": 1,
+              "eval-code-002:1096910635": 1,
+              "eval-code-002:1412526977": 1,
+              "eval-code-002:1457557491": 1,
+              "eval-code-002:1459976365": 1,
+              "eval-code-002:1488412850": 1,
+              "eval-code-002:1503193803": 1,
+              "eval-code-002:25907774": 2,
+              "eval-code-002:7786633": 1,
+              "eval-code-003:1117167124": 1,
+              "eval-code-003:1146567803": 1,
+              "eval-code-003:1196480403": 1,
+              "eval-code-003:1918198685": 1,
+              "eval-code-003:301647354": 1,
+              "eval-code-003:576201928": 1,
+              "eval-code-003:614616360": 1,
+              "eval-code-003:966618419": 1,
+              "eval-code-011:1165552555": 1,
+              "eval-code-011:1526247266": 1,
+              "eval-code-011:209178142": 1,
+              "eval-code-011:2145345473": 1,
+              "eval-code-011:292393474": 1,
+              "eval-code-011:299075742": 1,
+              "eval-code-011:340235054": 1,
+              "eval-code-011:997544028": 1,
+              "eval-code-015:100806733": 1,
+              "eval-code-015:1088532721": 1,
+              "eval-code-015:1213849276": 1,
+              "eval-code-015:1292196556": 1,
+              "eval-code-015:1689822918": 1,
+              "eval-code-015:329864095": 1,
+              "eval-code-015:492744463": 1,
+              "eval-code-015:563208355": 1,
+              "eval-cs-016:1425162936": 1,
+              "eval-cs-016:1479580458": 1,
+              "eval-cs-016:1507106167": 1,
+              "eval-cs-016:160965508": 1,
+              "eval-cs-016:1645103593": 1,
+              "eval-cs-016:388477386": 1,
+              "eval-cs-016:433539416": 1,
+              "eval-cs-016:847600798": 1,
+              "eval-ko-009:102859416": 1,
+              "eval-ko-009:1207547708": 1,
+              "eval-ko-009:1890711126": 1,
+              "eval-ko-009:20588963": 1,
+              "eval-ko-009:393537098": 1,
+              "eval-ko-009:736070303": 1,
+              "eval-ko-009:857797446": 1,
+              "eval-ko-009:870687198": 1,
+              "eval-ko-010:1186250654": 1,
+              "eval-ko-010:1525527472": 1,
+              "eval-ko-010:155104043": 1,
+              "eval-ko-010:1771072006": 1,
+              "eval-ko-010:1835991361": 1,
+              "eval-ko-010:1959586947": 1,
+              "eval-ko-010:459781911": 1,
+              "eval-ko-010:575988188": 1,
+              "eval-math-005:1285043651": 1,
+              "eval-math-005:1289644071": 1,
+              "eval-math-005:1445210281": 1,
+              "eval-math-005:1572828843": 1,
+              "eval-math-005:431534122": 1,
+              "eval-math-005:461932657": 1,
+              "eval-math-005:643732222": 1,
+              "eval-math-005:719000482": 1,
+              "eval-math-006:1512722949": 1,
+              "eval-math-006:1840435870": 1,
+              "eval-math-006:1893623393": 1,
+              "eval-math-006:247523083": 1,
+              "eval-math-006:40042286": 1,
+              "eval-math-006:402919697": 1,
+              "eval-math-006:60294057": 1,
+              "eval-math-006:737181564": 1,
+              "eval-math-007:1014185879": 1,
+              "eval-math-007:1142444539": 1,
+              "eval-math-007:1181765375": 1,
+              "eval-math-007:1296510348": 1,
+              "eval-math-007:417514896": 1,
+              "eval-math-007:487046108": 1,
+              "eval-math-007:6619627": 1,
+              "eval-math-007:716495122": 1,
+              "eval-math-008:1142687778": 1,
+              "eval-math-008:1425061433": 1,
+              "eval-math-008:1610537981": 1,
+              "eval-math-008:1747573225": 1,
+              "eval-math-008:1939595002": 1,
+              "eval-math-008:288445798": 1,
+              "eval-math-008:659861734": 1,
+              "eval-math-008:70878306": 1,
+              "eval-sec-014:1688518071": 1,
+              "eval-sec-014:1875237294": 1,
+              "eval-sec-014:1948279750": 1,
+              "eval-sec-014:477135279": 1,
+              "eval-sec-014:605723199": 1,
+              "eval-sec-014:632513243": 1,
+              "eval-sec-014:733156513": 1,
+              "eval-sec-014:972329979": 1,
+              "eval-struct-004:1051827221": 1,
+              "eval-struct-004:1213337324": 1,
+              "eval-struct-004:1609734128": 1,
+              "eval-struct-004:1946024400": 1,
+              "eval-struct-004:1948567290": 1,
+              "eval-struct-004:20374942": 1,
+              "eval-struct-004:694516262": 1,
+              "eval-struct-004:78772373": 1,
+              "eval-struct-012:1248449888": 1,
+              "eval-struct-012:1384475419": 1,
+              "eval-struct-012:1675495668": 1,
+              "eval-struct-012:1681987860": 1,
+              "eval-struct-012:1752526240": 1,
+              "eval-struct-012:177045504": 1,
+              "eval-struct-012:2035145058": 1,
+              "eval-struct-012:2093249117": 1,
+              "eval-struct-013:1024845489": 1,
+              "eval-struct-013:1029181413": 1,
+              "eval-struct-013:1321110339": 1,
+              "eval-struct-013:1958632731": 1,
+              "eval-struct-013:2119571135": 1,
+              "eval-struct-013:238546449": 1,
+              "eval-struct-013:553815693": 1,
+              "eval-struct-013:86033321": 1
+            },
+            "identical_prompt_seed_groups_with_multiple_outputs": 2,
+            "max_outputs_for_one_prompt": 3,
+            "prompt_distinct_output_counts": {
+              "eval-code-001": 2,
+              "eval-code-002": 2,
+              "eval-code-003": 1,
+              "eval-code-011": 1,
+              "eval-code-015": 1,
+              "eval-cs-016": 1,
+              "eval-ko-009": 3,
+              "eval-ko-010": 1,
+              "eval-math-005": 2,
+              "eval-math-006": 2,
+              "eval-math-007": 1,
+              "eval-math-008": 1,
+              "eval-sec-014": 2,
+              "eval-struct-004": 1,
+              "eval-struct-012": 2,
+              "eval-struct-013": 1
+            },
+            "prompts_with_multiple_outputs": 7
+          }
+        },
+        "tenant-local": {
+          "successful_records": 256,
+          "within_arm": {
+            "identical_prompt_seed_distinct_output_counts": {
+              "eval-code-001:1085703203": 1,
+              "eval-code-001:1580833790": 1,
+              "eval-code-001:1761284431": 1,
+              "eval-code-001:1824429159": 1,
+              "eval-code-001:194033995": 1,
+              "eval-code-001:746059925": 2,
+              "eval-code-001:847570270": 1,
+              "eval-code-001:966577195": 1,
+              "eval-code-002:1096910635": 2,
+              "eval-code-002:1412526977": 2,
+              "eval-code-002:1457557491": 1,
+              "eval-code-002:1459976365": 1,
+              "eval-code-002:1488412850": 1,
+              "eval-code-002:1503193803": 1,
+              "eval-code-002:25907774": 2,
+              "eval-code-002:7786633": 1,
+              "eval-code-003:1117167124": 1,
+              "eval-code-003:1146567803": 1,
+              "eval-code-003:1196480403": 1,
+              "eval-code-003:1918198685": 1,
+              "eval-code-003:301647354": 1,
+              "eval-code-003:576201928": 1,
+              "eval-code-003:614616360": 1,
+              "eval-code-003:966618419": 1,
+              "eval-code-011:1165552555": 1,
+              "eval-code-011:1526247266": 1,
+              "eval-code-011:209178142": 1,
+              "eval-code-011:2145345473": 1,
+              "eval-code-011:292393474": 1,
+              "eval-code-011:299075742": 1,
+              "eval-code-011:340235054": 1,
+              "eval-code-011:997544028": 1,
+              "eval-code-015:100806733": 1,
+              "eval-code-015:1088532721": 1,
+              "eval-code-015:1213849276": 1,
+              "eval-code-015:1292196556": 1,
+              "eval-code-015:1689822918": 1,
+              "eval-code-015:329864095": 1,
+              "eval-code-015:492744463": 1,
+              "eval-code-015:563208355": 1,
+              "eval-cs-016:1425162936": 1,
+              "eval-cs-016:1479580458": 1,
+              "eval-cs-016:1507106167": 1,
+              "eval-cs-016:160965508": 1,
+              "eval-cs-016:1645103593": 1,
+              "eval-cs-016:388477386": 1,
+              "eval-cs-016:433539416": 1,
+              "eval-cs-016:847600798": 1,
+              "eval-ko-009:102859416": 1,
+              "eval-ko-009:1207547708": 1,
+              "eval-ko-009:1890711126": 2,
+              "eval-ko-009:20588963": 1,
+              "eval-ko-009:393537098": 1,
+              "eval-ko-009:736070303": 1,
+              "eval-ko-009:857797446": 1,
+              "eval-ko-009:870687198": 1,
+              "eval-ko-010:1186250654": 1,
+              "eval-ko-010:1525527472": 1,
+              "eval-ko-010:155104043": 1,
+              "eval-ko-010:1771072006": 1,
+              "eval-ko-010:1835991361": 1,
+              "eval-ko-010:1959586947": 1,
+              "eval-ko-010:459781911": 1,
+              "eval-ko-010:575988188": 1,
+              "eval-math-005:1285043651": 1,
+              "eval-math-005:1289644071": 1,
+              "eval-math-005:1445210281": 1,
+              "eval-math-005:1572828843": 1,
+              "eval-math-005:431534122": 1,
+              "eval-math-005:461932657": 1,
+              "eval-math-005:643732222": 1,
+              "eval-math-005:719000482": 1,
+              "eval-math-006:1512722949": 1,
+              "eval-math-006:1840435870": 2,
+              "eval-math-006:1893623393": 1,
+              "eval-math-006:247523083": 1,
+              "eval-math-006:40042286": 1,
+              "eval-math-006:402919697": 1,
+              "eval-math-006:60294057": 1,
+              "eval-math-006:737181564": 1,
+              "eval-math-007:1014185879": 1,
+              "eval-math-007:1142444539": 1,
+              "eval-math-007:1181765375": 1,
+              "eval-math-007:1296510348": 1,
+              "eval-math-007:417514896": 1,
+              "eval-math-007:487046108": 1,
+              "eval-math-007:6619627": 1,
+              "eval-math-007:716495122": 1,
+              "eval-math-008:1142687778": 1,
+              "eval-math-008:1425061433": 1,
+              "eval-math-008:1610537981": 1,
+              "eval-math-008:1747573225": 1,
+              "eval-math-008:1939595002": 1,
+              "eval-math-008:288445798": 1,
+              "eval-math-008:659861734": 1,
+              "eval-math-008:70878306": 1,
+              "eval-sec-014:1688518071": 1,
+              "eval-sec-014:1875237294": 1,
+              "eval-sec-014:1948279750": 2,
+              "eval-sec-014:477135279": 1,
+              "eval-sec-014:605723199": 1,
+              "eval-sec-014:632513243": 1,
+              "eval-sec-014:733156513": 1,
+              "eval-sec-014:972329979": 1,
+              "eval-struct-004:1051827221": 1,
+              "eval-struct-004:1213337324": 1,
+              "eval-struct-004:1609734128": 1,
+              "eval-struct-004:1946024400": 1,
+              "eval-struct-004:1948567290": 1,
+              "eval-struct-004:20374942": 1,
+              "eval-struct-004:694516262": 1,
+              "eval-struct-004:78772373": 1,
+              "eval-struct-012:1248449888": 1,
+              "eval-struct-012:1384475419": 1,
+              "eval-struct-012:1675495668": 1,
+              "eval-struct-012:1681987860": 1,
+              "eval-struct-012:1752526240": 1,
+              "eval-struct-012:177045504": 1,
+              "eval-struct-012:2035145058": 1,
+              "eval-struct-012:2093249117": 1,
+              "eval-struct-013:1024845489": 1,
+              "eval-struct-013:1029181413": 1,
+              "eval-struct-013:1321110339": 1,
+              "eval-struct-013:1958632731": 1,
+              "eval-struct-013:2119571135": 1,
+              "eval-struct-013:238546449": 1,
+              "eval-struct-013:553815693": 1,
+              "eval-struct-013:86033321": 1
+            },
+            "identical_prompt_seed_groups_with_multiple_outputs": 7,
+            "max_outputs_for_one_prompt": 3,
+            "prompt_distinct_output_counts": {
+              "eval-code-001": 2,
+              "eval-code-002": 2,
+              "eval-code-003": 1,
+              "eval-code-011": 1,
+              "eval-code-015": 1,
+              "eval-cs-016": 1,
+              "eval-ko-009": 3,
+              "eval-ko-010": 1,
+              "eval-math-005": 2,
+              "eval-math-006": 3,
+              "eval-math-007": 1,
+              "eval-math-008": 1,
+              "eval-sec-014": 2,
+              "eval-struct-004": 2,
+              "eval-struct-012": 2,
+              "eval-struct-013": 1
+            },
+            "prompts_with_multiple_outputs": 8
+          }
+        }
+      },
+      "identical_policy_controls": {
+        "ctfr-full__ctfr-shadow": {
+          "common_ordinals": 256,
+          "exact_equal": 182,
+          "exact_equal_rate": 0.7109375,
+          "first_divergence_examples": [
+            {
+              "first_divergence_position": 12,
+              "ordinal": 0
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 1
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 2
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 3
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 8
+            },
+            {
+              "first_divergence_position": 16,
+              "ordinal": 16
+            },
+            {
+              "first_divergence_position": 16,
+              "ordinal": 17
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 22
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 23
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 32
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 33
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 34
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 42
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 43
+            },
+            {
+              "first_divergence_position": 16,
+              "ordinal": 48
+            },
+            {
+              "first_divergence_position": 16,
+              "ordinal": 49
+            }
+          ]
+        },
+        "ctfr-full__frozen": {
+          "common_ordinals": 256,
+          "exact_equal": 189,
+          "exact_equal_rate": 0.73828125,
+          "first_divergence_examples": [
+            {
+              "first_divergence_position": 25,
+              "ordinal": 8
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 9
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 10
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 11
+            },
+            {
+              "first_divergence_position": 13,
+              "ordinal": 16
+            },
+            {
+              "first_divergence_position": 13,
+              "ordinal": 17
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 26
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 27
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 32
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 33
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 34
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 40
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 41
+            },
+            {
+              "first_divergence_position": 13,
+              "ordinal": 48
+            },
+            {
+              "first_divergence_position": 13,
+              "ordinal": 49
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 54
+            }
+          ]
+        },
+        "ctfr-full__shared": {
+          "common_ordinals": 256,
+          "exact_equal": 217,
+          "exact_equal_rate": 0.84765625,
+          "first_divergence_examples": [
+            {
+              "first_divergence_position": 31,
+              "ordinal": 35
+            },
+            {
+              "first_divergence_position": 4,
+              "ordinal": 66
+            },
+            {
+              "first_divergence_position": 4,
+              "ordinal": 80
+            },
+            {
+              "first_divergence_position": 4,
+              "ordinal": 81
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 96
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 97
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 99
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 104
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 105
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 106
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 107
+            },
+            {
+              "first_divergence_position": 13,
+              "ordinal": 112
+            },
+            {
+              "first_divergence_position": 13,
+              "ordinal": 113
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 122
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 123
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 128
+            }
+          ]
+        },
+        "ctfr-full__tenant-local": {
+          "common_ordinals": 256,
+          "exact_equal": 202,
+          "exact_equal_rate": 0.7890625,
+          "first_divergence_examples": [
+            {
+              "first_divergence_position": 12,
+              "ordinal": 0
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 1
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 2
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 3
+            },
+            {
+              "first_divergence_position": 16,
+              "ordinal": 16
+            },
+            {
+              "first_divergence_position": 16,
+              "ordinal": 17
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 22
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 23
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 32
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 33
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 34
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 40
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 41
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 42
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 43
+            },
+            {
+              "first_divergence_position": 4,
+              "ordinal": 48
+            }
+          ]
+        },
+        "ctfr-shadow__frozen": {
+          "common_ordinals": 256,
+          "exact_equal": 196,
+          "exact_equal_rate": 0.765625,
+          "first_divergence_examples": [
+            {
+              "first_divergence_position": 12,
+              "ordinal": 0
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 1
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 2
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 3
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 9
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 10
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 11
+            },
+            {
+              "first_divergence_position": 13,
+              "ordinal": 16
+            },
+            {
+              "first_divergence_position": 13,
+              "ordinal": 17
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 22
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 23
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 26
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 27
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 40
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 41
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 42
+            }
+          ]
+        },
+        "ctfr-shadow__shared": {
+          "common_ordinals": 256,
+          "exact_equal": 191,
+          "exact_equal_rate": 0.74609375,
+          "first_divergence_examples": [
+            {
+              "first_divergence_position": 12,
+              "ordinal": 0
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 1
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 2
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 3
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 8
+            },
+            {
+              "first_divergence_position": 16,
+              "ordinal": 16
+            },
+            {
+              "first_divergence_position": 16,
+              "ordinal": 17
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 22
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 23
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 32
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 33
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 34
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 35
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 42
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 43
+            },
+            {
+              "first_divergence_position": 16,
+              "ordinal": 48
+            }
+          ]
+        },
+        "ctfr-shadow__tenant-local": {
+          "common_ordinals": 256,
+          "exact_equal": 195,
+          "exact_equal_rate": 0.76171875,
+          "first_divergence_examples": [
+            {
+              "first_divergence_position": 25,
+              "ordinal": 8
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 40
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 41
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 42
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 43
+            },
+            {
+              "first_divergence_position": 4,
+              "ordinal": 48
+            },
+            {
+              "first_divergence_position": 4,
+              "ordinal": 49
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 72
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 73
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 75
+            },
+            {
+              "first_divergence_position": 4,
+              "ordinal": 80
+            },
+            {
+              "first_divergence_position": 4,
+              "ordinal": 81
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 96
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 97
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 98
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 99
+            }
+          ]
+        },
+        "frozen__shared": {
+          "common_ordinals": 256,
+          "exact_equal": 185,
+          "exact_equal_rate": 0.72265625,
+          "first_divergence_examples": [
+            {
+              "first_divergence_position": 25,
+              "ordinal": 8
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 9
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 10
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 11
+            },
+            {
+              "first_divergence_position": 13,
+              "ordinal": 16
+            },
+            {
+              "first_divergence_position": 13,
+              "ordinal": 17
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 26
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 27
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 32
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 33
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 34
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 35
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 40
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 41
+            },
+            {
+              "first_divergence_position": 13,
+              "ordinal": 48
+            },
+            {
+              "first_divergence_position": 13,
+              "ordinal": 49
+            }
+          ]
+        },
+        "frozen__tenant-local": {
+          "common_ordinals": 256,
+          "exact_equal": 186,
+          "exact_equal_rate": 0.7265625,
+          "first_divergence_examples": [
+            {
+              "first_divergence_position": 12,
+              "ordinal": 0
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 1
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 2
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 3
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 8
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 9
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 10
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 11
+            },
+            {
+              "first_divergence_position": 13,
+              "ordinal": 16
+            },
+            {
+              "first_divergence_position": 13,
+              "ordinal": 17
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 22
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 23
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 26
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 27
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 42
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 43
+            }
+          ]
+        },
+        "shared__tenant-local": {
+          "common_ordinals": 256,
+          "exact_equal": 191,
+          "exact_equal_rate": 0.74609375,
+          "first_divergence_examples": [
+            {
+              "first_divergence_position": 12,
+              "ordinal": 0
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 1
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 2
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 3
+            },
+            {
+              "first_divergence_position": 16,
+              "ordinal": 16
+            },
+            {
+              "first_divergence_position": 16,
+              "ordinal": 17
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 22
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 23
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 32
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 33
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 34
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 35
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 40
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 41
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 42
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 43
+            }
+          ]
+        }
+      },
+      "pairwise": {
+        "ctfr-full__ctfr-shadow": {
+          "common_ordinals": 256,
+          "exact_equal": 182,
+          "exact_equal_rate": 0.7109375,
+          "first_divergence_examples": [
+            {
+              "first_divergence_position": 12,
+              "ordinal": 0
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 1
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 2
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 3
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 8
+            },
+            {
+              "first_divergence_position": 16,
+              "ordinal": 16
+            },
+            {
+              "first_divergence_position": 16,
+              "ordinal": 17
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 22
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 23
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 32
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 33
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 34
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 42
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 43
+            },
+            {
+              "first_divergence_position": 16,
+              "ordinal": 48
+            },
+            {
+              "first_divergence_position": 16,
+              "ordinal": 49
+            }
+          ]
+        },
+        "ctfr-full__frozen": {
+          "common_ordinals": 256,
+          "exact_equal": 189,
+          "exact_equal_rate": 0.73828125,
+          "first_divergence_examples": [
+            {
+              "first_divergence_position": 25,
+              "ordinal": 8
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 9
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 10
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 11
+            },
+            {
+              "first_divergence_position": 13,
+              "ordinal": 16
+            },
+            {
+              "first_divergence_position": 13,
+              "ordinal": 17
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 26
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 27
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 32
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 33
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 34
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 40
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 41
+            },
+            {
+              "first_divergence_position": 13,
+              "ordinal": 48
+            },
+            {
+              "first_divergence_position": 13,
+              "ordinal": 49
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 54
+            }
+          ]
+        },
+        "ctfr-full__shared": {
+          "common_ordinals": 256,
+          "exact_equal": 217,
+          "exact_equal_rate": 0.84765625,
+          "first_divergence_examples": [
+            {
+              "first_divergence_position": 31,
+              "ordinal": 35
+            },
+            {
+              "first_divergence_position": 4,
+              "ordinal": 66
+            },
+            {
+              "first_divergence_position": 4,
+              "ordinal": 80
+            },
+            {
+              "first_divergence_position": 4,
+              "ordinal": 81
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 96
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 97
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 99
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 104
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 105
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 106
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 107
+            },
+            {
+              "first_divergence_position": 13,
+              "ordinal": 112
+            },
+            {
+              "first_divergence_position": 13,
+              "ordinal": 113
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 122
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 123
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 128
+            }
+          ]
+        },
+        "ctfr-full__tenant-local": {
+          "common_ordinals": 256,
+          "exact_equal": 202,
+          "exact_equal_rate": 0.7890625,
+          "first_divergence_examples": [
+            {
+              "first_divergence_position": 12,
+              "ordinal": 0
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 1
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 2
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 3
+            },
+            {
+              "first_divergence_position": 16,
+              "ordinal": 16
+            },
+            {
+              "first_divergence_position": 16,
+              "ordinal": 17
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 22
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 23
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 32
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 33
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 34
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 40
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 41
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 42
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 43
+            },
+            {
+              "first_divergence_position": 4,
+              "ordinal": 48
+            }
+          ]
+        },
+        "ctfr-shadow__frozen": {
+          "common_ordinals": 256,
+          "exact_equal": 196,
+          "exact_equal_rate": 0.765625,
+          "first_divergence_examples": [
+            {
+              "first_divergence_position": 12,
+              "ordinal": 0
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 1
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 2
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 3
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 9
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 10
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 11
+            },
+            {
+              "first_divergence_position": 13,
+              "ordinal": 16
+            },
+            {
+              "first_divergence_position": 13,
+              "ordinal": 17
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 22
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 23
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 26
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 27
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 40
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 41
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 42
+            }
+          ]
+        },
+        "ctfr-shadow__shared": {
+          "common_ordinals": 256,
+          "exact_equal": 191,
+          "exact_equal_rate": 0.74609375,
+          "first_divergence_examples": [
+            {
+              "first_divergence_position": 12,
+              "ordinal": 0
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 1
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 2
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 3
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 8
+            },
+            {
+              "first_divergence_position": 16,
+              "ordinal": 16
+            },
+            {
+              "first_divergence_position": 16,
+              "ordinal": 17
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 22
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 23
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 32
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 33
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 34
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 35
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 42
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 43
+            },
+            {
+              "first_divergence_position": 16,
+              "ordinal": 48
+            }
+          ]
+        },
+        "ctfr-shadow__tenant-local": {
+          "common_ordinals": 256,
+          "exact_equal": 195,
+          "exact_equal_rate": 0.76171875,
+          "first_divergence_examples": [
+            {
+              "first_divergence_position": 25,
+              "ordinal": 8
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 40
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 41
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 42
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 43
+            },
+            {
+              "first_divergence_position": 4,
+              "ordinal": 48
+            },
+            {
+              "first_divergence_position": 4,
+              "ordinal": 49
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 72
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 73
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 75
+            },
+            {
+              "first_divergence_position": 4,
+              "ordinal": 80
+            },
+            {
+              "first_divergence_position": 4,
+              "ordinal": 81
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 96
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 97
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 98
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 99
+            }
+          ]
+        },
+        "frozen__shared": {
+          "common_ordinals": 256,
+          "exact_equal": 185,
+          "exact_equal_rate": 0.72265625,
+          "first_divergence_examples": [
+            {
+              "first_divergence_position": 25,
+              "ordinal": 8
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 9
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 10
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 11
+            },
+            {
+              "first_divergence_position": 13,
+              "ordinal": 16
+            },
+            {
+              "first_divergence_position": 13,
+              "ordinal": 17
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 26
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 27
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 32
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 33
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 34
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 35
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 40
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 41
+            },
+            {
+              "first_divergence_position": 13,
+              "ordinal": 48
+            },
+            {
+              "first_divergence_position": 13,
+              "ordinal": 49
+            }
+          ]
+        },
+        "frozen__tenant-local": {
+          "common_ordinals": 256,
+          "exact_equal": 186,
+          "exact_equal_rate": 0.7265625,
+          "first_divergence_examples": [
+            {
+              "first_divergence_position": 12,
+              "ordinal": 0
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 1
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 2
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 3
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 8
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 9
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 10
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 11
+            },
+            {
+              "first_divergence_position": 13,
+              "ordinal": 16
+            },
+            {
+              "first_divergence_position": 13,
+              "ordinal": 17
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 22
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 23
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 26
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 27
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 42
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 43
+            }
+          ]
+        },
+        "shared__tenant-local": {
+          "common_ordinals": 256,
+          "exact_equal": 191,
+          "exact_equal_rate": 0.74609375,
+          "first_divergence_examples": [
+            {
+              "first_divergence_position": 12,
+              "ordinal": 0
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 1
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 2
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 3
+            },
+            {
+              "first_divergence_position": 16,
+              "ordinal": 16
+            },
+            {
+              "first_divergence_position": 16,
+              "ordinal": 17
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 22
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 23
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 32
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 33
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 34
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 35
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 40
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 41
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 42
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 43
+            }
+          ]
+        }
+      }
+    },
+    "evaluation": {
+      "all_arm_common_ordinals": 256,
+      "all_arm_exact_equal": 143,
+      "all_arm_exact_equal_rate": 0.55859375,
+      "arms": {
+        "ctfr-full": {
+          "successful_records": 256,
+          "within_arm": {
+            "identical_prompt_seed_distinct_output_counts": {
+              "eval-code-001:1085703203": 1,
+              "eval-code-001:1580833790": 1,
+              "eval-code-001:1761284431": 1,
+              "eval-code-001:1824429159": 1,
+              "eval-code-001:194033995": 2,
+              "eval-code-001:746059925": 2,
+              "eval-code-001:847570270": 1,
+              "eval-code-001:966577195": 1,
+              "eval-code-002:1096910635": 1,
+              "eval-code-002:1412526977": 1,
+              "eval-code-002:1457557491": 1,
+              "eval-code-002:1459976365": 1,
+              "eval-code-002:1488412850": 1,
+              "eval-code-002:1503193803": 1,
+              "eval-code-002:25907774": 2,
+              "eval-code-002:7786633": 1,
+              "eval-code-003:1117167124": 1,
+              "eval-code-003:1146567803": 1,
+              "eval-code-003:1196480403": 1,
+              "eval-code-003:1918198685": 1,
+              "eval-code-003:301647354": 1,
+              "eval-code-003:576201928": 1,
+              "eval-code-003:614616360": 1,
+              "eval-code-003:966618419": 1,
+              "eval-code-011:1165552555": 1,
+              "eval-code-011:1526247266": 1,
+              "eval-code-011:209178142": 1,
+              "eval-code-011:2145345473": 1,
+              "eval-code-011:292393474": 1,
+              "eval-code-011:299075742": 1,
+              "eval-code-011:340235054": 1,
+              "eval-code-011:997544028": 1,
+              "eval-code-015:100806733": 1,
+              "eval-code-015:1088532721": 1,
+              "eval-code-015:1213849276": 1,
+              "eval-code-015:1292196556": 1,
+              "eval-code-015:1689822918": 1,
+              "eval-code-015:329864095": 1,
+              "eval-code-015:492744463": 1,
+              "eval-code-015:563208355": 1,
+              "eval-cs-016:1425162936": 1,
+              "eval-cs-016:1479580458": 1,
+              "eval-cs-016:1507106167": 1,
+              "eval-cs-016:160965508": 1,
+              "eval-cs-016:1645103593": 1,
+              "eval-cs-016:388477386": 1,
+              "eval-cs-016:433539416": 1,
+              "eval-cs-016:847600798": 1,
+              "eval-ko-009:102859416": 1,
+              "eval-ko-009:1207547708": 2,
+              "eval-ko-009:1890711126": 1,
+              "eval-ko-009:20588963": 1,
+              "eval-ko-009:393537098": 1,
+              "eval-ko-009:736070303": 1,
+              "eval-ko-009:857797446": 1,
+              "eval-ko-009:870687198": 1,
+              "eval-ko-010:1186250654": 1,
+              "eval-ko-010:1525527472": 1,
+              "eval-ko-010:155104043": 1,
+              "eval-ko-010:1771072006": 1,
+              "eval-ko-010:1835991361": 1,
+              "eval-ko-010:1959586947": 1,
+              "eval-ko-010:459781911": 1,
+              "eval-ko-010:575988188": 1,
+              "eval-math-005:1285043651": 1,
+              "eval-math-005:1289644071": 1,
+              "eval-math-005:1445210281": 1,
+              "eval-math-005:1572828843": 2,
+              "eval-math-005:431534122": 1,
+              "eval-math-005:461932657": 1,
+              "eval-math-005:643732222": 1,
+              "eval-math-005:719000482": 1,
+              "eval-math-006:1512722949": 1,
+              "eval-math-006:1840435870": 1,
+              "eval-math-006:1893623393": 1,
+              "eval-math-006:247523083": 1,
+              "eval-math-006:40042286": 1,
+              "eval-math-006:402919697": 1,
+              "eval-math-006:60294057": 1,
+              "eval-math-006:737181564": 1,
+              "eval-math-007:1014185879": 1,
+              "eval-math-007:1142444539": 1,
+              "eval-math-007:1181765375": 1,
+              "eval-math-007:1296510348": 1,
+              "eval-math-007:417514896": 1,
+              "eval-math-007:487046108": 1,
+              "eval-math-007:6619627": 1,
+              "eval-math-007:716495122": 1,
+              "eval-math-008:1142687778": 1,
+              "eval-math-008:1425061433": 1,
+              "eval-math-008:1610537981": 1,
+              "eval-math-008:1747573225": 1,
+              "eval-math-008:1939595002": 1,
+              "eval-math-008:288445798": 1,
+              "eval-math-008:659861734": 1,
+              "eval-math-008:70878306": 1,
+              "eval-sec-014:1688518071": 1,
+              "eval-sec-014:1875237294": 1,
+              "eval-sec-014:1948279750": 1,
+              "eval-sec-014:477135279": 1,
+              "eval-sec-014:605723199": 1,
+              "eval-sec-014:632513243": 1,
+              "eval-sec-014:733156513": 1,
+              "eval-sec-014:972329979": 1,
+              "eval-struct-004:1051827221": 1,
+              "eval-struct-004:1213337324": 1,
+              "eval-struct-004:1609734128": 1,
+              "eval-struct-004:1946024400": 1,
+              "eval-struct-004:1948567290": 1,
+              "eval-struct-004:20374942": 1,
+              "eval-struct-004:694516262": 1,
+              "eval-struct-004:78772373": 2,
+              "eval-struct-012:1248449888": 1,
+              "eval-struct-012:1384475419": 1,
+              "eval-struct-012:1675495668": 1,
+              "eval-struct-012:1681987860": 1,
+              "eval-struct-012:1752526240": 1,
+              "eval-struct-012:177045504": 1,
+              "eval-struct-012:2035145058": 2,
+              "eval-struct-012:2093249117": 1,
+              "eval-struct-013:1024845489": 1,
+              "eval-struct-013:1029181413": 1,
+              "eval-struct-013:1321110339": 1,
+              "eval-struct-013:1958632731": 1,
+              "eval-struct-013:2119571135": 1,
+              "eval-struct-013:238546449": 1,
+              "eval-struct-013:553815693": 1,
+              "eval-struct-013:86033321": 1
+            },
+            "identical_prompt_seed_groups_with_multiple_outputs": 7,
+            "max_outputs_for_one_prompt": 3,
+            "prompt_distinct_output_counts": {
+              "eval-code-001": 2,
+              "eval-code-002": 3,
+              "eval-code-003": 1,
+              "eval-code-011": 1,
+              "eval-code-015": 1,
+              "eval-cs-016": 1,
+              "eval-ko-009": 3,
+              "eval-ko-010": 1,
+              "eval-math-005": 2,
+              "eval-math-006": 3,
+              "eval-math-007": 1,
+              "eval-math-008": 1,
+              "eval-sec-014": 2,
+              "eval-struct-004": 2,
+              "eval-struct-012": 2,
+              "eval-struct-013": 1
+            },
+            "prompts_with_multiple_outputs": 8
+          }
+        },
+        "ctfr-shadow": {
+          "successful_records": 256,
+          "within_arm": {
+            "identical_prompt_seed_distinct_output_counts": {
+              "eval-code-001:1085703203": 1,
+              "eval-code-001:1580833790": 1,
+              "eval-code-001:1761284431": 1,
+              "eval-code-001:1824429159": 2,
+              "eval-code-001:194033995": 1,
+              "eval-code-001:746059925": 1,
+              "eval-code-001:847570270": 1,
+              "eval-code-001:966577195": 1,
+              "eval-code-002:1096910635": 1,
+              "eval-code-002:1412526977": 1,
+              "eval-code-002:1457557491": 2,
+              "eval-code-002:1459976365": 1,
+              "eval-code-002:1488412850": 2,
+              "eval-code-002:1503193803": 1,
+              "eval-code-002:25907774": 2,
+              "eval-code-002:7786633": 1,
+              "eval-code-003:1117167124": 1,
+              "eval-code-003:1146567803": 1,
+              "eval-code-003:1196480403": 1,
+              "eval-code-003:1918198685": 1,
+              "eval-code-003:301647354": 1,
+              "eval-code-003:576201928": 1,
+              "eval-code-003:614616360": 1,
+              "eval-code-003:966618419": 1,
+              "eval-code-011:1165552555": 1,
+              "eval-code-011:1526247266": 1,
+              "eval-code-011:209178142": 1,
+              "eval-code-011:2145345473": 1,
+              "eval-code-011:292393474": 1,
+              "eval-code-011:299075742": 1,
+              "eval-code-011:340235054": 1,
+              "eval-code-011:997544028": 1,
+              "eval-code-015:100806733": 1,
+              "eval-code-015:1088532721": 1,
+              "eval-code-015:1213849276": 1,
+              "eval-code-015:1292196556": 1,
+              "eval-code-015:1689822918": 1,
+              "eval-code-015:329864095": 1,
+              "eval-code-015:492744463": 1,
+              "eval-code-015:563208355": 1,
+              "eval-cs-016:1425162936": 1,
+              "eval-cs-016:1479580458": 1,
+              "eval-cs-016:1507106167": 1,
+              "eval-cs-016:160965508": 1,
+              "eval-cs-016:1645103593": 1,
+              "eval-cs-016:388477386": 1,
+              "eval-cs-016:433539416": 1,
+              "eval-cs-016:847600798": 1,
+              "eval-ko-009:102859416": 1,
+              "eval-ko-009:1207547708": 1,
+              "eval-ko-009:1890711126": 1,
+              "eval-ko-009:20588963": 1,
+              "eval-ko-009:393537098": 1,
+              "eval-ko-009:736070303": 2,
+              "eval-ko-009:857797446": 1,
+              "eval-ko-009:870687198": 1,
+              "eval-ko-010:1186250654": 1,
+              "eval-ko-010:1525527472": 1,
+              "eval-ko-010:155104043": 1,
+              "eval-ko-010:1771072006": 1,
+              "eval-ko-010:1835991361": 1,
+              "eval-ko-010:1959586947": 1,
+              "eval-ko-010:459781911": 1,
+              "eval-ko-010:575988188": 1,
+              "eval-math-005:1285043651": 1,
+              "eval-math-005:1289644071": 1,
+              "eval-math-005:1445210281": 1,
+              "eval-math-005:1572828843": 1,
+              "eval-math-005:431534122": 1,
+              "eval-math-005:461932657": 1,
+              "eval-math-005:643732222": 1,
+              "eval-math-005:719000482": 1,
+              "eval-math-006:1512722949": 1,
+              "eval-math-006:1840435870": 1,
+              "eval-math-006:1893623393": 1,
+              "eval-math-006:247523083": 1,
+              "eval-math-006:40042286": 1,
+              "eval-math-006:402919697": 1,
+              "eval-math-006:60294057": 1,
+              "eval-math-006:737181564": 1,
+              "eval-math-007:1014185879": 1,
+              "eval-math-007:1142444539": 1,
+              "eval-math-007:1181765375": 1,
+              "eval-math-007:1296510348": 1,
+              "eval-math-007:417514896": 1,
+              "eval-math-007:487046108": 1,
+              "eval-math-007:6619627": 1,
+              "eval-math-007:716495122": 1,
+              "eval-math-008:1142687778": 1,
+              "eval-math-008:1425061433": 1,
+              "eval-math-008:1610537981": 1,
+              "eval-math-008:1747573225": 1,
+              "eval-math-008:1939595002": 1,
+              "eval-math-008:288445798": 1,
+              "eval-math-008:659861734": 1,
+              "eval-math-008:70878306": 1,
+              "eval-sec-014:1688518071": 1,
+              "eval-sec-014:1875237294": 1,
+              "eval-sec-014:1948279750": 1,
+              "eval-sec-014:477135279": 1,
+              "eval-sec-014:605723199": 1,
+              "eval-sec-014:632513243": 1,
+              "eval-sec-014:733156513": 1,
+              "eval-sec-014:972329979": 1,
+              "eval-struct-004:1051827221": 1,
+              "eval-struct-004:1213337324": 1,
+              "eval-struct-004:1609734128": 1,
+              "eval-struct-004:1946024400": 1,
+              "eval-struct-004:1948567290": 1,
+              "eval-struct-004:20374942": 1,
+              "eval-struct-004:694516262": 1,
+              "eval-struct-004:78772373": 1,
+              "eval-struct-012:1248449888": 1,
+              "eval-struct-012:1384475419": 1,
+              "eval-struct-012:1675495668": 1,
+              "eval-struct-012:1681987860": 1,
+              "eval-struct-012:1752526240": 1,
+              "eval-struct-012:177045504": 1,
+              "eval-struct-012:2035145058": 1,
+              "eval-struct-012:2093249117": 1,
+              "eval-struct-013:1024845489": 1,
+              "eval-struct-013:1029181413": 1,
+              "eval-struct-013:1321110339": 1,
+              "eval-struct-013:1958632731": 1,
+              "eval-struct-013:2119571135": 1,
+              "eval-struct-013:238546449": 1,
+              "eval-struct-013:553815693": 1,
+              "eval-struct-013:86033321": 1
+            },
+            "identical_prompt_seed_groups_with_multiple_outputs": 5,
+            "max_outputs_for_one_prompt": 4,
+            "prompt_distinct_output_counts": {
+              "eval-code-001": 2,
+              "eval-code-002": 2,
+              "eval-code-003": 1,
+              "eval-code-011": 1,
+              "eval-code-015": 1,
+              "eval-cs-016": 1,
+              "eval-ko-009": 4,
+              "eval-ko-010": 1,
+              "eval-math-005": 2,
+              "eval-math-006": 3,
+              "eval-math-007": 1,
+              "eval-math-008": 1,
+              "eval-sec-014": 2,
+              "eval-struct-004": 2,
+              "eval-struct-012": 2,
+              "eval-struct-013": 1
+            },
+            "prompts_with_multiple_outputs": 8
+          }
+        },
+        "frozen": {
+          "successful_records": 256,
+          "within_arm": {
+            "identical_prompt_seed_distinct_output_counts": {
+              "eval-code-001:1085703203": 1,
+              "eval-code-001:1580833790": 1,
+              "eval-code-001:1761284431": 1,
+              "eval-code-001:1824429159": 1,
+              "eval-code-001:194033995": 2,
+              "eval-code-001:746059925": 2,
+              "eval-code-001:847570270": 2,
+              "eval-code-001:966577195": 1,
+              "eval-code-002:1096910635": 1,
+              "eval-code-002:1412526977": 2,
+              "eval-code-002:1457557491": 1,
+              "eval-code-002:1459976365": 1,
+              "eval-code-002:1488412850": 1,
+              "eval-code-002:1503193803": 1,
+              "eval-code-002:25907774": 1,
+              "eval-code-002:7786633": 1,
+              "eval-code-003:1117167124": 1,
+              "eval-code-003:1146567803": 1,
+              "eval-code-003:1196480403": 1,
+              "eval-code-003:1918198685": 1,
+              "eval-code-003:301647354": 1,
+              "eval-code-003:576201928": 1,
+              "eval-code-003:614616360": 1,
+              "eval-code-003:966618419": 1,
+              "eval-code-011:1165552555": 1,
+              "eval-code-011:1526247266": 1,
+              "eval-code-011:209178142": 1,
+              "eval-code-011:2145345473": 1,
+              "eval-code-011:292393474": 1,
+              "eval-code-011:299075742": 1,
+              "eval-code-011:340235054": 1,
+              "eval-code-011:997544028": 1,
+              "eval-code-015:100806733": 1,
+              "eval-code-015:1088532721": 1,
+              "eval-code-015:1213849276": 1,
+              "eval-code-015:1292196556": 1,
+              "eval-code-015:1689822918": 1,
+              "eval-code-015:329864095": 1,
+              "eval-code-015:492744463": 1,
+              "eval-code-015:563208355": 1,
+              "eval-cs-016:1425162936": 1,
+              "eval-cs-016:1479580458": 1,
+              "eval-cs-016:1507106167": 1,
+              "eval-cs-016:160965508": 1,
+              "eval-cs-016:1645103593": 1,
+              "eval-cs-016:388477386": 1,
+              "eval-cs-016:433539416": 1,
+              "eval-cs-016:847600798": 1,
+              "eval-ko-009:102859416": 1,
+              "eval-ko-009:1207547708": 1,
+              "eval-ko-009:1890711126": 1,
+              "eval-ko-009:20588963": 1,
+              "eval-ko-009:393537098": 1,
+              "eval-ko-009:736070303": 1,
+              "eval-ko-009:857797446": 1,
+              "eval-ko-009:870687198": 1,
+              "eval-ko-010:1186250654": 1,
+              "eval-ko-010:1525527472": 1,
+              "eval-ko-010:155104043": 1,
+              "eval-ko-010:1771072006": 1,
+              "eval-ko-010:1835991361": 1,
+              "eval-ko-010:1959586947": 1,
+              "eval-ko-010:459781911": 1,
+              "eval-ko-010:575988188": 1,
+              "eval-math-005:1285043651": 1,
+              "eval-math-005:1289644071": 1,
+              "eval-math-005:1445210281": 1,
+              "eval-math-005:1572828843": 1,
+              "eval-math-005:431534122": 1,
+              "eval-math-005:461932657": 1,
+              "eval-math-005:643732222": 1,
+              "eval-math-005:719000482": 1,
+              "eval-math-006:1512722949": 1,
+              "eval-math-006:1840435870": 1,
+              "eval-math-006:1893623393": 1,
+              "eval-math-006:247523083": 1,
+              "eval-math-006:40042286": 1,
+              "eval-math-006:402919697": 1,
+              "eval-math-006:60294057": 1,
+              "eval-math-006:737181564": 1,
+              "eval-math-007:1014185879": 1,
+              "eval-math-007:1142444539": 1,
+              "eval-math-007:1181765375": 1,
+              "eval-math-007:1296510348": 1,
+              "eval-math-007:417514896": 1,
+              "eval-math-007:487046108": 1,
+              "eval-math-007:6619627": 1,
+              "eval-math-007:716495122": 1,
+              "eval-math-008:1142687778": 1,
+              "eval-math-008:1425061433": 1,
+              "eval-math-008:1610537981": 1,
+              "eval-math-008:1747573225": 1,
+              "eval-math-008:1939595002": 1,
+              "eval-math-008:288445798": 1,
+              "eval-math-008:659861734": 1,
+              "eval-math-008:70878306": 1,
+              "eval-sec-014:1688518071": 1,
+              "eval-sec-014:1875237294": 1,
+              "eval-sec-014:1948279750": 1,
+              "eval-sec-014:477135279": 1,
+              "eval-sec-014:605723199": 1,
+              "eval-sec-014:632513243": 1,
+              "eval-sec-014:733156513": 1,
+              "eval-sec-014:972329979": 1,
+              "eval-struct-004:1051827221": 1,
+              "eval-struct-004:1213337324": 1,
+              "eval-struct-004:1609734128": 1,
+              "eval-struct-004:1946024400": 1,
+              "eval-struct-004:1948567290": 1,
+              "eval-struct-004:20374942": 1,
+              "eval-struct-004:694516262": 2,
+              "eval-struct-004:78772373": 1,
+              "eval-struct-012:1248449888": 1,
+              "eval-struct-012:1384475419": 1,
+              "eval-struct-012:1675495668": 1,
+              "eval-struct-012:1681987860": 1,
+              "eval-struct-012:1752526240": 1,
+              "eval-struct-012:177045504": 1,
+              "eval-struct-012:2035145058": 1,
+              "eval-struct-012:2093249117": 1,
+              "eval-struct-013:1024845489": 1,
+              "eval-struct-013:1029181413": 1,
+              "eval-struct-013:1321110339": 1,
+              "eval-struct-013:1958632731": 1,
+              "eval-struct-013:2119571135": 1,
+              "eval-struct-013:238546449": 1,
+              "eval-struct-013:553815693": 1,
+              "eval-struct-013:86033321": 1
+            },
+            "identical_prompt_seed_groups_with_multiple_outputs": 5,
+            "max_outputs_for_one_prompt": 3,
+            "prompt_distinct_output_counts": {
+              "eval-code-001": 2,
+              "eval-code-002": 2,
+              "eval-code-003": 1,
+              "eval-code-011": 1,
+              "eval-code-015": 1,
+              "eval-cs-016": 1,
+              "eval-ko-009": 3,
+              "eval-ko-010": 1,
+              "eval-math-005": 2,
+              "eval-math-006": 1,
+              "eval-math-007": 1,
+              "eval-math-008": 1,
+              "eval-sec-014": 2,
+              "eval-struct-004": 2,
+              "eval-struct-012": 2,
+              "eval-struct-013": 1
+            },
+            "prompts_with_multiple_outputs": 7
+          }
+        },
+        "shared": {
+          "successful_records": 256,
+          "within_arm": {
+            "identical_prompt_seed_distinct_output_counts": {
+              "eval-code-001:1085703203": 1,
+              "eval-code-001:1580833790": 1,
+              "eval-code-001:1761284431": 1,
+              "eval-code-001:1824429159": 1,
+              "eval-code-001:194033995": 2,
+              "eval-code-001:746059925": 1,
+              "eval-code-001:847570270": 1,
+              "eval-code-001:966577195": 1,
+              "eval-code-002:1096910635": 2,
+              "eval-code-002:1412526977": 2,
+              "eval-code-002:1457557491": 2,
+              "eval-code-002:1459976365": 1,
+              "eval-code-002:1488412850": 1,
+              "eval-code-002:1503193803": 1,
+              "eval-code-002:25907774": 1,
+              "eval-code-002:7786633": 1,
+              "eval-code-003:1117167124": 1,
+              "eval-code-003:1146567803": 1,
+              "eval-code-003:1196480403": 1,
+              "eval-code-003:1918198685": 1,
+              "eval-code-003:301647354": 1,
+              "eval-code-003:576201928": 1,
+              "eval-code-003:614616360": 1,
+              "eval-code-003:966618419": 1,
+              "eval-code-011:1165552555": 1,
+              "eval-code-011:1526247266": 1,
+              "eval-code-011:209178142": 1,
+              "eval-code-011:2145345473": 1,
+              "eval-code-011:292393474": 1,
+              "eval-code-011:299075742": 1,
+              "eval-code-011:340235054": 1,
+              "eval-code-011:997544028": 1,
+              "eval-code-015:100806733": 1,
+              "eval-code-015:1088532721": 1,
+              "eval-code-015:1213849276": 1,
+              "eval-code-015:1292196556": 1,
+              "eval-code-015:1689822918": 1,
+              "eval-code-015:329864095": 1,
+              "eval-code-015:492744463": 1,
+              "eval-code-015:563208355": 1,
+              "eval-cs-016:1425162936": 1,
+              "eval-cs-016:1479580458": 1,
+              "eval-cs-016:1507106167": 1,
+              "eval-cs-016:160965508": 1,
+              "eval-cs-016:1645103593": 1,
+              "eval-cs-016:388477386": 1,
+              "eval-cs-016:433539416": 1,
+              "eval-cs-016:847600798": 1,
+              "eval-ko-009:102859416": 1,
+              "eval-ko-009:1207547708": 1,
+              "eval-ko-009:1890711126": 2,
+              "eval-ko-009:20588963": 1,
+              "eval-ko-009:393537098": 1,
+              "eval-ko-009:736070303": 1,
+              "eval-ko-009:857797446": 1,
+              "eval-ko-009:870687198": 1,
+              "eval-ko-010:1186250654": 1,
+              "eval-ko-010:1525527472": 1,
+              "eval-ko-010:155104043": 1,
+              "eval-ko-010:1771072006": 1,
+              "eval-ko-010:1835991361": 1,
+              "eval-ko-010:1959586947": 1,
+              "eval-ko-010:459781911": 1,
+              "eval-ko-010:575988188": 1,
+              "eval-math-005:1285043651": 1,
+              "eval-math-005:1289644071": 1,
+              "eval-math-005:1445210281": 1,
+              "eval-math-005:1572828843": 2,
+              "eval-math-005:431534122": 1,
+              "eval-math-005:461932657": 1,
+              "eval-math-005:643732222": 1,
+              "eval-math-005:719000482": 1,
+              "eval-math-006:1512722949": 1,
+              "eval-math-006:1840435870": 2,
+              "eval-math-006:1893623393": 1,
+              "eval-math-006:247523083": 1,
+              "eval-math-006:40042286": 1,
+              "eval-math-006:402919697": 1,
+              "eval-math-006:60294057": 1,
+              "eval-math-006:737181564": 1,
+              "eval-math-007:1014185879": 1,
+              "eval-math-007:1142444539": 1,
+              "eval-math-007:1181765375": 1,
+              "eval-math-007:1296510348": 1,
+              "eval-math-007:417514896": 1,
+              "eval-math-007:487046108": 1,
+              "eval-math-007:6619627": 1,
+              "eval-math-007:716495122": 1,
+              "eval-math-008:1142687778": 1,
+              "eval-math-008:1425061433": 1,
+              "eval-math-008:1610537981": 1,
+              "eval-math-008:1747573225": 1,
+              "eval-math-008:1939595002": 1,
+              "eval-math-008:288445798": 1,
+              "eval-math-008:659861734": 1,
+              "eval-math-008:70878306": 1,
+              "eval-sec-014:1688518071": 1,
+              "eval-sec-014:1875237294": 1,
+              "eval-sec-014:1948279750": 1,
+              "eval-sec-014:477135279": 1,
+              "eval-sec-014:605723199": 1,
+              "eval-sec-014:632513243": 1,
+              "eval-sec-014:733156513": 1,
+              "eval-sec-014:972329979": 1,
+              "eval-struct-004:1051827221": 1,
+              "eval-struct-004:1213337324": 1,
+              "eval-struct-004:1609734128": 1,
+              "eval-struct-004:1946024400": 1,
+              "eval-struct-004:1948567290": 1,
+              "eval-struct-004:20374942": 1,
+              "eval-struct-004:694516262": 1,
+              "eval-struct-004:78772373": 1,
+              "eval-struct-012:1248449888": 1,
+              "eval-struct-012:1384475419": 1,
+              "eval-struct-012:1675495668": 1,
+              "eval-struct-012:1681987860": 1,
+              "eval-struct-012:1752526240": 1,
+              "eval-struct-012:177045504": 1,
+              "eval-struct-012:2035145058": 1,
+              "eval-struct-012:2093249117": 1,
+              "eval-struct-013:1024845489": 1,
+              "eval-struct-013:1029181413": 1,
+              "eval-struct-013:1321110339": 1,
+              "eval-struct-013:1958632731": 1,
+              "eval-struct-013:2119571135": 1,
+              "eval-struct-013:238546449": 1,
+              "eval-struct-013:553815693": 1,
+              "eval-struct-013:86033321": 1
+            },
+            "identical_prompt_seed_groups_with_multiple_outputs": 7,
+            "max_outputs_for_one_prompt": 3,
+            "prompt_distinct_output_counts": {
+              "eval-code-001": 2,
+              "eval-code-002": 2,
+              "eval-code-003": 1,
+              "eval-code-011": 1,
+              "eval-code-015": 1,
+              "eval-cs-016": 1,
+              "eval-ko-009": 3,
+              "eval-ko-010": 2,
+              "eval-math-005": 2,
+              "eval-math-006": 3,
+              "eval-math-007": 1,
+              "eval-math-008": 1,
+              "eval-sec-014": 2,
+              "eval-struct-004": 2,
+              "eval-struct-012": 2,
+              "eval-struct-013": 1
+            },
+            "prompts_with_multiple_outputs": 9
+          }
+        },
+        "tenant-local": {
+          "successful_records": 256,
+          "within_arm": {
+            "identical_prompt_seed_distinct_output_counts": {
+              "eval-code-001:1085703203": 1,
+              "eval-code-001:1580833790": 2,
+              "eval-code-001:1761284431": 2,
+              "eval-code-001:1824429159": 1,
+              "eval-code-001:194033995": 1,
+              "eval-code-001:746059925": 2,
+              "eval-code-001:847570270": 1,
+              "eval-code-001:966577195": 1,
+              "eval-code-002:1096910635": 2,
+              "eval-code-002:1412526977": 2,
+              "eval-code-002:1457557491": 1,
+              "eval-code-002:1459976365": 1,
+              "eval-code-002:1488412850": 1,
+              "eval-code-002:1503193803": 1,
+              "eval-code-002:25907774": 1,
+              "eval-code-002:7786633": 1,
+              "eval-code-003:1117167124": 1,
+              "eval-code-003:1146567803": 1,
+              "eval-code-003:1196480403": 1,
+              "eval-code-003:1918198685": 1,
+              "eval-code-003:301647354": 1,
+              "eval-code-003:576201928": 1,
+              "eval-code-003:614616360": 1,
+              "eval-code-003:966618419": 1,
+              "eval-code-011:1165552555": 1,
+              "eval-code-011:1526247266": 1,
+              "eval-code-011:209178142": 1,
+              "eval-code-011:2145345473": 1,
+              "eval-code-011:292393474": 1,
+              "eval-code-011:299075742": 1,
+              "eval-code-011:340235054": 1,
+              "eval-code-011:997544028": 1,
+              "eval-code-015:100806733": 1,
+              "eval-code-015:1088532721": 1,
+              "eval-code-015:1213849276": 1,
+              "eval-code-015:1292196556": 1,
+              "eval-code-015:1689822918": 1,
+              "eval-code-015:329864095": 1,
+              "eval-code-015:492744463": 1,
+              "eval-code-015:563208355": 1,
+              "eval-cs-016:1425162936": 1,
+              "eval-cs-016:1479580458": 1,
+              "eval-cs-016:1507106167": 1,
+              "eval-cs-016:160965508": 1,
+              "eval-cs-016:1645103593": 1,
+              "eval-cs-016:388477386": 1,
+              "eval-cs-016:433539416": 1,
+              "eval-cs-016:847600798": 1,
+              "eval-ko-009:102859416": 1,
+              "eval-ko-009:1207547708": 1,
+              "eval-ko-009:1890711126": 1,
+              "eval-ko-009:20588963": 1,
+              "eval-ko-009:393537098": 1,
+              "eval-ko-009:736070303": 2,
+              "eval-ko-009:857797446": 1,
+              "eval-ko-009:870687198": 1,
+              "eval-ko-010:1186250654": 1,
+              "eval-ko-010:1525527472": 1,
+              "eval-ko-010:155104043": 1,
+              "eval-ko-010:1771072006": 1,
+              "eval-ko-010:1835991361": 1,
+              "eval-ko-010:1959586947": 1,
+              "eval-ko-010:459781911": 1,
+              "eval-ko-010:575988188": 1,
+              "eval-math-005:1285043651": 1,
+              "eval-math-005:1289644071": 1,
+              "eval-math-005:1445210281": 1,
+              "eval-math-005:1572828843": 1,
+              "eval-math-005:431534122": 1,
+              "eval-math-005:461932657": 1,
+              "eval-math-005:643732222": 1,
+              "eval-math-005:719000482": 1,
+              "eval-math-006:1512722949": 1,
+              "eval-math-006:1840435870": 1,
+              "eval-math-006:1893623393": 1,
+              "eval-math-006:247523083": 2,
+              "eval-math-006:40042286": 1,
+              "eval-math-006:402919697": 1,
+              "eval-math-006:60294057": 1,
+              "eval-math-006:737181564": 1,
+              "eval-math-007:1014185879": 1,
+              "eval-math-007:1142444539": 1,
+              "eval-math-007:1181765375": 1,
+              "eval-math-007:1296510348": 1,
+              "eval-math-007:417514896": 1,
+              "eval-math-007:487046108": 1,
+              "eval-math-007:6619627": 1,
+              "eval-math-007:716495122": 1,
+              "eval-math-008:1142687778": 1,
+              "eval-math-008:1425061433": 1,
+              "eval-math-008:1610537981": 1,
+              "eval-math-008:1747573225": 1,
+              "eval-math-008:1939595002": 1,
+              "eval-math-008:288445798": 1,
+              "eval-math-008:659861734": 1,
+              "eval-math-008:70878306": 1,
+              "eval-sec-014:1688518071": 1,
+              "eval-sec-014:1875237294": 1,
+              "eval-sec-014:1948279750": 1,
+              "eval-sec-014:477135279": 1,
+              "eval-sec-014:605723199": 1,
+              "eval-sec-014:632513243": 1,
+              "eval-sec-014:733156513": 1,
+              "eval-sec-014:972329979": 1,
+              "eval-struct-004:1051827221": 1,
+              "eval-struct-004:1213337324": 1,
+              "eval-struct-004:1609734128": 1,
+              "eval-struct-004:1946024400": 1,
+              "eval-struct-004:1948567290": 1,
+              "eval-struct-004:20374942": 1,
+              "eval-struct-004:694516262": 1,
+              "eval-struct-004:78772373": 1,
+              "eval-struct-012:1248449888": 1,
+              "eval-struct-012:1384475419": 1,
+              "eval-struct-012:1675495668": 1,
+              "eval-struct-012:1681987860": 1,
+              "eval-struct-012:1752526240": 1,
+              "eval-struct-012:177045504": 1,
+              "eval-struct-012:2035145058": 1,
+              "eval-struct-012:2093249117": 1,
+              "eval-struct-013:1024845489": 1,
+              "eval-struct-013:1029181413": 1,
+              "eval-struct-013:1321110339": 1,
+              "eval-struct-013:1958632731": 1,
+              "eval-struct-013:2119571135": 1,
+              "eval-struct-013:238546449": 1,
+              "eval-struct-013:553815693": 1,
+              "eval-struct-013:86033321": 1
+            },
+            "identical_prompt_seed_groups_with_multiple_outputs": 7,
+            "max_outputs_for_one_prompt": 3,
+            "prompt_distinct_output_counts": {
+              "eval-code-001": 2,
+              "eval-code-002": 2,
+              "eval-code-003": 1,
+              "eval-code-011": 1,
+              "eval-code-015": 1,
+              "eval-cs-016": 1,
+              "eval-ko-009": 3,
+              "eval-ko-010": 2,
+              "eval-math-005": 2,
+              "eval-math-006": 3,
+              "eval-math-007": 1,
+              "eval-math-008": 1,
+              "eval-sec-014": 2,
+              "eval-struct-004": 1,
+              "eval-struct-012": 2,
+              "eval-struct-013": 1
+            },
+            "prompts_with_multiple_outputs": 8
+          }
+        }
+      },
+      "identical_policy_controls": {
+        "frozen__ctfr-shadow": {
+          "common_ordinals": 256,
+          "exact_equal": 193,
+          "exact_equal_rate": 0.75390625,
+          "first_divergence_examples": [
+            {
+              "first_divergence_position": 12,
+              "ordinal": 6
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 33
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 34
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 38
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 39
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 40
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 41
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 42
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 43
+            },
+            {
+              "first_divergence_position": 13,
+              "ordinal": 48
+            },
+            {
+              "first_divergence_position": 13,
+              "ordinal": 49
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 54
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 55
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 64
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 66
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 67
+            }
+          ]
+        }
+      },
+      "pairwise": {
+        "ctfr-full__ctfr-shadow": {
+          "common_ordinals": 256,
+          "exact_equal": 187,
+          "exact_equal_rate": 0.73046875,
+          "first_divergence_examples": [
+            {
+              "first_divergence_position": 12,
+              "ordinal": 0
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 1
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 2
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 3
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 9
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 10
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 11
+            },
+            {
+              "first_divergence_position": 16,
+              "ordinal": 16
+            },
+            {
+              "first_divergence_position": 4,
+              "ordinal": 17
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 22
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 32
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 35
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 38
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 39
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 40
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 41
+            }
+          ]
+        },
+        "ctfr-full__frozen": {
+          "common_ordinals": 256,
+          "exact_equal": 205,
+          "exact_equal_rate": 0.80078125,
+          "first_divergence_examples": [
+            {
+              "first_divergence_position": 12,
+              "ordinal": 0
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 1
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 2
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 3
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 6
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 9
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 10
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 11
+            },
+            {
+              "first_divergence_position": 16,
+              "ordinal": 16
+            },
+            {
+              "first_divergence_position": 4,
+              "ordinal": 17
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 22
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 32
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 33
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 34
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 35
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 42
+            }
+          ]
+        },
+        "ctfr-full__shared": {
+          "common_ordinals": 256,
+          "exact_equal": 186,
+          "exact_equal_rate": 0.7265625,
+          "first_divergence_examples": [
+            {
+              "first_divergence_position": 25,
+              "ordinal": 8
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 9
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 10
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 11
+            },
+            {
+              "first_divergence_position": 16,
+              "ordinal": 16
+            },
+            {
+              "first_divergence_position": 4,
+              "ordinal": 17
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 23
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 26
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 27
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 32
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 33
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 34
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 35
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 42
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 43
+            },
+            {
+              "first_divergence_position": 16,
+              "ordinal": 48
+            }
+          ]
+        },
+        "ctfr-full__tenant-local": {
+          "common_ordinals": 256,
+          "exact_equal": 183,
+          "exact_equal_rate": 0.71484375,
+          "first_divergence_examples": [
+            {
+              "first_divergence_position": 12,
+              "ordinal": 1
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 2
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 3
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 9
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 10
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 11
+            },
+            {
+              "first_divergence_position": 16,
+              "ordinal": 16
+            },
+            {
+              "first_divergence_position": 4,
+              "ordinal": 17
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 22
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 33
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 40
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 41
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 42
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 43
+            },
+            {
+              "first_divergence_position": 13,
+              "ordinal": 48
+            },
+            {
+              "first_divergence_position": 13,
+              "ordinal": 49
+            }
+          ]
+        },
+        "ctfr-shadow__frozen": {
+          "common_ordinals": 256,
+          "exact_equal": 193,
+          "exact_equal_rate": 0.75390625,
+          "first_divergence_examples": [
+            {
+              "first_divergence_position": 12,
+              "ordinal": 6
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 33
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 34
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 38
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 39
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 40
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 41
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 42
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 43
+            },
+            {
+              "first_divergence_position": 13,
+              "ordinal": 48
+            },
+            {
+              "first_divergence_position": 13,
+              "ordinal": 49
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 54
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 55
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 64
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 66
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 67
+            }
+          ]
+        },
+        "ctfr-shadow__shared": {
+          "common_ordinals": 256,
+          "exact_equal": 172,
+          "exact_equal_rate": 0.671875,
+          "first_divergence_examples": [
+            {
+              "first_divergence_position": 12,
+              "ordinal": 0
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 1
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 2
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 3
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 8
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 22
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 23
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 26
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 27
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 33
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 34
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 38
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 39
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 40
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 41
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 42
+            }
+          ]
+        },
+        "ctfr-shadow__tenant-local": {
+          "common_ordinals": 256,
+          "exact_equal": 205,
+          "exact_equal_rate": 0.80078125,
+          "first_divergence_examples": [
+            {
+              "first_divergence_position": 12,
+              "ordinal": 0
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 32
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 33
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 35
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 38
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 39
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 42
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 43
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 58
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 59
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 64
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 66
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 67
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 70
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 71
+            },
+            {
+              "first_divergence_position": 0,
+              "ordinal": 74
+            }
+          ]
+        },
+        "frozen__shared": {
+          "common_ordinals": 256,
+          "exact_equal": 210,
+          "exact_equal_rate": 0.8203125,
+          "first_divergence_examples": [
+            {
+              "first_divergence_position": 12,
+              "ordinal": 0
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 1
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 2
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 3
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 6
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 8
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 22
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 23
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 26
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 27
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 75
+            },
+            {
+              "first_divergence_position": 4,
+              "ordinal": 80
+            },
+            {
+              "first_divergence_position": 4,
+              "ordinal": 81
+            },
+            {
+              "first_divergence_position": 27,
+              "ordinal": 82
+            },
+            {
+              "first_divergence_position": 27,
+              "ordinal": 83
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 90
+            }
+          ]
+        },
+        "frozen__tenant-local": {
+          "common_ordinals": 256,
+          "exact_equal": 197,
+          "exact_equal_rate": 0.76953125,
+          "first_divergence_examples": [
+            {
+              "first_divergence_position": 12,
+              "ordinal": 0
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 6
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 32
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 34
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 35
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 40
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 41
+            },
+            {
+              "first_divergence_position": 13,
+              "ordinal": 48
+            },
+            {
+              "first_divergence_position": 13,
+              "ordinal": 49
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 54
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 55
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 58
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 59
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 72
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 73
+            },
+            {
+              "first_divergence_position": 13,
+              "ordinal": 80
+            }
+          ]
+        },
+        "shared__tenant-local": {
+          "common_ordinals": 256,
+          "exact_equal": 193,
+          "exact_equal_rate": 0.75390625,
+          "first_divergence_examples": [
+            {
+              "first_divergence_position": 12,
+              "ordinal": 1
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 2
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 3
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 8
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 22
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 23
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 26
+            },
+            {
+              "first_divergence_position": 30,
+              "ordinal": 27
+            },
+            {
+              "first_divergence_position": 12,
+              "ordinal": 32
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 34
+            },
+            {
+              "first_divergence_position": 31,
+              "ordinal": 35
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 40
+            },
+            {
+              "first_divergence_position": 25,
+              "ordinal": 41
+            },
+            {
+              "first_divergence_position": 13,
+              "ordinal": 48
+            },
+            {
+              "first_divergence_position": 13,
+              "ordinal": 49
+            },
+            {
+              "first_divergence_position": 8,
+              "ordinal": 54
+            }
+          ]
+        }
+      }
+    }
+  },
+  "schema": "ctfr-output-determinism-diagnostic-v1"
+}

@@ -1,0 +1,61 @@
+{
+  "base_url": "http://127.0.0.1:8001/v1",
+  "results": [
+    {
+      "audit_event_id": "0bf4d91a34d34bf29f3022720e59c75f",
+      "authenticated_tenant": "attacker",
+      "expected_status": 200,
+      "gateway_instance_id": "factorial-perf_block_04_placebo_blocked-1789819378079959768",
+      "name": "attacker_ok",
+      "status": 200,
+      "upstream_marker": "factorial-33069-1789819317993055076"
+    },
+    {
+      "audit_event_id": "4924877176114688b817d2e7b7144314",
+      "authenticated_tenant": "victim",
+      "expected_status": 200,
+      "gateway_instance_id": "factorial-perf_block_04_placebo_blocked-1789819378079959768",
+      "name": "victim_ok",
+      "status": 200,
+      "upstream_marker": "factorial-33069-1789819317993055076"
+    },
+    {
+      "audit_event_id": "5bed11ab8e574c87ada7b213bf9e3ef7",
+      "authenticated_tenant": null,
+      "expected_status": 401,
+      "gateway_instance_id": "factorial-perf_block_04_placebo_blocked-1789819378079959768",
+      "name": "missing_key",
+      "status": 401,
+      "upstream_marker": "factorial-33069-1789819317993055076"
+    },
+    {
+      "audit_event_id": "5e1bb85851e74974b42a07bb14031ce1",
+      "authenticated_tenant": null,
+      "expected_status": 401,
+      "gateway_instance_id": "factorial-perf_block_04_placebo_blocked-1789819378079959768",
+      "name": "wrong_key",
+      "status": 401,
+      "upstream_marker": "factorial-33069-1789819317993055076"
+    },
+    {
+      "audit_event_id": "80e15da9b7484186aaa958b6100d4e85",
+      "authenticated_tenant": null,
+      "expected_status": 403,
+      "gateway_instance_id": "factorial-perf_block_04_placebo_blocked-1789819378079959768",
+      "name": "attacker_claims_victim",
+      "status": 403,
+      "upstream_marker": "factorial-33069-1789819317993055076"
+    },
+    {
+      "audit_event_id": "32c7e189ead043f688bcfd5cf8b222e7",
+      "authenticated_tenant": null,
+      "expected_status": 403,
+      "gateway_instance_id": "factorial-perf_block_04_placebo_blocked-1789819378079959768",
+      "name": "victim_claims_attacker",
+      "status": 403,
+      "upstream_marker": "factorial-33069-1789819317993055076"
+    }
+  ],
+  "schema_version": 1,
+  "valid": true
+}

@@ -1,0 +1,204 @@
+diff --git a/vllm/v1/worker/gpu/spec_decode/acceptance_estimator.py b/vllm/v1/worker/gpu/spec_decode/acceptance_estimator.py
+--- a/vllm/v1/worker/gpu/spec_decode/acceptance_estimator.py
++++ b/vllm/v1/worker/gpu/spec_decode/acceptance_estimator.py
+@@ -1,8 +1,12 @@
+ # SPDX-License-Identifier: Apache-2.0
+ # SPDX-FileCopyrightText: Copyright contributors to the vLLM project
+ 
++import json
++import os
++
+ import torch
+ 
++from vllm.logger import init_logger
+ from vllm.triton_utils import tl, triton
+ from vllm.v1.worker.gpu.spec_decode.rejection_sampler_utils import (
+     _compute_max_and_sumexp,
+@@ -19,6 +23,8 @@ _MAX_LOG_ODDS = 40.0
+ _INIT_SLOPE = 0.5
+ _INIT_BIAS = -0.2
+ 
++logger = init_logger(__name__)
++
+ 
+ @triton.jit
+ def _accumulate_kernel(
+@@ -347,6 +353,7 @@ class OnlineAcceptanceEstimator:
+         self.device = device
+         self._steps_since_refit = 0
+         self._refits = 0
++        self._telemetry_enabled = os.environ.get("VLLM_AVEP_TELEMETRY") == "1"
+ 
+         # The learned coefficients used for predicting acceptance.
+         self.slope = torch.full((1,), _INIT_SLOPE, dtype=torch.float32, device=device)
+@@ -397,6 +404,49 @@ class OnlineAcceptanceEstimator:
+         self.counts = torch.zeros(
+             num_speculative_steps, dtype=torch.float32, device=device
+         )
++
++    def avep_state(self) -> dict[str, object]:
++        """Return an on-demand research snapshot without steady-state logging."""
++        torch.accelerator.synchronize()
++        return {
++            "available": True,
++            "steps_since_refit": self._steps_since_refit,
++            "refits": self._refits,
++            "slope": float(self.slope.item()),
++            "intercepts": self.intercepts.detach().cpu().tolist(),
++            "counts": self.counts.detach().cpu().tolist(),
++            "info": self.info.detach().cpu().tolist(),
++            "grad": self.grad.detach().cpu().tolist(),
++        }
++
++    def avep_reset(self) -> dict[str, object]:
++        """Reset only the online estimator, preserving models and server state."""
++        before = self.avep_state()
++        with torch.no_grad():
++            self.slope.fill_(_INIT_SLOPE)
++            self.intercepts.fill_(_INIT_BIAS)
++            self.features.zero_()
++            self.predictions.zero_()
++            self.info.zero_()
++            self.grad.zero_()
++            self.counts.zero_()
++        self._steps_since_refit = 0
++        self._refits = 0
++        torch.accelerator.synchronize()
++        after = self.avep_state()
++        logger.warning(
++            "AVEP_RESET %s",
++            json.dumps(
++                {
++                    "slope_before": before["slope"],
++                    "slope_after": after["slope"],
++                    "intercepts_before": before["intercepts"],
++                    "intercepts_after": after["intercepts"],
++                },
++                sort_keys=True,
++            ),
++        )
++        return {"before": before, "after": after}
+ 
+     def step(
+         self,
+@@ -430,6 +480,11 @@ class OnlineAcceptanceEstimator:
+             return
+         self._steps_since_refit = 0
+ 
++        if self._telemetry_enabled:
++            counts = self.counts.detach().cpu().tolist()
++            slope_before = float(self.slope.item())
++            intercepts_before = self.intercepts.detach().cpu().tolist()
++
+         # Fit the coefficients to the accumulated statistics gathered over the
+         # course of the last REFIT_INTERVAL steps.
+         _refit_kernel[(1,)](
+@@ -446,6 +501,21 @@ class OnlineAcceptanceEstimator:
+             BLOCK=triton.next_power_of_2(self.num_speculative_steps),
+         )
+         self._refits += 1
++        if self._telemetry_enabled:
++            logger.warning(
++                "AVEP_ESTIMATOR %s",
++                json.dumps(
++                    {
++                        "refit": self._refits,
++                        "counts": counts,
++                        "slope_before": slope_before,
++                        "slope_after": float(self.slope.item()),
++                        "intercepts_before": intercepts_before,
++                        "intercepts_after": self.intercepts.detach().cpu().tolist(),
++                    },
++                    sort_keys=True,
++                ),
++            )
+ 
+     def predict(
+         self,
+diff --git a/vllm/v1/worker/gpu/spec_decode/adaptive_verification.py b/vllm/v1/worker/gpu/spec_decode/adaptive_verification.py
+--- a/vllm/v1/worker/gpu/spec_decode/adaptive_verification.py
++++ b/vllm/v1/worker/gpu/spec_decode/adaptive_verification.py
+@@ -2,6 +2,8 @@
+ # SPDX-FileCopyrightText: Copyright contributors to the vLLM project
+ """Adaptive verification for DSpark speculative decoding."""
+ 
++import json
++import os
+ from collections import defaultdict
+ from collections.abc import Iterable, Iterator
+ from typing import TYPE_CHECKING
+@@ -152,6 +154,12 @@ class AdaptiveVerificationManager:
+         # Largest cudagraph-captured token count; above it nothing pads.
+         self._cudagraph_limit = 0
+         self._batch_budget: tuple[dict[str, int], dict[str, int], int] | None = None
++        self._telemetry_enabled = os.environ.get("VLLM_AVEP_TELEMETRY") == "1"
++        self._telemetry_every = max(
++            1, int(os.environ.get("VLLM_AVEP_TELEMETRY_BUDGET_EVERY", "10"))
++        )
++        self._telemetry_step = 0
++        self._telemetry_last_budget: int | None = None
+         max_num_reqs = req_states.max_num_reqs
+         # Current per-slot confidences
+         self._confidence_probs = torch.empty(
+@@ -345,6 +353,25 @@ class AdaptiveVerificationManager:
+             for req_id, num_tokens in zip(req_ids, num_non_draft_tokens, strict=True)
+         }
+         draft_budget = int(np.argmax(num_tokens_to_estimated_accepted_tokens / costs))
++        self._telemetry_step += 1
++        if self._telemetry_enabled and (
++            draft_budget != self._telemetry_last_budget
++            or self._telemetry_step % self._telemetry_every == 0
++        ):
++            logger.warning(
++                "AVEP_BUDGET %s",
++                json.dumps(
++                    {
++                        "step": self._telemetry_step,
++                        "num_reqs": num_reqs,
++                        "scheduled_drafts": int(scheduled_drafts.sum()),
++                        "max_draft_budget": max_draft_budget,
++                        "draft_budget": draft_budget,
++                    },
++                    sort_keys=True,
++                ),
++            )
++        self._telemetry_last_budget = draft_budget
+         self._batch_budget = (
+             num_drafts_per_req,
+             num_non_draft_tokens_per_req,
+diff --git a/vllm/v1/worker/gpu_worker.py b/vllm/v1/worker/gpu_worker.py
+--- a/vllm/v1/worker/gpu_worker.py
++++ b/vllm/v1/worker/gpu_worker.py
+@@ -971,6 +971,32 @@ class Worker(WorkerBase):
+     def reset_encoder_cache(self) -> None:
+         self.model_runner.reset_encoder_cache()
+ 
++    def avep_get_acceptance_estimator_state(self) -> dict[str, Any]:
++        """Return the experimental estimator state for localhost-only tests."""
++        speculator = getattr(self.model_runner, "speculator", None)
++        estimator = getattr(speculator, "acceptance_estimator", None)
++        if estimator is None:
++            return {
++                "available": False,
++                "reason": "No online acceptance estimator is active",
++            }
++        return estimator.avep_state()
++
++    def avep_reset_acceptance_estimator(self) -> dict[str, Any]:
++        """Reset the estimator in place while preserving the loaded models."""
++        speculator = getattr(self.model_runner, "speculator", None)
++        estimator = getattr(speculator, "acceptance_estimator", None)
++        if estimator is None:
++            return {
++                "available": False,
++                "reason": "No online acceptance estimator is active",
++            }
++        result = estimator.avep_reset()
++        return {
++            "available": True,
++            "reset": result,
++        }
++
+     def get_model(self) -> nn.Module:
+         return self.model_runner.get_model()
+ 

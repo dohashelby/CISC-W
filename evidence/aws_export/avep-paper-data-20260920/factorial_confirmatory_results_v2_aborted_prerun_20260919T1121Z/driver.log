@@ -1,0 +1,15 @@
+test_gate_still_requires_blocked_state_invariance (test_analyze_factorial_confirmatory_v2.FactorialV2DecisionTests.test_gate_still_requires_blocked_state_invariance) ... ok
+test_gate_uses_fixed_full_post_horizon (test_analyze_factorial_confirmatory_v2.FactorialV2DecisionTests.test_gate_uses_fixed_full_post_horizon) ... ok
+test_primary_averages_all_eight_fixed_post_windows (test_analyze_factorial_confirmatory_v2.FactorialV2DecisionTests.test_primary_averages_all_eight_fixed_post_windows) ... ok
+test_schedule_balances_positions_and_predecessors (test_analyze_factorial_confirmatory_v2.FactorialV2DecisionTests.test_schedule_balances_positions_and_predecessors) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.206s
+
+OK
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+Terminated

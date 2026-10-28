@@ -1,0 +1,12 @@
+{
+  "protocol_version": "avep-tenant-short-followup-v2",
+  "run_name": "screen",
+  "stage": "screen",
+  "pair_id": null,
+  "arm": "screen",
+  "adaptive": false,
+  "telemetry": false,
+  "detailed_metrics": true,
+  "poison_token_id": null,
+  "created_at": "2026-09-18T12:41:50,999743658+00:00"
+}

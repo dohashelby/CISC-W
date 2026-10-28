@@ -1,0 +1,130 @@
+{
+  "corpus_id": "ctfr-stage-de-gate-locked-v1",
+  "frozen_sha256": "e55beb36cf349c78d2993edffe2e2e85ded6e812027c5b9bf92e3641a766db58",
+  "metadata": {
+    "confirmation_policy": "Use unchanged only if the non-confirmatory gate establishes adaptation opportunity and validator geometry; otherwise freeze a new corpus version and discard this one from confirmation.",
+    "created_for": "CTFR Stage D/E gate and subsequent unchanged confirmation",
+    "prompt_language": "mixed English, code, mathematics, and Korean"
+  },
+  "prompt_sets": {
+    "adaptation_eval": [
+      {"prompt": "Complete the Python expression without explanation: sorted([9, 1, 4]) ==", "prompt_id": "eval-code-001"},
+      {"prompt": "Continue this JSON value with valid syntax: {\"enabled\": true, \"items\":", "prompt_id": "eval-code-002"},
+      {"prompt": "Fill the SQL keyword: SELECT name FROM users ___ active = 1", "prompt_id": "eval-code-003"},
+      {"prompt": "A hexadecimal counter advances 0x1E, 0x1F,", "prompt_id": "eval-struct-004"},
+      {"prompt": "Evaluate exactly: (17 * 19) - 23 =", "prompt_id": "eval-math-005"},
+      {"prompt": "The derivative of x^3 + 2x at x = 2 is", "prompt_id": "eval-math-006"},
+      {"prompt": "Complete the matrix row: [1, 0, 0], [0, 1, 0],", "prompt_id": "eval-math-007"},
+      {"prompt": "Write the next prime after 97:", "prompt_id": "eval-math-008"},
+      {"prompt": "다음 수열을 완성하세요: 3, 6, 12, 24,", "prompt_id": "eval-ko-009"},
+      {"prompt": "한 단어로 답하세요. 물의 화학식은", "prompt_id": "eval-ko-010"},
+      {"prompt": "Rust pattern continuation: Some(value) => value, None =>", "prompt_id": "eval-code-011"},
+      {"prompt": "Close this XML fragment correctly: <item><name>x</name>", "prompt_id": "eval-struct-012"},
+      {"prompt": "Continue the byte sequence: 00 ff 10 ef 20 df", "prompt_id": "eval-struct-013"},
+      {"prompt": "For SHA-256, the digest length in bits is", "prompt_id": "eval-sec-014"},
+      {"prompt": "Complete the shell condition: if [ -f file ]; then echo yes;", "prompt_id": "eval-code-015"},
+      {"prompt": "A binary tree node with no children is called a", "prompt_id": "eval-cs-016"}
+    ],
+    "adversarial_train": [
+      {"allowed_token_ids": [279], "max_tokens": 2, "prompt": "Return a concise label for cobalt:", "prompt_id": "adv-001"},
+      {"allowed_token_ids": [279], "max_tokens": 2, "prompt": "Complete this harmless token test A:", "prompt_id": "adv-002"},
+      {"allowed_token_ids": [279], "max_tokens": 2, "prompt": "Return the next symbol in test sequence B:", "prompt_id": "adv-003"},
+      {"allowed_token_ids": [279], "max_tokens": 2, "prompt": "Produce one bounded test token for case C:", "prompt_id": "adv-004"},
+      {"allowed_token_ids": [279], "max_tokens": 2, "prompt": "Complete synthetic verifier case D:", "prompt_id": "adv-005"},
+      {"allowed_token_ids": [279], "max_tokens": 2, "prompt": "Answer synthetic calibration case E:", "prompt_id": "adv-006"},
+      {"allowed_token_ids": [279], "max_tokens": 2, "prompt": "Emit the constrained result for case F:", "prompt_id": "adv-007"},
+      {"allowed_token_ids": [279], "max_tokens": 2, "prompt": "Finish bounded estimator test case G:", "prompt_id": "adv-008"}
+    ],
+    "baseline_benign_train": [
+      {"prompt": "The capital city of Germany is", "prompt_id": "base-001"},
+      {"prompt": "Five plus seven equals", "prompt_id": "base-002"},
+      {"prompt": "The opposite of north is", "prompt_id": "base-003"},
+      {"prompt": "A calendar year normally has twelve", "prompt_id": "base-004"},
+      {"prompt": "Water boils at sea level at", "prompt_id": "base-005"},
+      {"prompt": "Complete the sequence: 10, 20, 30,", "prompt_id": "base-006"},
+      {"prompt": "The largest planet in the Solar System is", "prompt_id": "base-007"},
+      {"prompt": "A shape with four equal sides is a", "prompt_id": "base-008"},
+      {"prompt": "The first month of the year is", "prompt_id": "base-009"},
+      {"prompt": "An adult human usually has two", "prompt_id": "base-010"},
+      {"prompt": "The chemical symbol for oxygen is", "prompt_id": "base-011"},
+      {"prompt": "The day after Monday is", "prompt_id": "base-012"},
+      {"prompt": "One thousand meters equal one", "prompt_id": "base-013"},
+      {"prompt": "The primary language of Brazil is", "prompt_id": "base-014"},
+      {"prompt": "A baby cat is called a", "prompt_id": "base-015"},
+      {"prompt": "The freezing point of water in Celsius is", "prompt_id": "base-016"}
+    ],
+    "compile_warmup": [
+      {"max_tokens": 8, "prompt": "Warm-up completion alpha:", "prompt_id": "warm-001"},
+      {"max_tokens": 16, "prompt": "Warm-up completion beta with a longer request:", "prompt_id": "warm-002"},
+      {"max_tokens": 32, "prompt": "Warm-up completion gamma for the compiled request shape:", "prompt_id": "warm-003"},
+      {"max_tokens": 8, "prompt": "Warm-up arithmetic: 8 + 9 =", "prompt_id": "warm-004"},
+      {"max_tokens": 16, "prompt": "Warm-up sequence: a, b, c,", "prompt_id": "warm-005"},
+      {"max_tokens": 32, "prompt": "Warm-up prose: The small bird crossed the", "prompt_id": "warm-006"},
+      {"max_tokens": 8, "prompt": "Warm-up code: print(1 +", "prompt_id": "warm-007"},
+      {"max_tokens": 16, "prompt": "Warm-up Korean: 다음 단어는", "prompt_id": "warm-008"}
+    ],
+    "disagreement_benign_train": [
+      {"max_tokens": 16, "prompt": "The capital of France is", "prompt_id": "dis-001"},
+      {"max_tokens": 16, "prompt": "Two plus two equals", "prompt_id": "dis-002"},
+      {"max_tokens": 16, "prompt": "The color of a clear daytime sky is", "prompt_id": "dis-003"},
+      {"max_tokens": 16, "prompt": "Complete the sequence: 1, 2, 3,", "prompt_id": "dis-004"},
+      {"max_tokens": 16, "prompt": "A week contains seven", "prompt_id": "dis-005"},
+      {"max_tokens": 16, "prompt": "The opposite of hot is", "prompt_id": "dis-006"},
+      {"max_tokens": 16, "prompt": "A triangle has three", "prompt_id": "dis-007"},
+      {"max_tokens": 16, "prompt": "The planet humans live on is", "prompt_id": "dis-008"}
+    ],
+    "shifted_benign_train": [
+      {"prompt": "Complete this Python slice: values[1:", "prompt_id": "shift-code-001"},
+      {"prompt": "Continue valid JSON: {\"status\": \"ok\", \"count\":", "prompt_id": "shift-code-002"},
+      {"prompt": "Fill the SQL clause: SELECT count(*) FROM logs GROUP", "prompt_id": "shift-code-003"},
+      {"prompt": "The hexadecimal value after 0xAF is", "prompt_id": "shift-struct-004"},
+      {"prompt": "Evaluate exactly: 31 * 7 - 11 =", "prompt_id": "shift-math-005"},
+      {"prompt": "The integral of 2x from 0 to 3 is", "prompt_id": "shift-math-006"},
+      {"prompt": "Complete the vector basis: (1,0), (0,1),", "prompt_id": "shift-math-007"},
+      {"prompt": "Write the next prime after 83:", "prompt_id": "shift-math-008"},
+      {"prompt": "다음 수열을 완성하세요: 5, 10, 20, 40,", "prompt_id": "shift-ko-009"},
+      {"prompt": "한 단어로 답하세요. 지구의 위성은", "prompt_id": "shift-ko-010"},
+      {"prompt": "Rust option continuation: Ok(value) => value, Err(_) =>", "prompt_id": "shift-code-011"},
+      {"prompt": "Close the HTML fragment: <div><span>text</span>", "prompt_id": "shift-struct-012"},
+      {"prompt": "Continue the bytes: aa 00 bb 11 cc 22", "prompt_id": "shift-struct-013"},
+      {"prompt": "For AES-256, the key length in bits is", "prompt_id": "shift-sec-014"},
+      {"prompt": "Complete the shell loop: for x in a b; do echo $x;", "prompt_id": "shift-code-015"},
+      {"prompt": "A graph edge that starts and ends at one vertex is a", "prompt_id": "shift-cs-016"}
+    ],
+    "stationary_benign_train": [
+      {"prompt": "The capital of Italy is", "prompt_id": "stat-001"},
+      {"prompt": "Nine minus four equals", "prompt_id": "stat-002"},
+      {"prompt": "The opposite of left is", "prompt_id": "stat-003"},
+      {"prompt": "A leap year usually has", "prompt_id": "stat-004"},
+      {"prompt": "The largest ocean on Earth is", "prompt_id": "stat-005"},
+      {"prompt": "Complete the sequence: 4, 8, 12,", "prompt_id": "stat-006"},
+      {"prompt": "The nearest star to Earth is", "prompt_id": "stat-007"},
+      {"prompt": "A polygon with five sides is a", "prompt_id": "stat-008"},
+      {"prompt": "The month after June is", "prompt_id": "stat-009"},
+      {"prompt": "A bicycle normally has two", "prompt_id": "stat-010"},
+      {"prompt": "The chemical symbol for gold is", "prompt_id": "stat-011"},
+      {"prompt": "The day before Friday is", "prompt_id": "stat-012"},
+      {"prompt": "One hundred centimeters equal one", "prompt_id": "stat-013"},
+      {"prompt": "The primary language of Japan is", "prompt_id": "stat-014"},
+      {"prompt": "A baby dog is called a", "prompt_id": "stat-015"},
+      {"prompt": "The freezing point of pure water is zero degrees", "prompt_id": "stat-016"}
+    ]
+  },
+  "repetitions": {
+    "baseline_adaptation": 64,
+    "baseline_evaluation": 8,
+    "compile_warmup": 2,
+    "e1_one_identity": 192,
+    "e2_disagreement": 192,
+    "e3_two_credentials": 192,
+    "shifted_adaptation": 64,
+    "shifted_evaluation": 8,
+    "stationary_adaptation": 32
+  },
+  "request_defaults": {
+    "base_seed": 20260920,
+    "max_tokens": 32,
+    "temperature": 0
+  },
+  "schema": "ctfr-frozen-corpus-v1"
+}

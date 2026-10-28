@@ -1,0 +1,230 @@
+diff --git a/vllm/v1/worker/gpu/spec_decode/acceptance_estimator.py b/vllm/v1/worker/gpu/spec_decode/acceptance_estimator.py
+index 27239e2..eafb8de 100644
+--- a/vllm/v1/worker/gpu/spec_decode/acceptance_estimator.py
++++ b/vllm/v1/worker/gpu/spec_decode/acceptance_estimator.py
+@@ -17,6 +17,7 @@ from vllm.v1.worker.gpu.spec_decode.rejection_sampler_utils import (
+ # The feature is a log-odds, log(q / (1 - q)), which a row carrying all of its
+ # mass on one token sends to infinity. Clamp it symmetrically.
+ _MAX_LOG_ODDS = 40.0
++_CTFR_RETIREMENT_SCALE_STEPS = 160
+ 
+ # Cold-start coefficients: the median slope and intercept fitted online across
+ # DeepSeek-V4-Flash, Muse-Glimmer-30B, MiMo-V2.5-Pro, Inkling and Kimi-K2.5.
+@@ -585,6 +586,33 @@ class OnlineAcceptanceEstimator:
+         self._ctfr_bucket_capacity = float(
+             os.environ.get("VLLM_AVEP_CTFR_BUCKET_CAPACITY", "2.0")
+         )
++        if self._ctfr_min_observations <= 0:
++            raise ValueError(
++                "VLLM_AVEP_CTFR_MIN_OBSERVATIONS must be positive"
++            )
++        positive_hyperparameters = {
++            "VLLM_AVEP_CTFR_DELTA_CLIP": self._ctfr_delta_clip,
++            "VLLM_AVEP_CTFR_MAX_COMMIT_NORM": self._ctfr_max_commit_norm,
++            "VLLM_AVEP_CTFR_MAX_PROBABILITY_SHIFT": (
++                self._ctfr_max_probability_shift
++            ),
++            "VLLM_AVEP_CTFR_BUCKET_CAPACITY": self._ctfr_bucket_capacity,
++        }
++        if any(
++            not math.isfinite(value) or value <= 0.0
++            for value in positive_hyperparameters.values()
++        ):
++            raise ValueError(
++                "CTFR clip, trust-region, and bucket hyperparameters must "
++                "be positive and finite"
++            )
++        if (
++            not math.isfinite(self._ctfr_min_cosine)
++            or not -1.0 <= self._ctfr_min_cosine <= 1.0
++        ):
++            raise ValueError(
++                "VLLM_AVEP_CTFR_MIN_COSINE must be finite and in [-1, 1]"
++            )
+         self._ctfr_influence_credits = [
+             self._ctfr_bucket_capacity
+         ] * _NUM_CTFR_PRINCIPALS
+@@ -717,6 +745,7 @@ class OnlineAcceptanceEstimator:
+                 "min_cosine": self._ctfr_min_cosine,
+                 "max_commit_norm": self._ctfr_max_commit_norm,
+                 "max_probability_shift": self._ctfr_max_probability_shift,
++                "retirement_scale_steps": _CTFR_RETIREMENT_SCALE_STEPS,
+                 "bucket_capacity": self._ctfr_bucket_capacity,
+             },
+             "steps_since_refit": list(self._steps_since_refit),
+@@ -1139,13 +1168,6 @@ class OnlineAcceptanceEstimator:
+             scale = min(1.0, self._ctfr_delta_clip / raw_norm)
+             delta = delta * scale
+             clipped_norm = float(torch.linalg.vector_norm(delta).item())
+-            if clipped_norm > self._ctfr_influence_credits[principal]:
+-                return {
+-                    "retired": False,
+-                    "reason": "principal influence budget exhausted",
+-                    "principal": principal,
+-                    "clipped_delta_norm": clipped_norm,
+-                }
+             clipped_norms.append(clipped_norm)
+             deltas.append(delta)
+ 
+@@ -1164,16 +1186,31 @@ class OnlineAcceptanceEstimator:
+                 "clipped_delta_norms": clipped_norms,
+             }
+ 
+-        aggregate = torch.stack(deltas).mean(dim=0)
+-        aggregate_norm = float(torch.linalg.vector_norm(aggregate).item())
+-        if aggregate_norm > self._ctfr_max_commit_norm:
++        candidate_aggregate = torch.stack(deltas).mean(dim=0)
++        candidate_aggregate_norm = float(
++            torch.linalg.vector_norm(candidate_aggregate).item()
++        )
++        if (
++            not torch.isfinite(candidate_aggregate).all()
++            or not math.isfinite(candidate_aggregate_norm)
++            or candidate_aggregate_norm == 0.0
++        ):
+             return {
+                 "retired": False,
+-                "reason": "aggregate exceeds parameter trust region",
+-                "aggregate_norm": aggregate_norm,
++                "reason": "non-finite or zero aggregate update",
++                "candidate_aggregate_norm": candidate_aggregate_norm,
+             }
+ 
+-        proposed = base + aggregate
++        parameter_projection_scale = min(
++            1.0,
++            self._ctfr_max_commit_norm / candidate_aggregate_norm,
++        )
++        parameter_projected = (
++            candidate_aggregate * parameter_projection_scale
++        )
++        parameter_projected_norm = float(
++            torch.linalg.vector_norm(parameter_projected).item()
++        )
+         feature_grid = torch.linspace(
+             -_MAX_LOG_ODDS,
+             _MAX_LOG_ODDS,
+@@ -1184,20 +1221,73 @@ class OnlineAcceptanceEstimator:
+         old_prob = torch.sigmoid(
+             base[0] * feature_grid[:, None] + base[1:][None, :]
+         )
+-        new_prob = torch.sigmoid(
+-            proposed[0] * feature_grid[:, None]
+-            + proposed[1:][None, :]
+-        )
+-        max_probability_shift = float(
+-            torch.max(torch.abs(new_prob - old_prob)).item()
+-        )
+-        if max_probability_shift > self._ctfr_max_probability_shift:
++        evaluated_scales: list[dict[str, float]] = []
++        decision_scale: float | None = None
++        max_probability_shift: float | None = None
++        for numerator in range(_CTFR_RETIREMENT_SCALE_STEPS, 0, -1):
++            scale = numerator / _CTFR_RETIREMENT_SCALE_STEPS
++            evaluated_delta = parameter_projected * scale
++            evaluated = base + evaluated_delta
++            new_prob = torch.sigmoid(
++                evaluated[0] * feature_grid[:, None]
++                + evaluated[1:][None, :]
++            )
++            probability_shift = float(
++                torch.max(torch.abs(new_prob - old_prob)).item()
++            )
++            evaluated_scales.append(
++                {
++                    "scale": scale,
++                    "max_probability_shift": probability_shift,
++                }
++            )
++            if probability_shift <= self._ctfr_max_probability_shift:
++                decision_scale = scale
++                max_probability_shift = probability_shift
++                break
++        if decision_scale is None or max_probability_shift is None:
+             return {
+                 "retired": False,
+-                "reason": "aggregate exceeds decision trust region",
++                "reason": (
++                    "no positive grid scale satisfies decision trust region"
++                ),
++                "candidate_aggregate_norm": candidate_aggregate_norm,
++                "parameter_projection_scale": parameter_projection_scale,
++                "parameter_projected_norm": parameter_projected_norm,
++                "retirement_scale_steps": _CTFR_RETIREMENT_SCALE_STEPS,
++                "evaluated_scales": evaluated_scales,
++            }
++
++        retirement_scale = parameter_projection_scale * decision_scale
++        aggregate = parameter_projected * decision_scale
++        aggregate_norm = float(torch.linalg.vector_norm(aggregate).item())
++        credit_debits = [
++            clipped_norm * retirement_scale
++            for clipped_norm in clipped_norms
++        ]
++        exhausted_principals = [
++            principal
++            for principal, debit in enumerate(credit_debits)
++            if debit > self._ctfr_influence_credits[principal]
++        ]
++        if exhausted_principals:
++            return {
++                "retired": False,
++                "reason": "principal influence budget exhausted",
++                "exhausted_principals": exhausted_principals,
++                "candidate_aggregate_norm": candidate_aggregate_norm,
++                "parameter_projection_scale": parameter_projection_scale,
++                "parameter_projected_norm": parameter_projected_norm,
++                "decision_scale": decision_scale,
++                "retirement_scale": retirement_scale,
++                "aggregate_norm": aggregate_norm,
+                 "max_probability_shift": max_probability_shift,
++                "credit_debits": credit_debits,
++                "retirement_scale_steps": _CTFR_RETIREMENT_SCALE_STEPS,
++                "evaluated_scales": evaluated_scales,
+             }
+ 
++        proposed = base + aggregate
+         version_before = self._committed_version
+         with torch.no_grad():
+             self.slope[0].copy_(proposed[0])
+@@ -1208,8 +1298,8 @@ class OnlineAcceptanceEstimator:
+                 self.info[domain].zero_()
+                 self.grad[domain].zero_()
+                 self.counts[domain].zero_()
+-        for principal, clipped_norm in enumerate(clipped_norms):
+-            self._ctfr_influence_credits[principal] -= clipped_norm
++        for principal, credit_debit in enumerate(credit_debits):
++            self._ctfr_influence_credits[principal] -= credit_debit
+             self._steps_since_refit[_CTFR_FIRST_SHADOW + principal] = 0
+             self._refits[_CTFR_FIRST_SHADOW + principal] += 1
+         self._steps_since_refit[0] = 0
+@@ -1224,8 +1314,16 @@ class OnlineAcceptanceEstimator:
+             "raw_delta_norms": raw_norms,
+             "clipped_delta_norms": clipped_norms,
+             "cosine": cosine,
++            "candidate_aggregate_norm": candidate_aggregate_norm,
++            "parameter_projection_scale": parameter_projection_scale,
++            "parameter_projected_norm": parameter_projected_norm,
++            "decision_scale": decision_scale,
++            "retirement_scale": retirement_scale,
++            "retirement_scale_steps": _CTFR_RETIREMENT_SCALE_STEPS,
++            "evaluated_scales": evaluated_scales,
+             "aggregate_norm": aggregate_norm,
+             "max_probability_shift": max_probability_shift,
++            "credit_debits": credit_debits,
+             "remaining_influence_credits": list(
+                 self._ctfr_influence_credits
+             ),
+@@ -1236,6 +1334,12 @@ class OnlineAcceptanceEstimator:
+             "clipped_deltas": [
+                 delta.detach().cpu().tolist() for delta in deltas
+             ],
++            "candidate_aggregate_delta": (
++                candidate_aggregate.detach().cpu().tolist()
++            ),
++            "parameter_projected_delta": (
++                parameter_projected.detach().cpu().tolist()
++            ),
+             "aggregate_delta": aggregate.detach().cpu().tolist(),
+             "proposed_coefficients": proposed.detach().cpu().tolist(),
+         }

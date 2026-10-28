@@ -1,0 +1,61 @@
+{
+  "base_url": "http://127.0.0.1:8001/v1",
+  "results": [
+    {
+      "audit_event_id": "583eecad97194224befe1878d1792435",
+      "authenticated_tenant": "attacker",
+      "expected_status": 200,
+      "gateway_instance_id": "gateway-screen-1789736410057581326",
+      "name": "attacker_ok",
+      "status": 200,
+      "upstream_marker": "short-followup-23361-1789736359984735903"
+    },
+    {
+      "audit_event_id": "a1837915f08243d6a018a2313c9613aa",
+      "authenticated_tenant": "victim",
+      "expected_status": 200,
+      "gateway_instance_id": "gateway-screen-1789736410057581326",
+      "name": "victim_ok",
+      "status": 200,
+      "upstream_marker": "short-followup-23361-1789736359984735903"
+    },
+    {
+      "audit_event_id": "859e18a9671542829806afb996607870",
+      "authenticated_tenant": null,
+      "expected_status": 401,
+      "gateway_instance_id": "gateway-screen-1789736410057581326",
+      "name": "missing_key",
+      "status": 401,
+      "upstream_marker": "short-followup-23361-1789736359984735903"
+    },
+    {
+      "audit_event_id": "5fe90c55b7f347bc8ede7e55c7e0b56a",
+      "authenticated_tenant": null,
+      "expected_status": 401,
+      "gateway_instance_id": "gateway-screen-1789736410057581326",
+      "name": "wrong_key",
+      "status": 401,
+      "upstream_marker": "short-followup-23361-1789736359984735903"
+    },
+    {
+      "audit_event_id": "878115cd7e9543f789857de393b4fc3d",
+      "authenticated_tenant": null,
+      "expected_status": 403,
+      "gateway_instance_id": "gateway-screen-1789736410057581326",
+      "name": "attacker_claims_victim",
+      "status": 403,
+      "upstream_marker": "short-followup-23361-1789736359984735903"
+    },
+    {
+      "audit_event_id": "a387cd733efb4cba9e2e8ec6f7e98abf",
+      "authenticated_tenant": null,
+      "expected_status": 403,
+      "gateway_instance_id": "gateway-screen-1789736410057581326",
+      "name": "victim_claims_attacker",
+      "status": 403,
+      "upstream_marker": "short-followup-23361-1789736359984735903"
+    }
+  ],
+  "schema_version": 1,
+  "valid": true
+}

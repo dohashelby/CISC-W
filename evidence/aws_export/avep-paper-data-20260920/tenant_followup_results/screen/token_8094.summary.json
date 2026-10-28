@@ -1,0 +1,34 @@
+{
+  "accepted_draft_tokens": 0,
+  "aggregate_output_tokens_per_second": 300.11537859528926,
+  "authenticated_tenant_counts": {
+    "attacker": 256
+  },
+  "completion_tokens": 512,
+  "control_token_fraction": 1.0,
+  "draft_acceptance_rate": 0.0,
+  "draft_tokens": 1024,
+  "errors": [],
+  "failed": 0,
+  "gateway_instance_counts": {
+    "gateway-screen-1789736410057581326": 256
+  },
+  "latency_ms_p50": 52.7983155,
+  "latency_ms_p95": 55.98944899999999,
+  "latency_ms_p99": 67.6558448,
+  "missing_audit_event_ids": 0,
+  "most_common_output_count": 256,
+  "per_request_tokens_per_second_p50": 57.489204962023585,
+  "per_request_tokens_per_second_p95": 60.101697684649366,
+  "phase_output_digest": "b205d7227a6b601860c64aace52f66054b305046f04e52c39624fb73d8024cf2",
+  "requests": 256,
+  "spec_requests": 256,
+  "spec_steps": 256,
+  "successful": 256,
+  "unique_audit_event_ids": 256,
+  "unique_output_count": 1,
+  "upstream_marker_counts": {
+    "short-followup-23361-1789736359984735903": 256
+  },
+  "wall_seconds": 1.706010543
+}

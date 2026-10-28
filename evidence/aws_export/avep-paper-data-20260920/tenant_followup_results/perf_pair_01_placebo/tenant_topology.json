@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "protocol_version": "avep-tenant-short-followup-v2",
+  "run_name": "perf_pair_01_placebo",
+  "gateway": {
+    "listen": "127.0.0.1:8001",
+    "instance_id": "gateway-perf_pair_01_placebo-1789736771658798765"
+  },
+  "upstream": {
+    "listen": "127.0.0.1:8000",
+    "marker": "short-followup-23361-1789736701573195240",
+    "server_pid": 42661,
+    "server_pgid": 42661
+  },
+  "key_fingerprints": {
+    "attacker": "85e8c2ce16d16c55f8407aea5cc18f094b4990e877ba83a1f38aba5c39a1f695",
+    "victim": "eee44afe6bbeddf04f4eb21b050b6d9f39bcb5f61c6001dc62d5cdf2a5bc0864",
+    "upstream": "0e93b56dd2049e795d2a2fe725cbfc1e0e4172dd9d02fa228bbdf111293e38cd"
+  }
+}

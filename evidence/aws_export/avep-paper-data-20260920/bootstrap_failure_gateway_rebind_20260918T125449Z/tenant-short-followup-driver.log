@@ -1,0 +1,488 @@
+DECLARED_DECISION_RULES.md: OK
+DECLARED_SCHEDULE.json: OK
+DECLARED_TENANTS.json: OK
+run_tenant_short_followup.sh: OK
+analyze_tenant_short_followup.py: OK
+test_analyze_tenant_short_followup.py: OK
+tenant_probe.py: OK
+tenant_gateway.py: OK
+TENANT_SHORT_FOLLOWUP_DECISION_RULES.md: OK
+TENANT_SHORT_FOLLOWUP_PROTOCOL.md: OK
+avep_paper_instrumentation.patch: OK
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+{
+  "accepted_draft_tokens": 8930,
+  "aggregate_output_tokens_per_second": 2467.635188406155,
+  "authenticated_tenant_counts": {
+    "victim": 512
+  },
+  "completion_tokens": 16384,
+  "control_token_fraction": null,
+  "draft_acceptance_rate": 0.29217379924093706,
+  "draft_tokens": 30564,
+  "errors": [],
+  "failed": 0,
+  "gateway_instance_counts": {
+    "gateway-screen-1789735931858346524": 512
+  },
+  "latency_ms_p50": 354.084105,
+  "latency_ms_p95": 1069.6489652999999,
+  "latency_ms_p99": 1208.48692982,
+  "missing_audit_event_ids": 0,
+  "most_common_output_count": 64,
+  "per_request_tokens_per_second_p50": 95.7501951308449,
+  "per_request_tokens_per_second_p95": 136.17230137860787,
+  "phase_output_digest": "1e039ee8016ae2a6451e42b15836a2dd3712d2cf7ffe3bdc798033b3a9c3bafe",
+  "requests": 512,
+  "spec_requests": 512,
+  "spec_steps": 7641,
+  "successful": 512,
+  "unique_audit_event_ids": 512,
+  "unique_output_count": 16,
+  "upstream_marker_counts": {
+    "short-followup-18580-1789735801721049785": 512
+  },
+  "wall_seconds": 6.639555181
+}
+{
+  "accepted_draft_tokens": 0,
+  "aggregate_output_tokens_per_second": 260.21621661230967,
+  "authenticated_tenant_counts": {
+    "attacker": 256
+  },
+  "completion_tokens": 512,
+  "control_token_fraction": 1.0,
+  "draft_acceptance_rate": 0.0,
+  "draft_tokens": 1024,
+  "errors": [],
+  "failed": 0,
+  "gateway_instance_counts": {
+    "gateway-screen-1789735931858346524": 256
+  },
+  "latency_ms_p50": 52.191995500000004,
+  "latency_ms_p95": 55.88126075,
+  "latency_ms_p99": 344.39144175,
+  "missing_audit_event_ids": 0,
+  "most_common_output_count": 256,
+  "per_request_tokens_per_second_p50": 57.61507689855076,
+  "per_request_tokens_per_second_p95": 59.81417914130519,
+  "phase_output_digest": "26464bd8731d5ead00e7607aa48880131a748fcaccf50fe0d1985a77370469a0",
+  "requests": 256,
+  "spec_requests": 256,
+  "spec_steps": 256,
+  "successful": 256,
+  "unique_audit_event_ids": 256,
+  "unique_output_count": 1,
+  "upstream_marker_counts": {
+    "short-followup-18580-1789735801721049785": 256
+  },
+  "wall_seconds": 1.967594513
+}
+{
+  "accepted_draft_tokens": 0,
+  "aggregate_output_tokens_per_second": 300.9427059063674,
+  "authenticated_tenant_counts": {
+    "attacker": 256
+  },
+  "completion_tokens": 512,
+  "control_token_fraction": 1.0,
+  "draft_acceptance_rate": 0.0,
+  "draft_tokens": 1024,
+  "errors": [],
+  "failed": 0,
+  "gateway_instance_counts": {
+    "gateway-screen-1789735931858346524": 256
+  },
+  "latency_ms_p50": 52.2907925,
+  "latency_ms_p95": 56.21555275,
+  "latency_ms_p99": 68.49468385,
+  "missing_audit_event_ids": 0,
+  "most_common_output_count": 256,
+  "per_request_tokens_per_second_p50": 57.64982143961227,
+  "per_request_tokens_per_second_p95": 59.64813622444096,
+  "phase_output_digest": "bbbbb93b3b8168adabf843b406bd8353af49d3aefee938a80d1a3113cac06bf8",
+  "requests": 256,
+  "spec_requests": 256,
+  "spec_steps": 256,
+  "successful": 256,
+  "unique_audit_event_ids": 256,
+  "unique_output_count": 1,
+  "upstream_marker_counts": {
+    "short-followup-18580-1789735801721049785": 256
+  },
+  "wall_seconds": 1.701320517
+}
+{
+  "accepted_draft_tokens": 0,
+  "aggregate_output_tokens_per_second": 301.5296185300504,
+  "authenticated_tenant_counts": {
+    "attacker": 256
+  },
+  "completion_tokens": 512,
+  "control_token_fraction": 1.0,
+  "draft_acceptance_rate": 0.0,
+  "draft_tokens": 1024,
+  "errors": [],
+  "failed": 0,
+  "gateway_instance_counts": {
+    "gateway-screen-1789735931858346524": 256
+  },
+  "latency_ms_p50": 52.316603,
+  "latency_ms_p95": 55.918888249999995,
+  "latency_ms_p99": 70.07802614999999,
+  "missing_audit_event_ids": 0,
+  "most_common_output_count": 256,
+  "per_request_tokens_per_second_p50": 57.649819777123255,
+  "per_request_tokens_per_second_p95": 59.478003149708655,
+  "phase_output_digest": "2dc5c5ccef96563d01a7e44c523796a031157ff47f4b7edc05bc4b62d0164f3f",
+  "requests": 256,
+  "spec_requests": 256,
+  "spec_steps": 256,
+  "successful": 256,
+  "unique_audit_event_ids": 256,
+  "unique_output_count": 1,
+  "upstream_marker_counts": {
+    "short-followup-18580-1789735801721049785": 256
+  },
+  "wall_seconds": 1.69800898
+}
+{
+  "accepted_draft_tokens": 0,
+  "aggregate_output_tokens_per_second": 303.17044507577873,
+  "authenticated_tenant_counts": {
+    "attacker": 256
+  },
+  "completion_tokens": 512,
+  "control_token_fraction": 1.0,
+  "draft_acceptance_rate": 0.0,
+  "draft_tokens": 1024,
+  "errors": [],
+  "failed": 0,
+  "gateway_instance_counts": {
+    "gateway-screen-1789735931858346524": 256
+  },
+  "latency_ms_p50": 52.169195,
+  "latency_ms_p95": 54.53409525000001,
+  "latency_ms_p99": 70.74598935,
+  "missing_audit_event_ids": 0,
+  "most_common_output_count": 256,
+  "per_request_tokens_per_second_p50": 57.61636489066824,
+  "per_request_tokens_per_second_p95": 59.71622383307111,
+  "phase_output_digest": "a98f2b50cd91572a6d4844ada71191987d66d3b256772c1302bb3eefae933428",
+  "requests": 256,
+  "spec_requests": 256,
+  "spec_steps": 256,
+  "successful": 256,
+  "unique_audit_event_ids": 256,
+  "unique_output_count": 1,
+  "upstream_marker_counts": {
+    "short-followup-18580-1789735801721049785": 256
+  },
+  "wall_seconds": 1.688818974
+}
+{
+  "accepted_draft_tokens": 0,
+  "aggregate_output_tokens_per_second": 301.69549651743165,
+  "authenticated_tenant_counts": {
+    "attacker": 256
+  },
+  "completion_tokens": 512,
+  "control_token_fraction": 1.0,
+  "draft_acceptance_rate": 0.0,
+  "draft_tokens": 1024,
+  "errors": [],
+  "failed": 0,
+  "gateway_instance_counts": {
+    "gateway-screen-1789735931858346524": 256
+  },
+  "latency_ms_p50": 52.351878,
+  "latency_ms_p95": 56.01696475,
+  "latency_ms_p99": 70.43490264999998,
+  "missing_audit_event_ids": 0,
+  "most_common_output_count": 256,
+  "per_request_tokens_per_second_p50": 57.60096751184155,
+  "per_request_tokens_per_second_p95": 59.544832591422605,
+  "phase_output_digest": "53fb4c23798cc9303460a0a5d8a91cef15c293eb72cabd0ff13b449ed5e4537d",
+  "requests": 256,
+  "spec_requests": 256,
+  "spec_steps": 256,
+  "successful": 256,
+  "unique_audit_event_ids": 256,
+  "unique_output_count": 1,
+  "upstream_marker_counts": {
+    "short-followup-18580-1789735801721049785": 256
+  },
+  "wall_seconds": 1.697075382
+}
+{
+  "accepted_draft_tokens": 0,
+  "aggregate_output_tokens_per_second": 301.9237565724593,
+  "authenticated_tenant_counts": {
+    "attacker": 256
+  },
+  "completion_tokens": 512,
+  "control_token_fraction": 1.0,
+  "draft_acceptance_rate": 0.0,
+  "draft_tokens": 1024,
+  "errors": [],
+  "failed": 0,
+  "gateway_instance_counts": {
+    "gateway-screen-1789735931858346524": 256
+  },
+  "latency_ms_p50": 52.377243500000006,
+  "latency_ms_p95": 55.473417000000005,
+  "latency_ms_p99": 71.22847945000001,
+  "missing_audit_event_ids": 0,
+  "most_common_output_count": 256,
+  "per_request_tokens_per_second_p50": 57.63730452103786,
+  "per_request_tokens_per_second_p95": 59.44906397049679,
+  "phase_output_digest": "6cb8b973779fa1f767f52a8133c89c006bbcc0b967535f5772354f158ce514e3",
+  "requests": 256,
+  "spec_requests": 256,
+  "spec_steps": 256,
+  "successful": 256,
+  "unique_audit_event_ids": 256,
+  "unique_output_count": 1,
+  "upstream_marker_counts": {
+    "short-followup-18580-1789735801721049785": 256
+  },
+  "wall_seconds": 1.695792361
+}
+{
+  "accepted_draft_tokens": 0,
+  "aggregate_output_tokens_per_second": 300.5192154419268,
+  "authenticated_tenant_counts": {
+    "attacker": 256
+  },
+  "completion_tokens": 512,
+  "control_token_fraction": 1.0,
+  "draft_acceptance_rate": 0.0,
+  "draft_tokens": 1024,
+  "errors": [],
+  "failed": 0,
+  "gateway_instance_counts": {
+    "gateway-screen-1789735931858346524": 256
+  },
+  "latency_ms_p50": 52.555695,
+  "latency_ms_p95": 55.7981415,
+  "latency_ms_p99": 71.47024795,
+  "missing_audit_event_ids": 0,
+  "most_common_output_count": 256,
+  "per_request_tokens_per_second_p50": 57.614011363413596,
+  "per_request_tokens_per_second_p95": 59.384240261940406,
+  "phase_output_digest": "b205d7227a6b601860c64aace52f66054b305046f04e52c39624fb73d8024cf2",
+  "requests": 256,
+  "spec_requests": 256,
+  "spec_steps": 256,
+  "successful": 256,
+  "unique_audit_event_ids": 256,
+  "unique_output_count": 1,
+  "upstream_marker_counts": {
+    "short-followup-18580-1789735801721049785": 256
+  },
+  "wall_seconds": 1.703718011
+}
+{
+  "accepted_draft_tokens": 0,
+  "aggregate_output_tokens_per_second": 301.2228218701152,
+  "authenticated_tenant_counts": {
+    "attacker": 256
+  },
+  "completion_tokens": 512,
+  "control_token_fraction": 1.0,
+  "draft_acceptance_rate": 0.0,
+  "draft_tokens": 1024,
+  "errors": [],
+  "failed": 0,
+  "gateway_instance_counts": {
+    "gateway-screen-1789735931858346524": 256
+  },
+  "latency_ms_p50": 52.385537,
+  "latency_ms_p95": 55.4343635,
+  "latency_ms_p99": 71.5295509,
+  "missing_audit_event_ids": 0,
+  "most_common_output_count": 256,
+  "per_request_tokens_per_second_p50": 57.62101442926997,
+  "per_request_tokens_per_second_p95": 59.4562671631548,
+  "phase_output_digest": "3b58e8bc5d204c75ffba30352a19a7941e911e8a1a717033243f2253fe64d2b9",
+  "requests": 256,
+  "spec_requests": 256,
+  "spec_steps": 256,
+  "successful": 256,
+  "unique_audit_event_ids": 256,
+  "unique_output_count": 1,
+  "upstream_marker_counts": {
+    "short-followup-18580-1789735801721049785": 256
+  },
+  "wall_seconds": 1.699738409
+}
+{
+  "accepted_draft_tokens": 0,
+  "aggregate_output_tokens_per_second": 301.2507329696575,
+  "authenticated_tenant_counts": {
+    "attacker": 256
+  },
+  "completion_tokens": 512,
+  "control_token_fraction": 1.0,
+  "draft_acceptance_rate": 0.0,
+  "draft_tokens": 1024,
+  "errors": [],
+  "failed": 0,
+  "gateway_instance_counts": {
+    "gateway-screen-1789735931858346524": 256
+  },
+  "latency_ms_p50": 52.267844499999995,
+  "latency_ms_p95": 56.25151475,
+  "latency_ms_p99": 70.7377722,
+  "missing_audit_event_ids": 0,
+  "most_common_output_count": 256,
+  "per_request_tokens_per_second_p50": 57.64958048247786,
+  "per_request_tokens_per_second_p95": 59.560543195879106,
+  "phase_output_digest": "a294c9c6bd0961fdbbe40700a55eef561d17afa34d7a98b9127e630cba1211dc",
+  "requests": 256,
+  "spec_requests": 256,
+  "spec_steps": 256,
+  "successful": 256,
+  "unique_audit_event_ids": 256,
+  "unique_output_count": 1,
+  "upstream_marker_counts": {
+    "short-followup-18580-1789735801721049785": 256
+  },
+  "wall_seconds": 1.699580927
+}
+{
+  "accepted_draft_tokens": 0,
+  "aggregate_output_tokens_per_second": 301.9521341112855,
+  "authenticated_tenant_counts": {
+    "attacker": 256
+  },
+  "completion_tokens": 512,
+  "control_token_fraction": 1.0,
+  "draft_acceptance_rate": 0.0,
+  "draft_tokens": 1024,
+  "errors": [],
+  "failed": 0,
+  "gateway_instance_counts": {
+    "gateway-screen-1789735931858346524": 256
+  },
+  "latency_ms_p50": 52.30744,
+  "latency_ms_p95": 55.56574375,
+  "latency_ms_p99": 70.73335889999998,
+  "missing_audit_event_ids": 0,
+  "most_common_output_count": 256,
+  "per_request_tokens_per_second_p50": 57.61131781011284,
+  "per_request_tokens_per_second_p95": 59.78442229310639,
+  "phase_output_digest": "bb6d1bfb65a1531b6e43dc4de748839ecf038423ede9c56063f601176d950334",
+  "requests": 256,
+  "spec_requests": 256,
+  "spec_steps": 256,
+  "successful": 256,
+  "unique_audit_event_ids": 256,
+  "unique_output_count": 1,
+  "upstream_marker_counts": {
+    "short-followup-18580-1789735801721049785": 256
+  },
+  "wall_seconds": 1.69563299
+}
+{
+  "accepted_draft_tokens": 0,
+  "aggregate_output_tokens_per_second": 301.25215824371537,
+  "authenticated_tenant_counts": {
+    "attacker": 256
+  },
+  "completion_tokens": 512,
+  "control_token_fraction": 1.0,
+  "draft_acceptance_rate": 0.0,
+  "draft_tokens": 1024,
+  "errors": [],
+  "failed": 0,
+  "gateway_instance_counts": {
+    "gateway-screen-1789735931858346524": 256
+  },
+  "latency_ms_p50": 52.525524000000004,
+  "latency_ms_p95": 55.55156275,
+  "latency_ms_p99": 69.30853355,
+  "missing_audit_event_ids": 0,
+  "most_common_output_count": 256,
+  "per_request_tokens_per_second_p50": 57.62441615684777,
+  "per_request_tokens_per_second_p95": 59.72580186212725,
+  "phase_output_digest": "565f4ac1327edd27e3627d856731e502351d0cc896ad62773da26b61f2b7da9a",
+  "requests": 256,
+  "spec_requests": 256,
+  "spec_steps": 256,
+  "successful": 256,
+  "unique_audit_event_ids": 256,
+  "unique_output_count": 1,
+  "upstream_marker_counts": {
+    "short-followup-18580-1789735801721049785": 256
+  },
+  "wall_seconds": 1.699572886
+}
+{
+  "accepted_draft_tokens": 0,
+  "aggregate_output_tokens_per_second": 300.1052032271201,
+  "authenticated_tenant_counts": {
+    "attacker": 256
+  },
+  "completion_tokens": 512,
+  "control_token_fraction": 1.0,
+  "draft_acceptance_rate": 0.0,
+  "draft_tokens": 1024,
+  "errors": [],
+  "failed": 0,
+  "gateway_instance_counts": {
+    "gateway-screen-1789735931858346524": 256
+  },
+  "latency_ms_p50": 52.5494695,
+  "latency_ms_p95": 55.76814425,
+  "latency_ms_p99": 70.9510675,
+  "missing_audit_event_ids": 0,
+  "most_common_output_count": 256,
+  "per_request_tokens_per_second_p50": 57.60677271419378,
+  "per_request_tokens_per_second_p95": 59.30318442615532,
+  "phase_output_digest": "ac5bd3665222c82ab7917a3ca268726837b21e559109a629bc51fdbccc8e7445",
+  "requests": 256,
+  "spec_requests": 256,
+  "spec_steps": 256,
+  "successful": 256,
+  "unique_audit_event_ids": 256,
+  "unique_output_count": 1,
+  "upstream_marker_counts": {
+    "short-followup-18580-1789735801721049785": 256
+  },
+  "wall_seconds": 1.706068387
+}
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 3 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 2 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+Traceback (most recent call last):
+  File "/home/ubuntu/avep/tenant_gateway.py", line 426, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/home/ubuntu/avep/tenant_gateway.py", line 412, in main
+    server = GatewayServer(
+             ^^^^^^^^^^^^^^
+  File "/home/ubuntu/avep/tenant_gateway.py", line 78, in __init__
+    super().__init__(address, GatewayHandler)
+  File "/usr/local/lib/python3.12/socketserver.py", line 457, in __init__
+    self.server_bind()
+  File "/usr/local/lib/python3.12/http/server.py", line 136, in server_bind
+    socketserver.TCPServer.server_bind(self)
+  File "/usr/local/lib/python3.12/socketserver.py", line 478, in server_bind
+    self.socket.bind(self.server_address)
+OSError: [Errno 98] Address already in use

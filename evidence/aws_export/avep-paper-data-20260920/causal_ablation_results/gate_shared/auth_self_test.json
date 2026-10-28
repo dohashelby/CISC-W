@@ -1,0 +1,61 @@
+{
+  "base_url": "http://127.0.0.1:8001/v1",
+  "results": [
+    {
+      "audit_event_id": "ee03d3c520374f90b70437995cb6d100",
+      "authenticated_tenant": "attacker",
+      "expected_status": 200,
+      "gateway_instance_id": "causal-gate_shared-1789796225579319703",
+      "name": "attacker_ok",
+      "status": 200,
+      "upstream_marker": "causal-1672-1789796165495685353"
+    },
+    {
+      "audit_event_id": "e3e034de801f44c295fdd50b0a6db0ff",
+      "authenticated_tenant": "victim",
+      "expected_status": 200,
+      "gateway_instance_id": "causal-gate_shared-1789796225579319703",
+      "name": "victim_ok",
+      "status": 200,
+      "upstream_marker": "causal-1672-1789796165495685353"
+    },
+    {
+      "audit_event_id": "411bbabc225d4abcbe91458d785acdc2",
+      "authenticated_tenant": null,
+      "expected_status": 401,
+      "gateway_instance_id": "causal-gate_shared-1789796225579319703",
+      "name": "missing_key",
+      "status": 401,
+      "upstream_marker": "causal-1672-1789796165495685353"
+    },
+    {
+      "audit_event_id": "624f85f9087d41e8a08ea3c590087210",
+      "authenticated_tenant": null,
+      "expected_status": 401,
+      "gateway_instance_id": "causal-gate_shared-1789796225579319703",
+      "name": "wrong_key",
+      "status": 401,
+      "upstream_marker": "causal-1672-1789796165495685353"
+    },
+    {
+      "audit_event_id": "e83ba1443be74e2a867104ded7b43cd4",
+      "authenticated_tenant": null,
+      "expected_status": 403,
+      "gateway_instance_id": "causal-gate_shared-1789796225579319703",
+      "name": "attacker_claims_victim",
+      "status": 403,
+      "upstream_marker": "causal-1672-1789796165495685353"
+    },
+    {
+      "audit_event_id": "1e8c115b8fef4b599c61b4c05d698228",
+      "authenticated_tenant": null,
+      "expected_status": 403,
+      "gateway_instance_id": "causal-gate_shared-1789796225579319703",
+      "name": "victim_claims_attacker",
+      "status": 403,
+      "upstream_marker": "causal-1672-1789796165495685353"
+    }
+  ],
+  "schema_version": 1,
+  "valid": true
+}

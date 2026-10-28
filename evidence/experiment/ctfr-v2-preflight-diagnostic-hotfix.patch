@@ -1,0 +1,43 @@
+--- analyze_ctfr_full_study.py
++++ analyze_ctfr_full_study.py
+@@ -1580,6 +1580,15 @@
+                 external = record.get("external_request_id")
+                 upstream = event.get("upstream_request_id")
+                 expected_prefix = f"ctfr-auth-{principal}-"
++                key_fingerprint_matches = (
++                    principal in PRINCIPALS
++                    and event.get("key_sha256")
++                    == declared_principals.get(str(principal))
++                )
++                if not key_fingerprint_matches:
++                    errors.append(
++                        f"{phase} key fingerprint differs from declaration"
++                    )
+                 if phase == "compile_warmup":
+                     other = (
+                         "victim" if principal == "attacker" else "attacker"
+@@ -1606,8 +1615,6 @@
+                         event.get("request_id") != external,
+                         event.get("authenticated_tenant") != principal,
+                         event.get("claimed_principal") != principal,
+-                        event.get("key_sha256")
+-                        != declared_principals.get(str(principal)),
+                         event.get("gateway_instance_id") != gateway_id,
+                         event.get("upstream_marker") != upstream_marker,
+                         record.get("authenticated_tenant") != principal,
+--- test_analyze_ctfr_full_study.py
++++ test_analyze_ctfr_full_study.py
+@@ -1017,11 +1017,8 @@
+             )
+         self.assertTrue(result["valid"], result["errors"])
+         self.assertFalse(key_mismatch["valid"])
+-        self.assertTrue(
+-            any(
+-                "key fingerprint differs from declaration" in error
+-                for error in key_mismatch["errors"]
+-            ),
++        self.assertIn(
++            "evaluation key fingerprint differs from declaration",
+             key_mismatch["errors"],
+         )
+         self.assertFalse(mismatch["valid"])

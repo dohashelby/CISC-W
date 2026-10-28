@@ -1,0 +1,11 @@
+{
+  "coefficient_sha256": "b7fea3032f4ecaabc04b1ad422c5b4aa4f2d99ecc334b37eec77c86e607e6b9a",
+  "intercepts": [
+    -0.13880087435245514,
+    0.22591091692447662,
+    -0.297431081533432,
+    -0.41593775153160095
+  ],
+  "schema": "ctfr-baseline-v1",
+  "slope": 0.7987819314002991
+}

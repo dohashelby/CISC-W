@@ -1,0 +1,581 @@
+diff --git a/vllm/v1/worker/gpu/spec_decode/acceptance_estimator.py b/vllm/v1/worker/gpu/spec_decode/acceptance_estimator.py
+--- a/vllm/v1/worker/gpu/spec_decode/acceptance_estimator.py	2026-09-20 13:16:07
++++ b/vllm/v1/worker/gpu/spec_decode/acceptance_estimator.py	2026-09-20 13:15:46
+@@ -25,7 +25,17 @@
+ 
+ logger = init_logger(__name__)
+ 
++_PCFR_SHARED = 0
++_PCFR_DROP = 1
++_PCFR_ROUTE = 2
++_PCFR_MODES = {
++    "shared": _PCFR_SHARED,
++    "drop": _PCFR_DROP,
++    "route": _PCFR_ROUTE,
++}
++_NUM_FEEDBACK_DOMAINS = 2
+ 
++
+ @triton.jit
+ def _accumulate_kernel(
+     info_ptr,
+@@ -33,12 +43,20 @@
+     idx_mapping_ptr,
+     num_sampled_ptr,
+     num_rejected_ptr,
++    feedback_domain_ptr,
+     features_ptr,
+     features_stride,
+     pred_ptr,
+     pred_stride,
+     counts_ptr,
++    info_domain_stride,
++    info_step_stride,
++    grad_domain_stride,
++    grad_step_stride,
++    counts_domain_stride,
+     num_reqs,
++    PCFR_MODE: tl.constexpr,
++    NUM_ACTIVE_DOMAINS: tl.constexpr,
+     BLOCK_R: tl.constexpr,
+ ):
+     step = tl.program_id(0).to(tl.int64)
+@@ -69,40 +87,63 @@
+         other=0.0,
+     ).to(tl.float32)
+ 
++    if PCFR_MODE == _PCFR_SHARED:
++        request_domain = tl.zeros((BLOCK_R,), dtype=tl.int32)
++        eligible = req_mask
++    else:
++        transformed = tl.load(
++            feedback_domain_ptr + req_state_block, mask=req_mask, other=0
++        ) > 0
++        if PCFR_MODE == _PCFR_ROUTE:
++            request_domain = transformed.to(tl.int32)
++            eligible = req_mask
++        else:
++            request_domain = tl.zeros((BLOCK_R,), dtype=tl.int32)
++            eligible = req_mask & ~transformed
++
+     # The accepted tokens and the first rejected draft token (if one exists) are
+     # "observed" and given labels.
+-    observed = req_mask & (step <= num_accepted) & (step < num_admitted)
++    observed = eligible & (step <= num_accepted) & (step < num_admitted)
+     label = tl.where(step < num_accepted, 1.0, 0.0)
+-    w = tl.where(observed, pred * (1.0 - pred), 0.0)
+-    resid = tl.where(observed, label - pred, 0.0)
++    for domain in tl.static_range(NUM_ACTIVE_DOMAINS):
++        domain_observed = observed & (request_domain == domain)
++        w = tl.where(domain_observed, pred * (1.0 - pred), 0.0)
++        resid = tl.where(domain_observed, label - pred, 0.0)
+ 
+-    # This block's contribution to the normal equations for design row
+-    # x = [feature, eₖ]: the XᵀWX entries aₖ, bₖ, cₖ and the Xᵀr entries g₀ₖ, g₁ₖ.
+-    # aₖ and g₀ₖ are partials of scalars shared by every position, which
+-    # _refit_kernel sums.
+-    a_k = tl.sum(w * feature * feature, axis=0)
+-    b_k = tl.sum(w * feature, axis=0)
+-    c_k = tl.sum(w, axis=0)
+-    g0_k = tl.sum(resid * feature, axis=0)
+-    g1_k = tl.sum(resid, axis=0)
+-    count = tl.sum(tl.where(observed, 1.0, 0.0), axis=0)
+-    tl.store(info_ptr + step * 3 + 0, tl.load(info_ptr + step * 3 + 0) + a_k)
+-    tl.store(info_ptr + step * 3 + 1, tl.load(info_ptr + step * 3 + 1) + b_k)
+-    tl.store(info_ptr + step * 3 + 2, tl.load(info_ptr + step * 3 + 2) + c_k)
+-    tl.store(grad_ptr + step * 2 + 0, tl.load(grad_ptr + step * 2 + 0) + g0_k)
+-    tl.store(grad_ptr + step * 2 + 1, tl.load(grad_ptr + step * 2 + 1) + g1_k)
+-    tl.store(counts_ptr + step, tl.load(counts_ptr + step) + count)
++        # This block's contribution to the normal equations for design row
++        # x = [feature, e_k]. Each policy domain owns independent statistics.
++        a_k = tl.sum(w * feature * feature, axis=0)
++        b_k = tl.sum(w * feature, axis=0)
++        c_k = tl.sum(w, axis=0)
++        g0_k = tl.sum(resid * feature, axis=0)
++        g1_k = tl.sum(resid, axis=0)
++        count = tl.sum(tl.where(domain_observed, 1.0, 0.0), axis=0)
++        info_base = domain * info_domain_stride + step * info_step_stride
++        grad_base = domain * grad_domain_stride + step * grad_step_stride
++        count_offset = domain * counts_domain_stride + step
++        tl.store(info_ptr + info_base + 0, tl.load(info_ptr + info_base + 0) + a_k)
++        tl.store(info_ptr + info_base + 1, tl.load(info_ptr + info_base + 1) + b_k)
++        tl.store(info_ptr + info_base + 2, tl.load(info_ptr + info_base + 2) + c_k)
++        tl.store(grad_ptr + grad_base + 0, tl.load(grad_ptr + grad_base + 0) + g0_k)
++        tl.store(grad_ptr + grad_base + 1, tl.load(grad_ptr + grad_base + 1) + g1_k)
++        tl.store(counts_ptr + count_offset, tl.load(counts_ptr + count_offset) + count)
+ 
+ 
+ @triton.jit
+ def _refit_kernel(
+     slope_ptr,
++    slope_domain_stride,
+     intercepts_ptr,
++    intercepts_domain_stride,
+     info_ptr,
++    info_domain_stride,
+     info_row_stride,
+     grad_ptr,
++    grad_domain_stride,
+     grad_row_stride,
+     counts_ptr,
++    counts_domain_stride,
++    DOMAIN: tl.constexpr,
+     NUM_SPECULATIVE_STEPS: tl.constexpr,
+     L2: tl.constexpr,
+     DAMPING: tl.constexpr,
+@@ -110,20 +151,50 @@
+ ):
+     k = tl.arange(0, BLOCK)
+     mask = k < NUM_SPECULATIVE_STEPS
++    info_base = DOMAIN * info_domain_stride
++    grad_base = DOMAIN * grad_domain_stride
++    counts_base = DOMAIN * counts_domain_stride
+ 
+     # Load the stats accumulated over this round to solve (XᵀWX + λI) Δθ = Xᵀr.
+-    a_k = tl.load(info_ptr + k * info_row_stride + 0, mask=mask, other=0.0)
+-    b_k = tl.load(info_ptr + k * info_row_stride + 1, mask=mask, other=0.0)
+-    c_k = tl.load(info_ptr + k * info_row_stride + 2, mask=mask, other=0.0) + L2
+-    a = tl.sum(a_k, axis=0) + L2
+-    g0_k = tl.load(grad_ptr + k * grad_row_stride + 0, mask=mask, other=0.0)
+-    g1_k = tl.load(grad_ptr + k * grad_row_stride + 1, mask=mask, other=0.0)
+-    g0 = tl.sum(g0_k, axis=0)
+-    n = tl.load(counts_ptr + k, mask=mask, other=0.0)
++    a_k = tl.load(
++        info_ptr + info_base + k * info_row_stride + 0,
++        mask=mask,
++        other=0.0,
++    )
++    b_k = tl.load(
++        info_ptr + info_base + k * info_row_stride + 1,
++        mask=mask,
++        other=0.0,
++    )
++    c_k = (
++        tl.load(
++            info_ptr + info_base + k * info_row_stride + 2,
++            mask=mask,
++            other=0.0,
++        )
++        + L2
++    )
++    a = tl.sum(a_k, axis=0) + L2
++    g0_k = tl.load(
++        grad_ptr + grad_base + k * grad_row_stride + 0,
++        mask=mask,
++        other=0.0,
++    )
++    g1_k = tl.load(
++        grad_ptr + grad_base + k * grad_row_stride + 1,
++        mask=mask,
++        other=0.0,
++    )
++    g0 = tl.sum(g0_k, axis=0)
++    n = tl.load(counts_ptr + counts_base + k, mask=mask, other=0.0)
+ 
+-    # Load the current shared slope and per-position intercepts.
+-    w = tl.load(slope_ptr)
+-    bias = tl.load(intercepts_ptr + k, mask=mask, other=0.0)
++    # Load this policy domain's slope and per-position intercepts.
++    w = tl.load(slope_ptr + DOMAIN * slope_domain_stride)
++    bias = tl.load(
++        intercepts_ptr + DOMAIN * intercepts_domain_stride + k,
++        mask=mask,
++        other=0.0,
++    )
+ 
+     # Solve for the shared slope delta, Δω, in the following arrowhead system:
+     #   ⎡ a+λ   b₀     b₁    …  bₙ₋₁    ⎤ ⎡  Δω   ⎤   ⎡  g₀   ⎤
+@@ -154,16 +225,20 @@
+     # Update the per-position intercepts.
+     new_bias = bias + step_bias
+ 
+-    tl.store(slope_ptr, new_w)
+-    tl.store(intercepts_ptr + k, new_bias, mask=mask)
++    tl.store(slope_ptr + DOMAIN * slope_domain_stride, new_w)
++    tl.store(
++        intercepts_ptr + DOMAIN * intercepts_domain_stride + k,
++        new_bias,
++        mask=mask,
++    )
+ 
+     # Start the round clean by clearing the per-round statistics.
+-    tl.store(info_ptr + k * info_row_stride + 0, 0.0, mask=mask)
+-    tl.store(info_ptr + k * info_row_stride + 1, 0.0, mask=mask)
+-    tl.store(info_ptr + k * info_row_stride + 2, 0.0, mask=mask)
+-    tl.store(grad_ptr + k * grad_row_stride + 0, 0.0, mask=mask)
+-    tl.store(grad_ptr + k * grad_row_stride + 1, 0.0, mask=mask)
+-    tl.store(counts_ptr + k, 0.0, mask=mask)
++    tl.store(info_ptr + info_base + k * info_row_stride + 0, 0.0, mask=mask)
++    tl.store(info_ptr + info_base + k * info_row_stride + 1, 0.0, mask=mask)
++    tl.store(info_ptr + info_base + k * info_row_stride + 2, 0.0, mask=mask)
++    tl.store(grad_ptr + grad_base + k * grad_row_stride + 0, 0.0, mask=mask)
++    tl.store(grad_ptr + grad_base + k * grad_row_stride + 1, 0.0, mask=mask)
++    tl.store(counts_ptr + counts_base + k, 0.0, mask=mask)
+ 
+ 
+ @triton.jit
+@@ -231,7 +306,10 @@
+     conf_ptr,
+     conf_stride,
+     slope_ptr,
++    slope_domain_stride,
+     intercepts_ptr,
++    intercepts_domain_stride,
++    feedback_domain_ptr,
+     local_max_ptr,
+     local_max_stride,
+     local_sumexp_ptr,
+@@ -241,6 +319,7 @@
+     step_ptr,
+     num_tokens,
+     vocab_num_blocks,
++    PCFR_MODE: tl.constexpr,
+     per_token_step: tl.constexpr,
+     NUM_SPECULATIVE_STEPS: tl.constexpr,
+     MAX_LOG_ODDS: tl.constexpr,
+@@ -308,9 +387,16 @@
+     feature = tl.minimum(tl.maximum(feature, -MAX_LOG_ODDS), MAX_LOG_ODDS)
+     tl.store(features_ptr + req_state_idx * features_stride + step, feature)
+ 
+-    # Predict the acceptance probability from the feature and current coefficients.
+-    weight = tl.load(slope_ptr)
+-    bias = tl.load(intercepts_ptr + step)
++    # Route transformed requests only in PCFR mode. Shared and drop use the
++    # canonical coefficients for serving decisions.
++    if PCFR_MODE == _PCFR_ROUTE:
++        domain = (
++            tl.load(feedback_domain_ptr + req_state_idx).to(tl.int32) > 0
++        ).to(tl.int32)
++    else:
++        domain = 0
++    weight = tl.load(slope_ptr + domain * slope_domain_stride)
++    bias = tl.load(intercepts_ptr + domain * intercepts_domain_stride + step)
+     prob = tl.sigmoid(weight * feature + bias)
+     tl.store(pred_ptr + req_state_idx * pred_stride + step, prob)
+     tl.store(conf_ptr + batch_idx * conf_stride + step, prob)
+@@ -351,15 +437,33 @@
+     ):
+         self.num_speculative_steps = num_speculative_steps
+         self.device = device
+-        self._steps_since_refit = 0
+-        self._refits = 0
++        mode = os.environ.get("VLLM_AVEP_PCFR_MODE", "shared")
++        if mode not in _PCFR_MODES:
++            raise ValueError(
++                "VLLM_AVEP_PCFR_MODE must be one of: shared, drop, route"
++            )
++        self.pcfr_mode = mode
++        self._pcfr_mode_id = _PCFR_MODES[mode]
++        self._steps_since_refit = [0] * _NUM_FEEDBACK_DOMAINS
++        self._refits = [0] * _NUM_FEEDBACK_DOMAINS
+         self._telemetry_enabled = os.environ.get("VLLM_AVEP_TELEMETRY") == "1"
+         self._updates_enabled = True
++        self.feedback_domains = torch.zeros(
++            max_num_reqs, dtype=torch.int32, device=device
++        )
+ 
+-        # The learned coefficients used for predicting acceptance.
+-        self.slope = torch.full((1,), _INIT_SLOPE, dtype=torch.float32, device=device)
++        # Domain 0 is canonical and domain 1 is target-policy transformed.
++        self.slope = torch.full(
++            (_NUM_FEEDBACK_DOMAINS,),
++            _INIT_SLOPE,
++            dtype=torch.float32,
++            device=device,
++        )
+         self.intercepts = torch.full(
+-            (num_speculative_steps,), _INIT_BIAS, dtype=torch.float32, device=device
++            (_NUM_FEEDBACK_DOMAINS, num_speculative_steps),
++            _INIT_BIAS,
++            dtype=torch.float32,
++            device=device,
+         )
+         # Holds logit(max q), which is used as the feature for the logistic.
+         # Stored in stable slots keyed by persistent request-state index.
+@@ -391,7 +495,11 @@
+         # bₖ and cₖ are per-position, but a = Σₖ aₖ is one scalar shared by all of
+         # them.
+         self.info = torch.zeros(
+-            num_speculative_steps, 3, dtype=torch.float32, device=device
++            _NUM_FEEDBACK_DOMAINS,
++            num_speculative_steps,
++            3,
++            dtype=torch.float32,
++            device=device,
+         )
+         # Columns [g₀ₖ, g₁ₖ] are each position's contribution to the Xᵀ(Y-P) vector:
+         #   ⎡ g₀    ⎤
+@@ -401,24 +509,40 @@
+         #   ⎣ g₁ₙ₋₁ ⎦
+         # As above, g₁ₖ is per-position and g₀ = Σₖ g₀ₖ is shared.
+         self.grad = torch.zeros(
+-            num_speculative_steps, 2, dtype=torch.float32, device=device
++            _NUM_FEEDBACK_DOMAINS,
++            num_speculative_steps,
++            2,
++            dtype=torch.float32,
++            device=device,
+         )
+         # Number of graded drafts per-position in the current round, zeroed after
+         # each refit. _refit_kernel uses this to damp coefficient updates by:
+         # n / (n + DAMPING_OBSERVATIONS)
+         self.counts = torch.zeros(
+-            num_speculative_steps, dtype=torch.float32, device=device
++            _NUM_FEEDBACK_DOMAINS,
++            num_speculative_steps,
++            dtype=torch.float32,
++            device=device,
+         )
+ 
++    @property
++    def requires_feedback_domains(self) -> bool:
++        return self._pcfr_mode_id != _PCFR_SHARED
++
++    def set_feedback_domains(self, source: torch.Tensor) -> None:
++        if self.requires_feedback_domains:
++            self.feedback_domains.copy_(source)
++
+     def avep_state(self) -> dict[str, object]:
+         """Return an on-demand research snapshot without steady-state logging."""
+         torch.accelerator.synchronize()
+         return {
+             "available": True,
+-            "steps_since_refit": self._steps_since_refit,
+-            "refits": self._refits,
++            "pcfr_mode": self.pcfr_mode,
++            "steps_since_refit": list(self._steps_since_refit),
++            "refits": list(self._refits),
+             "updates_enabled": self._updates_enabled,
+-            "slope": float(self.slope.item()),
++            "slope": self.slope.detach().cpu().tolist(),
+             "intercepts": self.intercepts.detach().cpu().tolist(),
+             "counts": self.counts.detach().cpu().tolist(),
+             "info": self.info.detach().cpu().tolist(),
+@@ -449,8 +573,8 @@
+             self.info.zero_()
+             self.grad.zero_()
+             self.counts.zero_()
+-        self._steps_since_refit = 0
+-        self._refits = 0
++        self._steps_since_refit = [0] * _NUM_FEEDBACK_DOMAINS
++        self._refits = [0] * _NUM_FEEDBACK_DOMAINS
+         self._updates_enabled = True
+         torch.accelerator.synchronize()
+         after = self.avep_state()
+@@ -473,6 +597,7 @@
+         idx_mapping: torch.Tensor,
+         num_sampled: torch.Tensor,
+         num_rejected: torch.Tensor,
++        domain_activity: tuple[bool, bool],
+     ) -> None:
+         if not self._updates_enabled:
+             return
+@@ -485,56 +610,86 @@
+             idx_mapping,
+             num_sampled,
+             num_rejected,
++            self.feedback_domains,
+             self.features,
+             self.features.stride(0),
+             self.predictions,
+             self.predictions.stride(0),
+             self.counts,
++            self.info.stride(0),
++            self.info.stride(1),
++            self.grad.stride(0),
++            self.grad.stride(1),
++            self.counts.stride(0),
+             num_reqs,
++            PCFR_MODE=self._pcfr_mode_id,
++            NUM_ACTIVE_DOMAINS=(
++                _NUM_FEEDBACK_DOMAINS
++                if self._pcfr_mode_id == _PCFR_ROUTE
++                else 1
++            ),
+             BLOCK_R=triton.next_power_of_2(max(num_reqs, 1)),
+         )
+ 
+-        self._steps_since_refit += 1
+-        if self._steps_since_refit < self.REFIT_INTERVAL:
+-            return
+-        self._steps_since_refit = 0
++        if self._pcfr_mode_id == _PCFR_SHARED:
++            domain_activity = (True, False)
++        elif self._pcfr_mode_id == _PCFR_DROP:
++            domain_activity = (domain_activity[0], False)
+ 
+-        if self._telemetry_enabled:
+-            counts = self.counts.detach().cpu().tolist()
+-            slope_before = float(self.slope.item())
+-            intercepts_before = self.intercepts.detach().cpu().tolist()
++        for domain, is_active in enumerate(domain_activity):
++            if not is_active:
++                continue
++            self._steps_since_refit[domain] += 1
++            if self._steps_since_refit[domain] < self.REFIT_INTERVAL:
++                continue
++            self._steps_since_refit[domain] = 0
+ 
+-        # Fit the coefficients to the accumulated statistics gathered over the
+-        # course of the last REFIT_INTERVAL steps.
+-        _refit_kernel[(1,)](
+-            self.slope,
+-            self.intercepts,
+-            self.info,
+-            self.info.stride(0),
+-            self.grad,
+-            self.grad.stride(0),
+-            self.counts,
+-            NUM_SPECULATIVE_STEPS=self.num_speculative_steps,
+-            L2=self.L2,
+-            DAMPING=self.DAMPING_OBSERVATIONS,
+-            BLOCK=triton.next_power_of_2(self.num_speculative_steps),
+-        )
+-        self._refits += 1
+-        if self._telemetry_enabled:
+-            logger.warning(
+-                "AVEP_ESTIMATOR %s",
+-                json.dumps(
+-                    {
+-                        "refit": self._refits,
+-                        "counts": counts,
+-                        "slope_before": slope_before,
+-                        "slope_after": float(self.slope.item()),
+-                        "intercepts_before": intercepts_before,
+-                        "intercepts_after": self.intercepts.detach().cpu().tolist(),
+-                    },
+-                    sort_keys=True,
+-                ),
++            if self._telemetry_enabled:
++                counts = self.counts[domain].detach().cpu().tolist()
++                slope_before = float(self.slope[domain].item())
++                intercepts_before = (
++                    self.intercepts[domain].detach().cpu().tolist()
++                )
++
++            _refit_kernel[(1,)](
++                self.slope,
++                self.slope.stride(0),
++                self.intercepts,
++                self.intercepts.stride(0),
++                self.info,
++                self.info.stride(0),
++                self.info.stride(1),
++                self.grad,
++                self.grad.stride(0),
++                self.grad.stride(1),
++                self.counts,
++                self.counts.stride(0),
++                DOMAIN=domain,
++                NUM_SPECULATIVE_STEPS=self.num_speculative_steps,
++                L2=self.L2,
++                DAMPING=self.DAMPING_OBSERVATIONS,
++                BLOCK=triton.next_power_of_2(self.num_speculative_steps),
+             )
++            self._refits[domain] += 1
++            if self._telemetry_enabled:
++                logger.warning(
++                    "AVEP_ESTIMATOR %s",
++                    json.dumps(
++                        {
++                            "domain": domain,
++                            "refit": self._refits[domain],
++                            "counts": counts,
++                            "slope_before": slope_before,
++                            "slope_after": float(self.slope[domain].item()),
++                            "intercepts_before": intercepts_before,
++                            "intercepts_after": self.intercepts[domain]
++                            .detach()
++                            .cpu()
++                            .tolist(),
++                        },
++                        sort_keys=True,
++                    ),
++                )
+ 
+     def predict(
+         self,
+@@ -573,7 +728,10 @@
+             confidence_probs,
+             confidence_probs.stride(0),
+             self.slope,
++            self.slope.stride(0),
+             self.intercepts,
++            self.intercepts.stride(0),
++            self.feedback_domains,
+             local_max,
+             local_max.stride(0),
+             local_sumexp,
+@@ -583,6 +741,7 @@
+             draft_step,
+             num_tokens,
+             num_blocks,
++            PCFR_MODE=self._pcfr_mode_id,
+             per_token_step=draft_step.dim() > 0,
+             NUM_SPECULATIVE_STEPS=self.num_speculative_steps,
+             MAX_LOG_ODDS=_MAX_LOG_ODDS,
+diff --git a/vllm/v1/worker/gpu/spec_decode/speculator.py b/vllm/v1/worker/gpu/spec_decode/speculator.py
+--- a/vllm/v1/worker/gpu/spec_decode/speculator.py	2026-09-16 14:50:35
++++ b/vllm/v1/worker/gpu/spec_decode/speculator.py	2026-09-20 13:15:04
+@@ -456,6 +456,7 @@
+         idx_mapping: torch.Tensor,
+         num_sampled: torch.Tensor,
+         num_rejected: torch.Tensor,
++        domain_activity: tuple[bool, bool] = (True, False),
+     ) -> None:
+         """Fold the target's verdict on the last drafts into the estimator.
+ 
+@@ -463,8 +464,24 @@
+         features the verdict grades.
+         """
+         if self.acceptance_estimator is not None:
+-            self.acceptance_estimator.step(idx_mapping, num_sampled, num_rejected)
++            self.acceptance_estimator.step(
++                idx_mapping,
++                num_sampled,
++                num_rejected,
++                domain_activity,
++            )
+ 
++    @property
++    def requires_feedback_domains(self) -> bool:
++        return bool(
++            self.acceptance_estimator is not None
++            and self.acceptance_estimator.requires_feedback_domains
++        )
++
++    def set_feedback_domains(self, source: torch.Tensor) -> None:
++        if self.acceptance_estimator is not None:
++            self.acceptance_estimator.set_feedback_domains(source)
++
+     def prepare_watermarking(
+         self, contexts: torch.Tensor, watermarking: torch.Tensor
+     ) -> None:
+diff --git a/vllm/v1/worker/gpu/model_runner.py b/vllm/v1/worker/gpu/model_runner.py
+--- a/vllm/v1/worker/gpu/model_runner.py	2026-09-16 14:50:35
++++ b/vllm/v1/worker/gpu/model_runner.py	2026-09-20 13:15:18
+@@ -2115,8 +2115,22 @@
+         if self.speculator is not None:
+             assert self.sampler is not None
+             if isinstance(self.speculator, DraftModelSpeculator):
++                domain_activity = (True, False)
++                if self.speculator.requires_feedback_domains:
++                    allowed = (
++                        self.sampler.logit_bias_state.num_allowed_token_ids
++                    )
++                    transformed = allowed.np[input_batch.idx_mapping_np] > 0
++                    self.speculator.set_feedback_domains(allowed.gpu)
++                    domain_activity = (
++                        bool(np.any(~transformed)),
++                        bool(np.any(transformed)),
++                    )
+                 self.speculator.observe_verification(
+-                    input_batch.idx_mapping, num_sampled, num_rejected
++                    input_batch.idx_mapping,
++                    num_sampled,
++                    num_rejected,
++                    domain_activity,
+                 )
+             # Let the target override the hidden state fed to the drafter
+             # (e.g. DeepSeek V4 MTP needs the pre-hc_head residual). The
+

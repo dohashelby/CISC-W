@@ -1,0 +1,8 @@
+{
+  "run_name": "mechanism_placebo",
+  "pair_id": null,
+  "arm": "placebo",
+  "adaptive": true,
+  "telemetry": true,
+  "poison_token_id": 23811
+}

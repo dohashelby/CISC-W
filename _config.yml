@@ -1,0 +1,3 @@
+# Evidence is available from GitHub; keep it out of the presentation deployment.
+exclude:
+  - evidence

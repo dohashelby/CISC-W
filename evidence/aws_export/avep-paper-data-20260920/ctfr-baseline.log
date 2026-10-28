@@ -1,0 +1,328 @@
+already_applied=complete_ctfr_experiment_stack
+error: patch failed: vllm/v1/worker/gpu/spec_decode/acceptance_estimator.py:90
+error: vllm/v1/worker/gpu/spec_decode/acceptance_estimator.py: patch does not apply
+already_applied=avep_ctfr_triton_compat.patch
+test_absolute_overhead_is_not_erased_by_pre_normalization (test_analyze_ctfr_mechanism.CTFRDecisionTests.test_absolute_overhead_is_not_erased_by_pre_normalization) ... ok
+test_committed_state_rejects_missing_metadata (test_analyze_ctfr_mechanism.CTFRDecisionTests.test_committed_state_rejects_missing_metadata) ... ok
+test_domain_comparison_includes_refit_clock_and_statistics (test_analyze_ctfr_mechanism.CTFRDecisionTests.test_domain_comparison_includes_refit_clock_and_statistics) ... ok
+test_gate_requires_noninterference_and_routed_learning (test_analyze_ctfr_mechanism.CTFRDecisionTests.test_gate_requires_noninterference_and_routed_learning) ... ok
+test_interaction_has_positive_mitigation_direction (test_analyze_ctfr_mechanism.CTFRDecisionTests.test_interaction_has_positive_mitigation_direction) ... ok
+test_performance_signal_uses_eight_complete_blocks (test_analyze_ctfr_mechanism.CTFRDecisionTests.test_performance_signal_uses_eight_complete_blocks) ... ok
+test_schedule_balances_every_arm_position (test_analyze_ctfr_mechanism.CTFRDecisionTests.test_schedule_balances_every_arm_position) ... ok
+test_shadow_feedback_requires_statistics_counts_and_clock (test_analyze_ctfr_mechanism.CTFRDecisionTests.test_shadow_feedback_requires_statistics_counts_and_clock) ... ok
+test_sign_probability_counts_only_strictly_positive_blocks (test_analyze_ctfr_mechanism.CTFRDecisionTests.test_sign_probability_counts_only_strictly_positive_blocks) ... ok
+test_signal_rejects_ctfr_attack_throughput_below_floor (test_analyze_ctfr_mechanism.CTFRDecisionTests.test_signal_rejects_ctfr_attack_throughput_below_floor) ... ok
+test_signal_rejects_positive_interaction_without_shared_harm (test_analyze_ctfr_mechanism.CTFRDecisionTests.test_signal_rejects_positive_interaction_without_shared_harm) ... ok
+test_state_validation_rejects_non_finite_nested_values (test_analyze_ctfr_mechanism.CTFRDecisionTests.test_state_validation_rejects_non_finite_nested_values) ... ok
+test_extracts_bank_zero (test_extract_ctfr_baseline.ExtractBaselineTest.test_extracts_bank_zero) ... ok
+test_integral_coefficients_have_float_canonicalization (test_extract_ctfr_baseline.ExtractBaselineTest.test_integral_coefficients_have_float_canonicalization) ... ok
+test_rejects_boolean_coefficients (test_extract_ctfr_baseline.ExtractBaselineTest.test_rejects_boolean_coefficients) ... ok
+test_rejects_multiple_workers (test_extract_ctfr_baseline.ExtractBaselineTest.test_rejects_multiple_workers) ... ok
+test_canonical_hash_preserves_unicode_form (test_ctfr_dual_probe.CtfrDualProbeTest.test_canonical_hash_preserves_unicode_form) ... ok
+test_validate_manifest_rejects_boolean_integer_fields (test_ctfr_dual_probe.CtfrDualProbeTest.test_validate_manifest_rejects_boolean_integer_fields) ... ok
+test_validate_manifest_sorts_by_ordinal (test_ctfr_dual_probe.CtfrDualProbeTest.test_validate_manifest_sorts_by_ordinal) ... ok
+test_corpus_hash_mismatch_is_rejected (test_generate_ctfr_manifests.CTFRManifestTests.test_corpus_hash_mismatch_is_rejected) ... ok
+test_dual_principals_are_interleaved_in_balanced_waves (test_generate_ctfr_manifests.CTFRManifestTests.test_dual_principals_are_interleaved_in_balanced_waves) ... ok
+test_e2_requires_one_to_one_wave_pairing (test_generate_ctfr_manifests.CTFRManifestTests.test_e2_requires_one_to_one_wave_pairing) ... ok
+test_evaluation_pair_reuses_held_out_prompts_and_seeds (test_generate_ctfr_manifests.CTFRManifestTests.test_evaluation_pair_reuses_held_out_prompts_and_seeds) ... ok
+test_manifest_entry_limit_is_enforced (test_generate_ctfr_manifests.CTFRManifestTests.test_manifest_entry_limit_is_enforced) ... ok
+test_paired_repetition_counts_are_required (test_generate_ctfr_manifests.CTFRManifestTests.test_paired_repetition_counts_are_required) ... ok
+test_required_files_and_hash_index_are_deterministic (test_generate_ctfr_manifests.CTFRManifestTests.test_required_files_and_hash_index_are_deterministic) ... ok
+test_strict_reader_rejects_duplicate_json_keys (test_generate_ctfr_manifests.CTFRManifestTests.test_strict_reader_rejects_duplicate_json_keys) ... ok
+test_sybil_manifests_hold_adversarial_requests_constant (test_generate_ctfr_manifests.CTFRManifestTests.test_sybil_manifests_hold_adversarial_requests_constant) ... ok
+test_training_and_evaluation_prompt_id_overlap_is_rejected (test_generate_ctfr_manifests.CTFRManifestTests.test_training_and_evaluation_prompt_id_overlap_is_rejected) ... ok
+test_training_and_evaluation_text_alias_is_rejected (test_generate_ctfr_manifests.CTFRManifestTests.test_training_and_evaluation_text_alias_is_rejected) ... ok
+test_write_and_check_refuse_tampered_output (test_generate_ctfr_manifests.CTFRManifestTests.test_write_and_check_refuse_tampered_output) ... ok
+test_barrier_markers_are_counted_without_payload_suffixes (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_barrier_markers_are_counted_without_payload_suffixes) ... ok
+test_baseline_normalization_preserves_raw_and_relative_outcomes (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_baseline_normalization_preserves_raw_and_relative_outcomes) ... ok
+test_baseline_pilot_provenance_rejects_hash_mismatch (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_baseline_pilot_provenance_rejects_hash_mismatch) ... ok
+test_baseline_pilot_provenance_rejects_missing_entry (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_baseline_pilot_provenance_rejects_missing_entry) ... ok
+test_binding_telemetry_exact_join_succeeds (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_binding_telemetry_exact_join_succeeds) ... ok
+test_binding_telemetry_rejects_missing_expected_id (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_binding_telemetry_rejects_missing_expected_id) ... ok
+test_binding_telemetry_rejects_principal_mismatch (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_binding_telemetry_rejects_principal_mismatch) ... ok
+test_binding_telemetry_rejects_untrusted_same_prefix_id (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_binding_telemetry_rejects_untrusted_same_prefix_id) ... ok
+test_binding_telemetry_requires_consistent_mixed_batch (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_binding_telemetry_requires_consistent_mixed_batch) ... ok
+test_binding_telemetry_requires_per_run_events (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_binding_telemetry_requires_per_run_events) ... ok
+test_bootstrap_is_block_level_and_deterministic (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_bootstrap_is_block_level_and_deterministic) ... ok
+test_close_values_handles_nested_float_rounding (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_close_values_handles_nested_float_rounding) ... ok
+test_committed_projection_includes_refit_statistics_and_credits (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_committed_projection_includes_refit_statistics_and_credits) ... ok
+test_compile_warmup_requires_mode_specific_accumulation (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_compile_warmup_requires_mode_specific_accumulation) ... ok
+test_discovery_rejects_failed_quarantined_and_hidden_runs (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_discovery_rejects_failed_quarantined_and_hidden_runs) ... ok
+test_drain_evidence_requires_two_zero_samples_before_barrier (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_drain_evidence_requires_two_zero_samples_before_barrier) ... ok
+test_ephemeral_attribution_slots_do_not_break_invariance (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_ephemeral_attribution_slots_do_not_break_invariance) ... ok
+test_eval_counts_match_detailed_authenticated_request_evidence (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_eval_counts_match_detailed_authenticated_request_evidence) ... ok
+test_eval_metrics_requires_two_finite_principal_rows (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_eval_metrics_requires_two_finite_principal_rows) ... ok
+test_eval_reset_requires_exact_zero_after_counters (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_eval_reset_requires_exact_zero_after_counters) ... ok
+test_failed_retirement_requires_declared_reason_and_no_mutation (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_failed_retirement_requires_declared_reason_and_no_mutation) ... ok
+test_frozen_baseline_is_loaded_into_all_before_state_banks (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_frozen_baseline_is_loaded_into_all_before_state_banks) ... ok
+test_frozen_baseline_must_match_pilot_bank_zero_exactly (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_frozen_baseline_must_match_pilot_bank_zero_exactly) ... ok
+test_gateway_evidence_returns_authenticated_worker_ids (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_gateway_evidence_returns_authenticated_worker_ids) ... ok
+test_missing_stage_e_never_claims_sybil_resistance (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_missing_stage_e_never_claims_sybil_resistance) ... ok
+test_no_action_barrier_marker_is_exact (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_no_action_barrier_marker_is_exact) ... ok
+test_overhead_guardrails_use_absolute_between_arm_ratios (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_overhead_guardrails_use_absolute_between_arm_ratios) ... ok
+test_phase_chain_rejects_a_phase_that_moves_backward (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_phase_chain_rejects_a_phase_that_moves_backward) ... ok
+test_post_evaluation_policy_change_is_rejected (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_post_evaluation_policy_change_is_rejected) ... ok
+test_probe_requires_constrained_tokens_and_speculative_metrics (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_probe_requires_constrained_tokens_and_speculative_metrics) ... ok
+test_resource_cpu_percent_is_bound_to_proc_tick_deltas (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_resource_cpu_percent_is_bound_to_proc_tick_deltas) ... ok
+test_stage_d_allows_adaptation_and_tenant_local_advantage_claims (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_stage_d_allows_adaptation_and_tenant_local_advantage_claims) ... ok
+test_stage_d_does_not_infer_advantage_from_a_tie (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_stage_d_does_not_infer_advantage_from_a_tie) ... ok
+test_stage_d_gate_requires_an_adaptation_opportunity (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_stage_d_gate_requires_an_adaptation_opportunity) ... ok
+test_stage_d_rejects_cross_arm_output_mismatch (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_stage_d_rejects_cross_arm_output_mismatch) ... ok
+test_stage_d_rejects_incomplete_blocks (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_stage_d_rejects_incomplete_blocks) ... ok
+test_stage_d_rejects_reused_gateway_instance (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_stage_d_rejects_reused_gateway_instance) ... ok
+test_stage_d_rejects_reused_process_identity (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_stage_d_rejects_reused_process_identity) ... ok
+test_stage_d_rejects_swapped_declared_arm_order (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_stage_d_rejects_swapped_declared_arm_order) ... ok
+test_stage_d_requires_exact_cross_arm_observation_balance (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_stage_d_requires_exact_cross_arm_observation_balance) ... ok
+test_stage_d_requires_shared_over_frozen_adaptation_opportunity (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_stage_d_requires_shared_over_frozen_adaptation_opportunity) ... ok
+test_stage_e_requires_one_call_and_matching_success_event (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_stage_e_requires_one_call_and_matching_success_event) ... ok
+test_successful_retirement_checks_publication_and_credits (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_successful_retirement_checks_publication_and_credits) ... ok
+
+----------------------------------------------------------------------
+Ran 74 tests in 1.782s
+
+OK
+4cbc2736357f47fd5305e125854d4eb2a681d0834599046888dada8bb4b78450  /home/ubuntu/avep/avep_paper_instrumentation.patch
+a292236003b211cdfd742630080fbb0896855a2f84794fc99bcccf95ac8166b1  /home/ubuntu/avep/avep_causal_ablation.patch
+37a56fa1d70e3b681d0f5cd0c1c92f51315d2cedc0f5d5abf322aa8c4592c5bb  /home/ubuntu/avep/avep_pcfr_mitigation.patch
+b6fb5f262bebd573cf8435ca505f4dd3274b5aa7a8e28d7c176fd23ccba6b074  /home/ubuntu/avep/avep_ctfr_mitigation.patch
+271692db0be99190fd5147794b2b5f275b1a52c355d88f417e22eefeffdd3512  /home/ubuntu/avep/avep_ctfr_experiment_support.patch
+f77b8f71c17da15e0e38da9925bec62a1292567d6c24396bcf57a64183e9599b  /home/ubuntu/avep/avep_ctfr_triton_compat.patch
+e8fc14e7ce94f28806b9db4a4206f2cbf878eb149afc8427290ff6ace7244543  /home/ubuntu/avep/ctfr_gateway.py
+c6b1f2822cac2b847e5c539bd913eb4cc00b8c40b26791a69110988e736b7df8  /home/ubuntu/avep/ctfr_dual_probe.py
+8f8a39c418b0c30f2fde96e3da8c11785b4bb5b0710607a28b0c0dda4363458a  /home/ubuntu/avep/test_ctfr_dual_probe.py
+b7e78823af3d1dd688327a4e52c6ed4bf0a5c07690c9fd293db655716c35569b  /home/ubuntu/avep/extract_ctfr_baseline.py
+c9db440d18dc00546840bc6215b5f7644d4afc149e3f027aa915c729e6ca5f97  /home/ubuntu/avep/generate_ctfr_manifests.py
+e4e7b6799a0943a69271e89bfd331ca666497a5c9c42cbeec96d7c7bbbc99959  /home/ubuntu/avep/analyze_ctfr_mechanism.py
+b9a12b573de09f0bdb0594b7e21908aeecab682dd7039d8058a8fb12d9156a75  /home/ubuntu/avep/test_analyze_ctfr_mechanism.py
+5a0065d04a7457f87fc4446e0631ac91b86c96d50c80d8b389250d173d2c852e  /home/ubuntu/avep/test_extract_ctfr_baseline.py
+bff2254065925821e5b162d3af1765d18bb10096c18978107f1c8bcf16cbb23b  /home/ubuntu/avep/test_generate_ctfr_manifests.py
+bb8d9161c0b3e5f2d628d4130b8465e18547bc7577123a9087e99c50b8229b35  /home/ubuntu/avep/analyze_ctfr_full_study.py
+10dddd28d43a4da5821ad7ab158b047ebfd2c283bd29947149ce6d61eb460d68  /home/ubuntu/avep/test_analyze_ctfr_full_study.py
+f1d3b305c642a2881f941b5177500858757e6673c6d94c44261cc0b297252ac5  /home/ubuntu/avep/run_ctfr_mechanism.sh
+7660200d0882e6ea1d6af14e1e95d7659cadd4d70ee2cf914c68e46bf1efd2dd  /home/ubuntu/avep/run_ctfr_full_study.sh
+test_absolute_overhead_is_not_erased_by_pre_normalization (test_analyze_ctfr_mechanism.CTFRDecisionTests.test_absolute_overhead_is_not_erased_by_pre_normalization) ... ok
+test_committed_state_rejects_missing_metadata (test_analyze_ctfr_mechanism.CTFRDecisionTests.test_committed_state_rejects_missing_metadata) ... ok
+test_domain_comparison_includes_refit_clock_and_statistics (test_analyze_ctfr_mechanism.CTFRDecisionTests.test_domain_comparison_includes_refit_clock_and_statistics) ... ok
+test_gate_requires_noninterference_and_routed_learning (test_analyze_ctfr_mechanism.CTFRDecisionTests.test_gate_requires_noninterference_and_routed_learning) ... ok
+test_interaction_has_positive_mitigation_direction (test_analyze_ctfr_mechanism.CTFRDecisionTests.test_interaction_has_positive_mitigation_direction) ... ok
+test_performance_signal_uses_eight_complete_blocks (test_analyze_ctfr_mechanism.CTFRDecisionTests.test_performance_signal_uses_eight_complete_blocks) ... ok
+test_schedule_balances_every_arm_position (test_analyze_ctfr_mechanism.CTFRDecisionTests.test_schedule_balances_every_arm_position) ... ok
+test_shadow_feedback_requires_statistics_counts_and_clock (test_analyze_ctfr_mechanism.CTFRDecisionTests.test_shadow_feedback_requires_statistics_counts_and_clock) ... ok
+test_sign_probability_counts_only_strictly_positive_blocks (test_analyze_ctfr_mechanism.CTFRDecisionTests.test_sign_probability_counts_only_strictly_positive_blocks) ... ok
+test_signal_rejects_ctfr_attack_throughput_below_floor (test_analyze_ctfr_mechanism.CTFRDecisionTests.test_signal_rejects_ctfr_attack_throughput_below_floor) ... ok
+test_signal_rejects_positive_interaction_without_shared_harm (test_analyze_ctfr_mechanism.CTFRDecisionTests.test_signal_rejects_positive_interaction_without_shared_harm) ... ok
+test_state_validation_rejects_non_finite_nested_values (test_analyze_ctfr_mechanism.CTFRDecisionTests.test_state_validation_rejects_non_finite_nested_values) ... ok
+test_extracts_bank_zero (test_extract_ctfr_baseline.ExtractBaselineTest.test_extracts_bank_zero) ... ok
+test_integral_coefficients_have_float_canonicalization (test_extract_ctfr_baseline.ExtractBaselineTest.test_integral_coefficients_have_float_canonicalization) ... ok
+test_rejects_boolean_coefficients (test_extract_ctfr_baseline.ExtractBaselineTest.test_rejects_boolean_coefficients) ... ok
+test_rejects_multiple_workers (test_extract_ctfr_baseline.ExtractBaselineTest.test_rejects_multiple_workers) ... ok
+test_canonical_hash_preserves_unicode_form (test_ctfr_dual_probe.CtfrDualProbeTest.test_canonical_hash_preserves_unicode_form) ... ok
+test_validate_manifest_rejects_boolean_integer_fields (test_ctfr_dual_probe.CtfrDualProbeTest.test_validate_manifest_rejects_boolean_integer_fields) ... ok
+test_validate_manifest_sorts_by_ordinal (test_ctfr_dual_probe.CtfrDualProbeTest.test_validate_manifest_sorts_by_ordinal) ... ok
+test_barrier_markers_are_counted_without_payload_suffixes (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_barrier_markers_are_counted_without_payload_suffixes) ... ok
+test_baseline_normalization_preserves_raw_and_relative_outcomes (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_baseline_normalization_preserves_raw_and_relative_outcomes) ... ok
+test_baseline_pilot_provenance_rejects_hash_mismatch (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_baseline_pilot_provenance_rejects_hash_mismatch) ... ok
+test_baseline_pilot_provenance_rejects_missing_entry (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_baseline_pilot_provenance_rejects_missing_entry) ... ok
+test_binding_telemetry_exact_join_succeeds (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_binding_telemetry_exact_join_succeeds) ... ok
+test_binding_telemetry_rejects_missing_expected_id (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_binding_telemetry_rejects_missing_expected_id) ... ok
+test_binding_telemetry_rejects_principal_mismatch (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_binding_telemetry_rejects_principal_mismatch) ... ok
+test_binding_telemetry_rejects_untrusted_same_prefix_id (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_binding_telemetry_rejects_untrusted_same_prefix_id) ... ok
+test_binding_telemetry_requires_consistent_mixed_batch (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_binding_telemetry_requires_consistent_mixed_batch) ... ok
+test_binding_telemetry_requires_per_run_events (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_binding_telemetry_requires_per_run_events) ... ok
+test_bootstrap_is_block_level_and_deterministic (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_bootstrap_is_block_level_and_deterministic) ... ok
+test_close_values_handles_nested_float_rounding (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_close_values_handles_nested_float_rounding) ... ok
+test_committed_projection_includes_refit_statistics_and_credits (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_committed_projection_includes_refit_statistics_and_credits) ... ok
+test_compile_warmup_requires_mode_specific_accumulation (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_compile_warmup_requires_mode_specific_accumulation) ... ok
+test_discovery_rejects_failed_quarantined_and_hidden_runs (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_discovery_rejects_failed_quarantined_and_hidden_runs) ... ok
+test_drain_evidence_requires_two_zero_samples_before_barrier (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_drain_evidence_requires_two_zero_samples_before_barrier) ... ok
+test_ephemeral_attribution_slots_do_not_break_invariance (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_ephemeral_attribution_slots_do_not_break_invariance) ... ok
+test_eval_counts_match_detailed_authenticated_request_evidence (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_eval_counts_match_detailed_authenticated_request_evidence) ... ok
+test_eval_metrics_requires_two_finite_principal_rows (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_eval_metrics_requires_two_finite_principal_rows) ... ok
+test_eval_reset_requires_exact_zero_after_counters (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_eval_reset_requires_exact_zero_after_counters) ... ok
+test_failed_retirement_requires_declared_reason_and_no_mutation (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_failed_retirement_requires_declared_reason_and_no_mutation) ... ok
+test_frozen_baseline_is_loaded_into_all_before_state_banks (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_frozen_baseline_is_loaded_into_all_before_state_banks) ... ok
+test_frozen_baseline_must_match_pilot_bank_zero_exactly (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_frozen_baseline_must_match_pilot_bank_zero_exactly) ... ok
+test_gateway_evidence_returns_authenticated_worker_ids (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_gateway_evidence_returns_authenticated_worker_ids) ... ok
+test_missing_stage_e_never_claims_sybil_resistance (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_missing_stage_e_never_claims_sybil_resistance) ... ok
+test_no_action_barrier_marker_is_exact (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_no_action_barrier_marker_is_exact) ... ok
+test_overhead_guardrails_use_absolute_between_arm_ratios (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_overhead_guardrails_use_absolute_between_arm_ratios) ... ok
+test_phase_chain_rejects_a_phase_that_moves_backward (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_phase_chain_rejects_a_phase_that_moves_backward) ... ok
+test_post_evaluation_policy_change_is_rejected (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_post_evaluation_policy_change_is_rejected) ... ok
+test_probe_requires_constrained_tokens_and_speculative_metrics (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_probe_requires_constrained_tokens_and_speculative_metrics) ... ok
+test_resource_cpu_percent_is_bound_to_proc_tick_deltas (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_resource_cpu_percent_is_bound_to_proc_tick_deltas) ... ok
+test_stage_d_allows_adaptation_and_tenant_local_advantage_claims (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_stage_d_allows_adaptation_and_tenant_local_advantage_claims) ... ok
+test_stage_d_does_not_infer_advantage_from_a_tie (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_stage_d_does_not_infer_advantage_from_a_tie) ... ok
+test_stage_d_gate_requires_an_adaptation_opportunity (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_stage_d_gate_requires_an_adaptation_opportunity) ... ok
+test_stage_d_rejects_cross_arm_output_mismatch (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_stage_d_rejects_cross_arm_output_mismatch) ... ok
+test_stage_d_rejects_incomplete_blocks (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_stage_d_rejects_incomplete_blocks) ... ok
+test_stage_d_rejects_reused_gateway_instance (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_stage_d_rejects_reused_gateway_instance) ... ok
+test_stage_d_rejects_reused_process_identity (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_stage_d_rejects_reused_process_identity) ... ok
+test_stage_d_rejects_swapped_declared_arm_order (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_stage_d_rejects_swapped_declared_arm_order) ... ok
+test_stage_d_requires_exact_cross_arm_observation_balance (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_stage_d_requires_exact_cross_arm_observation_balance) ... ok
+test_stage_d_requires_shared_over_frozen_adaptation_opportunity (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_stage_d_requires_shared_over_frozen_adaptation_opportunity) ... ok
+test_stage_e_requires_one_call_and_matching_success_event (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_stage_e_requires_one_call_and_matching_success_event) ... ok
+test_successful_retirement_checks_publication_and_credits (test_analyze_ctfr_full_study.CTFRFullStudyTests.test_successful_retirement_checks_publication_and_credits) ... ok
+test_corpus_hash_mismatch_is_rejected (test_generate_ctfr_manifests.CTFRManifestTests.test_corpus_hash_mismatch_is_rejected) ... ok
+test_dual_principals_are_interleaved_in_balanced_waves (test_generate_ctfr_manifests.CTFRManifestTests.test_dual_principals_are_interleaved_in_balanced_waves) ... ok
+test_e2_requires_one_to_one_wave_pairing (test_generate_ctfr_manifests.CTFRManifestTests.test_e2_requires_one_to_one_wave_pairing) ... ok
+test_evaluation_pair_reuses_held_out_prompts_and_seeds (test_generate_ctfr_manifests.CTFRManifestTests.test_evaluation_pair_reuses_held_out_prompts_and_seeds) ... ok
+test_manifest_entry_limit_is_enforced (test_generate_ctfr_manifests.CTFRManifestTests.test_manifest_entry_limit_is_enforced) ... ok
+test_paired_repetition_counts_are_required (test_generate_ctfr_manifests.CTFRManifestTests.test_paired_repetition_counts_are_required) ... ok
+test_required_files_and_hash_index_are_deterministic (test_generate_ctfr_manifests.CTFRManifestTests.test_required_files_and_hash_index_are_deterministic) ... ok
+test_strict_reader_rejects_duplicate_json_keys (test_generate_ctfr_manifests.CTFRManifestTests.test_strict_reader_rejects_duplicate_json_keys) ... ok
+test_sybil_manifests_hold_adversarial_requests_constant (test_generate_ctfr_manifests.CTFRManifestTests.test_sybil_manifests_hold_adversarial_requests_constant) ... ok
+test_training_and_evaluation_prompt_id_overlap_is_rejected (test_generate_ctfr_manifests.CTFRManifestTests.test_training_and_evaluation_prompt_id_overlap_is_rejected) ... ok
+test_training_and_evaluation_text_alias_is_rejected (test_generate_ctfr_manifests.CTFRManifestTests.test_training_and_evaluation_text_alias_is_rejected) ... ok
+test_write_and_check_refuse_tampered_output (test_generate_ctfr_manifests.CTFRManifestTests.test_write_and_check_refuse_tampered_output) ... ok
+
+----------------------------------------------------------------------
+Ran 74 tests in 1.785s
+
+OK
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+curl: (7) Failed to connect to 127.0.0.1 port 8000 after 0 ms: Connection refused
+{
+  "accepted_draft_tokens": 264,
+  "aggregate_output_tokens_per_second": 610.7935421953005,
+  "authenticated_principal_counts": {
+    "attacker": 16,
+    "victim": 16
+  },
+  "by_principal": {
+    "attacker": {
+      "accepted_draft_tokens": 132,
+      "aggregate_output_tokens_per_second": 305.39677109765023,
+      "completion_tokens": 272,
+      "draft_acceptance_rate": 0.2462686567164179,
+      "draft_tokens": 536,
+      "failed": 0,
+      "latency_ms_p50": 713.9706395000001,
+      "latency_ms_p95": 878.21631275,
+      "latency_ms_p99": 884.34364415,
+      "requests": 16,
+      "spec_requests": 16,
+      "successful": 16,
+      "wall_seconds": 0.890644649
+    },
+    "victim": {
+      "accepted_draft_tokens": 132,
+      "aggregate_output_tokens_per_second": 305.59179655180304,
+      "completion_tokens": 272,
+      "draft_acceptance_rate": 0.2462686567164179,
+      "draft_tokens": 536,
+      "failed": 0,
+      "latency_ms_p50": 708.114497,
+      "latency_ms_p95": 879.0896235000001,
+      "latency_ms_p99": 884.8242879,
+      "requests": 16,
+      "spec_requests": 16,
+      "successful": 16,
+      "wall_seconds": 0.890076249
+    }
+  },
+  "completion_tokens": 544,
+  "draft_acceptance_rate": 0.2462686567164179,
+  "draft_tokens": 1072,
+  "evidence_ok": true,
+  "expected_principal_counts": {
+    "attacker": 16,
+    "victim": 16
+  },
+  "failed": 0,
+  "gateway_instance_counts": {
+    "ctfr-full-ctfr_baseline_pilot_v1-1789891618978209161": 32
+  },
+  "latency_ms_p50": 709.409192,
+  "latency_ms_p95": 880.8290636500001,
+  "latency_ms_p99": 886.13938613,
+  "missing_audit_event_ids": 0,
+  "requests": 32,
+  "spec_requests": 32,
+  "successful": 32,
+  "unique_audit_event_ids": 32,
+  "upstream_marker_counts": {
+    "ctfr-full-6241-1789891548885452153": 32
+  },
+  "wall_seconds": 0.890644649
+}
+{
+  "accepted_draft_tokens": 32230,
+  "aggregate_output_tokens_per_second": 2121.9758025331926,
+  "authenticated_principal_counts": {
+    "attacker": 1024,
+    "victim": 1024
+  },
+  "by_principal": {
+    "attacker": {
+      "accepted_draft_tokens": 16112,
+      "aggregate_output_tokens_per_second": 1060.9879012665963,
+      "completion_tokens": 32768,
+      "draft_acceptance_rate": 0.24021946564885496,
+      "draft_tokens": 67072,
+      "failed": 0,
+      "latency_ms_p50": 405.86779,
+      "latency_ms_p95": 472.49378190000004,
+      "latency_ms_p99": 541.5876252199998,
+      "requests": 1024,
+      "spec_requests": 1024,
+      "successful": 1024,
+      "wall_seconds": 30.88442381
+    },
+    "victim": {
+      "accepted_draft_tokens": 16118,
+      "aggregate_output_tokens_per_second": 1061.0121690618712,
+      "completion_tokens": 32768,
+      "draft_acceptance_rate": 0.24038060013124143,
+      "draft_tokens": 67052,
+      "failed": 0,
+      "latency_ms_p50": 405.0280335,
+      "latency_ms_p95": 472.38941735,
+      "latency_ms_p99": 530.7891060899999,
+      "requests": 1024,
+      "spec_requests": 1024,
+      "successful": 1024,
+      "wall_seconds": 30.883717412
+    }
+  },
+  "completion_tokens": 65536,
+  "draft_acceptance_rate": 0.2403000208762041,
+  "draft_tokens": 134124,
+  "evidence_ok": true,
+  "expected_principal_counts": {
+    "attacker": 1024,
+    "victim": 1024
+  },
+  "failed": 0,
+  "gateway_instance_counts": {
+    "ctfr-full-ctfr_baseline_pilot_v1-1789891618978209161": 2048
+  },
+  "latency_ms_p50": 405.4705335,
+  "latency_ms_p95": 472.4751791,
+  "latency_ms_p99": 538.4880321899997,
+  "missing_audit_event_ids": 0,
+  "requests": 2048,
+  "spec_requests": 2048,
+  "successful": 2048,
+  "unique_audit_event_ids": 2048,
+  "upstream_marker_counts": {
+    "ctfr-full-6241-1789891548885452153": 2048
+  },
+  "wall_seconds": 30.88442381
+}
+{
+  "coefficient_sha256": "ce0b565f9a1c07f0927d7df7485bf6a8e52f7cc3736e86f9fac82b2e2fec6118",
+  "intercepts": [
+    -0.1406349241733551,
+    0.2035883516073227,
+    -0.21803750097751617,
+    -0.5383877754211426
+  ],
+  "schema": "ctfr-baseline-v1",
+  "slope": 0.8484197854995728
+}
+ef7b5ce1d37f5a3c4244e55fcd016c149d8c8e3a3977095b953d1d927b1ed83c  /home/ubuntu/avep/ctfr_baseline_committed_state.json

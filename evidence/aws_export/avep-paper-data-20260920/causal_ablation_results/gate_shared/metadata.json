@@ -1,0 +1,11 @@
+{
+  "protocol_version": "avep-causal-ablation-v1",
+  "run_name": "gate_shared",
+  "stage": "gate",
+  "pair_id": "gate",
+  "arm": "shared",
+  "poison_token_id": 279,
+  "telemetry": true,
+  "detailed_metrics": true,
+  "created_at": "2026-09-19T05:36:05,474328156+00:00"
+}

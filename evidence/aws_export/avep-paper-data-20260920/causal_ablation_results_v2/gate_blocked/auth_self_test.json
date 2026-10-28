@@ -1,0 +1,61 @@
+{
+  "base_url": "http://127.0.0.1:8001/v1",
+  "results": [
+    {
+      "audit_event_id": "c422aae2dd2d40368cc78b4e94e4f07e",
+      "authenticated_tenant": "attacker",
+      "expected_status": 200,
+      "gateway_instance_id": "causal-gate_blocked-1789798808218784569",
+      "name": "attacker_ok",
+      "status": 200,
+      "upstream_marker": "causal-107090-1789798748138821805"
+    },
+    {
+      "audit_event_id": "6bae5d7bb76b48c3bd68ed20dcb879ab",
+      "authenticated_tenant": "victim",
+      "expected_status": 200,
+      "gateway_instance_id": "causal-gate_blocked-1789798808218784569",
+      "name": "victim_ok",
+      "status": 200,
+      "upstream_marker": "causal-107090-1789798748138821805"
+    },
+    {
+      "audit_event_id": "3037904de99548c3ae90c54eb979886d",
+      "authenticated_tenant": null,
+      "expected_status": 401,
+      "gateway_instance_id": "causal-gate_blocked-1789798808218784569",
+      "name": "missing_key",
+      "status": 401,
+      "upstream_marker": "causal-107090-1789798748138821805"
+    },
+    {
+      "audit_event_id": "7dba02d90f7747c9910cff6e0d8b9cbf",
+      "authenticated_tenant": null,
+      "expected_status": 401,
+      "gateway_instance_id": "causal-gate_blocked-1789798808218784569",
+      "name": "wrong_key",
+      "status": 401,
+      "upstream_marker": "causal-107090-1789798748138821805"
+    },
+    {
+      "audit_event_id": "39c61d21d8534a71a4614314c9175fda",
+      "authenticated_tenant": null,
+      "expected_status": 403,
+      "gateway_instance_id": "causal-gate_blocked-1789798808218784569",
+      "name": "attacker_claims_victim",
+      "status": 403,
+      "upstream_marker": "causal-107090-1789798748138821805"
+    },
+    {
+      "audit_event_id": "97f97a62643646d7964c65d353bd34ef",
+      "authenticated_tenant": null,
+      "expected_status": 403,
+      "gateway_instance_id": "causal-gate_blocked-1789798808218784569",
+      "name": "victim_claims_attacker",
+      "status": 403,
+      "upstream_marker": "causal-107090-1789798748138821805"
+    }
+  ],
+  "schema_version": 1,
+  "valid": true
+}

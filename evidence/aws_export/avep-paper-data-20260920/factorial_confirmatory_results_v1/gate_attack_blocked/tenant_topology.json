@@ -1,0 +1,10 @@
+{
+  "protocol_version": "avep-factorial-confirmatory-v1",
+  "gateway_instance_id": "factorial-gate_attack_blocked-1789815392544120274",
+  "upstream_marker": "factorial-1744-1789815332461752672",
+  "key_fingerprints": {
+    "attacker": "c78686f06291693f6ce88c72f790502144218ae1e304dc7d0dfbf401d0cffa04",
+    "victim": "03c6b6761d71857cdaffa62be1fd69583b3c4f67809b1ec6e9fcd41df1dc75ff",
+    "upstream": "36a97ad0b8b3be0e9a817dc886ac931274b4a5d320557cbe62557c9d0c2ebcdb"
+  }
+}

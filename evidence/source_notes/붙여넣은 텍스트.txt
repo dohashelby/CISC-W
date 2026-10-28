@@ -1,0 +1,151 @@
+결론부터 말하면, 조건을 명확히 하면 novelty로 주장할 수 있다. 다만 novelty를 “한 요청이 다른 요청에 영향을 준다” 또는 “공격 종료 후에도 상태가 남는다”로 잡으면 약하다. 그런 현상은 이미 일반적인 noisy-neighbor·공유 상태 문제로 알려져 있다.
+논문에서 주장해야 할 정확한 현상은 다음이다.
+\[
+s_{t+1}=F(s_t,y_t^{A})
+\]\[
+B_{t+1}^{B}=\pi(s_{t+1},x_{t+1}^{B})
+\]여기서 \(y_t^A\)는 인증 principal A의 verification feedback이고, \(B^B\)는 인증 principal B에게 할당되는 adaptive-verification budget이다.
+즉,
+A의 정상적인 추론 요청에서 생성된 verification feedback이 A와 무관한 B의 이후 verification policy를 바꾼다.
+
+이것은 사용자 입력, 대화 메모리, 모델 가중치, KV cache 오염과 다른 control-plane state coupling 문제다.
+선행연구와의 관계
+주장	선행연구 상태	novelty 여부
+Verification feedback으로 서빙을 적응시킴	OnlineSpec, TurboSpec, vLLM estimator 등 존재	낮음
+여러 요청이 verification budget을 공유함	vLLM global budget, D-Cut 등 존재	낮음
+한 요청이 다른 요청의 성능에 영향	GRIEF가 cross-request interference와 noisy-neighbor 문제를 보고	낮음
+한 principal의 feedback이 다른 principal의 adaptive budget을 변경	인증·테넌트 경계와 결합한 실증은 찾기 어려움	잠재적으로 높음
+공격자가 작은 자원으로 다른 principal의 budget을 조종	명확한 공격 모델·측정 연구는 부족	높음
+per-principal EMA와 bounded contribution 방어	일반적인 fairness/isolation 아이디어는 존재	방어 설계 자체는 낮음
+영향량을 정의하고 적응 성능과 isolation의 trade-off를 측정	구체적인 adaptive-verification 연구로는 공백 가능성	높음
+
+
+이미 알려진 부분
+OnlineSpec은 speculative decoding의 verification feedback을 온라인 학습 신호로 사용한다. 즉 “verification feedback이 이후 동작을 바꾼다”는 기본 원리는 새롭지 않다. OnlineSpec
+현재 vLLM의 adaptive verification은 여러 요청의 draft slot을 하나의 global budget 안에서 경쟁시킨다. vLLM의 문서에는 요청별 slot을 전역적으로 정렬해 budget을 배분한다고 명시되어 있다. vLLM adaptive verification 문서
+또한 vLLM의 acceptance estimator 구현은 serving 중 계속 재학습되며, mixed client와 distribution shift 상황에서 하나의 pooled estimator를 사용한다. 다만 해당 연구는 이를 보안 문제로 보지 않고 정확도와 성능 문제로 평가한다. vLLM PR #52228
+SGLang도 EMA 기반 adaptive speculative decoding을 사용하고, 혼합 workload에서 batch 평균만 사용하면 문제가 생길 수 있음을 roadmap과 issue에서 논의하고 있다. 특히 SGLang issue에는 opt-out 요청의 낮은 accept length가 다른 traffic의 adaptive tier를 끌어내릴 수 있다는 우려가 직접 적혀 있다. SGLang adaptive roadmap, SGLang mixed-workload issue
+TensorRT-LLM도 일정 기간의 rolling acceptance rate가 threshold 아래로 내려가면 speculation을 영구적으로 비활성화하는 전역 gate를 제공한다. 그러나 principal별 격리는 문서화되어 있지 않다. TensorRT-LLM DraftTargetDecodingConfig
+따라서 “적응형 검증이 공유 상태를 사용한다”는 사실 자체는 novelty가 아니다.
+그래도 논문 novelty가 될 수 있는 이유
+핵심은 다음 네 가지를 함께 정의하고 실증하는 것이다.
+1. Principal boundary
+A와 B는 단순히 서로 다른 요청 ID가 아니라, API key·JWT subject·tenant ID 등으로 인증된 독립 principal이어야 한다.
+이 조건이 없으면 리뷰어는 이렇게 반박할 수 있다.
+“그냥 같은 사용자의 요청이 서버 상태에 영향을 준 것 아닌가?”
+
+따라서 실험에는 인증 gateway가 필요하다.
+Principal A ─┐
+             ├─ authenticated gateway ─ shared vLLM worker
+Principal B ─┘
+vLLM 자체가 principal 인증을 제공하지 않는다면, principal boundary는 배포 아키텍처에서 구현하고 vLLM worker는 동일하게 유지하면 된다. 논문에는 “engine-level principal identity”가 아니라 “gateway-defined authenticated principal”이라고 명시해야 한다.
+2. Causal influence
+단순히 A가 보낸 뒤 B의 budget이 바뀌었다는 시간적 순서만으로는 부족하다.
+다음 영향량을 정의하는 것이 좋다.
+\[
+\Delta B_{A\rightarrow B}
+=
+E[B_B \mid A\text{ feedback included}]
+-
+E[B_B \mid A\text{ feedback replaced by baseline}]
+\]또는 정규화된 공격 효율을 사용한다.
+\[
+I_{A\rightarrow B}
+=
+\frac{|\Delta B_{A\rightarrow B}|}
+{\text{A가 사용한 GPU 시간 또는 생성 토큰 수}}
+\]이 값이 크면 다음을 보일 수 있다.
+A가 전체 GPU 자원의 10%만 사용했는데 B의 verification budget을 40% 감소시켰다.
+
+이것은 단순한 부하 경쟁보다 훨씬 강한 security claim이다.
+3. Normal adaptation과의 분리
+리뷰어가 가장 쉽게 할 반론은 다음이다.
+“서버가 workload 변화에 정상적으로 적응한 것뿐이다.”
+
+이를 반박하려면 다음 조건을 맞춰야 한다.
+- 공격군과 정상군의 요청 수 동일
+- prompt 길이와 출력 길이 동일
+- batch size와 GPU utilization 동일
+- A가 차지하는 GPU 시간 동일
+- 단지 A의 verification feedback 분포만 다르게 구성
+- A의 요청이 종료된 뒤 B의 상태를 계속 관찰
+- estimator를 principal별로 분리한 대조군 포함
+필수 비교군은 다음 네 개다.
+실험군	목적
+shared controller + benign workload	정상 적응의 기준
+shared controller + A의 편향된 feedback	공격 영향
+isolated controller	principal 격리 시 영향 소멸 여부
+shared controller + 방어기법	완화 효과
+
+
+공격 종료 후에도 B의 budget, TPOT, goodput, SLO violation이 일정 시간 악화되고, estimator reset 또는 principal isolation에서 사라져야 한다.
+4. 단순 persistence가 아닌 disproportionate influence
+“공격 종료 후에도 영향이 남는다”만으로는 약하다. EMA라면 상태가 남는 것이 당연하기 때문이다.
+더 강한 주장은 다음이다.
+정상 workload adaptation이 허용하는 범위를 넘어, 한 principal이 자신의 resource share보다 훨씬 큰 영향력을 다른 principal의 verification policy에 행사한다.
+
+따라서 다음 지표를 보고해야 한다.
+- victim B의 평균·p95 verification budget
+- B의 TPOT, ITL, TTFT
+- B의 goodput 및 SLO violation
+- A의 GPU 시간·요청 수·토큰 수
+- 공격 종료 후 영향 지속시간
+- recovery half-life
+- 영향량 / 공격 비용
+- principal 간 Jain fairness index 또는 max-min fairness
+현재 claim에서 피해야 할 표현
+다음 주장은 위험하다.
+“LLM serving에서 cross-tenant interference를 최초로 발견했다.”
+
+GRIEF는 이미 vLLM과 SGLang에서 cross-request contamination, noisy-neighbor DoS, 성능 간섭을 연구했다. GRIEF
+또한 비학술 블로그이긴 하지만, 한 tenant의 online update가 다른 tenant의 draft behavior를 오염시킬 수 있다는 유사한 주장을 이미 제기하고 있다. DRIFT 관련 글
+따라서 “cross-tenant poisoning”이라는 넓은 표현은 피하는 것이 좋다.
+대신 다음처럼 좁혀야 한다.
+We identify and measure authenticated-principal influence on adaptive verification control state in shared LLM serving.
+
+한국어로는:
+공유 LLM 서빙 환경에서 한 인증 principal의 verification feedback이 다른 principal의 adaptive-verification budget에 미치는 control-plane 영향력을 정의하고 측정한다.
+
+방어기법의 novelty
+per-tenant EMA 자체는 새롭다고 보기 어렵다. 방어 novelty는 다음처럼 구성해야 한다.
+Principal-scoped EMA
+\[
+s_i^{t+1}
+=
+(1-\alpha)s_i^t+\alpha y_i^t
+\]각 principal \(i\)의 feedback을 별도 추정기에 넣고, 해당 principal의 budget만 계산한다.
+Bounded contribution
+공유 모델을 유지해야 한다면 각 principal의 업데이트 영향력을 제한한다.
+\[
+s^{t+1}
+=
+(1-\alpha)s^t+
+\alpha\sum_i w_i y_i
+\]단,
+\[
+w_i \leq \rho
+\]로 제한한다.
+방어 평가에서는 다음 Pareto trade-off를 측정해야 한다.
+- 정상 workload 적응 속도
+- 정상 goodput
+- 공격 시 victim degradation
+- principal 간 fairness
+- cold-start penalty
+- estimator 메모리·연산 overhead
+논문 contribution은 “per-tenant EMA를 제안했다”가 아니라 다음처럼 잡는 편이 강하다.
+We introduce influence-bounded adaptive verification, which limits the maximum control-state effect of any authenticated principal while preserving workload adaptation.
+
+최종 판단
+현재 문헌 기준으로는 다음처럼 평가할 수 있다.
+- “verification feedback을 이용한 adaptive serving”: 이미 알려짐.
+- “요청들이 verification budget을 공유함”: 이미 알려짐.
+- “한 요청이 다른 요청 성능에 영향을 줌”: 이미 알려짐.
+- “인증된 principal A의 feedback이 principal B의 adaptive-verification budget을 인과적으로 변경함”: 구체적인 보안 문제로는 novelty 가능성이 있음.
+- “작은 자원으로 큰 cross-principal 영향력을 행사하고, 이를 bounded-influence 방어로 완화함”: 가장 설득력 있는 논문 novelty 후보.
+추천 논문 제목은 다음과 같다.
+Authenticated-Principal Influence in Adaptive Verification: Measuring and Bounding Cross-Tenant Control-State Coupling in LLM Serving
+
+단, vLLM에서만 완전히 실증한다면 제목을 더 보수적으로 바꾸는 것이 좋다.
+Authenticated-Principal Influence on Adaptive Verification: A vLLM Case Study with Cross-Engine Analysis
+
+핵심은 **“상태가 남는다”가 아니라 “principal별 영향력이 격리되지 않고, 공격자가 resource share보다 큰 control-plane 영향력을 행사할 수 있다”**는 점이다.

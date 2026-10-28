@@ -1,0 +1,322 @@
+(APIServer pid=4219) INFO 09-20 07:53:58 [api_utils.py:347] 
+(APIServer pid=4219) INFO 09-20 07:53:58 [api_utils.py:347]        █     █     █▄   ▄█
+(APIServer pid=4219) INFO 09-20 07:53:58 [api_utils.py:347]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.29.1rc1.dev190+g4fe9e6f6e.d20260918
+(APIServer pid=4219) INFO 09-20 07:53:58 [api_utils.py:347]   █▄█▀ █     █     █     █  model   Qwen/Qwen3-4B
+(APIServer pid=4219) INFO 09-20 07:53:58 [api_utils.py:347]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+(APIServer pid=4219) INFO 09-20 07:53:58 [api_utils.py:347] 
+(APIServer pid=4219) INFO 09-20 07:53:58 [api_utils.py:286] non-default args: {'model_tag': 'Qwen/Qwen3-4B', 'enable_per_request_metrics': True, 'host': '127.0.0.1', 'api_key': '***', 'model': 'Qwen/Qwen3-4B', 'trust_remote_code': True, 'dtype': 'bfloat16', 'revision': '1cfa9a7208912126459214e8b04321603b3df60c', 'max_model_len': 4096, 'attention_backend': 'TRITON_ATTN', 'gpu_memory_utilization': 0.8, 'enable_prefix_caching': False, 'per_request_spec_decode_metrics': 'detailed', 'max_num_batched_tokens': 4096, 'max_num_seqs': 64, 'speculative_config': {'method': 'dflash', 'model': 'z-lab/Qwen3-4B-DFlash-b16', 'revision': 'b74e3a329c4d963783143b1e970d95b002be72bd', 'code_revision': 'b74e3a329c4d963783143b1e970d95b002be72bd', 'attention_backend': 'TRITON_ATTN', 'num_speculative_tokens': 4, 'max_model_len': 4096, 'enable_adaptive_verification': True}, 'compilation_config': {'mode': None, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': [], 'ir_enable_torch_wrap': None, 'splitting_ops': None, 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'compile_sizes': None, 'compile_ranges_endpoints': None, 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL_AND_PIECEWISE: (2, 1)>, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': None, 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': None, 'pass_config': {}, 'max_cudagraph_capture_size': None, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': None, 'static_all_moe_layers': []}}
+(APIServer pid=4219) WARNING 09-20 07:53:58 [envs.py:2258] Unknown vLLM environment variable detected: VLLM_AVEP_CTFR_BUCKET_CAPACITY
+(APIServer pid=4219) WARNING 09-20 07:53:58 [envs.py:2258] Unknown vLLM environment variable detected: VLLM_AVEP_CTFR_MAX_PROBABILITY_SHIFT
+(APIServer pid=4219) WARNING 09-20 07:53:58 [envs.py:2258] Unknown vLLM environment variable detected: VLLM_AVEP_CTFR_MIN_OBSERVATIONS
+(APIServer pid=4219) WARNING 09-20 07:53:58 [envs.py:2258] Unknown vLLM environment variable detected: VLLM_AVEP_TELEMETRY_BUDGET_EVERY
+(APIServer pid=4219) WARNING 09-20 07:53:58 [envs.py:2258] Unknown vLLM environment variable detected: VLLM_AVEP_EVAL_METRICS
+(APIServer pid=4219) WARNING 09-20 07:53:58 [envs.py:2258] Unknown vLLM environment variable detected: VLLM_AVEP_CTFR_MIN_COSINE
+(APIServer pid=4219) WARNING 09-20 07:53:58 [envs.py:2258] Unknown vLLM environment variable detected: VLLM_AVEP_CTFR_DELTA_CLIP
+(APIServer pid=4219) WARNING 09-20 07:53:58 [envs.py:2258] Unknown vLLM environment variable detected: VLLM_AVEP_PCFR_MODE
+(APIServer pid=4219) WARNING 09-20 07:53:58 [envs.py:2258] Unknown vLLM environment variable detected: VLLM_AVEP_TELEMETRY
+(APIServer pid=4219) WARNING 09-20 07:53:58 [envs.py:2258] Unknown vLLM environment variable detected: VLLM_AVEP_CTFR_MAX_COMMIT_NORM
+(APIServer pid=4219) INFO 09-20 07:53:59 [model.py:692] Resolved architecture: Qwen3ForCausalLM
+(APIServer pid=4219) INFO 09-20 07:53:59 [model.py:2030] Using max model len 4096
+(APIServer pid=4219) INFO 09-20 07:53:59 [model.py:692] Resolved architecture: DFlashDraftModel
+(APIServer pid=4219) INFO 09-20 07:53:59 [model.py:2030] Using max model len 4096
+(APIServer pid=4219) INFO 09-20 07:53:59 [scheduler.py:288] Chunked prefill is enabled with max_num_batched_tokens=4096.
+(APIServer pid=4219) Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+(APIServer pid=4219) Parse safetensors files:   0%|          | 0/3 [00:00<?, ?it/s]Parse safetensors files:  33%|███▎      | 1/3 [00:01<00:02,  1.05s/it]Parse safetensors files: 100%|██████████| 3/3 [00:01<00:00,  2.77it/s]Parse safetensors files: 100%|██████████| 3/3 [00:01<00:00,  2.33it/s]
+(APIServer pid=4219) INFO 09-20 07:54:01 [kernel.py:416] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'], gelu_and_mul_sparse=['triton', 'native'])
+(APIServer pid=4219) WARNING 09-20 07:54:01 [vllm.py:2158] max_num_scheduled_tokens is set to 4096 based on the speculative decoding settings. This may lead to suboptimal performance. Consider increasing max_num_batched_tokens to accommodate the additional draft token slots, or decrease num_speculative_tokens.
+(EngineCore pid=4258) INFO 09-20 07:54:11 [core.py:123] Initializing a V1 LLM engine (v0.29.1rc1.dev190+g4fe9e6f6e.d20260918) with config: model='Qwen/Qwen3-4B', speculative_config=SpeculativeConfig(method='dflash', model='z-lab/Qwen3-4B-DFlash-b16', num_spec_tokens=4), tokenizer='Qwen/Qwen3-4B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=1cfa9a7208912126459214e8b04321603b3df60c, tokenizer_revision=1cfa9a7208912126459214e8b04321603b3df60c, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, quantization_config=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, per_request_spec_decode_metrics='detailed', kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False, jit_monitor_mode='warn', jit_monitor_verbose=False), seed=0, served_model_name=Qwen/Qwen3-4B, enable_prefix_caching=False, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['none'], 'ir_enable_torch_wrap': True, 'splitting_ops': ['vllm::unified_attention_with_output', 'vllm::unified_mla_attention_with_output', 'vllm::mamba_mixer2', 'vllm::mamba_mixer', 'vllm::short_conv', 'vllm::qwen4_exp_ple_short_conv', 'vllm::qwen4_exp_qsa_with_output', 'vllm::linear_attention', 'vllm::qwen_gdn_attention_core', 'vllm::qwen_gdn_attention_core_fused_norm_packed', 'vllm::gdn_attention_core_xpu', 'vllm::olmo_hybrid_gdn_full_forward', 'vllm::sparse_attn_indexer', 'vllm::rocm_aiter_sparse_attn_indexer', 'vllm::deepseek_v4_attention', 'vllm::hpc_rope_norm_forward', 'vllm::unified_kv_cache_update', 'vllm::unified_mla_kv_cache_update'], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'compile_sizes': [], 'compile_ranges_endpoints': [4096], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL_AND_PIECEWISE: (2, 1)>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1, 2, 4, 5, 8, 10, 16, 20, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 176, 184, 192, 200, 208, 216, 224, 232, 240, 248, 256, 272, 280, 288, 304, 320, 336, 352, 368, 384, 400, 416, 432, 448, 464, 480, 496, 512], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': False, 'fuse_act_quant': False, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False, 'enable_qk_norm_rope_fusion': False, 'fuse_rope_kvcache_cat_mla': False, 'fuse_act_padding': False, 'fuse_qk_norm_rope_kvcache': False}, 'max_cudagraph_capture_size': 512, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': False, 'static_all_moe_layers': []}, kernel_config=KernelConfig(ir_op_priority=IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'], gelu_and_mul_sparse=['triton', 'native']), enable_flashinfer_autotune=True, enable_cutedsl_warmup=True, enable_jit_warmup=True, moe_backend='auto', sparse_indexer_topk_backend='auto', linear_backend='auto', linear_backend_per_quant=None)
+(EngineCore pid=4258) INFO 09-20 07:54:12 [parallel_state.py:1827] world_size=1 rank=0 local_rank=0 distributed_init_method=file:///tmp/vllm_dist_cec14c5110314ac7884cb8aed648f67d backend=nccl
+(EngineCore pid=4258) INFO 09-20 07:54:12 [parallel_state.py:2267] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, ETP rank 0, EP rank N/A, EPLB rank N/A
+(EngineCore pid=4258) INFO 09-20 07:54:12 [gpu_worker.py:441] Using V2 Model Runner
+(EngineCore pid=4258) INFO 09-20 07:54:13 [model_runner.py:390] Loading model from scratch...
+(EngineCore pid=4258) INFO 09-20 07:54:13 [cuda.py:478] Using AttentionBackendEnum.TRITON_ATTN backend.
+(EngineCore pid=4258) INFO 09-20 07:54:14 [weight_utils.py:895] Filesystem type for checkpoints: EXT4. Checkpoint size: 7.49 GiB. Available RAM: 58.05 GiB.
+(EngineCore pid=4258) INFO 09-20 07:54:14 [weight_utils.py:918] Auto-prefetch is disabled because the filesystem (EXT4) is not a recognized network FS (NFS/Lustre). If you want to force prefetching, start vLLM with --safetensors-load-strategy=prefetch.
+(EngineCore pid=4258) Loading safetensors checkpoint shards:   0% Completed | 0/3 [00:00<?, ?it/s]
+(EngineCore pid=4258) Loading safetensors checkpoint shards:  33% Completed | 1/3 [00:00<00:00,  2.13it/s]
+(EngineCore pid=4258) Loading safetensors checkpoint shards:  67% Completed | 2/3 [00:01<00:00,  1.85it/s]
+(EngineCore pid=4258) Loading safetensors checkpoint shards: 100% Completed | 3/3 [00:01<00:00,  2.84it/s]
+(EngineCore pid=4258) Loading safetensors checkpoint shards: 100% Completed | 3/3 [00:01<00:00,  2.53it/s]
+(EngineCore pid=4258) 
+(EngineCore pid=4258) INFO 09-20 07:54:15 [default_loader.py:430] Loading weights took 1.19 seconds
+(EngineCore pid=4258) INFO 09-20 07:54:15 [eagle3_utils.py:27] Using Eagle3 auxiliary layers from config: (2, 10, 18, 26, 34)
+(EngineCore pid=4258) Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+(EngineCore pid=4258) Parse safetensors files:   0%|          | 0/3 [00:00<?, ?it/s]Parse safetensors files:  33%|███▎      | 1/3 [00:01<00:02,  1.09s/it]Parse safetensors files: 100%|██████████| 3/3 [00:01<00:00,  2.56it/s]
+(EngineCore pid=4258) INFO 09-20 07:54:17 [kernel.py:416] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'], gelu_and_mul_sparse=['triton', 'native'])
+(EngineCore pid=4258) WARNING 09-20 07:54:17 [vllm.py:2158] max_num_scheduled_tokens is set to 4096 based on the speculative decoding settings. This may lead to suboptimal performance. Consider increasing max_num_batched_tokens to accommodate the additional draft token slots, or decrease num_speculative_tokens.
+(EngineCore pid=4258) INFO 09-20 07:54:17 [cuda.py:478] Using AttentionBackendEnum.TRITON_ATTN backend.
+(EngineCore pid=4258) INFO 09-20 07:54:18 [weight_utils.py:895] Filesystem type for checkpoints: EXT4. Checkpoint size: 1.00 GiB. Available RAM: 58.09 GiB.
+(EngineCore pid=4258) Loading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+(EngineCore pid=4258) Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00, 551.45it/s]
+(EngineCore pid=4258) 
+(EngineCore pid=4258) INFO 09-20 07:54:18 [default_loader.py:430] Loading weights took 0.16 seconds
+(EngineCore pid=4258) INFO 09-20 07:54:19 [model_runner.py:422] Model loading took 8.61 GiB memory and 6.159069 seconds
+(EngineCore pid=4258) INFO 09-20 07:54:19 [topk_topp_sampler.py:78] Using FlashInfer for top-p & top-k sampling.
+(EngineCore pid=4258) INFO 09-20 07:54:19 [utils.py:320] Using LBNHC KV cache layout.
+(EngineCore pid=4258) INFO 09-20 07:54:20 [caching.py:343] reconstructed serializable fn from standalone compile artifacts. num_artifacts=4 num_submods=37
+(EngineCore pid=4258) INFO 09-20 07:54:20 [decorators.py:313] Directly load AOT compilation from path /home/ubuntu/.cache/vllm/torch_compile_cache/torch_aot_compile/24e77d02f4751794d8db42c1cf2e48928fae22aa5b562e638146620934b73151/rank_0_0/model
+(EngineCore pid=4258) INFO 09-20 07:54:20 [monitor.py:53] torch.compile took 0.23 s in total
+(EngineCore pid=4258) INFO 09-20 07:54:20 [monitor.py:81] Initial profiling/warmup run took 0.31 s
+(EngineCore pid=4258) INFO 09-20 07:54:20 [caching.py:343] reconstructed serializable fn from standalone compile artifacts. num_artifacts=3 num_submods=6
+(EngineCore pid=4258) INFO 09-20 07:54:20 [decorators.py:313] Directly load AOT compilation from path /home/ubuntu/.cache/vllm/torch_compile_cache/torch_aot_compile/a63d478a2a9df544efdf9402c01b66716905aeec99a3465b1272838a5be7ed0d/rank_0_0/model
+(EngineCore pid=4258) INFO 09-20 07:54:20 [monitor.py:53] torch.compile took 0.10 s in total
+(EngineCore pid=4258) INFO 09-20 07:54:20 [monitor.py:81] Initial profiling/warmup run took 0.13 s
+(EngineCore pid=4258) Capturing CUDA graphs (PIECEWISE):   0%|          | 0/55 [00:00<?, ?it/s]Capturing CUDA graphs (PIECEWISE):   4%|▎         | 2/55 [00:00<00:04, 12.75it/s]Capturing CUDA graphs (PIECEWISE):   7%|▋         | 4/55 [00:00<00:03, 14.65it/s]Capturing CUDA graphs (PIECEWISE):  11%|█         | 6/55 [00:00<00:03, 15.33it/s]Capturing CUDA graphs (PIECEWISE):  15%|█▍        | 8/55 [00:00<00:02, 15.72it/s]Capturing CUDA graphs (PIECEWISE):  18%|█▊        | 10/55 [00:00<00:02, 15.90it/s]Capturing CUDA graphs (PIECEWISE):  22%|██▏       | 12/55 [00:00<00:02, 16.12it/s]Capturing CUDA graphs (PIECEWISE):  25%|██▌       | 14/55 [00:00<00:02, 16.32it/s]Capturing CUDA graphs (PIECEWISE):  29%|██▉       | 16/55 [00:01<00:02, 16.40it/s]Capturing CUDA graphs (PIECEWISE):  33%|███▎      | 18/55 [00:01<00:02, 16.42it/s]Capturing CUDA graphs (PIECEWISE):  36%|███▋      | 20/55 [00:01<00:02, 16.49it/s]Capturing CUDA graphs (PIECEWISE):  40%|████      | 22/55 [00:01<00:02, 16.47it/s]Capturing CUDA graphs (PIECEWISE):  44%|████▎     | 24/55 [00:01<00:01, 16.53it/s]Capturing CUDA graphs (PIECEWISE):  47%|████▋     | 26/55 [00:01<00:01, 16.38it/s]Capturing CUDA graphs (PIECEWISE):  51%|█████     | 28/55 [00:01<00:01, 16.39it/s]Capturing CUDA graphs (PIECEWISE):  55%|█████▍    | 30/55 [00:01<00:01, 16.37it/s]Capturing CUDA graphs (PIECEWISE):  58%|█████▊    | 32/55 [00:02<00:01, 15.59it/s]Capturing CUDA graphs (PIECEWISE):  62%|██████▏   | 34/55 [00:02<00:01, 15.82it/s]Capturing CUDA graphs (PIECEWISE):  65%|██████▌   | 36/55 [00:02<00:01, 16.06it/s]Capturing CUDA graphs (PIECEWISE):  69%|██████▉   | 38/55 [00:02<00:01, 16.24it/s]Capturing CUDA graphs (PIECEWISE):  73%|███████▎  | 40/55 [00:02<00:00, 16.38it/s]Capturing CUDA graphs (PIECEWISE):  76%|███████▋  | 42/55 [00:02<00:00, 16.43it/s]Capturing CUDA graphs (PIECEWISE):  80%|████████  | 44/55 [00:02<00:00, 16.10it/s]Capturing CUDA graphs (PIECEWISE):  84%|████████▎ | 46/55 [00:02<00:00, 16.31it/s]Capturing CUDA graphs (PIECEWISE):  87%|████████▋ | 48/55 [00:02<00:00, 16.47it/s]Capturing CUDA graphs (PIECEWISE):  91%|█████████ | 50/55 [00:03<00:00, 15.03it/s]Capturing CUDA graphs (PIECEWISE):  95%|█████████▍| 52/55 [00:03<00:00, 15.42it/s]Capturing CUDA graphs (PIECEWISE):  98%|█████████▊| 54/55 [00:03<00:00, 15.61it/s]Capturing CUDA graphs (PIECEWISE): 100%|██████████| 55/55 [00:03<00:00, 15.81it/s]
+(EngineCore pid=4258) Capturing CUDA graphs (FULL):   0%|          | 0/2 [00:00<?, ?it/s]Capturing CUDA graphs (FULL): 100%|██████████| 2/2 [00:00<00:00, 21.84it/s]
+(EngineCore pid=4258) INFO 09-20 07:54:25 [speculator.py:149] Capturing model for DFlash speculator...
+(EngineCore pid=4258) Capturing dflash CUDA graphs (FULL):   0%|          | 0/38 [00:00<?, ?it/s]Capturing dflash CUDA graphs (FULL):   5%|▌         | 2/38 [00:00<00:04,  8.37it/s]Capturing dflash CUDA graphs (FULL):  34%|███▍      | 13/38 [00:00<00:00, 45.24it/s]Capturing dflash CUDA graphs (FULL):  63%|██████▎   | 24/38 [00:00<00:00, 67.28it/s]Capturing dflash CUDA graphs (FULL):  97%|█████████▋| 37/38 [00:00<00:00, 86.50it/s]Capturing dflash CUDA graphs (FULL): 100%|██████████| 38/38 [00:00<00:00, 67.05it/s]
+(EngineCore pid=4258) INFO 09-20 07:54:30 [model_runner.py:1060] Graph capturing finished in 8 secs, took 1.20 GiB
+(EngineCore pid=4258) INFO 09-20 07:54:30 [gpu_worker.py:640] Available KV cache memory: 25.07 GiB
+(EngineCore pid=4258) INFO 09-20 07:54:30 [gpu_worker.py:655] CUDA graph memory profiling is enabled (default since v0.21.0). The current --gpu-memory-utilization=0.8000 is equivalent to --gpu-memory-utilization=0.7716 without CUDA graph memory profiling. To maintain the same effective KV cache size as before, increase --gpu-memory-utilization to 0.8284. To disable, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=0.
+(EngineCore pid=4258) INFO 09-20 07:54:30 [kv_cache_utils.py:2404] GPU KV cache size: 160,288 tokens, Maximum concurrency for 4,096 tokens per request: 39.13x
+(EngineCore pid=4258) INFO 09-20 07:54:30 [kernel_warmup.py:172] JIT kernel warmup starting.
+(EngineCore pid=4258) INFO 09-20 07:54:30 [kernel_warmup.py:185] JIT kernel warmup finished in 0.00s.
+(EngineCore pid=4258) WARNING 09-20 07:54:32 [model_runner.py:2150] AVEP_CTFR_BINDING {"persistent_slots": [63, 62, 61, 60, 59, 58, 57, 56, 55, 54, 53, 52, 51, 50, 49, 48, 47, 46, 45, 44, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0], "principals": [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1], "request_ids": ["_warmup_0_", "_warmup_1_", "_warmup_2_", "_warmup_3_", "_warmup_4_", "_warmup_5_", "_warmup_6_", "_warmup_7_", "_warmup_8_", "_warmup_9_", "_warmup_10_", "_warmup_11_", "_warmup_12_", "_warmup_13_", "_warmup_14_", "_warmup_15_", "_warmup_16_", "_warmup_17_", "_warmup_18_", "_warmup_19_", "_warmup_20_", "_warmup_21_", "_warmup_22_", "_warmup_23_", "_warmup_24_", "_warmup_25_", "_warmup_26_", "_warmup_27_", "_warmup_28_", "_warmup_29_", "_warmup_30_", "_warmup_31_", "_warmup_32_", "_warmup_33_", "_warmup_34_", "_warmup_35_", "_warmup_36_", "_warmup_37_", "_warmup_38_", "_warmup_39_", "_warmup_40_", "_warmup_41_", "_warmup_42_", "_warmup_43_", "_warmup_44_", "_warmup_45_", "_warmup_46_", "_warmup_47_", "_warmup_48_", "_warmup_49_", "_warmup_50_", "_warmup_51_", "_warmup_52_", "_warmup_53_", "_warmup_54_", "_warmup_55_", "_warmup_56_", "_warmup_57_", "_warmup_58_", "_warmup_59_", "_warmup_60_", "_warmup_61_", "_warmup_62_", "_warmup_63_"]}
+(EngineCore pid=4258) WARNING 09-20 07:54:32 [acceptance_estimator.py:914] AVEP_CTFR_ATTRIBUTION {"persistent_slots": [63, 62, 61, 60, 59, 58, 57, 56, 55, 54, 53, 52, 51, 50, 49, 48, 47, 46, 45, 44, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0], "principals": [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]}
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366] EngineCore failed to start.
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366] Traceback (most recent call last):
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]   File "/home/ubuntu/avep/vllm/vllm/v1/engine/core.py", line 1328, in run_engine_core
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]     engine_core = EngineCoreProc(*args, engine_index=dp_rank, **kwargs)
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]   File "/home/ubuntu/avep/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]     return func(*args, **kwargs)
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]   File "/home/ubuntu/avep/vllm/vllm/v1/engine/core.py", line 1085, in __init__
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]     super().__init__(
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]   File "/home/ubuntu/avep/vllm/vllm/v1/engine/core.py", line 145, in __init__
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]     kv_cache_config = self._initialize_kv_caches(vllm_config)
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]   File "/home/ubuntu/avep/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]     return func(*args, **kwargs)
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]   File "/home/ubuntu/avep/vllm/vllm/v1/engine/core.py", line 356, in _initialize_kv_caches
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]     self.model_executor.compile_or_warm_up_model()
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]   File "/home/ubuntu/avep/vllm/vllm/v1/executor/abstract.py", line 126, in compile_or_warm_up_model
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]     compilation_times: list[CompilationTimes] = self.collective_rpc(
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]                                                 ^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]   File "/home/ubuntu/avep/vllm/vllm/v1/executor/uniproc_executor.py", line 103, in collective_rpc
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]     result = run_method(self.driver_worker, method, args, kwargs)
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]   File "/home/ubuntu/avep/vllm/vllm/v1/serial_utils.py", line 510, in run_method
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]     return func(*args, **kwargs)
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]   File "/home/ubuntu/avep/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]     return func(*args, **kwargs)
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]   File "/home/ubuntu/avep/vllm/vllm/v1/worker/gpu_worker.py", line 811, in compile_or_warm_up_model
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]     warmup_kernels(self.model_runner, self.execute_model, self.sample_tokens)
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]   File "/home/ubuntu/avep/vllm/.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]     return func(*args, **kwargs)
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]   File "/home/ubuntu/avep/vllm/vllm/v1/worker/gpu/warmup.py", line 235, in warmup_kernels
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]     _warmup_kernels(model_runner, worker_execute_model, worker_sample_tokens)
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]   File "/home/ubuntu/avep/vllm/vllm/v1/worker/gpu/warmup.py", line 373, in _warmup_kernels
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]     worker_sample_tokens(grammar_output)
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]   File "/home/ubuntu/avep/vllm/.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]     return func(*args, **kwargs)
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]   File "/home/ubuntu/avep/vllm/vllm/v1/worker/gpu_worker.py", line 1264, in sample_tokens
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]     return self.model_runner.sample_tokens(grammar_output)
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]   File "/home/ubuntu/avep/vllm/.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]     return func(*args, **kwargs)
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]   File "/home/ubuntu/avep/vllm/vllm/v1/worker/gpu/eplb_utils.py", line 27, in wrapper
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]     result = fn(self, *args, **kwargs)
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]              ^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]   File "/home/ubuntu/avep/vllm/vllm/v1/worker/gpu/model_runner.py", line 2167, in sample_tokens
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]     self.speculator.observe_verification(
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]   File "/home/ubuntu/avep/vllm/vllm/v1/worker/gpu/spec_decode/speculator.py", line 469, in observe_verification
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]     self.acceptance_estimator.step(
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]   File "/home/ubuntu/avep/vllm/vllm/v1/worker/gpu/spec_decode/acceptance_estimator.py", line 930, in step
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]     _evaluate_kernel[(self.num_speculative_steps,)](
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]   File "/home/ubuntu/avep/vllm/.venv/lib/python3.12/site-packages/triton/runtime/jit.py", line 370, in <lambda>
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]     return lambda *args, **kwargs: self.run(grid=grid, warmup=False, *args, **kwargs)
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]   File "/home/ubuntu/avep/vllm/.venv/lib/python3.12/site-packages/triton/runtime/jit.py", line 739, in run
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]     kernel = self._do_compile(key, signature, device, constexprs, options, attrs, warmup)
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]   File "/home/ubuntu/avep/vllm/.venv/lib/python3.12/site-packages/triton/runtime/jit.py", line 884, in _do_compile
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]     kernel = self.compile(src, target=target, options=options.__dict__)
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]   File "/home/ubuntu/avep/vllm/.venv/lib/python3.12/site-packages/triton/compiler/compiler.py", line 307, in compile
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]     module = src.make_ir(target, options, codegen_fns, module_map, context)
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]   File "/home/ubuntu/avep/vllm/.venv/lib/python3.12/site-packages/triton/compiler/compiler.py", line 80, in make_ir
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]     return ast_to_ttir(self.fn, self, context=context, options=options, codegen_fns=codegen_fns,
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366] triton.compiler.errors.CompilationError: at 45:4:
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]     ).to(tl.int64)
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]     num_admitted = num_accepted + num_rejected
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]     observed = req_mask & (step <= num_accepted) & (step < num_admitted)
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]     label = tl.where(step < num_accepted, 1.0, 0.0)
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]     prediction = tl.load(
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]         pred_ptr + req_state_block * pred_stride + step,
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]         mask=req_mask,
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]         other=0.5,
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]     ).to(tl.float32)
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]     prediction = tl.minimum(tl.maximum(prediction, 1.0e-6), 1.0 - 1.0e-6)
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366] 
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]     for principal_id in tl.static_range(_NUM_CTFR_PRINCIPALS):
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366]     ^
+(EngineCore pid=4258) ERROR 09-20 07:54:32 [core.py:1366] AssertionError('2 used as tl.static_range start value is not a constexpr')
+(EngineCore pid=4258) Process EngineCore:
+(EngineCore pid=4258) Traceback (most recent call last):
+(EngineCore pid=4258)   File "/usr/local/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+(EngineCore pid=4258)     self.run()
+(EngineCore pid=4258)   File "/usr/local/lib/python3.12/multiprocessing/process.py", line 108, in run
+(EngineCore pid=4258)     self._target(*self._args, **self._kwargs)
+(EngineCore pid=4258)   File "/home/ubuntu/avep/vllm/vllm/v1/engine/core.py", line 1370, in run_engine_core
+(EngineCore pid=4258)     raise e
+(EngineCore pid=4258)   File "/home/ubuntu/avep/vllm/vllm/v1/engine/core.py", line 1328, in run_engine_core
+(EngineCore pid=4258)     engine_core = EngineCoreProc(*args, engine_index=dp_rank, **kwargs)
+(EngineCore pid=4258)                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=4258)   File "/home/ubuntu/avep/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=4258)     return func(*args, **kwargs)
+(EngineCore pid=4258)            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=4258)   File "/home/ubuntu/avep/vllm/vllm/v1/engine/core.py", line 1085, in __init__
+(EngineCore pid=4258)     super().__init__(
+(EngineCore pid=4258)   File "/home/ubuntu/avep/vllm/vllm/v1/engine/core.py", line 145, in __init__
+(EngineCore pid=4258)     kv_cache_config = self._initialize_kv_caches(vllm_config)
+(EngineCore pid=4258)                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=4258)   File "/home/ubuntu/avep/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=4258)     return func(*args, **kwargs)
+(EngineCore pid=4258)            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=4258)   File "/home/ubuntu/avep/vllm/vllm/v1/engine/core.py", line 356, in _initialize_kv_caches
+(EngineCore pid=4258)     self.model_executor.compile_or_warm_up_model()
+(EngineCore pid=4258)   File "/home/ubuntu/avep/vllm/vllm/v1/executor/abstract.py", line 126, in compile_or_warm_up_model
+(EngineCore pid=4258)     compilation_times: list[CompilationTimes] = self.collective_rpc(
+(EngineCore pid=4258)                                                 ^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=4258)   File "/home/ubuntu/avep/vllm/vllm/v1/executor/uniproc_executor.py", line 103, in collective_rpc
+(EngineCore pid=4258)     result = run_method(self.driver_worker, method, args, kwargs)
+(EngineCore pid=4258)              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=4258)   File "/home/ubuntu/avep/vllm/vllm/v1/serial_utils.py", line 510, in run_method
+(EngineCore pid=4258)     return func(*args, **kwargs)
+(EngineCore pid=4258)            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=4258)   File "/home/ubuntu/avep/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=4258)     return func(*args, **kwargs)
+(EngineCore pid=4258)            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=4258)   File "/home/ubuntu/avep/vllm/vllm/v1/worker/gpu_worker.py", line 811, in compile_or_warm_up_model
+(EngineCore pid=4258)     warmup_kernels(self.model_runner, self.execute_model, self.sample_tokens)
+(EngineCore pid=4258)   File "/home/ubuntu/avep/vllm/.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(EngineCore pid=4258)     return func(*args, **kwargs)
+(EngineCore pid=4258)            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=4258)   File "/home/ubuntu/avep/vllm/vllm/v1/worker/gpu/warmup.py", line 235, in warmup_kernels
+(EngineCore pid=4258)     _warmup_kernels(model_runner, worker_execute_model, worker_sample_tokens)
+(EngineCore pid=4258)   File "/home/ubuntu/avep/vllm/vllm/v1/worker/gpu/warmup.py", line 373, in _warmup_kernels
+(EngineCore pid=4258)     worker_sample_tokens(grammar_output)
+(EngineCore pid=4258)   File "/home/ubuntu/avep/vllm/.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(EngineCore pid=4258)     return func(*args, **kwargs)
+(EngineCore pid=4258)            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=4258)   File "/home/ubuntu/avep/vllm/vllm/v1/worker/gpu_worker.py", line 1264, in sample_tokens
+(EngineCore pid=4258)     return self.model_runner.sample_tokens(grammar_output)
+(EngineCore pid=4258)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=4258)   File "/home/ubuntu/avep/vllm/.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+(EngineCore pid=4258)     return func(*args, **kwargs)
+(EngineCore pid=4258)            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=4258)   File "/home/ubuntu/avep/vllm/vllm/v1/worker/gpu/eplb_utils.py", line 27, in wrapper
+(EngineCore pid=4258)     result = fn(self, *args, **kwargs)
+(EngineCore pid=4258)              ^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=4258)   File "/home/ubuntu/avep/vllm/vllm/v1/worker/gpu/model_runner.py", line 2167, in sample_tokens
+(EngineCore pid=4258)     self.speculator.observe_verification(
+(EngineCore pid=4258)   File "/home/ubuntu/avep/vllm/vllm/v1/worker/gpu/spec_decode/speculator.py", line 469, in observe_verification
+(EngineCore pid=4258)     self.acceptance_estimator.step(
+(EngineCore pid=4258)   File "/home/ubuntu/avep/vllm/vllm/v1/worker/gpu/spec_decode/acceptance_estimator.py", line 930, in step
+(EngineCore pid=4258)     _evaluate_kernel[(self.num_speculative_steps,)](
+(EngineCore pid=4258)   File "/home/ubuntu/avep/vllm/.venv/lib/python3.12/site-packages/triton/runtime/jit.py", line 370, in <lambda>
+(EngineCore pid=4258)     return lambda *args, **kwargs: self.run(grid=grid, warmup=False, *args, **kwargs)
+(EngineCore pid=4258)                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=4258)   File "/home/ubuntu/avep/vllm/.venv/lib/python3.12/site-packages/triton/runtime/jit.py", line 739, in run
+(EngineCore pid=4258)     kernel = self._do_compile(key, signature, device, constexprs, options, attrs, warmup)
+(EngineCore pid=4258)              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=4258)   File "/home/ubuntu/avep/vllm/.venv/lib/python3.12/site-packages/triton/runtime/jit.py", line 884, in _do_compile
+(EngineCore pid=4258)     kernel = self.compile(src, target=target, options=options.__dict__)
+(EngineCore pid=4258)              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=4258)   File "/home/ubuntu/avep/vllm/.venv/lib/python3.12/site-packages/triton/compiler/compiler.py", line 307, in compile
+(EngineCore pid=4258)     module = src.make_ir(target, options, codegen_fns, module_map, context)
+(EngineCore pid=4258)              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=4258)   File "/home/ubuntu/avep/vllm/.venv/lib/python3.12/site-packages/triton/compiler/compiler.py", line 80, in make_ir
+(EngineCore pid=4258)     return ast_to_ttir(self.fn, self, context=context, options=options, codegen_fns=codegen_fns,
+(EngineCore pid=4258)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=4258) triton.compiler.errors.CompilationError: at 45:4:
+(EngineCore pid=4258)     ).to(tl.int64)
+(EngineCore pid=4258)     num_admitted = num_accepted + num_rejected
+(EngineCore pid=4258)     observed = req_mask & (step <= num_accepted) & (step < num_admitted)
+(EngineCore pid=4258)     label = tl.where(step < num_accepted, 1.0, 0.0)
+(EngineCore pid=4258)     prediction = tl.load(
+(EngineCore pid=4258)         pred_ptr + req_state_block * pred_stride + step,
+(EngineCore pid=4258)         mask=req_mask,
+(EngineCore pid=4258)         other=0.5,
+(EngineCore pid=4258)     ).to(tl.float32)
+(EngineCore pid=4258)     prediction = tl.minimum(tl.maximum(prediction, 1.0e-6), 1.0 - 1.0e-6)
+(EngineCore pid=4258) 
+(EngineCore pid=4258)     for principal_id in tl.static_range(_NUM_CTFR_PRINCIPALS):
+(EngineCore pid=4258)     ^
+(EngineCore pid=4258) AssertionError('2 used as tl.static_range start value is not a constexpr')
+[rank0]:[W920 07:54:32.593878484 ProcessGroupNCCL.cpp:1624] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+(APIServer pid=4219) INFO 09-20 07:54:33 [utils.py:632] [shutdown] Process manager: send sigterm to process EngineCore
+(APIServer pid=4219) Traceback (most recent call last):
+(APIServer pid=4219)   File "/home/ubuntu/avep/vllm/.venv/bin/vllm", line 10, in <module>
+(APIServer pid=4219)     sys.exit(main())
+(APIServer pid=4219)              ^^^^^^
+(APIServer pid=4219)   File "/home/ubuntu/avep/vllm/vllm/entrypoints/cli/main.py", line 106, in main
+(APIServer pid=4219)     args.dispatch_function(args)
+(APIServer pid=4219)   File "/home/ubuntu/avep/vllm/vllm/entrypoints/cli/serve.py", line 154, in cmd
+(APIServer pid=4219)     uvloop.run(run_server(args))
+(APIServer pid=4219)   File "/home/ubuntu/avep/vllm/.venv/lib/python3.12/site-packages/uvloop/__init__.py", line 96, in run
+(APIServer pid=4219)     return __asyncio.run(
+(APIServer pid=4219)            ^^^^^^^^^^^^^^
+(APIServer pid=4219)   File "/usr/local/lib/python3.12/asyncio/runners.py", line 195, in run
+(APIServer pid=4219)     return runner.run(main)
+(APIServer pid=4219)            ^^^^^^^^^^^^^^^^
+(APIServer pid=4219)   File "/usr/local/lib/python3.12/asyncio/runners.py", line 118, in run
+(APIServer pid=4219)     return self._loop.run_until_complete(task)
+(APIServer pid=4219)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=4219)   File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+(APIServer pid=4219)   File "/home/ubuntu/avep/vllm/.venv/lib/python3.12/site-packages/uvloop/__init__.py", line 48, in wrapper
+(APIServer pid=4219)     return await main
+(APIServer pid=4219)            ^^^^^^^^^^
+(APIServer pid=4219)   File "/home/ubuntu/avep/vllm/vllm/entrypoints/launchers/api_server/entry.py", line 176, in run_server
+(APIServer pid=4219)     await run_server_worker(listen_address, sock, args, **uvicorn_kwargs)
+(APIServer pid=4219)   File "/home/ubuntu/avep/vllm/vllm/entrypoints/launchers/api_server/entry.py", line 190, in run_server_worker
+(APIServer pid=4219)     async with build_async_engine_client(
+(APIServer pid=4219)                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=4219)   File "/usr/local/lib/python3.12/contextlib.py", line 210, in __aenter__
+(APIServer pid=4219)     return await anext(self.gen)
+(APIServer pid=4219)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=4219)   File "/home/ubuntu/avep/vllm/vllm/entrypoints/launchers/api_server/entry.py", line 58, in build_async_engine_client
+(APIServer pid=4219)     async with build_async_engine_client_from_engine_args(
+(APIServer pid=4219)                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=4219)   File "/usr/local/lib/python3.12/contextlib.py", line 210, in __aenter__
+(APIServer pid=4219)     return await anext(self.gen)
+(APIServer pid=4219)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=4219)   File "/home/ubuntu/avep/vllm/vllm/entrypoints/launchers/api_server/entry.py", line 94, in build_async_engine_client_from_engine_args
+(APIServer pid=4219)     async_llm = AsyncLLM.from_vllm_config(
+(APIServer pid=4219)                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=4219)   File "/home/ubuntu/avep/vllm/vllm/v1/engine/async_llm.py", line 235, in from_vllm_config
+(APIServer pid=4219)     return cls(
+(APIServer pid=4219)            ^^^^
+(APIServer pid=4219)   File "/home/ubuntu/avep/vllm/vllm/v1/engine/async_llm.py", line 169, in __init__
+(APIServer pid=4219)     self.engine_core = EngineCoreClient.make_async_mp_client(
+(APIServer pid=4219)                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=4219)   File "/home/ubuntu/avep/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(APIServer pid=4219)     return func(*args, **kwargs)
+(APIServer pid=4219)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=4219)   File "/home/ubuntu/avep/vllm/vllm/v1/engine/core_client.py", line 163, in make_async_mp_client
+(APIServer pid=4219)     return AsyncMPClient(
+(APIServer pid=4219)            ^^^^^^^^^^^^^^
+(APIServer pid=4219)   File "/home/ubuntu/avep/vllm/vllm/tracing/otel.py", line 178, in sync_wrapper
+(APIServer pid=4219)     return func(*args, **kwargs)
+(APIServer pid=4219)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=4219)   File "/home/ubuntu/avep/vllm/vllm/v1/engine/core_client.py", line 1060, in __init__
+(APIServer pid=4219)     super().__init__(
+(APIServer pid=4219)   File "/home/ubuntu/avep/vllm/vllm/v1/engine/core_client.py", line 656, in __init__
+(APIServer pid=4219)     with launch_core_engines(
+(APIServer pid=4219)          ^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=4219)   File "/usr/local/lib/python3.12/contextlib.py", line 144, in __exit__
+(APIServer pid=4219)     next(self.gen)
+(APIServer pid=4219)   File "/home/ubuntu/avep/vllm/vllm/v1/engine/utils.py", line 1240, in launch_core_engines
+(APIServer pid=4219)     wait_for_engine_startup(
+(APIServer pid=4219)   File "/home/ubuntu/avep/vllm/vllm/v1/engine/utils.py", line 1320, in wait_for_engine_startup
+(APIServer pid=4219)     raise RuntimeError(
+(APIServer pid=4219) RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}

@@ -1,0 +1,8 @@
+{
+  "run_name": "adaptive_off_02",
+  "pair_id": null,
+  "arm": "adaptive_off",
+  "adaptive": false,
+  "telemetry": false,
+  "poison_token_id": 23811
+}
